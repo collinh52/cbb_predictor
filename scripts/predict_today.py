@@ -66,11 +66,13 @@ def predict_game(home_id, away_id, home_abbr, away_abbr, spread, total, ratings)
     Generate prediction with Phase 2.5 enhancements:
     - Uses opponent-adjusted HCA
     - Adjusts confidence based on team consistency
+    - Properly converts tempo-free efficiency ratings to expected scores
     """
     # Get Phase 2.5 ratings (with offensive_rating, defensive_rating, hca, consistency_score)
+    # Note: offensive_rating and defensive_rating are PER-100-POSSESSION efficiency ratings
     default_rating = {
-        'offensive_rating': 70, 
-        'defensive_rating': 70, 
+        'offensive_rating': 52.5,  # League average efficiency
+        'defensive_rating': 52.5, 
         'games': 0, 
         'consistency_score': 50,
         'hca': 3.5
@@ -78,18 +80,29 @@ def predict_game(home_id, away_id, home_abbr, away_abbr, spread, total, ratings)
     home_rating = ratings.get(home_id, default_rating)
     away_rating = ratings.get(away_id, default_rating)
     
-    # Predict scores using Phase 2.5 ratings
-    home_off = home_rating.get('offensive_rating', 70)
-    home_def = home_rating.get('defensive_rating', 70)
-    away_off = away_rating.get('offensive_rating', 70)
-    away_def = away_rating.get('defensive_rating', 70)
+    # Get efficiency ratings (per 100 possessions)
+    home_off_eff = home_rating.get('offensive_rating', 52.5)
+    home_def_eff = home_rating.get('defensive_rating', 52.5)
+    away_off_eff = away_rating.get('offensive_rating', 52.5)
+    away_def_eff = away_rating.get('defensive_rating', 52.5)
     
-    # Use team-specific HCA (not fixed 3.0)
+    # Use team-specific HCA
     home_hca = home_rating.get('hca', 3.5)
     
-    # Predict scores: your_offense + (opp_defense - your_offense) * 0.4
-    pred_home = home_off + (away_def - home_off) * 0.4 + home_hca  # Use team-specific HCA
-    pred_away = away_off + (home_def - away_off) * 0.4
+    # Calculate matchup pace (Total Possessions per Game)
+    # Average pace is ~144 total possessions
+    home_pace = home_rating.get('pace', 144.0)
+    away_pace = away_rating.get('pace', 144.0)
+    matchup_pace = (home_pace + away_pace) / 2
+    
+    # Calculate expected efficiency for each team in this matchup (Points per 100 Total Possessions)
+    # Home offense vs Away defense: blend the two efficiencies
+    home_expected_eff = (home_off_eff + away_def_eff) / 2
+    away_expected_eff = (away_off_eff + home_def_eff) / 2
+    
+    # Convert efficiency to expected points based on matchup pace
+    pred_home = (home_expected_eff / 100) * matchup_pace + home_hca
+    pred_away = (away_expected_eff / 100) * matchup_pace
     
     pred_margin = pred_home - pred_away
     pred_total = pred_home + pred_away
@@ -217,104 +230,173 @@ def main():
     print('  ✓ PACE ADJUSTMENT: Tempo-free ratings (points per 100 possessions)')
     print('  ✓ PYTHAGOREAN EXPECTATION: Identifies lucky 🍀 vs unlucky 😰 teams with regression')
     print('  ✓ Variance/consistency metrics (affects prediction CONFIDENCE, not ranking)')
-    ratings_list = calculate_ratings_v3(historical_games, min_games=5, use_sos_adjustment=True)
+    ratings_result = calculate_ratings_v3(historical_games, min_games=5, use_sos_adjustment=True)
     
-    # Convert list to dict for easy lookup
+    # Handle tuple return (ratings_list, neutral_stats)
+    if isinstance(ratings_result, tuple):
+        ratings_list, neutral_stats = ratings_result
+    else:
+        ratings_list = ratings_result
+    
+    # Convert list to dict for easy lookup (by ID and by name)
     ratings = {team['team_id']: team for team in ratings_list}
+    
+    # Also create name-based lookup for matching Odds API teams
+    # Multiple lookup methods: full name, first word, abbreviation
+    ratings_by_name = {}
+    for team in ratings_list:
+        name = team.get('team_name', '').lower()
+        abbr = team.get('team_abbr', '').lower()
+        
+        # Store by full name
+        ratings_by_name[name] = team
+        # Store by abbreviation
+        if abbr:
+            ratings_by_name[abbr] = team
+        # Store by first word of name (e.g., "syracuse" from "Syracuse Orange")
+        if name:
+            first_word = name.split()[0]
+            if first_word not in ratings_by_name:  # Don't overwrite more specific matches
+                ratings_by_name[first_word] = team
+    
     print(f'✓ Calculated Phase 3D ratings for {len(ratings)} teams')
     print()
     
-    # Get upcoming games (today and tomorrow)
-    print("Fetching upcoming games...")
-    today = datetime.now()
-    tomorrow = today + timedelta(days=1)
-    
-    today_games = espn.get_games_for_date(today)
-    tomorrow_games = espn.get_games_for_date(tomorrow)
-    
-    # Combine and filter for games that haven't started yet
-    all_upcoming = today_games + tomorrow_games
-    upcoming_games = [g for g in all_upcoming if g.get('Status') not in ['STATUS_FINAL', 'Final']]
-    
-    print(f'✓ Found {len(upcoming_games)} upcoming games (today + tomorrow)')
-    print()
-    
-    # Get odds from The Odds API
-    print('Fetching real betting lines from The Odds API...')
+    # Get ALL upcoming games from The Odds API (primary source - more comprehensive)
+    print("Fetching ALL upcoming games from The Odds API (primary source)...")
     odds_collector = get_odds_collector()
     all_odds = odds_collector.get_ncaab_odds()
-    print(f'✓ Found betting lines for {len(all_odds)} games')
+    print(f'✓ Found {len(all_odds)} games with betting lines')
     print()
     
-    # Match odds to games - use full team names instead of abbreviations
-    print(f'\nMatching games with betting lines...')
-    matches_found = 0
+    # Filter to UPCOMING games only (not started yet) - avoids live betting lines
+    now = datetime.now()
+    tomorrow_end = now + timedelta(days=2)
     
-    for game in upcoming_games:
-        home_name = game.get('HomeTeamName', '')
-        away_name = game.get('AwayTeamName', '')
-        
-        if not home_name or not away_name:
-            continue
-        
-        # Try to match with odds using full team names
-        best_match = None
-        best_score = 0
-        
-        for odds_game in all_odds:
-            odds_home = odds_game.get('home_team', '')
-            odds_away = odds_game.get('away_team', '')
+    upcoming_games = []
+    skipped_live = 0
+    
+    for odds_game in all_odds:
+        try:
+            commence_time = datetime.fromisoformat(odds_game['commence_time'].replace('Z', '+00:00'))
+            game_start = commence_time.replace(tzinfo=None)
             
-            # Simple substring matching (case-insensitive)
-            # Extract key words (e.g., "Michigan" from "Michigan Wolverines")
-            home_key = home_name.split()[0].lower()
-            away_key = away_name.split()[0].lower()
-            odds_home_lower = odds_home.lower()
-            odds_away_lower = odds_away.lower()
+            # IMPORTANT: Only include games that HAVEN'T STARTED YET
+            # This ensures we get pregame lines, not live betting lines
+            if game_start <= now:
+                skipped_live += 1
+                continue  # Skip games that have already started
             
-            # Check if both teams match
-            if (home_key in odds_home_lower and away_key in odds_away_lower):
-                score = len(home_key) + len(away_key)  # Longer match = better
-                if score > best_score:
-                    best_score = score
-                    best_match = odds_game
-        
-        if best_match:
-            # Extract spread and total from best match
-            bookmakers = best_match.get('bookmakers', [])
+            # Only include games within the next 2 days
+            if game_start > tomorrow_end:
+                continue
+            
+            # Convert Odds API format to our standard game format
+            home_team = odds_game.get('home_team', '')
+            away_team = odds_game.get('away_team', '')
+            
+            # Extract spread and total from bookmakers
+            spread = None
+            total = None
+            bookmakers = odds_game.get('bookmakers', [])
             for bookmaker in bookmakers:
                 markets = bookmaker.get('markets', [])
                 for market in markets:
                     if market['key'] == 'spreads':
-                        outcomes = market.get('outcomes', [])
-                        for outcome in outcomes:
-                            if outcome['name'] == best_match['home_team']:
-                                game['PointSpread'] = outcome.get('point')
+                        for outcome in market.get('outcomes', []):
+                            if outcome['name'] == home_team:
+                                spread = outcome.get('point')
                     elif market['key'] == 'totals':
-                        outcomes = market.get('outcomes', [])
-                        for outcome in outcomes:
+                        for outcome in market.get('outcomes', []):
                             if outcome['name'] == 'Over':
-                                game['OverUnder'] = outcome.get('point')
+                                total = outcome.get('point')
+                if spread is not None:
+                    break
             
-            if game.get('PointSpread') or game.get('OverUnder'):
-                matches_found += 1
-                print(f'  ✓ Matched: {away_name} @ {home_name}')
+            # Create game dict compatible with our system
+            game = {
+                'GameID': odds_game.get('id', f"{away_team}_{home_team}"),
+                'HomeTeam': home_team.split()[-1] if home_team else '',  # Last word as abbr
+                'AwayTeam': away_team.split()[-1] if away_team else '',
+                'HomeTeamName': home_team,
+                'AwayTeamName': away_team,
+                'HomeTeamID': abs(hash(home_team)) % 100000,
+                'AwayTeamID': abs(hash(away_team)) % 100000,
+                'DateTime': odds_game.get('commence_time'),
+                'date': odds_game.get('commence_time', ''),
+                'PointSpread': spread,
+                'OverUnder': total
+            }
+            upcoming_games.append(game)
+        except (KeyError, ValueError):
+            continue
     
-    print(f'✓ Matched {matches_found} games with betting lines')
+    print(f'✓ Found {len(upcoming_games)} upcoming games (pregame lines only)')
+    if skipped_live > 0:
+        print(f'  ⚠️  Skipped {skipped_live} games already in progress (live lines)')
+    print()
     
-    # Generate predictions
+    # Helper function to find team rating by name
+    def find_rating_by_name(team_name: str) -> dict:
+        """Find team rating using various name matching strategies."""
+        if not team_name:
+            return None
+        
+        name_lower = team_name.lower()
+        
+        # Try exact match first
+        if name_lower in ratings_by_name:
+            return ratings_by_name[name_lower]
+        
+        # Try first word (e.g., "Syracuse" from "Syracuse Orange")
+        first_word = name_lower.split()[0]
+        if first_word in ratings_by_name:
+            return ratings_by_name[first_word]
+        
+        # Try last word (e.g., "Orange" from "Syracuse Orange")
+        last_word = name_lower.split()[-1]
+        if last_word in ratings_by_name:
+            return ratings_by_name[last_word]
+        
+        # Try partial matching - find any key that contains the first word
+        for key, rating in ratings_by_name.items():
+            if first_word in key or key in name_lower:
+                return rating
+        
+        return None
+    
+    # Generate predictions (all games from Odds API have lines)
     print('\n' + '='*80)
     print('PREDICTIONS')
     print('='*80)
     print()
     
-    games_with_odds = [g for g in upcoming_games if g.get('PointSpread') is not None or g.get('OverUnder') is not None]
+    games_with_odds = [g for g in upcoming_games if g.get('PointSpread') is not None]
+    teams_matched = 0
+    teams_unmatched = 0
     
     for i, game in enumerate(games_with_odds, 1):
-        home_id = game.get('HomeTeamID')
-        away_id = game.get('AwayTeamID')
         home_name = game.get('HomeTeamName', 'Unknown')
         away_name = game.get('AwayTeamName', 'Unknown')
+        
+        # Look up ratings by team name instead of ID
+        home_rating_data = find_rating_by_name(home_name)
+        away_rating_data = find_rating_by_name(away_name)
+        
+        # Get team IDs from the matched ratings (or use hash if not found)
+        if home_rating_data:
+            home_id = home_rating_data['team_id']
+            teams_matched += 1
+        else:
+            home_id = abs(hash(home_name)) % 100000
+            teams_unmatched += 1
+            
+        if away_rating_data:
+            away_id = away_rating_data['team_id']
+            teams_matched += 1
+        else:
+            away_id = abs(hash(away_name)) % 100000
+            teams_unmatched += 1
         home_abbr = game.get('HomeTeam', '')
         away_abbr = game.get('AwayTeam', '')
         spread = game.get('PointSpread')
@@ -385,6 +467,7 @@ def main():
     print(f'✓ Analyzed {len(historical_games)} completed games from 2025-26 season')
     print(f'✓ Calculated ratings for {len(ratings)} teams')
     print(f'✓ Generated predictions for {len(games_with_odds)} games with betting lines')
+    print(f'✓ Team matching: {teams_matched} matched, {teams_unmatched} unmatched')
     print(f'✓ Stored predictions for accuracy tracking')
     print()
 

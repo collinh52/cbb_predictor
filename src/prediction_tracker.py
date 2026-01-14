@@ -112,7 +112,7 @@ class PredictionTracker:
 
         # Fetch games for the target date and a few days after (in case of postponements)
         for days_ahead in range(7):
-            check_date = (datetime.strptime(target_date, '%Y-%m-%d') + timedelta(days=days_ahead)).strftime('%Y%m%d')
+            check_date = datetime.strptime(target_date, '%Y-%m-%d') + timedelta(days=days_ahead)
             try:
                 day_games = espn.get_games_for_date(check_date)
                 completed_games.extend([g for g in day_games if g.get('HomeTeamScore') is not None])

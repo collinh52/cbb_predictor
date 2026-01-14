@@ -44,9 +44,11 @@ data/models/
 data/team_names_comparison.json
 *.csv
 
-# Keep these important JSON files
+# Keep these important JSON files for tracking
 !data/predictions.json
 !data/results.json
+!data/ats_tracking.json
+!data/ats_accuracy.json
 
 # Large result files and databases
 backtest_results_*.txt

@@ -1,0 +1,34 @@
+{
+  "with_vegas_lines": {
+    "total_predictions": 0,
+    "spread_correct": 0,
+    "spread_accuracy": 0.0,
+    "total_correct": 0,
+    "total_accuracy": 0.0,
+    "last_updated": null,
+    "daily_breakdown": {}
+  },
+  "without_vegas_lines": {
+    "total_predictions": 0,
+    "implied_spread_correct": 0,
+    "implied_spread_accuracy": 0.0,
+    "total_correct": 0,
+    "total_accuracy": 0.0,
+    "last_updated": null,
+    "daily_breakdown": {}
+  },
+  "combined": {
+    "total_predictions": 0,
+    "straight_up_correct": 0,
+    "straight_up_accuracy": 0.0,
+    "last_updated": null
+  },
+  "rolling_7_day": {
+    "with_vegas": {"predictions": 0, "spread_correct": 0, "accuracy": 0.0},
+    "without_vegas": {"predictions": 0, "correct": 0, "accuracy": 0.0}
+  },
+  "rolling_30_day": {
+    "with_vegas": {"predictions": 0, "spread_correct": 0, "accuracy": 0.0},
+    "without_vegas": {"predictions": 0, "correct": 0, "accuracy": 0.0}
+  }
+}

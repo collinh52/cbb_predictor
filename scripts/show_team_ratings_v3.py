@@ -457,7 +457,7 @@ def apply_pace_adjustment(points_per_game: float, opponent_points_per_game: floa
     offensive_rating_per_100 = (points_per_game / estimated_possessions_per_game) * 100
     defensive_rating_per_100 = (opponent_points_per_game / estimated_possessions_per_game) * 100
 
-    return offensive_rating_per_100, defensive_rating_per_100
+    return offensive_rating_per_100, defensive_rating_per_100, estimated_possessions_per_game
 
 def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: bool = True) -> list:
     """
@@ -565,12 +565,13 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
         raw_defensive = np.mean(stats['points_against'])
 
         # Apply pace adjustment for tempo-free ratings
-        offensive_rating, defensive_rating = apply_pace_adjustment(raw_offensive, raw_defensive)
+        offensive_rating, defensive_rating, pace = apply_pace_adjustment(raw_offensive, raw_defensive)
 
         initial_ratings[team_id] = {
             'offensive_rating': offensive_rating,
             'defensive_rating': defensive_rating,
-            'overall_rating': offensive_rating - defensive_rating
+            'overall_rating': offensive_rating - defensive_rating,
+            'pace': pace
         }
     
     # Calculate enhanced metrics with opponent-adjusted HCA
@@ -582,7 +583,7 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
         raw_defensive = np.mean(stats['points_against'])
 
         # Apply pace adjustment for tempo-free ratings
-        offensive_rating, defensive_rating = apply_pace_adjustment(raw_offensive, raw_defensive)
+        offensive_rating, defensive_rating, pace = apply_pace_adjustment(raw_offensive, raw_defensive)
 
         # Phase 3D: Pythagorean expectation and luck analysis
         actual_win_pct = stats['wins'] / stats['games'] if stats['games'] > 0 else 0
@@ -601,6 +602,7 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
             'team_abbr': stats['team_abbr'],
             'offensive_rating': offensive_rating,
             'defensive_rating': defensive_rating,
+            'pace': pace,
             'wins': stats['wins'],
             'losses': stats['losses'],
             'games': stats['games'],

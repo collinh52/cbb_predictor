@@ -59,6 +59,20 @@ python validation/run_all_backtests.py
 - **Medium confidence** (5-10 pt margin): **79.9%** accuracy
 - **Statistically significant**: p < 0.05 vs. random guessing
 
+<!-- ACCURACY_STATS_START -->
+
+### 🎯 Live ATS Prediction Tracking
+
+**Last Updated**: January 13, 2026 at 08:54 PM
+
+#### 🏆 Rolling ATS Performance
+
+*No predictions with Vegas lines yet. ATS tracking will begin once odds data is collected.*
+
+> 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
+
+<!-- ACCURACY_STATS_END -->
+
 ### Real-World Application
 - **Daily predictions** with confidence scores
 - **Betting line integration** for spread/total picks
