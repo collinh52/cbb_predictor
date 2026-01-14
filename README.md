@@ -63,11 +63,70 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: January 13, 2026 at 08:54 PM
+**Last Updated**: January 14, 2026 at 08:13 AM
 
 #### 🏆 Rolling ATS Performance
 
 *No predictions with Vegas lines yet. ATS tracking will begin once odds data is collected.*
+
+#### 📅 Predictions for 2026-01-14
+
+| Matchup | Spread Pick | Total Pick | Confidence |
+|---------|-------------|------------|------------|
+| Arizona St Sun Devils @ Arizona Wildcats | **HOME** (-22.0) | **OVER** (168.0) | 100% |
+| Fordham Rams @ Saint Louis Billikens | **HOME** (-18.5) | **OVER** (150.0) | 100% |
+| East Carolina Pirates @ South Florida Bulls | **HOME** (-19.0) | **OVER** (157.0) | 100% |
+| Army Knights @ Holy Cross Crusaders | **HOME** (-5.5) | **OVER** (143.5) | 100% |
+| Utah Utes @ Texas Tech Red Raiders | **HOME** (-17.5) | **OVER** (158.5) | 100% |
+| Nevada Wolf Pack @ Utah State Aggies | **HOME** (-14.0) | **OVER** (152.0) | 100% |
+| Pacific Tigers @ Santa Clara Broncos | **HOME** (-13.0) | **OVER** (151.5) | 100% |
+| Davidson Wildcats @ GW Revolutionaries | **HOME** (-12.5) | **OVER** (146.5) | 100% |
+| Louisiana Ragin' Cajuns @ Texas State Bobcats | **HOME** (-8.0) | **OVER** (130.0) | 100% |
+| TCU Horned Frogs @ BYU Cougars | **HOME** (-12.0) | **OVER** (158.5) | 100% |
+| Sacred Heart Pioneers @ Siena Saints | **HOME** (-8.5) | **OVER** (138.0) | 100% |
+| South Carolina Gamecocks @ Arkansas Razorbacks | **HOME** (-10.5) | **OVER** (156.5) | 100% |
+| Southern Miss Golden Eagles @ Troy Trojans | **HOME** (-9.0) | **OVER** (147.5) | 100% |
+| Temple Owls @ Memphis Tigers | **HOME** (-8.0) | **OVER** (146.5) | 100% |
+| La Salle Explorers @ Richmond Spiders | **HOME** (-8.0) | **OVER** (146.5) | 100% |
+| Saint Peter's Peacocks @ Quinnipiac Bobcats | **HOME** (-7.0) | **OVER** (142.5) | 100% |
+| Coastal Carolina Chanticleers @ Marshall Thundering Herd | **HOME** (-8.5) | **OVER** (149.5) | 100% |
+| Ole Miss Rebels @ Georgia Bulldogs | **HOME** (-11.0) | **OVER** (161.0) | 100% |
+| Colorado Buffaloes @ Cincinnati Bearcats | **HOME** (-8.0) | **OVER** (148.5) | 100% |
+| Niagara Purple Eagles @ Canisius Golden Griffins | **HOME** (-3.0) | **OVER** (127.5) | 100% |
+| Oral Roberts Golden Eagles @ Denver Pioneers | **HOME** (-8.0) | **OVER** (156.0) | 100% |
+| Lafayette Leopards @ Bucknell Bison | **HOME** (-4.5) | **OVER** (138.5) | 100% |
+| Missouri St Bears @ Western Kentucky Hilltoppers | **HOME** (-6.5) | **OVER** (148.5) | 100% |
+| Drake Bulldogs @ Southern Illinois Salukis | **HOME** (-5.5) | **OVER** (147.5) | 100% |
+| Virginia Tech Hokies @ SMU Mustangs | **HOME** (-7.5) | **OVER** (158.0) | 100% |
+| South Dakota St Jackrabbits @ North Dakota St Bison | **HOME** (-5.5) | **OVER** (149.0) | 100% |
+| Manhattan Jaspers @ Fairfield Stags | **HOME** (-5.5) | **OVER** (156.0) | 100% |
+| South Carolina Upstate Spartans @ Charleston Southern Buccaneers | **HOME** (-4.5) | **OVER** (155.5) | 100% |
+| Furman Paladins @ Samford Bulldogs | **HOME** (-2.0) | **OVER** (149.5) | 100% |
+| Loyola Marymount Lions @ Oregon St Beavers | **HOME** (+1.5) | **OVER** (140.0) | 100% |
+| Middle Tennessee Blue Raiders @ Louisiana Tech Bulldogs | **HOME** (+3.5) | **OVER** (131.5) | 100% |
+| Sam Houston St Bearkats @ Jacksonville St Gamecocks | **HOME** (+0.0) | **OVER** (150.0) | 100% |
+| Florida Int'l Golden Panthers @ Kennesaw St Owls | **HOME** (-4.0) | **OVER** (171.0) | 100% |
+| San Diego St Aztecs @ Wyoming Cowboys | **HOME** (+1.5) | **OVER** (148.0) | 100% |
+| St. Bonaventure Bonnies @ Saint Joseph's Hawks | **HOME** (+1.0) | **OVER** (149.0) | 100% |
+| Auburn Tigers @ Missouri Tigers | **HOME** (+0.0) | **OVER** (154.5) | 100% |
+| Portland Pilots @ Pepperdine Waves | **HOME** (+2.5) | **OVER** (146.0) | 100% |
+| Pittsburgh Panthers @ Georgia Tech Yellow Jackets | **HOME** (+1.5) | **OVER** (148.5) | 100% |
+| UCF Knights @ Kansas St Wildcats | **HOME** (-2.0) | **OVER** (170.5) | 100% |
+| UNC Asheville Bulldogs @ Presbyterian Blue Hose | **HOME** (+4.5) | **OVER** (135.5) | 100% |
+| North Carolina Tar Heels @ Stanford Cardinal | **HOME** (+3.5) | **OVER** (145.0) | 100% |
+| UCLA Bruins @ Penn State Nittany Lions | **HOME** (+3.5) | **OVER** (149.0) | 100% |
+| UAB Blazers @ Tulane Green Wave | **HOME** (+2.5) | **OVER** (153.0) | 100% |
+| Tulsa Golden Hurricane @ Charlotte 49ers | **HOME** (+4.0) | **OVER** (150.0) | 100% |
+| Kentucky Wildcats @ LSU Tigers | **HOME** (+4.0) | **OVER** (154.0) | 100% |
+| Illinois St Redbirds @ Indiana St Sycamores | **HOME** (+5.5) | **OVER** (147.0) | 100% |
+| Rice Owls @ UTSA Roadrunners | **HOME** (+6.5) | **OVER** (145.5) | 100% |
+| Iona Gaels @ Rider Broncs | **HOME** (+7.5) | **OVER** (144.0) | 100% |
+| Vanderbilt Commodores @ Texas Longhorns | **HOME** (+5.0) | **OVER** (166.5) | 100% |
+| Illinois Fighting Illini @ Northwestern Wildcats | **HOME** (+8.5) | **OVER** (151.5) | 100% |
+| Colgate Raiders @ Loyola (MD) Greyhounds | **HOME** (+10.5) | **OVER** (150.5) | 100% |
+| Duke Blue Devils @ California Golden Bears | **HOME** (+12.5) | **OVER** (152.5) | 100% |
+| Michigan Wolverines @ Washington Huskies | **HOME** (+12.5) | **OVER** (165.0) | 100% |
+| Radford Highlanders @ Gardner-Webb Bulldogs | **HOME** (+13.5) | **OVER** (166.0) | 100% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 

@@ -375,9 +375,38 @@ class ATSTracker:
         return [r for r in self.records.values() 
                 if not r.result_checked and r.game_date < cutoff]
     
+    def _calculate_confidence_stats(self) -> Dict:
+        """Calculate accuracy for different confidence tiers."""
+        tiers = {
+            "over_50": {"min": 50, "predictions": 0, "correct": 0, "accuracy": 0.0},
+            "over_60": {"min": 60, "predictions": 0, "correct": 0, "accuracy": 0.0},
+            "over_70": {"min": 70, "predictions": 0, "correct": 0, "accuracy": 0.0},
+            "over_80": {"min": 80, "predictions": 0, "correct": 0, "accuracy": 0.0}
+        }
+        
+        checked_records = [r for r in self.records.values() if r.result_checked and r.has_vegas_line]
+        
+        for record in checked_records:
+            conf = record.prediction_confidence
+            is_correct = record.spread_correct
+            
+            for key, tier in tiers.items():
+                if conf >= tier["min"]:
+                    tier["predictions"] += 1
+                    if is_correct:
+                        tier["correct"] += 1
+        
+        # Calculate percentages
+        for tier in tiers.values():
+            if tier["predictions"] > 0:
+                tier["accuracy"] = tier["correct"] / tier["predictions"]
+        
+        return tiers
+
     def get_accuracy_summary(self) -> Dict:
         """Get complete accuracy summary for README/reporting."""
         self._update_rolling_accuracy()
+        confidence_stats = self._calculate_confidence_stats()
         
         return {
             "all_time": {
@@ -391,9 +420,60 @@ class ATSTracker:
             },
             "rolling_7_day": self.accuracy_history["rolling_7_day"],
             "rolling_30_day": self.accuracy_history["rolling_30_day"],
+            "confidence_tiers": confidence_stats,
             "last_updated": self.accuracy_history["combined"]["last_updated"]
         }
     
+    def generate_daily_predictions_table(self, target_date: str = None) -> str:
+        """Generate a markdown table of predictions for a specific date."""
+        if target_date is None:
+            target_date = datetime.now().strftime('%Y-%m-%d')
+            
+        # Get predictions for this date
+        predictions = [r for r in self.records.values() if r.game_date == target_date]
+        
+        if not predictions:
+            return "*No predictions available for today.*"
+            
+        lines = [
+            f"#### 📅 Predictions for {target_date}",
+            "",
+            "| Matchup | Spread Pick | Total Pick | Confidence |",
+            "|---------|-------------|------------|------------|"
+        ]
+        
+        # Sort by spread edge/confidence (highest absolute difference between prediction and line)
+        # This highlights the "best bets" for the spread
+        def get_spread_edge(record):
+            if record.vegas_spread is None:
+                return -1.0 # Push to bottom if no line
+            return abs(record.predicted_margin - record.vegas_spread)
+            
+        predictions.sort(key=get_spread_edge, reverse=True)
+        
+        for p in predictions:
+            matchup = f"{p.away_team} @ {p.home_team}"
+            
+            # Spread Pick
+            if p.spread_pick:
+                spread_text = f"**{p.spread_pick}**"
+                if p.vegas_spread is not None:
+                    spread_text += f" ({p.vegas_spread:+.1f})"
+            else:
+                spread_text = "-"
+                
+            # Total Pick
+            if p.total_pick:
+                total_text = f"**{p.total_pick}**"
+                if p.vegas_total is not None:
+                    total_text += f" ({p.vegas_total:.1f})"
+            else:
+                total_text = "-"
+            
+            lines.append(f"| {matchup} | {spread_text} | {total_text} | {p.prediction_confidence:.0f}% |")
+            
+        return "\n".join(lines)
+
     def generate_readme_section(self) -> str:
         """Generate markdown section for README with accuracy stats."""
         summary = self.get_accuracy_summary()

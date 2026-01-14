@@ -171,6 +171,32 @@ def generate_accuracy_section(summary: dict) -> str:
         if all_time['with_vegas_total_accuracy'] > 0:
             lines.append(f"**Over/Under Accuracy**: {all_time['with_vegas_total_accuracy']*100:.1f}%")
             lines.append("")
+            
+        # Confidence Tiers Table
+        tiers = summary.get("confidence_tiers", {})
+        if tiers:
+            lines.extend([
+                "#### 🎯 Accuracy by Confidence (ATS)",
+                "",
+                "| Confidence | Record | Accuracy |",
+                "|------------|--------|----------|",
+            ])
+            
+            # Sort tiers by min confidence
+            sorted_tiers = sorted(tiers.items(), key=lambda x: x[1]["min"])
+            
+            has_tier_data = False
+            for key, data in sorted_tiers:
+                if data["predictions"] > 0:
+                    has_tier_data = True
+                    accuracy_fmt = f"**{data['accuracy']*100:.1f}%**"
+                    record = f"{data['correct']}-{data['predictions'] - data['correct']}"
+                    lines.append(f"| **{data['min']}%+** | {record} | {accuracy_fmt} |")
+            
+            if not has_tier_data:
+                lines.append("| Any | 0-0 | N/A |")
+            
+            lines.append("")
     else:
         lines.extend([
             "#### 🏆 Rolling ATS Performance",
@@ -190,12 +216,21 @@ def generate_accuracy_section(summary: dict) -> str:
             "",
         ])
     
-    # Total predictions summary
+    # Combined stats
     if all_time['combined_predictions'] > 0:
         lines.extend([
-            f"**Total Predictions Tracked**: {all_time['combined_predictions']}",
+            "#### Combined Statistics",
+            "",
+            f"- **Total Predictions**: {all_time['combined_predictions']}",
+            f"- **Overall Winner Accuracy**: {all_time['combined_straight_up']*100:.1f}%",
             "",
         ])
+    
+    # Add Daily Predictions Table
+    ats_tracker = get_ats_tracker()
+    daily_table = ats_tracker.generate_daily_predictions_table()
+    lines.append(daily_table)
+    lines.append("")
     
     # Add note about tracking
     lines.extend([
@@ -208,4 +243,3 @@ def generate_accuracy_section(summary: dict) -> str:
 
 if __name__ == "__main__":
     update_readme()
-

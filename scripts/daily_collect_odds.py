@@ -232,6 +232,20 @@ def collect_odds_and_predictions(target_date: str = None):
     if all_time["combined_predictions"] > 0:
         print(f"   Combined: {all_time['combined_straight_up']*100:.1f}% ({all_time['combined_predictions']} total)")
     
+    # Update README with new predictions
+    try:
+        from scripts.update_readme_accuracy import update_readme
+        print("📝 Updating README with new predictions...")
+        update_readme()
+    except ImportError:
+        # Fallback if running from scripts dir directly
+        try:
+            from update_readme_accuracy import update_readme
+            print("📝 Updating README with new predictions...")
+            update_readme()
+        except ImportError as e:
+            print(f"⚠️  Could not update README: {e}")
+    
     print()
     
     return {
