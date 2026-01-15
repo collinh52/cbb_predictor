@@ -434,6 +434,11 @@ def calculate_road_warrior_bonus(team_rating: dict) -> float:
 
     return 0.0
 
+def _estimate_possessions(points_per_game: float, opponent_points_per_game: float) -> float:
+    """Estimate possessions per game based on combined scoring."""
+    return (points_per_game + opponent_points_per_game) / 1.05
+
+
 def apply_pace_adjustment(points_per_game: float, opponent_points_per_game: float) -> tuple:
     """
     Apply pace adjustment to convert PPG to tempo-free ratings.
@@ -452,14 +457,14 @@ def apply_pace_adjustment(points_per_game: float, opponent_points_per_game: floa
     """
     # Estimate possessions per game
     # College basketball: ~1.05 points per possession on average
-    estimated_possessions_per_game = (points_per_game + opponent_points_per_game) / 1.05
+    estimated_possessions_per_game = _estimate_possessions(points_per_game, opponent_points_per_game)
 
     # Convert to per-100-possessions rating
     # This gives tempo-free efficiency ratings
     offensive_rating_per_100 = (points_per_game / estimated_possessions_per_game) * 100
     defensive_rating_per_100 = (opponent_points_per_game / estimated_possessions_per_game) * 100
 
-    return offensive_rating_per_100, defensive_rating_per_100, estimated_possessions_per_game
+    return offensive_rating_per_100, defensive_rating_per_100
 
 def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: bool = True) -> list:
     """
@@ -587,7 +592,8 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
         raw_defensive = np.mean(stats['points_against'])
 
         # Apply pace adjustment for tempo-free ratings
-        offensive_rating, defensive_rating, pace = apply_pace_adjustment(raw_offensive, raw_defensive)
+        offensive_rating, defensive_rating = apply_pace_adjustment(raw_offensive, raw_defensive)
+        pace = _estimate_possessions(raw_offensive, raw_defensive)
 
         kp_weight = config.KENPOM_RATINGS_WEIGHT
         kp_pace_weight = config.KENPOM_PACE_WEIGHT
@@ -614,7 +620,8 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
         raw_defensive = np.mean(stats['points_against'])
 
         # Apply pace adjustment for tempo-free ratings
-        offensive_rating, defensive_rating, pace = apply_pace_adjustment(raw_offensive, raw_defensive)
+        offensive_rating, defensive_rating = apply_pace_adjustment(raw_offensive, raw_defensive)
+        pace = _estimate_possessions(raw_offensive, raw_defensive)
 
         kp_weight = config.KENPOM_RATINGS_WEIGHT
         kp_pace_weight = config.KENPOM_PACE_WEIGHT

@@ -37,6 +37,9 @@ cd cbb_predictor
 # Install dependencies
 pip install -r requirements.txt
 
+# Install Playwright browser binaries (for KenPom login)
+python -m playwright install chromium
+
 # Set up environment variables
 cp .env.example .env
 # Edit .env with your API keys

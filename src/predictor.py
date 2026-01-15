@@ -41,8 +41,17 @@ class Predictor:
         
         self.initialized = True
     
-    def _process_completed_game(self, game: Dict, all_games: List[Dict], game_index: int):
+    def _process_completed_game(
+        self,
+        game: Dict,
+        all_games: Optional[List[Dict]] = None,
+        game_index: Optional[int] = None,
+    ):
         """Process a completed game to update team states."""
+        if all_games is None or game_index is None:
+            all_games = [game]
+            game_index = 0
+
         home_team_id = self._get_team_id(game, 'HomeTeam', 'HomeTeamID')
         away_team_id = self._get_team_id(game, 'AwayTeam', 'AwayTeamID')
         home_score = game.get('HomeTeamScore')
@@ -101,16 +110,44 @@ class Predictor:
     def _get_team_id(self, game: Dict, name_key: str, id_key: str) -> Optional[int]:
         """Extract team ID from game data."""
         team_id = game.get(id_key)
-        normalized_id = normalize_team_id(team_id)
+        normalized_id = self._normalize_team_id(team_id)
         if normalized_id is not None:
             return normalized_id
         
         # Fallback: use team name as hash (consistent)
         team_name = game.get(name_key)
         if team_name:
-            return normalize_team_id(str(team_name))
+            return self._normalize_team_id(str(team_name))
         
         return None
+
+    def _normalize_team_id(self, team_id_or_name) -> Optional[int]:
+        """Normalize a team identifier or name to an integer ID."""
+        return normalize_team_id(team_id_or_name)
+
+    @staticmethod
+    def _coerce_float(value, default: float) -> float:
+        try:
+            if value is None:
+                return default
+            return float(value)
+        except (TypeError, ValueError):
+            return default
+
+    def _sanitize_kenpom_rating(self, rating) -> Dict[str, float]:
+        defaults = {
+            'adj_em': float(config.KENPOM_DEFAULT_ADJ_EM),
+            'adj_o': float(config.KENPOM_DEFAULT_ADJ_O),
+            'adj_d': float(config.KENPOM_DEFAULT_ADJ_D),
+            'adj_t': float(config.KENPOM_DEFAULT_ADJ_T),
+        }
+        if not isinstance(rating, dict):
+            return defaults
+
+        return {
+            key: self._coerce_float(rating.get(key), defaults[key])
+            for key in defaults
+        }
     
     def predict_game(self, game: Dict) -> Dict:
         """
@@ -168,12 +205,12 @@ class Predictor:
         predicted_margin += health_impact + momentum_impact + fatigue_impact
 
         # KenPom adjustment (scaled to game pace)
-        kenpom_home = self.collector.get_kenpom_team_rating(
+        kenpom_home = self._sanitize_kenpom_rating(self.collector.get_kenpom_team_rating(
             game.get('HomeTeam') or game.get('HomeTeamName')
-        )
-        kenpom_away = self.collector.get_kenpom_team_rating(
+        ))
+        kenpom_away = self._sanitize_kenpom_rating(self.collector.get_kenpom_team_rating(
             game.get('AwayTeam') or game.get('AwayTeamName')
-        )
+        ))
         kenpom_pace = (kenpom_home['adj_t'] + kenpom_away['adj_t']) / 2.0
         kenpom_margin = (kenpom_home['adj_em'] - kenpom_away['adj_em']) * (kenpom_pace / 100.0)
         predicted_margin += kenpom_margin * config.KENPOM_MARGIN_WEIGHT

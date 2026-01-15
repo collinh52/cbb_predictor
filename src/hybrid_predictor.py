@@ -38,8 +38,8 @@ class HybridPredictor:
         """Load the active ML model from database or fallback to latest model file."""
         active_model = self.database.get_active_model_version()
         model_path = active_model['model_path'] if active_model else None
-        if not model_path or not os.path.exists(model_path):
-            # Fallback: pick newest model file from model directory (useful in CI without DB)
+        if active_model and (not model_path or not os.path.exists(model_path)):
+            # Fallback: pick newest model file from model directory when DB entry exists
             try:
                 from glob import glob
                 candidates = glob(os.path.join(config.MODEL_PATH, "*.keras"))

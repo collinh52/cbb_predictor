@@ -47,6 +47,83 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Install Playwright (KenPom login)
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Login to KenPom and export cookie
+        run: |
+          if [ -n "${KENPOM_COOKIE}" ]; then
+            echo "KENPOM_COOKIE already set; skipping login"
+          elif [ -n "${KENPOM_USERNAME}" ] && [ -n "${KENPOM_PASSWORD}" ]; then
+            python - <<'PY'
+          import os
+          import sys
+          from playwright.sync_api import sync_playwright
+
+          username = os.getenv("KENPOM_USERNAME")
+          password = os.getenv("KENPOM_PASSWORD")
+          if not username or not password:
+              print("KENPOM_USERNAME or KENPOM_PASSWORD not set; skipping login")
+              raise SystemExit(0)
+
+          def fill_first(page, selectors, value):
+              for selector in selectors:
+                  locator = page.locator(selector)
+                  if locator.count() > 0:
+                      locator.first.fill(value)
+                      return True
+              return False
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True)
+              context = browser.new_context()
+              page = context.new_page()
+              page.goto("https://kenpom.com/login.php", wait_until="domcontentloaded")
+
+              if not fill_first(page, ["input[name='email']", "input[name='username']", "input[name='user']", "input[type='email']"], username):
+                  print("Could not find username field on KenPom login page.")
+                  sys.exit(1)
+              if not fill_first(page, ["input[name='password']", "input[type='password']"], password):
+                  print("Could not find password field on KenPom login page.")
+                  sys.exit(1)
+
+              submitted = False
+              for selector in ["input[type='submit']", "button[type='submit']", "input[value*='Login']", "button:has-text('Login')"]:
+                  locator = page.locator(selector)
+                  if locator.count() > 0:
+                      locator.first.click()
+                      submitted = True
+                      break
+              if not submitted:
+                  page.keyboard.press("Enter")
+
+              try:
+                  page.wait_for_load_state("networkidle", timeout=15000)
+              except Exception:
+                  pass
+
+              cookies = context.cookies("https://kenpom.com/")
+              cookie_str = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
+              if not cookie_str:
+                  print("KenPom login did not yield cookies; aborting.")
+                  sys.exit(1)
+
+              env_file = os.getenv("GITHUB_ENV")
+              if env_file:
+                  with open(env_file, "a") as f:
+                      f.write(f"KENPOM_COOKIE={cookie_str}\n")
+              print("KenPom cookie exported.")
+              browser.close()
+          PY
+          else
+            echo "KENPOM_USERNAME or KENPOM_PASSWORD not set; skipping KenPom login"
+          fi
+        env:
+          KENPOM_USERNAME: ${{ secrets.KENPOM_USERNAME }}
+          KENPOM_PASSWORD: ${{ secrets.KENPOM_PASSWORD }}
       
       - name: Create .env file
         run: |
@@ -58,7 +135,7 @@ jobs:
 
       - name: Download KenPom summary (optional)
         run: |
-          if [ -n "${KENPOM_SUMMARY_URL}" ]; then
+          if [ -n "${KENPOM_SUMMARY_URL}" ] && [ -n "${KENPOM_COOKIE}" ]; then
             season_full=$(python - <<'PY'
           import config
           print(config.CURRENT_SEASON)
@@ -74,19 +151,29 @@ jobs:
             url="${url//\{season\}/${season_short}}"
             url="$(echo "${url}" | sed -E "s/summary[0-9]+/summary${season_short}/")"
             echo "Downloading KenPom summary..."
-            if [ -n "${KENPOM_COOKIE}" ]; then
-              curl -fL -o "data/summary${season_short}.csv" -b "${KENPOM_COOKIE}" "${url}"
+            curl_args=(
+              -fL
+              --retry 3
+              --retry-delay 5
+              --retry-connrefused
+              --retry-all-errors
+              --http1.1
+              -H "User-Agent: Mozilla/5.0"
+              -H "Referer: https://kenpom.com/"
+              -o "data/summary${season_short}.csv"
+            )
+            curl "${curl_args[@]}" -b "${KENPOM_COOKIE}" "${url}" || echo "KenPom download failed; continuing without summary CSV."
+            if [ -f "data/summary${season_short}.csv" ]; then
+              cp "data/summary${season_short}.csv" "data/summary${season_full}.csv"
+              echo "KenPom summary saved to data/summary${season_short}.csv"
             else
-              curl -fL -o "data/summary${season_short}.csv" "${url}"
+              echo "KenPom summary not available; skipping copy."
             fi
-            cp "data/summary${season_short}.csv" "data/summary${season_full}.csv"
-            echo "KenPom summary saved to data/summary${season_short}.csv"
           else
-            echo "KENPOM_SUMMARY_URL not set; skipping KenPom download"
+            echo "KENPOM_SUMMARY_URL or KENPOM_COOKIE not set; skipping KenPom download"
           fi
         env:
           KENPOM_SUMMARY_URL: ${{ secrets.KENPOM_SUMMARY_URL }}
-          KENPOM_COOKIE: ${{ secrets.KENPOM_COOKIE }}
       
       - name: Download existing ATS data
         uses: actions/cache@v4

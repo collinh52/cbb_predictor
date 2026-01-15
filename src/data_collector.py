@@ -108,14 +108,81 @@ class DataCollector:
             return base_url.replace("{season}", season_short)
         return re.sub(r"summary\d+", f"summary{season_short}", base_url)
 
+    def _get_kenpom_cookie(self) -> Optional[str]:
+        """Get a KenPom cookie from env or by logging in with Playwright."""
+        kenpom_cookie = os.getenv("KENPOM_COOKIE")
+        if kenpom_cookie:
+            return kenpom_cookie
+
+        username = os.getenv("KENPOM_USERNAME")
+        password = os.getenv("KENPOM_PASSWORD")
+        if not username or not password:
+            return None
+
+        try:
+            from playwright.sync_api import sync_playwright
+        except Exception:
+            print("Playwright not available; cannot log in to KenPom.")
+            return None
+
+        def _fill_first(page, selectors: List[str], value: str) -> bool:
+            for selector in selectors:
+                locator = page.locator(selector)
+                if locator.count() > 0:
+                    locator.first.fill(value)
+                    return True
+            return False
+
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                context = browser.new_context()
+                page = context.new_page()
+                page.goto("https://kenpom.com/login.php", wait_until="domcontentloaded")
+
+                if not _fill_first(page, ["input[name='email']", "input[name='username']",
+                                          "input[name='user']", "input[type='email']"], username):
+                    print("Could not find KenPom username field.")
+                    return None
+                if not _fill_first(page, ["input[name='password']", "input[type='password']"], password):
+                    print("Could not find KenPom password field.")
+                    return None
+
+                submitted = False
+                for selector in ["input[type='submit']", "button[type='submit']",
+                                 "input[value*='Login']", "button:has-text('Login')"]:
+                    locator = page.locator(selector)
+                    if locator.count() > 0:
+                        locator.first.click()
+                        submitted = True
+                        break
+                if not submitted:
+                    page.keyboard.press("Enter")
+
+                try:
+                    page.wait_for_load_state("networkidle", timeout=15000)
+                except Exception:
+                    pass
+
+                cookies = context.cookies("https://kenpom.com/")
+                cookie_str = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
+                browser.close()
+                return cookie_str or None
+        except Exception as exc:
+            print(f"KenPom login failed: {exc}")
+            return None
+
     def _download_kenpom_summary(self, season: int, target_paths: List[Path]) -> bool:
         """Download KenPom summary CSV for a season."""
         url = self._build_kenpom_url(season)
         if not url:
             return False
 
-        headers = {}
-        kenpom_cookie = os.getenv("KENPOM_COOKIE")
+        headers = {
+            "User-Agent": "Mozilla/5.0",
+            "Referer": "https://kenpom.com/",
+        }
+        kenpom_cookie = self._get_kenpom_cookie()
         if kenpom_cookie:
             headers["Cookie"] = kenpom_cookie
 
