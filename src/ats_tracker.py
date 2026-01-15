@@ -494,6 +494,14 @@ class ATSTracker:
         
         vegas_color = get_badge_color(all_time["with_vegas_spread_accuracy"])
         
+        r7_combined_predictions = r7["with_vegas"]["predictions"] + r7["without_vegas"]["predictions"]
+        r7_combined_correct = r7["with_vegas"]["spread_correct"] + r7["without_vegas"]["correct"]
+        r7_combined_accuracy = (r7_combined_correct / r7_combined_predictions) if r7_combined_predictions else 0.0
+
+        r30_combined_predictions = r30["with_vegas"]["predictions"] + r30["without_vegas"]["predictions"]
+        r30_combined_correct = r30["with_vegas"]["spread_correct"] + r30["without_vegas"]["correct"]
+        r30_combined_accuracy = (r30_combined_correct / r30_combined_predictions) if r30_combined_predictions else 0.0
+
         lines = [
             "## 📊 ATS Prediction Accuracy",
             "",
@@ -514,20 +522,13 @@ class ATSTracker:
             f"| **7-Day ATS** | {r7['with_vegas']['accuracy']*100:.1f}% ({r7['with_vegas']['spread_correct']}/{r7['with_vegas']['predictions']}) |",
             f"| **30-Day ATS** | {r30['with_vegas']['accuracy']*100:.1f}% ({r30['with_vegas']['spread_correct']}/{r30['with_vegas']['predictions']}) |",
             "",
-            "#### Straight-Up Predictions (Without Vegas Lines)",
+            "#### Straight-Up Predictions (All Games)",
             "",
             f"| Metric | Value |",
             f"|--------|-------|",
-            f"| **All-Time** | {all_time['without_vegas_accuracy']*100:.1f}% ({int(all_time['without_vegas_predictions'] * all_time['without_vegas_accuracy'])}/{all_time['without_vegas_predictions']}) |",
-            f"| **7-Day** | {r7['without_vegas']['accuracy']*100:.1f}% ({r7['without_vegas']['correct']}/{r7['without_vegas']['predictions']}) |",
-            f"| **30-Day** | {r30['without_vegas']['accuracy']*100:.1f}% ({r30['without_vegas']['correct']}/{r30['without_vegas']['predictions']}) |",
-            "",
-            "#### Combined (All Games)",
-            "",
-            f"| Metric | Value |",
-            f"|--------|-------|",
-            f"| **Total Games** | {all_time['combined_predictions']} |",
-            f"| **Winner Accuracy** | {all_time['combined_straight_up']*100:.1f}% |",
+            f"| **All-Time** | {all_time['combined_straight_up']*100:.1f}% ({int(all_time['combined_predictions'] * all_time['combined_straight_up'])}/{all_time['combined_predictions']}) |",
+            f"| **7-Day** | {r7_combined_accuracy*100:.1f}% ({r7_combined_correct}/{r7_combined_predictions}) |",
+            f"| **30-Day** | {r30_combined_accuracy*100:.1f}% ({r30_combined_correct}/{r30_combined_predictions}) |",
             "",
             "<!-- ACCURACY_STATS_END -->",
             ""
