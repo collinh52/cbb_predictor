@@ -25,6 +25,18 @@ class TestPredictorInitialization:
              patch('src.predictor.FeatureCalculator') as MockCalculator:
             
             MockCollector.return_value.get_completed_games.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             predictor = Predictor()
             
@@ -40,6 +52,18 @@ class TestPredictorInitialization:
              patch('src.predictor.FeatureCalculator') as MockCalculator:
             
             MockCollector.return_value.get_completed_games.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             predictor = Predictor()
             
@@ -56,6 +80,18 @@ class TestTeamIdExtraction:
              patch('src.predictor.FeatureCalculator') as MockCalculator:
             
             MockCollector.return_value.get_completed_games.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             pred = Predictor()
             return pred
     
@@ -129,6 +165,12 @@ class TestGamePrediction:
              patch('src.predictor.FeatureCalculator') as MockCalculator:
             
             MockCollector.return_value.get_completed_games.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             MockCalculator.return_value.get_game_features.return_value = {
                 'momentum': 0.1,
                 'fatigue': 0.1,
@@ -227,6 +269,12 @@ class TestEmptyPrediction:
              patch('src.predictor.FeatureCalculator') as MockCalculator:
             
             MockCollector.return_value.get_completed_games.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             pred = Predictor()
             return pred
     

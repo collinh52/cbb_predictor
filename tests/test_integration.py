@@ -47,6 +47,12 @@ class TestPredictionPipeline:
         collector.get_completed_games.return_value = games
         collector.get_player_injuries.return_value = []
         collector.get_team_stats.return_value = None
+        collector.get_kenpom_team_rating.return_value = {
+            'adj_em': 0.0,
+            'adj_o': 100.0,
+            'adj_d': 100.0,
+            'adj_t': 70.0
+        }
         
         return collector
     
@@ -126,6 +132,12 @@ class TestHybridPredictorIntegration:
         mock_collector.get_completed_games.return_value = []
         mock_collector.get_player_injuries.return_value = []
         mock_collector.get_team_stats.return_value = None
+        mock_collector.get_kenpom_team_rating.return_value = {
+            'adj_em': 0.0,
+            'adj_o': 100.0,
+            'adj_d': 100.0,
+            'adj_t': 70.0
+        }
         
         mock_db = Mock()
         mock_db.get_active_model_version.return_value = None
@@ -209,6 +221,12 @@ class TestFeatureEngineeringPipeline:
             
             engineer = MLFeatureEngineer()
             engineer.calculator._normalize_team_id = mock_calc._normalize_team_id
+            engineer.collector.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             home_state = np.array([95.0, 92.0, 3.5, 1.0, 0.2, 0.1, 70.0])
             away_state = np.array([90.0, 95.0, 3.0, 0.95, -0.1, 0.2, 68.0])
@@ -308,6 +326,12 @@ class TestEdgeCasesIntegration:
         with patch('src.predictor.DataCollector') as MockCollector:
             MockCollector.return_value.get_completed_games.return_value = []
             MockCollector.return_value.get_player_injuries.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             from src.predictor import Predictor
             
@@ -335,6 +359,12 @@ class TestEdgeCasesIntegration:
         with patch('src.predictor.DataCollector') as MockCollector:
             MockCollector.return_value.get_completed_games.return_value = []
             MockCollector.return_value.get_player_injuries.return_value = []
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             from src.predictor import Predictor
             
@@ -368,6 +398,12 @@ class TestDataFlowIntegration:
             MockCollector.return_value.get_completed_games.return_value = []
             MockCollector.return_value.get_player_injuries.return_value = []
             MockCollector.return_value.get_team_stats.return_value = None
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             from src.predictor import Predictor
             from src.ukf_model import TeamUKF
@@ -403,6 +439,12 @@ class TestDataFlowIntegration:
             MockCollector.return_value.get_completed_games.return_value = []
             MockCollector.return_value.get_player_injuries.return_value = []
             MockCollector.return_value.get_team_stats.return_value = None
+            MockCollector.return_value.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             
             from src.predictor import Predictor
             

@@ -63,11 +63,34 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: January 14, 2026 at 08:13 AM
+**Last Updated**: January 14, 2026 at 03:57 PM
+
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-100.0%25-brightgreen)
 
 #### 🏆 Rolling ATS Performance
 
-*No predictions with Vegas lines yet. ATS tracking will begin once odds data is collected.*
+| Timeframe | ATS Record | Accuracy |
+|-----------|------------|----------|
+| **Last 7 Days** | 1-0 | **100.0%** |
+| **Last 30 Days** | 1-0 | **100.0%** |
+| **All-Time** | 1-0 | **100.0%** |
+
+#### 🎯 Accuracy by Confidence (ATS)
+
+| Confidence | Record | Accuracy |
+|------------|--------|----------|
+| **50%+** | 1-0 | **100.0%** |
+
+#### Straight-Up Predictions (Games Without Vegas Lines)
+
+| **7-Day** | 1/3 (33.3%) |
+| **30-Day** | 1/3 (33.3%) |
+| **All-Time** | 1/3 (33.3%) |
+
+#### Combined Statistics
+
+- **Total Predictions**: 4
+- **Overall Winner Accuracy**: 50.0%
 
 #### 📅 Predictions for 2026-01-14
 
@@ -127,6 +150,13 @@ python validation/run_all_backtests.py
 | Duke Blue Devils @ California Golden Bears | **HOME** (+12.5) | **OVER** (152.5) | 100% |
 | Michigan Wolverines @ Washington Huskies | **HOME** (+12.5) | **OVER** (165.0) | 100% |
 | Radford Highlanders @ Gardner-Webb Bulldogs | **HOME** (+13.5) | **OVER** (166.0) | 100% |
+| Binghamton Bearcats @ Albany Great Danes | **HOME** (-7.0) | **OVER** (141.0) | 83% |
+| NJIT Highlanders @ UMass Lowell River Hawks | **HOME** (-7.0) | **OVER** (149.0) | 73% |
+| New Mexico St Aggies @ Liberty Flames | **HOME** (-8.5) | **OVER** (143.0) | 77% |
+| Mercer Bears @ VMI Keydets | **AWAY** (+9.5) | **OVER** (157.0) | 45% |
+| Robert Morris Colonials @ IUPUI Jaguars | **AWAY** (+5.0) | **UNDER** (162.0) | 14% |
+| James Madison Dukes @ Appalachian St Mountaineers | **AWAY** (-2.0) | **OVER** (134.0) | 52% |
+| UMBC Retrievers @ Bryant Bulldogs | **AWAY** (+2.0) | **OVER** (136.0) | 49% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 

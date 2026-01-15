@@ -4,6 +4,8 @@ Data collection module for fetching college basketball game data from APIs.
 import os
 import json
 import time
+import csv
+import re
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any
 import requests
@@ -21,6 +23,7 @@ class DataCollector:
         self.cache_dir = Path(config.CACHE_DIR)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.cache_expiry = timedelta(minutes=config.CACHE_EXPIRY_MINUTES)
+        self._kenpom_cache: Dict[int, Dict[str, Dict]] = {}
         
     def _get_cache_path(self, cache_key: str) -> Path:
         """Get path for cached data."""
@@ -54,6 +57,182 @@ class DataCollector:
         }
         with open(cache_path, 'w') as f:
             json.dump(cache_data, f, indent=2)
+
+    def _normalize_team_name(self, team_name: Optional[str]) -> str:
+        """Normalize team name for matching across datasets."""
+        if not team_name:
+            return ""
+        normalized = team_name.lower().strip()
+        normalized = normalized.replace("&", "and")
+        normalized = normalized.replace("st.", "saint")
+        normalized = normalized.replace("st ", "saint ")
+        normalized = re.sub(r"[^a-z0-9\s]", "", normalized)
+        normalized = re.sub(r"\s+", " ", normalized).strip()
+        return normalized
+
+    def _parse_float(self, value: Optional[Any]) -> Optional[float]:
+        """Parse a float value that may include rankings or extra text."""
+        if value is None:
+            return None
+        if isinstance(value, (int, float)):
+            return float(value)
+        match = re.search(r"-?\d+(?:\.\d+)?", str(value))
+        return float(match.group(0)) if match else None
+
+    def _default_kenpom_rating(self) -> Dict[str, float]:
+        """Default KenPom ratings when data is missing."""
+        return {
+            'adj_em': float(config.KENPOM_DEFAULT_ADJ_EM),
+            'adj_o': float(config.KENPOM_DEFAULT_ADJ_O),
+            'adj_d': float(config.KENPOM_DEFAULT_ADJ_D),
+            'adj_t': float(config.KENPOM_DEFAULT_ADJ_T)
+        }
+
+    def _get_kenpom_summary_paths(self, season: int) -> List[Path]:
+        """Get candidate KenPom summary file paths for a season."""
+        season_short = f"{season % 100:02d}"
+        candidates = []
+        candidates.append(Path(config.DATA_DIR) / config.KENPOM_SUMMARY_PATTERN.format(season=season))
+        candidates.append(Path(config.DATA_DIR) / f"summary{season_short}.csv")
+        return candidates
+
+    def _build_kenpom_url(self, season: int) -> Optional[str]:
+        """Build a KenPom download URL for a season."""
+        base_url = os.getenv("KENPOM_SUMMARY_URL")
+        if not base_url:
+            return None
+        season_short = f"{season % 100:02d}"
+        if "{season_short}" in base_url:
+            return base_url.replace("{season_short}", season_short)
+        if "{season}" in base_url:
+            return base_url.replace("{season}", season_short)
+        return re.sub(r"summary\d+", f"summary{season_short}", base_url)
+
+    def _download_kenpom_summary(self, season: int, target_paths: List[Path]) -> bool:
+        """Download KenPom summary CSV for a season."""
+        url = self._build_kenpom_url(season)
+        if not url:
+            return False
+
+        headers = {}
+        kenpom_cookie = os.getenv("KENPOM_COOKIE")
+        if kenpom_cookie:
+            headers["Cookie"] = kenpom_cookie
+
+        try:
+            response = requests.get(url, headers=headers, timeout=20)
+            response.raise_for_status()
+        except requests.exceptions.RequestException:
+            return False
+
+        for path in target_paths:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with open(path, "wb") as f:
+                f.write(response.content)
+        return True
+
+    def get_kenpom_ratings(self, season: Optional[int] = None) -> Dict[str, Dict[str, float]]:
+        """
+        Load KenPom ratings from local summary CSV.
+        
+        Returns a dict keyed by normalized team name.
+        """
+        season = season or config.CURRENT_SEASON
+        if season in self._kenpom_cache:
+            return self._kenpom_cache[season]['normalized']
+
+        summary_paths = self._get_kenpom_summary_paths(season)
+        summary_path = next((path for path in summary_paths if path.exists()), None)
+        if summary_path is None:
+            if self._download_kenpom_summary(season, summary_paths):
+                summary_path = next((path for path in summary_paths if path.exists()), None)
+        if summary_path is None:
+            self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+            return {}
+
+        ratings_by_normalized: Dict[str, Dict[str, float]] = {}
+        ratings_by_original: Dict[str, Dict[str, float]] = {}
+
+        try:
+            with open(summary_path, 'r', newline='') as f:
+                reader = csv.DictReader(f)
+                if not reader.fieldnames:
+                    self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+                    return {}
+
+                field_map = {field.lower(): field for field in reader.fieldnames}
+
+                def _find_field(candidates: List[str]) -> Optional[str]:
+                    for candidate in candidates:
+                        field = field_map.get(candidate.lower())
+                        if field:
+                            return field
+                    return None
+
+                team_field = _find_field(['Team', 'TeamName', 'School', 'TEAM'])
+                adj_em_field = _find_field(['AdjEM', 'AdjE', 'AdjEffMargin'])
+                adj_o_field = _find_field(['AdjO', 'AdjOE', 'AdjOff'])
+                adj_d_field = _find_field(['AdjD', 'AdjDE', 'AdjDef'])
+                adj_t_field = _find_field(['AdjT', 'AdjTempo', 'AdjT.'])
+
+                if not team_field:
+                    self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+                    return {}
+
+                for row in reader:
+                    team_name = row.get(team_field)
+                    if not team_name:
+                        continue
+
+                    adj_em = self._parse_float(row.get(adj_em_field)) if adj_em_field else None
+                    adj_o = self._parse_float(row.get(adj_o_field)) if adj_o_field else None
+                    adj_d = self._parse_float(row.get(adj_d_field)) if adj_d_field else None
+                    adj_t = self._parse_float(row.get(adj_t_field)) if adj_t_field else None
+
+                    if adj_em is None and adj_o is not None and adj_d is not None:
+                        adj_em = adj_o - adj_d
+
+                    rating = {
+                        'adj_em': float(adj_em) if adj_em is not None else float(config.KENPOM_DEFAULT_ADJ_EM),
+                        'adj_o': float(adj_o) if adj_o is not None else float(config.KENPOM_DEFAULT_ADJ_O),
+                        'adj_d': float(adj_d) if adj_d is not None else float(config.KENPOM_DEFAULT_ADJ_D),
+                        'adj_t': float(adj_t) if adj_t is not None else float(config.KENPOM_DEFAULT_ADJ_T)
+                    }
+
+                    normalized_name = self._normalize_team_name(team_name)
+                    ratings_by_normalized[normalized_name] = rating
+                    ratings_by_original[team_name] = rating
+        except Exception:
+            self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+            return {}
+
+        self._kenpom_cache[season] = {
+            'normalized': ratings_by_normalized,
+            'original': ratings_by_original
+        }
+        return ratings_by_normalized
+
+    def get_kenpom_team_rating(self, team_name: Optional[str], season: Optional[int] = None) -> Dict[str, float]:
+        """Get KenPom ratings for a single team."""
+        season = season or config.CURRENT_SEASON
+        ratings_by_normalized = self.get_kenpom_ratings(season)
+        if not team_name:
+            return self._default_kenpom_rating()
+
+        normalized_name = self._normalize_team_name(team_name)
+        rating = ratings_by_normalized.get(normalized_name)
+        if rating:
+            return rating
+
+        cached_original = self._kenpom_cache.get(season, {}).get('original', {})
+        if cached_original:
+            from src.team_name_mapping import fuzzy_match_team
+            match = fuzzy_match_team(team_name, list(cached_original.keys()),
+                                     threshold=config.KENPOM_FUZZY_MATCH_THRESHOLD)
+            if match:
+                return cached_original.get(match, self._default_kenpom_rating())
+
+        return self._default_kenpom_rating()
     
     def _make_api_request(self, endpoint: str, params: Optional[Dict] = None) -> Dict:
         """Make API request with error handling and rate limiting."""
@@ -164,8 +343,16 @@ class DataCollector:
             from src.espn_collector import get_espn_collector
             espn = get_espn_collector()
             print(f"Fetching completed games from ESPN for season {season}...")
-            games = espn.get_games_for_season(year=season, limit=500)  # Limit to 500 for faster initialization
-            completed = [g for g in games if g.get('IsClosed') and g.get('HomeTeamScore') is not None]
+            # Use the more comprehensive team schedule method
+            games = espn.get_all_games_via_team_schedules(season=season)
+            completed = []
+            for g in games:
+                status = str(g.get('Status', '')).upper()
+                has_scores = g.get('HomeTeamScore') is not None and g.get('AwayTeamScore') is not None
+                is_final_status = status.endswith('FINAL') or status == 'STATUS_FINAL'
+                if g.get('IsClosed') or is_final_status or has_scores:
+                    if has_scores:
+                        completed.append(g)
             self._save_to_cache(cache_key, completed)
             return completed
         

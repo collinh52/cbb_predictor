@@ -121,7 +121,7 @@ def train_model(db):
     print("\nTraining neural network model...")
     
     # Check if we have enough training data
-    training_data = db.get_training_data(limit=5)
+    training_data = db.get_training_data()
     if len(training_data) < 50:
         print(f"⚠ Warning: Only {len(training_data)} training records found. Need at least 50.")
         print("You may want to populate more predictions first with: python setup_and_train.py --populate 200")

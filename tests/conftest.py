@@ -7,6 +7,7 @@ import os
 from datetime import datetime, timedelta
 from typing import Dict, List
 import numpy as np
+import config
 
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -150,15 +151,14 @@ def sample_features() -> Dict:
 @pytest.fixture
 def sample_ml_features() -> np.ndarray:
     """Create sample ML feature array."""
-    # 45 features typical for the ML model
-    return np.random.randn(45).astype(np.float32)
+    return np.random.randn(config.ML_FEATURE_COUNT).astype(np.float32)
 
 
 @pytest.fixture
 def sample_training_data():
     """Create sample training data for ML model."""
     n_samples = 100
-    n_features = 45
+    n_features = config.ML_FEATURE_COUNT
     
     X = np.random.randn(n_samples, n_features).astype(np.float32)
     # Target: [margin, total]

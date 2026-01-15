@@ -494,6 +494,12 @@ class TestGetGameFeatures:
             calc.collector = Mock()
             calc.collector.get_player_injuries.return_value = []
             calc.collector.get_team_stats.return_value = None
+            calc.collector.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             return calc
     
     @pytest.mark.unit
@@ -507,7 +513,10 @@ class TestGetGameFeatures:
             current_date=datetime(2026, 1, 15)
         )
         
-        expected_keys = {'momentum', 'fatigue', 'health_status', 'home_advantage', 'pace'}
+        expected_keys = {
+            'momentum', 'fatigue', 'health_status', 'home_advantage', 'pace',
+            'kenpom_adj_em', 'kenpom_adj_o', 'kenpom_adj_d', 'kenpom_adj_t'
+        }
         assert set(features.keys()) == expected_keys
     
     @pytest.mark.unit

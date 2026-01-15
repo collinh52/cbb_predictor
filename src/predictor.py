@@ -9,6 +9,7 @@ from scipy.stats import norm
 from src.data_collector import DataCollector
 from src.feature_calculator import FeatureCalculator
 from src.ukf_model import MultiTeamUKF, TeamUKF
+from src.utils import normalize_team_id
 import config
 
 
@@ -20,6 +21,7 @@ class Predictor:
         self.calculator = FeatureCalculator(self.collector)
         self.ukf = MultiTeamUKF()
         self.initialized = False
+        self._completed_games_cache: Optional[List[Dict]] = None
     
     def initialize(self, season: Optional[int] = None):
         """Initialize by processing all historical games."""
@@ -28,17 +30,18 @@ class Predictor:
         
         season = season or config.CURRENT_SEASON
         games = self.collector.get_completed_games(season)
+        self._completed_games_cache = games
         
         # Sort games by date
         games.sort(key=lambda g: g.get('DateTime', ''))
         
         # Process each game
-        for game in games:
-            self._process_completed_game(game)
+        for idx, game in enumerate(games):
+            self._process_completed_game(game, games, idx)
         
         self.initialized = True
     
-    def _process_completed_game(self, game: Dict):
+    def _process_completed_game(self, game: Dict, all_games: List[Dict], game_index: int):
         """Process a completed game to update team states."""
         home_team_id = self._get_team_id(game, 'HomeTeam', 'HomeTeamID')
         away_team_id = self._get_team_id(game, 'AwayTeam', 'AwayTeamID')
@@ -62,19 +65,19 @@ class Predictor:
             return
         
         # Get all games up to this point for feature calculation
-        all_games = self.collector.get_completed_games()
-        games_before = [g for g in all_games 
-                       if g.get('DateTime', '') < game_date_str]
+        games_before = all_games[:game_index]
         
         # Calculate features for both teams
         home_features = self.calculator.get_game_features(
             game, home_team_id, is_home=True,
-            all_games=games_before, current_date=game_date
+            all_games=games_before, current_date=game_date,
+            team_name=game.get('HomeTeam') or game.get('HomeTeamName')
         )
         
         away_features = self.calculator.get_game_features(
             game, away_team_id, is_home=False,
-            all_games=games_before, current_date=game_date
+            all_games=games_before, current_date=game_date,
+            team_name=game.get('AwayTeam') or game.get('AwayTeamName')
         )
         
         # Estimate actual pace (simplified - would need possession data)
@@ -98,35 +101,14 @@ class Predictor:
     def _get_team_id(self, game: Dict, name_key: str, id_key: str) -> Optional[int]:
         """Extract team ID from game data."""
         team_id = game.get(id_key)
-        if team_id:
-            try:
-                return int(team_id)
-            except (ValueError, TypeError):
-                pass
+        normalized_id = normalize_team_id(team_id)
+        if normalized_id is not None:
+            return normalized_id
         
         # Fallback: use team name as hash (consistent)
         team_name = game.get(name_key)
         if team_name:
-            # Use consistent hash that works for both int and string comparisons
-            return abs(hash(str(team_name))) % 100000
-        
-        return None
-    
-    def _normalize_team_id(self, team_id_or_name) -> Optional[int]:
-        """Normalize team identifier to integer ID."""
-        if team_id_or_name is None:
-            return None
-        
-        if isinstance(team_id_or_name, int):
-            return team_id_or_name
-        
-        if isinstance(team_id_or_name, str):
-            try:
-                # Try to parse as int first
-                return int(team_id_or_name)
-            except ValueError:
-                # Use hash for string names
-                return abs(hash(team_id_or_name)) % 100000
+            return normalize_team_id(str(team_name))
         
         return None
     
@@ -147,17 +129,19 @@ class Predictor:
         away_state = self.ukf.get_team_state(away_team_id)
         
         # Get current features
-        all_games = self.collector.get_completed_games()
+        all_games = self._get_completed_games_cached()
         game_date = datetime.now()
         
         home_features = self.calculator.get_game_features(
             game, home_team_id, is_home=True,
-            all_games=all_games, current_date=game_date
+            all_games=all_games, current_date=game_date,
+            team_name=game.get('HomeTeam') or game.get('HomeTeamName')
         )
         
         away_features = self.calculator.get_game_features(
             game, away_team_id, is_home=False,
-            all_games=all_games, current_date=game_date
+            all_games=all_games, current_date=game_date,
+            team_name=game.get('AwayTeam') or game.get('AwayTeamName')
         )
         
         # Get uncertainties
@@ -182,10 +166,23 @@ class Predictor:
         fatigue_impact = (away_features['fatigue'] - home_features['fatigue']) * 2.0
         
         predicted_margin += health_impact + momentum_impact + fatigue_impact
+
+        # KenPom adjustment (scaled to game pace)
+        kenpom_home = self.collector.get_kenpom_team_rating(
+            game.get('HomeTeam') or game.get('HomeTeamName')
+        )
+        kenpom_away = self.collector.get_kenpom_team_rating(
+            game.get('AwayTeam') or game.get('AwayTeamName')
+        )
+        kenpom_pace = (kenpom_home['adj_t'] + kenpom_away['adj_t']) / 2.0
+        kenpom_margin = (kenpom_home['adj_em'] - kenpom_away['adj_em']) * (kenpom_pace / 100.0)
+        predicted_margin += kenpom_margin * config.KENPOM_MARGIN_WEIGHT
         
         # Predict total points
         # Offensive ratings represent points per 100 possessions
         avg_pace = (home_features['pace'] + away_features['pace']) / 2.0
+        if config.KENPOM_PACE_WEIGHT > 0:
+            avg_pace = (1.0 - config.KENPOM_PACE_WEIGHT) * avg_pace + config.KENPOM_PACE_WEIGHT * kenpom_pace
         # Clamp pace to reasonable range (60-80 possessions per game)
         avg_pace = max(60.0, min(80.0, avg_pace))
         
@@ -301,6 +298,12 @@ class Predictor:
                 'pace': float(state[TeamUKF.PACE])
             }
         return ratings
+
+    def _get_completed_games_cached(self) -> List[Dict]:
+        """Return cached completed games to avoid repeated disk reads."""
+        if self._completed_games_cache is None:
+            self._completed_games_cache = self.collector.get_completed_games()
+        return self._completed_games_cache
     
     def predict_games(self, games: List[Dict]) -> List[Dict]:
         """Predict outcomes for multiple games."""

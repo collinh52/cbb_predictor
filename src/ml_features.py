@@ -70,6 +70,8 @@ class MLFeatureEngineer:
                                    all_games: List[Dict]) -> Dict:
         """Extract contextual features (rest days, recent form, etc.)."""
         features = {}
+        home_team_name = game.get('HomeTeam') or game.get('HomeTeamName')
+        away_team_name = game.get('AwayTeam') or game.get('AwayTeamName')
         
         # Pregame lines
         pregame_spread = game.get('PointSpread')
@@ -120,6 +122,22 @@ class MLFeatureEngineer:
         away_record = self._calculate_record(away_team_id, game_date, all_games, is_home=False)
         features['home_home_win_pct'] = float(home_record)
         features['away_away_win_pct'] = float(away_record)
+
+        # KenPom ratings
+        home_kp = self.collector.get_kenpom_team_rating(home_team_name)
+        away_kp = self.collector.get_kenpom_team_rating(away_team_name)
+        features['home_kp_adj_em'] = float(home_kp['adj_em'])
+        features['home_kp_adj_o'] = float(home_kp['adj_o'])
+        features['home_kp_adj_d'] = float(home_kp['adj_d'])
+        features['home_kp_adj_t'] = float(home_kp['adj_t'])
+        features['away_kp_adj_em'] = float(away_kp['adj_em'])
+        features['away_kp_adj_o'] = float(away_kp['adj_o'])
+        features['away_kp_adj_d'] = float(away_kp['adj_d'])
+        features['away_kp_adj_t'] = float(away_kp['adj_t'])
+        features['kp_adj_em_diff'] = float(home_kp['adj_em'] - away_kp['adj_em'])
+        features['kp_adj_o_diff'] = float(home_kp['adj_o'] - away_kp['adj_o'])
+        features['kp_adj_d_diff'] = float(home_kp['adj_d'] - away_kp['adj_d'])
+        features['kp_adj_t_diff'] = float(home_kp['adj_t'] - away_kp['adj_t'])
         
         return features
     

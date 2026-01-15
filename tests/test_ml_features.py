@@ -4,6 +4,7 @@ Tests feature engineering for the ML model.
 """
 import pytest
 import numpy as np
+import config
 import sys
 import os
 import tempfile
@@ -171,6 +172,12 @@ class TestContextualFeatureExtraction:
             
             eng = MLFeatureEngineer()
             eng.calculator._normalize_team_id = mock_calc_instance._normalize_team_id
+            eng.collector.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             return eng
     
     @pytest.mark.unit
@@ -277,6 +284,12 @@ class TestRestDaysCalculation:
             
             eng = MLFeatureEngineer()
             eng.calculator._normalize_team_id = mock_calc_instance._normalize_team_id
+            eng.collector.get_kenpom_team_rating.return_value = {
+                'adj_em': 0.0,
+                'adj_o': 100.0,
+                'adj_d': 100.0,
+                'adj_t': 70.0
+            }
             return eng
     
     @pytest.mark.unit
@@ -491,7 +504,7 @@ class TestScaler:
     @pytest.mark.unit
     def test_fit_scaler(self, engineer):
         """Test fitting the scaler."""
-        feature_arrays = [np.random.randn(45) for _ in range(100)]
+        feature_arrays = [np.random.randn(config.ML_FEATURE_COUNT) for _ in range(100)]
         
         engineer.fit_scaler(feature_arrays)
         
@@ -507,7 +520,7 @@ class TestScaler:
     @pytest.mark.unit
     def test_transform_features_unfitted(self, engineer):
         """Test transform without fitting returns original."""
-        features = np.random.randn(45).astype(np.float32)
+        features = np.random.randn(config.ML_FEATURE_COUNT).astype(np.float32)
         
         transformed = engineer.transform_features(features)
         
@@ -517,11 +530,11 @@ class TestScaler:
     def test_transform_features_fitted(self, engineer):
         """Test transform after fitting."""
         # Fit scaler
-        feature_arrays = [np.random.randn(45) for _ in range(100)]
+        feature_arrays = [np.random.randn(config.ML_FEATURE_COUNT) for _ in range(100)]
         engineer.fit_scaler(feature_arrays)
         
         # Transform
-        features = np.random.randn(45).astype(np.float32)
+        features = np.random.randn(config.ML_FEATURE_COUNT).astype(np.float32)
         transformed = engineer.transform_features(features)
         
         # Should be different after standardization
@@ -539,9 +552,9 @@ class TestScalerSaveLoad:
             engineer = MLFeatureEngineer()
             
             # Fit scaler
-            feature_arrays = [np.random.randn(45) for _ in range(100)]
+            feature_arrays = [np.random.randn(config.ML_FEATURE_COUNT) for _ in range(100)]
             engineer.fit_scaler(feature_arrays)
-            engineer.feature_names = [f'feature_{i}' for i in range(45)]
+            engineer.feature_names = [f'feature_{i}' for i in range(config.ML_FEATURE_COUNT)]
             
             return engineer
     
@@ -573,7 +586,7 @@ class TestScalerSaveLoad:
     @pytest.mark.unit
     def test_loaded_scaler_transforms_same(self, fitted_engineer):
         """Test that loaded scaler produces same transformation."""
-        test_features = np.random.randn(45).astype(np.float32)
+        test_features = np.random.randn(config.ML_FEATURE_COUNT).astype(np.float32)
         original_transform = fitted_engineer.transform_features(test_features.copy())
         
         with tempfile.TemporaryDirectory() as tmpdir:

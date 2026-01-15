@@ -120,7 +120,10 @@ class ESPNCollector:
             # Get basic info
             game_id = int(event.get('id', 0))
             game_date = event.get('date', '')
-            status = event.get('status', {}).get('type', {}).get('name', '')
+            status_type = event.get('status', {}).get('type', {})
+            status = status_type.get('name', '')
+            status_state = status_type.get('state', '')
+            status_completed = status_type.get('completed', False)
             
             # Get competitions (usually just 1)
             competitions = event.get('competitions', [])
@@ -185,6 +188,8 @@ class ESPNCollector:
                 over_under = odds[0].get('overUnder')
             
             # Build game dictionary
+            status_upper = str(status).upper()
+            is_closed = bool(status_completed) or status_state == 'post' or status_upper.endswith('FINAL')
             game = {
                 'GameID': game_id,
                 'DateTime': game_date,
@@ -201,7 +206,7 @@ class ESPNCollector:
                 'AwayTeamScore': away_score,
                 'PointSpread': spread,
                 'OverUnder': over_under,
-                'IsClosed': status == 'STATUS_FINAL',
+                'IsClosed': is_closed,
                 'Updated': game_date
             }
             

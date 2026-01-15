@@ -18,6 +18,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.environ.pop('DATABASE_URL', None)
 
 from src.espn_collector import get_espn_collector
+from src.data_collector import DataCollector
+import config
 from datetime import datetime, timedelta
 from collections import defaultdict
 import numpy as np
@@ -481,6 +483,26 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
         'team_abbr': '',
         'opponents': []
     })
+
+    kenpom_collector = DataCollector()
+    kenpom_ratings = kenpom_collector.get_kenpom_ratings()
+    if not kenpom_ratings:
+        print('  ⚠️  KenPom ratings not found; skipping KenPom blending')
+    
+    kenpom_defaults = {
+        'adj_em': float(config.KENPOM_DEFAULT_ADJ_EM),
+        'adj_o': float(config.KENPOM_DEFAULT_ADJ_O),
+        'adj_d': float(config.KENPOM_DEFAULT_ADJ_D),
+        'adj_t': float(config.KENPOM_DEFAULT_ADJ_T)
+    }
+    
+    def _is_default_kenpom(kp_rating: dict) -> bool:
+        return (
+            kp_rating.get('adj_em') == kenpom_defaults['adj_em'] and
+            kp_rating.get('adj_o') == kenpom_defaults['adj_o'] and
+            kp_rating.get('adj_d') == kenpom_defaults['adj_d'] and
+            kp_rating.get('adj_t') == kenpom_defaults['adj_t']
+        )
     
     # Track neutral games for debugging
     neutral_games_count = 0
@@ -567,6 +589,15 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
         # Apply pace adjustment for tempo-free ratings
         offensive_rating, defensive_rating, pace = apply_pace_adjustment(raw_offensive, raw_defensive)
 
+        kp_weight = config.KENPOM_RATINGS_WEIGHT
+        kp_pace_weight = config.KENPOM_PACE_WEIGHT
+        if stats['team_name']:
+            kp_rating = kenpom_collector.get_kenpom_team_rating(stats['team_name'])
+            if not _is_default_kenpom(kp_rating):
+                offensive_rating = (1.0 - kp_weight) * offensive_rating + kp_weight * kp_rating['adj_o']
+                defensive_rating = (1.0 - kp_weight) * defensive_rating + kp_weight * kp_rating['adj_d']
+                pace = (1.0 - kp_pace_weight) * pace + kp_pace_weight * kp_rating['adj_t']
+
         initial_ratings[team_id] = {
             'offensive_rating': offensive_rating,
             'defensive_rating': defensive_rating,
@@ -584,6 +615,23 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
 
         # Apply pace adjustment for tempo-free ratings
         offensive_rating, defensive_rating, pace = apply_pace_adjustment(raw_offensive, raw_defensive)
+
+        kp_weight = config.KENPOM_RATINGS_WEIGHT
+        kp_pace_weight = config.KENPOM_PACE_WEIGHT
+        kenpom_adj_em = None
+        kenpom_adj_o = None
+        kenpom_adj_d = None
+        kenpom_adj_t = None
+        if stats['team_name']:
+            kp_rating = kenpom_collector.get_kenpom_team_rating(stats['team_name'])
+            if not _is_default_kenpom(kp_rating):
+                kenpom_adj_em = kp_rating['adj_em']
+                kenpom_adj_o = kp_rating['adj_o']
+                kenpom_adj_d = kp_rating['adj_d']
+                kenpom_adj_t = kp_rating['adj_t']
+                offensive_rating = (1.0 - kp_weight) * offensive_rating + kp_weight * kenpom_adj_o
+                defensive_rating = (1.0 - kp_weight) * defensive_rating + kp_weight * kenpom_adj_d
+                pace = (1.0 - kp_pace_weight) * pace + kp_pace_weight * kenpom_adj_t
 
         # Phase 3D: Pythagorean expectation and luck analysis
         actual_win_pct = stats['wins'] / stats['games'] if stats['games'] > 0 else 0
@@ -608,6 +656,10 @@ def calculate_team_ratings(games: list, min_games: int = 5, use_sos_adjustment: 
             'games': stats['games'],
             'win_pct': stats['wins'] / stats['games'] if stats['games'] > 0 else 0,
             'opponents': stats['opponents'],
+            'kenpom_adj_em': kenpom_adj_em,
+            'kenpom_adj_o': kenpom_adj_o,
+            'kenpom_adj_d': kenpom_adj_d,
+            'kenpom_adj_t': kenpom_adj_t,
             # Phase 2.5 additions
             'hca': hca_data['hca'],
             'home_record': hca_data['home_record'],

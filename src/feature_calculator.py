@@ -7,6 +7,7 @@ import numpy as np
 
 import config
 from src.data_collector import DataCollector
+from src.utils import normalize_team_id
 
 
 class FeatureCalculator:
@@ -17,21 +18,7 @@ class FeatureCalculator:
     
     def _normalize_team_id(self, team_id_or_name) -> Optional[int]:
         """Normalize team identifier to integer ID."""
-        if team_id_or_name is None:
-            return None
-        
-        if isinstance(team_id_or_name, int):
-            return team_id_or_name
-        
-        if isinstance(team_id_or_name, str):
-            try:
-                # Try to parse as int first
-                return int(team_id_or_name)
-            except ValueError:
-                # Use hash for string names
-                return abs(hash(team_id_or_name)) % 100000
-        
-        return None
+        return normalize_team_id(team_id_or_name)
     
     def calculate_momentum(self, team_id: int, games: List[Dict], current_date: datetime) -> float:
         """
@@ -246,18 +233,30 @@ class FeatureCalculator:
         return config.DEFAULT_PACE
     
     def get_game_features(self, game: Dict, team_id: int, is_home: bool, 
-                         all_games: List[Dict], current_date: datetime) -> Dict:
+                         all_games: List[Dict], current_date: datetime,
+                         team_name: Optional[str] = None) -> Dict:
         """
         Get all features for a team in a specific game context.
         
         Returns dictionary with all feature values.
         """
+        if team_name is None:
+            team_name = (game.get('HomeTeam') or game.get('HomeTeamName')) if is_home else (
+                game.get('AwayTeam') or game.get('AwayTeamName')
+            )
+
+        kenpom = self.collector.get_kenpom_team_rating(team_name)
+
         return {
             'momentum': self.calculate_momentum(team_id, all_games, current_date),
             'fatigue': self.calculate_fatigue(team_id, all_games, current_date),
             'health_status': self.calculate_health_status(team_id),
             'home_advantage': self.calculate_home_advantage(team_id, all_games) if is_home else 0.0,
-            'pace': self.calculate_pace(team_id, all_games)
+            'pace': self.calculate_pace(team_id, all_games),
+            'kenpom_adj_em': kenpom['adj_em'],
+            'kenpom_adj_o': kenpom['adj_o'],
+            'kenpom_adj_d': kenpom['adj_d'],
+            'kenpom_adj_t': kenpom['adj_t']
         }
 
 

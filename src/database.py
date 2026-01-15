@@ -404,6 +404,12 @@ class Database:
         try:
             model = session.query(ModelVersion).filter_by(is_active=True).first()
             if model:
+                hyperparameters = {}
+                if model.hyperparameters_json:
+                    try:
+                        hyperparameters = json.loads(model.hyperparameters_json)
+                    except json.JSONDecodeError:
+                        hyperparameters = {}
                 return {
                     'version_id': model.version_id,
                     'model_type': model.model_type,
@@ -412,7 +418,8 @@ class Database:
                     'training_games_count': model.training_games_count,
                     'validation_accuracy': model.validation_accuracy,
                     'model_path': model.model_path,
-                    'hyperparameters': model.hyperparameters_json or {}
+                    'hyperparameters': hyperparameters,
+                    'scaler_path': hyperparameters.get('scaler_path')
                 }
             return None
         finally:

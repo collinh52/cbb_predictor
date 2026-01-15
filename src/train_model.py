@@ -281,6 +281,7 @@ def train_model(season: Optional[int] = None, limit: Optional[int] = None,
     hyperparameters = model.get_hyperparameters()
     hyperparameters['epochs'] = epochs
     hyperparameters['batch_size'] = batch_size
+    hyperparameters['scaler_path'] = scaler_path
     
     # Deactivate old models and activate new one
     version_id = database.save_model_version(

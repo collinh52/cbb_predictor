@@ -58,3 +58,4 @@ backtest_results_*.txt
 .DS_Store
 Thumbs.db
 
+.cursor_script_logs/

@@ -67,6 +67,17 @@ DEFAULT_HEALTH_STATUS: float = 1.0  # Assume full health if data unavailable
 DEFAULT_PACE: float = 70.0  # Average possessions per game
 DEFAULT_HOME_ADVANTAGE: float = 3.0  # Default home advantage in points
 
+# KenPom integration
+KENPOM_SUMMARY_PATTERN: str = "summary{season}.csv"
+KENPOM_DEFAULT_ADJ_EM: float = 0.0
+KENPOM_DEFAULT_ADJ_O: float = 100.0
+KENPOM_DEFAULT_ADJ_D: float = 100.0
+KENPOM_DEFAULT_ADJ_T: float = 70.0
+KENPOM_MARGIN_WEIGHT: float = float(os.getenv("KENPOM_MARGIN_WEIGHT", "0.25"))
+KENPOM_PACE_WEIGHT: float = float(os.getenv("KENPOM_PACE_WEIGHT", "0.25"))
+KENPOM_FUZZY_MATCH_THRESHOLD: float = float(os.getenv("KENPOM_FUZZY_MATCH_THRESHOLD", "0.65"))
+KENPOM_RATINGS_WEIGHT: float = float(os.getenv("KENPOM_RATINGS_WEIGHT", "0.25"))
+
 # Database Configuration
 DATABASE_URL: Optional[str] = os.getenv("DATABASE_URL", None)
 # Default to SQLite for development if PostgreSQL not available
@@ -77,6 +88,7 @@ if not DATABASE_URL:
 MODEL_PATH: str = os.getenv("MODEL_PATH", os.path.join(DATA_DIR, "models"))
 HYBRID_WEIGHT_UKF: float = float(os.getenv("HYBRID_WEIGHT_UKF", "0.5"))
 HYBRID_WEIGHT_ML: float = float(os.getenv("HYBRID_WEIGHT_ML", "0.5"))
+ML_FEATURE_COUNT: int = int(os.getenv("ML_FEATURE_COUNT", "52"))
 
 # Neural Network Hyperparameters
 NN_HIDDEN_LAYERS: List[int] = [256, 128, 64]

@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.odds_collector import get_odds_collector
 from src.predictor import get_hybrid_predictor
 from src.ats_tracker import get_ats_tracker
+from src.data_collector import DataCollector
 import config
 
 
@@ -42,6 +43,10 @@ def collect_odds_and_predictions(target_date: str = None):
     print(f"Date: {target_date}")
     print("=" * 80)
     print()
+    
+    kenpom_ratings = DataCollector().get_kenpom_ratings()
+    if not kenpom_ratings:
+        print("⚠️  KenPom summary file not found; predictions will skip KenPom blending")
     
     # Initialize collectors
     odds_collector = get_odds_collector()

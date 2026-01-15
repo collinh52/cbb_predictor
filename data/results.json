@@ -1,1 +1,1148 @@
-{}
+{
+  "2026-01-13": {
+    "IU_at_MSU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.875299",
+        "game_info": {
+          "home_team": "MSU",
+          "away_team": "IU",
+          "home_name": "Michigan State Spartans",
+          "away_name": "Indiana Hoosiers",
+          "date": "2026-01-13",
+          "spread": -7.0,
+          "total": 145.0
+        },
+        "prediction": {
+          "pred_home": 75.24185912842663,
+          "pred_away": 79.5022989936184,
+          "pred_margin": -4.2604398651917705,
+          "pred_total": 154.744158122045,
+          "covers_pick": "IU to COVER (MSU -7.0)",
+          "covers_conf": 78.23815957085479,
+          "total_pick": "OVER 145.0",
+          "total_conf": 54.36637974615136,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 46.093976449751,
+          "away_consistency": 8.82708735594764,
+          "avg_consistency": 27.46053190284932,
+          "home_hca": 0.31801841948900744
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "MSU",
+        "away_team": "IU",
+        "home_score": 81,
+        "away_score": 60,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "IU @ MSU",
+        "actual_score": "60-81",
+        "actual_total": 141,
+        "spread_pick": "IU to COVER (MSU -7.0)",
+        "spread_correct": false,
+        "spread_confidence": 78.23815957085479,
+        "total_pick": "OVER 145.0",
+        "total_correct": false,
+        "total_confidence": 54.36637974615136,
+        "spread_line": -7.0,
+        "total_line": 145.0
+      },
+      "checked_at": "2026-01-14T15:57:53.136721"
+    },
+    "UVA_at_LOU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.883217",
+        "game_info": {
+          "home_team": "LOU",
+          "away_team": "UVA",
+          "home_name": "Louisville Cardinals",
+          "away_name": "Virginia Cavaliers",
+          "date": "2026-01-13",
+          "spread": -3.5,
+          "total": 154.5
+        },
+        "prediction": {
+          "pred_home": 91.37489592176463,
+          "pred_away": 80.71292192148016,
+          "pred_margin": 10.661974000284474,
+          "pred_total": 172.0878178432448,
+          "covers_pick": "LOU to COVER (LOU -3.5)",
+          "covers_conf": 63.78158398686597,
+          "total_pick": "OVER 154.5",
+          "total_conf": 63.31016421633648,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 0,
+          "away_consistency": 28.85973362433903,
+          "avg_consistency": 14.429866812169514,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "LOU",
+        "away_team": "UVA",
+        "home_score": 70,
+        "away_score": 79,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "UVA @ LOU",
+        "actual_score": "79-70",
+        "actual_total": 149,
+        "spread_pick": "LOU to COVER (LOU -3.5)",
+        "spread_correct": false,
+        "spread_confidence": 63.78158398686597,
+        "total_pick": "OVER 154.5",
+        "total_correct": false,
+        "total_confidence": 63.31016421633648,
+        "spread_line": -3.5,
+        "total_line": 154.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136742"
+    },
+    "BC_at_CLEM_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.885821",
+        "game_info": {
+          "home_team": "CLEM",
+          "away_team": "BC",
+          "home_name": "Clemson Tigers",
+          "away_name": "Boston College Eagles",
+          "date": "2026-01-13",
+          "spread": -15.5,
+          "total": 134.5
+        },
+        "prediction": {
+          "pred_home": 82.82905985009504,
+          "pred_away": 68.35357650616422,
+          "pred_margin": 14.475483343930819,
+          "pred_total": 151.18263635625925,
+          "covers_pick": "BC to COVER (CLEM -15.5)",
+          "covers_conf": 43.98843388033921,
+          "total_pick": "OVER 134.5",
+          "total_conf": 66.52641382898655,
+          "home_games": 17,
+          "away_games": 16,
+          "home_consistency": 20.308770611048473,
+          "away_consistency": 45.03196951863747,
+          "avg_consistency": 32.67037006484297,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "CLEM",
+        "away_team": "BC",
+        "home_score": 74,
+        "away_score": 50,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "BC @ CLEM",
+        "actual_score": "50-74",
+        "actual_total": 124,
+        "spread_pick": "BC to COVER (CLEM -15.5)",
+        "spread_correct": false,
+        "spread_confidence": 43.98843388033921,
+        "total_pick": "OVER 134.5",
+        "total_correct": false,
+        "total_confidence": 66.52641382898655,
+        "spread_line": -15.5,
+        "total_line": 134.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136753"
+    },
+    "TA&M_at_TENN_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.888489",
+        "game_info": {
+          "home_team": "TENN",
+          "away_team": "TA&M",
+          "home_name": "Tennessee Volunteers",
+          "away_name": "Texas A&M Aggies",
+          "date": "2026-01-13",
+          "spread": -10.0,
+          "total": 161.0
+        },
+        "prediction": {
+          "pred_home": 90.79146263647351,
+          "pred_away": 84.18506861552085,
+          "pred_margin": 6.6063940209526635,
+          "pred_total": 174.97653125199434,
+          "covers_pick": "TA&M to COVER (TENN -10.0)",
+          "covers_conf": 46.87762092666568,
+          "total_pick": "OVER 161.0",
+          "total_conf": 54.56714375279208,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 0,
+          "away_consistency": 0,
+          "avg_consistency": 0.0,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "TENN",
+        "away_team": "TA&M",
+        "home_score": 87,
+        "away_score": 82,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "TA&M @ TENN",
+        "actual_score": "82-87",
+        "actual_total": 169,
+        "spread_pick": "TA&M to COVER (TENN -10.0)",
+        "spread_correct": false,
+        "spread_confidence": 46.87762092666568,
+        "total_pick": "OVER 161.0",
+        "total_correct": false,
+        "total_confidence": 54.56714375279208,
+        "spread_line": -10.0,
+        "total_line": 161.0
+      },
+      "checked_at": "2026-01-14T15:57:53.136763"
+    },
+    "CONN_at_HALL_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.891454",
+        "game_info": {
+          "home_team": "HALL",
+          "away_team": "CONN",
+          "home_name": "Seton Hall Pirates",
+          "away_name": "UConn Huskies",
+          "date": "2026-01-13",
+          "spread": 6.5,
+          "total": 132.5
+        },
+        "prediction": {
+          "pred_home": 74.23358006369675,
+          "pred_away": 78.07399649663519,
+          "pred_margin": -3.84041643293844,
+          "pred_total": 152.30757656033194,
+          "covers_pick": "HALL to COVER (HALL +6.5)",
+          "covers_conf": 51.92922922113001,
+          "total_pick": "OVER 132.5",
+          "total_conf": 73.51972998855578,
+          "home_games": 16,
+          "away_games": 17,
+          "home_consistency": 53.367292862198106,
+          "away_consistency": 26.89534448860698,
+          "avg_consistency": 40.13131867540254,
+          "home_hca": 3.9751789604730776
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "HALL",
+        "away_team": "CONN",
+        "home_score": 64,
+        "away_score": 69,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "CONN @ HALL",
+        "actual_score": "69-64",
+        "actual_total": 133,
+        "spread_pick": "HALL to COVER (HALL +6.5)",
+        "spread_correct": false,
+        "spread_confidence": 51.92922922113001,
+        "total_pick": "OVER 132.5",
+        "total_correct": false,
+        "total_confidence": 73.51972998855578,
+        "spread_line": 6.5,
+        "total_line": 132.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136770"
+    },
+    "WVU_at_HOU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.893738",
+        "game_info": {
+          "home_team": "HOU",
+          "away_team": "WVU",
+          "home_name": "Houston Cougars",
+          "away_name": "West Virginia Mountaineers",
+          "date": "2026-01-13",
+          "spread": -13.5,
+          "total": 127.5
+        },
+        "prediction": {
+          "pred_home": 73.55717025559362,
+          "pred_away": 72.66200036750978,
+          "pred_margin": 0.8951698880838421,
+          "pred_total": 146.2191706231034,
+          "covers_pick": "WVU to COVER (HOU -13.5)",
+          "covers_conf": 75.33133090288112,
+          "total_pick": "OVER 127.5",
+          "total_conf": 65.86846618017043,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 24.512004265578753,
+          "away_consistency": 11.030201753628774,
+          "avg_consistency": 17.771103009603763,
+          "home_hca": 0
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "HOU",
+        "away_team": "WVU",
+        "home_score": 77,
+        "away_score": 48,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "WVU @ HOU",
+        "actual_score": "48-77",
+        "actual_total": 125,
+        "spread_pick": "WVU to COVER (HOU -13.5)",
+        "spread_correct": false,
+        "spread_confidence": 75.33133090288112,
+        "total_pick": "OVER 127.5",
+        "total_correct": false,
+        "total_confidence": 65.86846618017043,
+        "spread_line": -13.5,
+        "total_line": 127.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136777"
+    },
+    "ISU_at_KU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.897043",
+        "game_info": {
+          "home_team": "KU",
+          "away_team": "ISU",
+          "home_name": "Kansas Jayhawks",
+          "away_name": "Iowa State Cyclones",
+          "date": "2026-01-13",
+          "spread": 3.5,
+          "total": 151.0
+        },
+        "prediction": {
+          "pred_home": 85.24843339830733,
+          "pred_away": 82.71395098742616,
+          "pred_margin": 2.534482410881168,
+          "pred_total": 167.9623843857335,
+          "covers_pick": "KU to COVER (KU +3.5)",
+          "covers_conf": 61.06061146533412,
+          "total_pick": "OVER 151.0",
+          "total_conf": 63.918467300135774,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 17.654026358297287,
+          "away_consistency": 23.423470673123347,
+          "avg_consistency": 20.538748515710317,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "KU",
+        "away_team": "ISU",
+        "home_score": 84,
+        "away_score": 63,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "ISU @ KU",
+        "actual_score": "63-84",
+        "actual_total": 147,
+        "spread_pick": "KU to COVER (KU +3.5)",
+        "spread_correct": false,
+        "spread_confidence": 61.06061146533412,
+        "total_pick": "OVER 151.0",
+        "total_correct": false,
+        "total_confidence": 63.918467300135774,
+        "spread_line": 3.5,
+        "total_line": 151.0
+      },
+      "checked_at": "2026-01-14T15:57:53.136784"
+    },
+    "ORE_at_NEB_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.899504",
+        "game_info": {
+          "home_team": "NEB",
+          "away_team": "ORE",
+          "home_name": "Nebraska Cornhuskers",
+          "away_name": "Oregon Ducks",
+          "date": "2026-01-13",
+          "spread": -10.0,
+          "total": 146.0
+        },
+        "prediction": {
+          "pred_home": 79.81931310389362,
+          "pred_away": 77.3796630443869,
+          "pred_margin": 2.439650059506718,
+          "pred_total": 157.1989761482805,
+          "covers_pick": "ORE to COVER (NEB -10.0)",
+          "covers_conf": 69.85993392308255,
+          "total_pick": "OVER 146.0",
+          "total_conf": 57.60381975009958,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 43.1421729222792,
+          "away_consistency": 20.62807584699739,
+          "avg_consistency": 31.885124384638296,
+          "home_hca": 1.0074826568054114
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "NEB",
+        "away_team": "ORE",
+        "home_score": 90,
+        "away_score": 55,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "ORE @ NEB",
+        "actual_score": "55-90",
+        "actual_total": 145,
+        "spread_pick": "ORE to COVER (NEB -10.0)",
+        "spread_correct": false,
+        "spread_confidence": 69.85993392308255,
+        "total_pick": "OVER 146.0",
+        "total_correct": false,
+        "total_confidence": 57.60381975009958,
+        "spread_line": -10.0,
+        "total_line": 146.0
+      },
+      "checked_at": "2026-01-14T15:57:53.136791"
+    },
+    "ALA_at_MSST_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.903058",
+        "game_info": {
+          "home_team": "MSST",
+          "away_team": "ALA",
+          "home_name": "Mississippi State Bulldogs",
+          "away_name": "Alabama Crimson Tide",
+          "date": "2026-01-13",
+          "spread": 4.5,
+          "total": 174.0
+        },
+        "prediction": {
+          "pred_home": 85.89609808341348,
+          "pred_away": 91.52137575533149,
+          "pred_margin": -5.625277671918013,
+          "pred_total": 177.41747383874497,
+          "covers_pick": "ALA to COVER (MSST +4.5)",
+          "covers_conf": 41.67870139729188,
+          "total_pick": "OVER 174.0",
+          "total_conf": 42.58422815207677,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 22.374723229156857,
+          "away_consistency": 10.466159505190433,
+          "avg_consistency": 16.420441367173645,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "MSST",
+        "away_team": "ALA",
+        "home_score": 82,
+        "away_score": 97,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "ALA @ MSST",
+        "actual_score": "97-82",
+        "actual_total": 179,
+        "spread_pick": "ALA to COVER (MSST +4.5)",
+        "spread_correct": false,
+        "spread_confidence": 41.67870139729188,
+        "total_pick": "OVER 174.0",
+        "total_correct": false,
+        "total_confidence": 42.58422815207677,
+        "spread_line": 4.5,
+        "total_line": 174.0
+      },
+      "checked_at": "2026-01-14T15:57:53.136807"
+    },
+    "FLA_at_OU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.906212",
+        "game_info": {
+          "home_team": "OU",
+          "away_team": "FLA",
+          "home_name": "Oklahoma Sooners",
+          "away_name": "Florida Gators",
+          "date": "2026-01-13",
+          "spread": 6.0,
+          "total": 156.5
+        },
+        "prediction": {
+          "pred_home": 84.59514377849774,
+          "pred_away": 85.38294102906372,
+          "pred_margin": -0.7877972505659727,
+          "pred_total": 169.97808480756146,
+          "covers_pick": "OU to COVER (OU +6.0)",
+          "covers_conf": 55.83289126467857,
+          "total_pick": "OVER 156.5",
+          "total_conf": 56.48998400875479,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 1.3533966943108737,
+          "away_consistency": 21.34926891630313,
+          "avg_consistency": 11.351332805307003,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "OU",
+        "away_team": "FLA",
+        "home_score": 79,
+        "away_score": 96,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "FLA @ OU",
+        "actual_score": "96-79",
+        "actual_total": 175,
+        "spread_pick": "OU to COVER (OU +6.0)",
+        "spread_correct": false,
+        "spread_confidence": 55.83289126467857,
+        "total_pick": "OVER 156.5",
+        "total_correct": false,
+        "total_confidence": 56.48998400875479,
+        "spread_line": 6.0,
+        "total_line": 156.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136817"
+    },
+    "IOWA_at_PUR_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.908798",
+        "game_info": {
+          "home_team": "PUR",
+          "away_team": "IOWA",
+          "home_name": "Purdue Boilermakers",
+          "away_name": "Iowa Hawkeyes",
+          "date": "2026-01-13",
+          "spread": -9.5,
+          "total": 142.5
+        },
+        "prediction": {
+          "pred_home": 88.60400994797037,
+          "pred_away": 78.6446788089009,
+          "pred_margin": 9.959331139069462,
+          "pred_total": 167.24868875687127,
+          "covers_pick": "No strong pick (too close to spread)",
+          "covers_conf": 36.9028234473438,
+          "total_pick": "OVER 142.5",
+          "total_conf": 73.43468311726711,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 20.55121539633221,
+          "away_consistency": 4.819763901585105,
+          "avg_consistency": 12.685489648958658,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "PUR",
+        "away_team": "IOWA",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "IOWA @ PUR",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "No strong pick (too close to spread)",
+        "spread_correct": false,
+        "spread_confidence": 36.9028234473438,
+        "total_pick": "OVER 142.5",
+        "total_correct": false,
+        "total_confidence": 73.43468311726711,
+        "spread_line": -9.5,
+        "total_line": 142.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136827"
+    },
+    "MISS_at_UGA_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.911521",
+        "game_info": {
+          "home_team": "UGA",
+          "away_team": "MISS",
+          "home_name": "Georgia Bulldogs",
+          "away_name": "Ole Miss Rebels",
+          "date": "2026-01-13",
+          "spread": -10.5,
+          "total": 158.5
+        },
+        "prediction": {
+          "pred_home": 95.27946280025535,
+          "pred_away": 79.33541303457186,
+          "pred_margin": 15.944049765683488,
+          "pred_total": 174.61487583482722,
+          "covers_pick": "UGA to COVER (UGA -10.5)",
+          "covers_conf": 56.957477826747564,
+          "total_pick": "OVER 158.5",
+          "total_conf": 60.65247559393661,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 0,
+          "away_consistency": 25.065132448238757,
+          "avg_consistency": 12.532566224119378,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "UGA",
+        "away_team": "MISS",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "MISS @ UGA",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "UGA to COVER (UGA -10.5)",
+        "spread_correct": false,
+        "spread_confidence": 56.957477826747564,
+        "total_pick": "OVER 158.5",
+        "total_correct": false,
+        "total_confidence": 60.65247559393661,
+        "spread_line": -10.5,
+        "total_line": 158.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136839"
+    },
+    "ILL_at_NU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.915635",
+        "game_info": {
+          "home_team": "NU",
+          "away_team": "ILL",
+          "home_name": "Northwestern Wildcats",
+          "away_name": "Illinois Fighting Illini",
+          "date": "2026-01-13",
+          "spread": 9.5,
+          "total": 151.5
+        },
+        "prediction": {
+          "pred_home": 82.23452920909341,
+          "pred_away": 84.54711585517819,
+          "pred_margin": -2.3125866460847817,
+          "pred_total": 166.7816450642716,
+          "covers_pick": "NU to COVER (NU +9.5)",
+          "covers_conf": 61.98835122412778,
+          "total_pick": "OVER 151.5",
+          "total_conf": 58.112124511415615,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 12.24200980110129,
+          "away_consistency": 1.9730784745843408,
+          "avg_consistency": 7.107544137842815,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "NU",
+        "away_team": "ILL",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "ILL @ NU",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "NU to COVER (NU +9.5)",
+        "spread_correct": false,
+        "spread_confidence": 61.98835122412778,
+        "total_pick": "OVER 151.5",
+        "total_correct": false,
+        "total_confidence": 58.112124511415615,
+        "spread_line": 9.5,
+        "total_line": 151.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136849"
+    },
+    "VAN_at_TEX_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.918534",
+        "game_info": {
+          "home_team": "TEX",
+          "away_team": "VAN",
+          "home_name": "Texas Longhorns",
+          "away_name": "Vanderbilt Commodores",
+          "date": "2026-01-13",
+          "spread": 6.5,
+          "total": 166.5
+        },
+        "prediction": {
+          "pred_home": 86.79819084917953,
+          "pred_away": 90.3958471379767,
+          "pred_margin": -3.597656288797168,
+          "pred_total": 177.19403798715624,
+          "covers_pick": "TEX to COVER (TEX +6.5)",
+          "covers_conf": 48.72807949846545,
+          "total_pick": "OVER 166.5",
+          "total_conf": 53.922045779921234,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 0,
+          "away_consistency": 36.89124590241065,
+          "avg_consistency": 18.445622951205326,
+          "home_hca": 3.22601088282203
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "TEX",
+        "away_team": "VAN",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "VAN @ TEX",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "TEX to COVER (TEX +6.5)",
+        "spread_correct": false,
+        "spread_confidence": 48.72807949846545,
+        "total_pick": "OVER 166.5",
+        "total_correct": false,
+        "total_confidence": 53.922045779921234,
+        "spread_line": 6.5,
+        "total_line": 166.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136859"
+    },
+    "UNC_at_STAN_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.921092",
+        "game_info": {
+          "home_team": "STAN",
+          "away_team": "UNC",
+          "home_name": "Stanford Cardinal",
+          "away_name": "North Carolina Tar Heels",
+          "date": "2026-01-13",
+          "spread": 2.5,
+          "total": 143.5
+        },
+        "prediction": {
+          "pred_home": 79.28116344817961,
+          "pred_away": 81.40067583544345,
+          "pred_margin": -2.119512387263839,
+          "pred_total": 160.68183928362305,
+          "covers_pick": "No strong pick (too close to spread)",
+          "covers_conf": 39.32620533698414,
+          "total_pick": "OVER 143.5",
+          "total_conf": 66.35406692637696,
+          "home_games": 17,
+          "away_games": 16,
+          "home_consistency": 45.234062059729965,
+          "away_consistency": 12.448675766725259,
+          "avg_consistency": 28.841368913227612,
+          "home_hca": 3.5400569717520183
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "STAN",
+        "away_team": "UNC",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "UNC @ STAN",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "No strong pick (too close to spread)",
+        "spread_correct": false,
+        "spread_confidence": 39.32620533698414,
+        "total_pick": "OVER 143.5",
+        "total_correct": false,
+        "total_confidence": 66.35406692637696,
+        "spread_line": 2.5,
+        "total_line": 143.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136868"
+    },
+    "UTAH_at_TTU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.924417",
+        "game_info": {
+          "home_team": "TTU",
+          "away_team": "UTAH",
+          "home_name": "Texas Tech Red Raiders",
+          "away_name": "Utah Utes",
+          "date": "2026-01-13",
+          "spread": -17.5,
+          "total": 158.5
+        },
+        "prediction": {
+          "pred_home": 91.32059514128764,
+          "pred_away": 79.67152746397491,
+          "pred_margin": 11.649067677312729,
+          "pred_total": 170.99212260526255,
+          "covers_pick": "UTAH to COVER (TTU -17.5)",
+          "covers_conf": 62.39815276235197,
+          "total_pick": "OVER 158.5",
+          "total_conf": 59.03600232674233,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 14.106261142036672,
+          "away_consistency": 44.10179452790993,
+          "avg_consistency": 29.1040278349733,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "TTU",
+        "away_team": "UTAH",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "UTAH @ TTU",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "UTAH to COVER (TTU -17.5)",
+        "spread_correct": false,
+        "spread_confidence": 62.39815276235197,
+        "total_pick": "OVER 158.5",
+        "total_correct": false,
+        "total_confidence": 59.03600232674233,
+        "spread_line": -17.5,
+        "total_line": 158.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136878"
+    },
+    "SC_at_ARK_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.927096",
+        "game_info": {
+          "home_team": "ARK",
+          "away_team": "SC",
+          "home_name": "Arkansas Razorbacks",
+          "away_name": "South Carolina Gamecocks",
+          "date": "2026-01-13",
+          "spread": -10.5,
+          "total": 157.5
+        },
+        "prediction": {
+          "pred_home": 94.69530579795423,
+          "pred_away": 79.87792617421866,
+          "pred_margin": 14.817379623735576,
+          "pred_total": 174.5732319721729,
+          "covers_pick": "ARK to COVER (ARK -10.5)",
+          "covers_conf": 53.55938302338091,
+          "total_pick": "OVER 157.5",
+          "total_conf": 62.95611083730475,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 3.3207623116524587,
+          "away_consistency": 28.79455888943599,
+          "avg_consistency": 16.057660600544224,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "ARK",
+        "away_team": "SC",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "SC @ ARK",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "ARK to COVER (ARK -10.5)",
+        "spread_correct": false,
+        "spread_confidence": 53.55938302338091,
+        "total_pick": "OVER 157.5",
+        "total_correct": false,
+        "total_confidence": 62.95611083730475,
+        "spread_line": -10.5,
+        "total_line": 157.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136889"
+    },
+    "NEV_at_USU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.930615",
+        "game_info": {
+          "home_team": "USU",
+          "away_team": "NEV",
+          "home_name": "Utah State Aggies",
+          "away_name": "Nevada Wolf Pack",
+          "date": "2026-01-13",
+          "spread": -12.5,
+          "total": 152.5
+        },
+        "prediction": {
+          "pred_home": 87.10732719817291,
+          "pred_away": 78.72754923097017,
+          "pred_margin": 8.379777967202742,
+          "pred_total": 165.8348764291431,
+          "covers_pick": "NEV to COVER (USU -12.5)",
+          "covers_conf": 55.50372078803956,
+          "total_pick": "OVER 152.5",
+          "total_conf": 60.27464080451568,
+          "home_games": 15,
+          "away_games": 16,
+          "home_consistency": 13.783218957482916,
+          "away_consistency": 43.6563279950623,
+          "avg_consistency": 28.719773476272607,
+          "home_hca": 4.516544117647059
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "USU",
+        "away_team": "NEV",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "NEV @ USU",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "NEV to COVER (USU -12.5)",
+        "spread_correct": false,
+        "spread_confidence": 55.50372078803956,
+        "total_pick": "OVER 152.5",
+        "total_correct": false,
+        "total_confidence": 60.27464080451568,
+        "spread_line": -12.5,
+        "total_line": 152.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136900"
+    },
+    "ASU_at_ARIZ_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.933374",
+        "game_info": {
+          "home_team": "ARIZ",
+          "away_team": "ASU",
+          "home_name": "Arizona Wildcats",
+          "away_name": "Arizona State Sun Devils",
+          "date": "2026-01-13",
+          "spread": -20.5,
+          "total": 166.5
+        },
+        "prediction": {
+          "pred_home": 93.72645019126445,
+          "pred_away": 77.01549497903427,
+          "pred_margin": 16.710955212230175,
+          "pred_total": 170.74194517029872,
+          "covers_pick": "ASU to COVER (ARIZ -20.5)",
+          "covers_conf": 56.3503042531761,
+          "total_pick": "OVER 166.5",
+          "total_conf": 47.800048013841646,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 45.74726389388274,
+          "away_consistency": 32.46600971547734,
+          "avg_consistency": 39.106636804680036,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "ARIZ",
+        "away_team": "ASU",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "ASU @ ARIZ",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "ASU to COVER (ARIZ -20.5)",
+        "spread_correct": false,
+        "spread_confidence": 56.3503042531761,
+        "total_pick": "OVER 166.5",
+        "total_correct": false,
+        "total_confidence": 47.800048013841646,
+        "spread_line": -20.5,
+        "total_line": 166.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136915"
+    },
+    "MICH_at_WASH_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.936303",
+        "game_info": {
+          "home_team": "WASH",
+          "away_team": "MICH",
+          "home_name": "Washington Huskies",
+          "away_name": "Michigan Wolverines",
+          "date": "2026-01-13",
+          "spread": 13.5,
+          "total": 163.5
+        },
+        "prediction": {
+          "pred_home": 82.33753220946215,
+          "pred_away": 91.97866688441485,
+          "pred_margin": -9.641134674952696,
+          "pred_total": 174.316199093877,
+          "covers_pick": "WASH to COVER (WASH +13.5)",
+          "covers_conf": 51.887128161597545,
+          "total_pick": "OVER 163.5",
+          "total_conf": 53.63786050468592,
+          "home_games": 16,
+          "away_games": 15,
+          "home_consistency": 18.491397118156897,
+          "away_consistency": 14.037475865610162,
+          "avg_consistency": 16.26443649188353,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "WASH",
+        "away_team": "MICH",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "MICH @ WASH",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "WASH to COVER (WASH +13.5)",
+        "spread_correct": false,
+        "spread_confidence": 51.887128161597545,
+        "total_pick": "OVER 163.5",
+        "total_correct": false,
+        "total_confidence": 53.63786050468592,
+        "spread_line": 13.5,
+        "total_line": 163.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136928"
+    },
+    "DUKE_at_CAL_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.940265",
+        "game_info": {
+          "home_team": "CAL",
+          "away_team": "DUKE",
+          "home_name": "California Golden Bears",
+          "away_name": "Duke Blue Devils",
+          "date": "2026-01-13",
+          "spread": 10.5,
+          "total": 151.5
+        },
+        "prediction": {
+          "pred_home": 81.34874582291914,
+          "pred_away": 82.26870592041722,
+          "pred_margin": -0.9199600974980768,
+          "pred_total": 163.61745174333635,
+          "covers_pick": "CAL to COVER (CAL +10.5)",
+          "covers_conf": 71.6507093366843,
+          "total_pick": "OVER 151.5",
+          "total_conf": 54.330670609928035,
+          "home_games": 17,
+          "away_games": 16,
+          "home_consistency": 15.195115045707851,
+          "away_consistency": 6.054890527766162,
+          "avg_consistency": 10.625002786737006,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "CAL",
+        "away_team": "DUKE",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "DUKE @ CAL",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "CAL to COVER (CAL +10.5)",
+        "spread_correct": false,
+        "spread_confidence": 71.6507093366843,
+        "total_pick": "OVER 151.5",
+        "total_correct": false,
+        "total_confidence": 54.330670609928035,
+        "spread_line": 10.5,
+        "total_line": 151.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136940"
+    },
+    "TCU_at_BYU_2026-01-13": {
+      "prediction": {
+        "timestamp": "2026-01-13T14:38:11.943126",
+        "game_info": {
+          "home_team": "BYU",
+          "away_team": "TCU",
+          "home_name": "BYU Cougars",
+          "away_name": "TCU Horned Frogs",
+          "date": "2026-01-13",
+          "spread": -12.5,
+          "total": 156.5
+        },
+        "prediction": {
+          "pred_home": 91.68173005091457,
+          "pred_away": 78.91684368204973,
+          "pred_margin": 12.764886368864836,
+          "pred_total": 170.5985737329643,
+          "covers_pick": "No strong pick (too close to spread)",
+          "covers_conf": 37.80988139527212,
+          "total_pick": "OVER 156.5",
+          "total_conf": 59.13249742270728,
+          "home_games": 16,
+          "away_games": 16,
+          "home_consistency": 24.875753955530442,
+          "away_consistency": 12.58933131476455,
+          "avg_consistency": 18.732542635147496,
+          "home_hca": 5
+        },
+        "result_checked": true
+      },
+      "actual_result": {
+        "home_team": "BYU",
+        "away_team": "TCU",
+        "home_score": 0,
+        "away_score": 0,
+        "game_date": null
+      },
+      "accuracy": {
+        "game": "TCU @ BYU",
+        "actual_score": "0-0",
+        "actual_total": 0,
+        "spread_pick": "No strong pick (too close to spread)",
+        "spread_correct": false,
+        "spread_confidence": 37.80988139527212,
+        "total_pick": "OVER 156.5",
+        "total_correct": false,
+        "total_confidence": 59.13249742270728,
+        "spread_line": -12.5,
+        "total_line": 156.5
+      },
+      "checked_at": "2026-01-14T15:57:53.136952"
+    }
+  }
+}

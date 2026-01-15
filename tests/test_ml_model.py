@@ -4,6 +4,7 @@ Tests the neural network spread prediction model.
 """
 import pytest
 import numpy as np
+import config
 import sys
 import os
 import tempfile
@@ -23,9 +24,9 @@ class TestModelInitialization:
     @pytest.mark.unit
     def test_model_init_defaults(self):
         """Test model initializes with default parameters."""
-        model = SpreadPredictionModel(input_dim=45)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT)
         
-        assert model.input_dim == 45
+        assert model.input_dim == config.ML_FEATURE_COUNT
         assert model.hidden_layers == [256, 128, 64]
         assert model.dropout_rate == 0.3
         assert model.learning_rate == 0.001
@@ -47,7 +48,7 @@ class TestModelInitialization:
     @pytest.mark.unit
     def test_model_init_custom_learning_rate(self):
         """Test model initialization with custom learning rate."""
-        model = SpreadPredictionModel(input_dim=45, learning_rate=0.0001)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT, learning_rate=0.0001)
         
         assert model.learning_rate == 0.0001
 
@@ -58,7 +59,7 @@ class TestModelBuilding:
     @pytest.mark.unit
     def test_build_model_creates_model(self):
         """Test that build_model creates a Keras model."""
-        model = SpreadPredictionModel(input_dim=45)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT)
         built_model = model.build_model()
         
         assert model.model is not None
@@ -67,17 +68,17 @@ class TestModelBuilding:
     @pytest.mark.unit
     def test_build_model_correct_input_shape(self):
         """Test model has correct input shape."""
-        model = SpreadPredictionModel(input_dim=45)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT)
         model.build_model()
         
         # Check input shape
         input_shape = model.model.input_shape
-        assert input_shape[1] == 45
+        assert input_shape[1] == config.ML_FEATURE_COUNT
     
     @pytest.mark.unit
     def test_build_model_correct_output_shape(self):
         """Test model has correct output shape (2 outputs: margin, total)."""
-        model = SpreadPredictionModel(input_dim=45)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT)
         model.build_model()
         
         # Check output shape
@@ -110,8 +111,8 @@ class TestModelPrediction:
     @pytest.mark.unit
     def test_predict_requires_built_model(self):
         """Test that predict raises error if model not built."""
-        model = SpreadPredictionModel(input_dim=45)
-        X = np.random.randn(10, 45).astype(np.float32)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT)
+        X = np.random.randn(10, config.ML_FEATURE_COUNT).astype(np.float32)
         
         with pytest.raises(ValueError):
             model.predict(X)
@@ -119,7 +120,7 @@ class TestModelPrediction:
     @pytest.mark.unit
     def test_predict_output_shape(self, trained_model):
         """Test prediction output shape."""
-        X = np.random.randn(5, 45).astype(np.float32)
+        X = np.random.randn(5, config.ML_FEATURE_COUNT).astype(np.float32)
         predictions = trained_model.predict(X)
         
         assert predictions.shape == (5, 2)  # 5 samples, 2 outputs
@@ -127,7 +128,7 @@ class TestModelPrediction:
     @pytest.mark.unit
     def test_predict_single_sample(self, trained_model):
         """Test prediction on single sample."""
-        X = np.random.randn(1, 45).astype(np.float32)
+        X = np.random.randn(1, config.ML_FEATURE_COUNT).astype(np.float32)
         predictions = trained_model.predict(X)
         
         assert predictions.shape == (1, 2)
@@ -135,7 +136,7 @@ class TestModelPrediction:
     @pytest.mark.unit
     def test_predict_returns_finite_values(self, trained_model):
         """Test that predictions are finite numbers."""
-        X = np.random.randn(10, 45).astype(np.float32)
+        X = np.random.randn(10, config.ML_FEATURE_COUNT).astype(np.float32)
         predictions = trained_model.predict(X)
         
         assert np.all(np.isfinite(predictions))
@@ -143,7 +144,7 @@ class TestModelPrediction:
     @pytest.mark.unit
     def test_predict_margin_reasonable_range(self, trained_model):
         """Test that predicted margins are in reasonable range."""
-        X = np.random.randn(10, 45).astype(np.float32)
+        X = np.random.randn(10, config.ML_FEATURE_COUNT).astype(np.float32)
         predictions = trained_model.predict(X)
         
         margins = predictions[:, 0]
@@ -308,7 +309,7 @@ class TestModelSaveLoad:
     @pytest.mark.unit
     def test_save_model_without_built_raises(self):
         """Test that saving unbuilt model raises error."""
-        model = SpreadPredictionModel(input_dim=45)
+        model = SpreadPredictionModel(input_dim=config.ML_FEATURE_COUNT)
         
         with tempfile.TemporaryDirectory() as tmpdir:
             model_path = os.path.join(tmpdir, 'test_model.keras')
@@ -323,7 +324,7 @@ class TestModelHyperparameters:
     def test_get_hyperparameters(self):
         """Test getting hyperparameters."""
         model = SpreadPredictionModel(
-            input_dim=45,
+            input_dim=config.ML_FEATURE_COUNT,
             hidden_layers=[128, 64],
             dropout_rate=0.4,
             learning_rate=0.0005
@@ -331,7 +332,7 @@ class TestModelHyperparameters:
         
         params = model.get_hyperparameters()
         
-        assert params['input_dim'] == 45
+        assert params['input_dim'] == config.ML_FEATURE_COUNT
         assert params['hidden_layers'] == [128, 64]
         assert params['dropout_rate'] == 0.4
         assert params['learning_rate'] == 0.0005
@@ -343,13 +344,13 @@ class TestPrepareTrainingData:
     @pytest.mark.unit
     def test_prepare_training_data_shapes(self):
         """Test that prepare_training_data returns correct shapes."""
-        features_list = [np.random.randn(45) for _ in range(10)]
+        features_list = [np.random.randn(config.ML_FEATURE_COUNT) for _ in range(10)]
         margins = [5.0, -3.0, 10.0, -7.0, 2.0, -1.0, 8.0, -5.0, 3.0, 0.0]
         totals = [145.0, 150.0, 142.0, 138.0, 155.0, 148.0, 140.0, 152.0, 146.0, 143.0]
         
         X, y = prepare_training_data(features_list, margins, totals)
         
-        assert X.shape == (10, 45)
+        assert X.shape == (10, config.ML_FEATURE_COUNT)
         assert y.shape == (10, 2)
     
     @pytest.mark.unit

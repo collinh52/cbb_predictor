@@ -55,6 +55,38 @@ jobs:
       
       - name: Create data directory
         run: mkdir -p data
+
+      - name: Download KenPom summary (optional)
+        run: |
+          if [ -n "${KENPOM_SUMMARY_URL}" ]; then
+            season_full=$(python - <<'PY'
+          import config
+          print(config.CURRENT_SEASON)
+          PY
+          )
+            season_short=$(python - <<'PY'
+          import config
+          print(f"{config.CURRENT_SEASON % 100:02d}")
+          PY
+          )
+            url="${KENPOM_SUMMARY_URL}"
+            url="${url//\{season_short\}/${season_short}}"
+            url="${url//\{season\}/${season_short}}"
+            url="$(echo "${url}" | sed -E "s/summary[0-9]+/summary${season_short}/")"
+            echo "Downloading KenPom summary..."
+            if [ -n "${KENPOM_COOKIE}" ]; then
+              curl -fL -o "data/summary${season_short}.csv" -b "${KENPOM_COOKIE}" "${url}"
+            else
+              curl -fL -o "data/summary${season_short}.csv" "${url}"
+            fi
+            cp "data/summary${season_short}.csv" "data/summary${season_full}.csv"
+            echo "KenPom summary saved to data/summary${season_short}.csv"
+          else
+            echo "KENPOM_SUMMARY_URL not set; skipping KenPom download"
+          fi
+        env:
+          KENPOM_SUMMARY_URL: ${{ secrets.KENPOM_SUMMARY_URL }}
+          KENPOM_COOKIE: ${{ secrets.KENPOM_COOKIE }}
       
       - name: Download existing ATS data
         uses: actions/cache@v4
@@ -68,8 +100,17 @@ jobs:
           restore-keys: |
             ats-data-
       
+      - name: Cache ML models
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/models
+          key: ml-models-${{ github.run_number }}
+          restore-keys: |
+            ml-models-
+      
       - name: Collect Odds and Generate Predictions
-        run: python scripts/daily_collect_odds.py --days 2
+        run: python scripts/predict_today.py --days 2
       
       - name: Upload ATS Data
         uses: actions/upload-artifact@v4
@@ -129,12 +170,24 @@ jobs:
           key: ats-data-${{ github.run_number }}
           restore-keys: |
             ats-data-
+
+      - name: Cache ML models
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/models
+          key: ml-models-${{ github.run_number }}
+          restore-keys: |
+            ml-models-
       
       - name: Check Results
         run: python scripts/daily_check_results.py --days 7
       
       - name: Update README
         run: python scripts/update_readme_accuracy.py
+
+      - name: Retrain ML model
+        run: python scripts/setup_and_train.py --populate 200 --train
       
       - name: Upload Updated ATS Data
         uses: actions/upload-artifact@v4
@@ -186,6 +239,15 @@ jobs:
           key: ats-data-${{ github.run_number }}
           restore-keys: |
             ats-data-
+
+      - name: Cache ML models
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/models
+          key: ml-models-${{ github.run_number }}
+          restore-keys: |
+            ml-models-
       
       - name: Update README
         run: python scripts/update_readme_accuracy.py

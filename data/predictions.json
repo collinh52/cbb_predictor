@@ -27,7 +27,7 @@
         "avg_consistency": 27.46053190284932,
         "home_hca": 0.31801841948900744
       },
-      "result_checked": false
+      "result_checked": true
     },
     "UVA_at_LOU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.883217",
@@ -56,7 +56,7 @@
         "avg_consistency": 14.429866812169514,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "BC_at_CLEM_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.885821",
@@ -85,7 +85,7 @@
         "avg_consistency": 32.67037006484297,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "TA&M_at_TENN_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.888489",
@@ -114,7 +114,7 @@
         "avg_consistency": 0.0,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "CONN_at_HALL_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.891454",
@@ -143,7 +143,7 @@
         "avg_consistency": 40.13131867540254,
         "home_hca": 3.9751789604730776
       },
-      "result_checked": false
+      "result_checked": true
     },
     "WVU_at_HOU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.893738",
@@ -172,7 +172,7 @@
         "avg_consistency": 17.771103009603763,
         "home_hca": 0
       },
-      "result_checked": false
+      "result_checked": true
     },
     "ISU_at_KU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.897043",
@@ -201,7 +201,7 @@
         "avg_consistency": 20.538748515710317,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "ORE_at_NEB_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.899504",
@@ -230,7 +230,7 @@
         "avg_consistency": 31.885124384638296,
         "home_hca": 1.0074826568054114
       },
-      "result_checked": false
+      "result_checked": true
     },
     "ALA_at_MSST_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.903058",
@@ -259,7 +259,7 @@
         "avg_consistency": 16.420441367173645,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "FLA_at_OU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.906212",
@@ -288,7 +288,7 @@
         "avg_consistency": 11.351332805307003,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "IOWA_at_PUR_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.908798",
@@ -317,7 +317,7 @@
         "avg_consistency": 12.685489648958658,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "MISS_at_UGA_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.911521",
@@ -346,7 +346,7 @@
         "avg_consistency": 12.532566224119378,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "ILL_at_NU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.915635",
@@ -375,7 +375,7 @@
         "avg_consistency": 7.107544137842815,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "VAN_at_TEX_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.918534",
@@ -404,7 +404,7 @@
         "avg_consistency": 18.445622951205326,
         "home_hca": 3.22601088282203
       },
-      "result_checked": false
+      "result_checked": true
     },
     "UNC_at_STAN_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.921092",
@@ -433,7 +433,7 @@
         "avg_consistency": 28.841368913227612,
         "home_hca": 3.5400569717520183
       },
-      "result_checked": false
+      "result_checked": true
     },
     "UTAH_at_TTU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.924417",
@@ -462,7 +462,7 @@
         "avg_consistency": 29.1040278349733,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "SC_at_ARK_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.927096",
@@ -491,7 +491,7 @@
         "avg_consistency": 16.057660600544224,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "NEV_at_USU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.930615",
@@ -520,7 +520,7 @@
         "avg_consistency": 28.719773476272607,
         "home_hca": 4.516544117647059
       },
-      "result_checked": false
+      "result_checked": true
     },
     "ASU_at_ARIZ_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.933374",
@@ -549,7 +549,7 @@
         "avg_consistency": 39.106636804680036,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "MICH_at_WASH_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.936303",
@@ -578,7 +578,7 @@
         "avg_consistency": 16.26443649188353,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "DUKE_at_CAL_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.940265",
@@ -607,7 +607,7 @@
         "avg_consistency": 10.625002786737006,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "TCU_at_BYU_2026-01-13": {
       "timestamp": "2026-01-13T14:38:11.943126",
@@ -636,7 +636,7 @@
         "avg_consistency": 18.732542635147496,
         "home_hca": 5
       },
-      "result_checked": false
+      "result_checked": true
     },
     "Hoyas_at_Bluejays_2026-01-14T02:01:25Z": {
       "timestamp": "2026-01-13T21:09:52.671758",
@@ -2642,7 +2642,7 @@
   },
   "2026-01-14": {
     "Knights_at_Crusaders_2026-01-14T23:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.523153",
+      "timestamp": "2026-01-14T08:25:59.940075",
       "game_info": {
         "home_team": "Crusaders",
         "away_team": "Knights",
@@ -2671,7 +2671,7 @@
       "result_checked": false
     },
     "Hawks_at_Terriers_2026-01-14T23:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.560309",
+      "timestamp": "2026-01-14T08:25:59.989176",
       "game_info": {
         "home_team": "Terriers",
         "away_team": "Hawks",
@@ -2700,7 +2700,7 @@
       "result_checked": false
     },
     "Mocs_at_Terriers_2026-01-14T23:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.570217",
+      "timestamp": "2026-01-14T08:26:00.036256",
       "game_info": {
         "home_team": "Terriers",
         "away_team": "Mocs",
@@ -2729,14 +2729,14 @@
       "result_checked": false
     },
     "Buccaneers_at_Catamounts_2026-01-14T23:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.582974",
+      "timestamp": "2026-01-14T08:26:00.093671",
       "game_info": {
         "home_team": "Catamounts",
         "away_team": "Buccaneers",
         "home_name": "Western Carolina Catamounts",
         "away_name": "East Tennessee St Buccaneers",
         "date": "2026-01-14T23:00:00Z",
-        "spread": 6.5,
+        "spread": 7.5,
         "total": 147.0
       },
       "prediction": {
@@ -2744,8 +2744,8 @@
         "pred_away": 80.29439837870973,
         "pred_margin": -4.436932008968839,
         "pred_total": 156.15186474845063,
-        "covers_pick": "Catamounts to COVER (Catamounts +6.5)",
-        "covers_conf": 42.87209600726185,
+        "covers_pick": "Catamounts to COVER (Catamounts +7.5)",
+        "covers_conf": 46.426092058609406,
         "total_pick": "OVER 147.0",
         "total_conf": 48.55023698485975,
         "home_games": 15,
@@ -2758,7 +2758,7 @@
       "result_checked": false
     },
     "Rams_at_Rams_2026-01-14T23:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.591650",
+      "timestamp": "2026-01-14T08:26:00.146690",
       "game_info": {
         "home_team": "Rams",
         "away_team": "Rams",
@@ -2787,7 +2787,7 @@
       "result_checked": false
     },
     "Bulldogs_at_Musketeers_2026-01-14T23:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.605612",
+      "timestamp": "2026-01-14T08:26:00.194628",
       "game_info": {
         "home_team": "Musketeers",
         "away_team": "Bulldogs",
@@ -2816,7 +2816,7 @@
       "result_checked": false
     },
     "Panthers_at_Eagles_2026-01-14T23:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.616335",
+      "timestamp": "2026-01-14T08:26:00.302064",
       "game_info": {
         "home_team": "Eagles",
         "away_team": "Panthers",
@@ -2845,7 +2845,7 @@
       "result_checked": false
     },
     "Hawkeyes_at_Boilermakers_2026-01-14T23:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.626864",
+      "timestamp": "2026-01-14T08:26:00.351681",
       "game_info": {
         "home_team": "Boilermakers",
         "away_team": "Hawkeyes",
@@ -2874,14 +2874,14 @@
       "result_checked": false
     },
     "Tigers_at_Tigers_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.637796",
+      "timestamp": "2026-01-14T08:26:00.415344",
       "game_info": {
         "home_team": "Tigers",
         "away_team": "Tigers",
         "home_name": "Missouri Tigers",
         "away_name": "Auburn Tigers",
         "date": "2026-01-15T00:00:00Z",
-        "spread": 0.0,
+        "spread": 1.0,
         "total": 154.5
       },
       "prediction": {
@@ -2889,8 +2889,8 @@
         "pred_away": 87.04121128934268,
         "pred_margin": -1.0997092576312184,
         "pred_total": 172.98271332105415,
-        "covers_pick": "Tigers to COVER (Tigers +0.0)",
-        "covers_conf": 38.848982401709264,
+        "covers_pick": "No strong pick (too close to spread)",
+        "covers_conf": 35.0,
         "total_pick": "OVER 154.5",
         "total_conf": 60.875798649475804,
         "home_games": 16,
@@ -2903,7 +2903,7 @@
       "result_checked": false
     },
     "Eagles_at_Griffins_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.646160",
+      "timestamp": "2026-01-14T08:26:00.495040",
       "game_info": {
         "home_team": "Griffins",
         "away_team": "Eagles",
@@ -2932,7 +2932,7 @@
       "result_checked": false
     },
     "Spartans_at_Buccaneers_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.653142",
+      "timestamp": "2026-01-14T08:26:00.546175",
       "game_info": {
         "home_team": "Buccaneers",
         "away_team": "Spartans",
@@ -2961,7 +2961,7 @@
       "result_checked": false
     },
     "Hurricane_at_49ers_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.660238",
+      "timestamp": "2026-01-14T08:26:00.626766",
       "game_info": {
         "home_team": "49ers",
         "away_team": "Hurricane",
@@ -2990,14 +2990,14 @@
       "result_checked": false
     },
     "Buffaloes_at_Bearcats_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.666126",
+      "timestamp": "2026-01-14T08:26:00.682287",
       "game_info": {
         "home_team": "Bearcats",
         "away_team": "Buffaloes",
         "home_name": "Cincinnati Bearcats",
         "away_name": "Colorado Buffaloes",
         "date": "2026-01-15T00:00:00Z",
-        "spread": -8.0,
+        "spread": -8.5,
         "total": 148.5
       },
       "prediction": {
@@ -3005,8 +3005,8 @@
         "pred_away": 77.29434010970883,
         "pred_margin": 3.340974775556276,
         "pred_total": 157.92965499497393,
-        "covers_pick": "Buffaloes to COVER (Bearcats -8.0)",
-        "covers_conf": 58.93041905414873,
+        "covers_pick": "Buffaloes to COVER (Bearcats -8.5)",
+        "covers_conf": 60.94045785795279,
         "total_pick": "OVER 148.5",
         "total_conf": 55.36395403318703,
         "home_games": 16,
@@ -3019,7 +3019,7 @@
       "result_checked": false
     },
     "Chanticleers_at_Herd_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.672371",
+      "timestamp": "2026-01-14T08:26:00.730467",
       "game_info": {
         "home_team": "Herd",
         "away_team": "Chanticleers",
@@ -3048,7 +3048,7 @@
       "result_checked": false
     },
     "Raiders_at_Greyhounds_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.678441",
+      "timestamp": "2026-01-14T08:26:00.774712",
       "game_info": {
         "home_team": "Greyhounds",
         "away_team": "Raiders",
@@ -3077,14 +3077,14 @@
       "result_checked": false
     },
     "Wildcats_at_Revolutionaries_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.684321",
+      "timestamp": "2026-01-14T08:26:00.819591",
       "game_info": {
         "home_team": "Revolutionaries",
         "away_team": "Wildcats",
         "home_name": "GW Revolutionaries",
         "away_name": "Davidson Wildcats",
         "date": "2026-01-15T00:00:00Z",
-        "spread": -12.5,
+        "spread": -11.0,
         "total": 146.5
       },
       "prediction": {
@@ -3092,8 +3092,8 @@
         "pred_away": 73.66211441010816,
         "pred_margin": 10.210825550289286,
         "pred_total": 157.5350543705056,
-        "covers_pick": "Wildcats to COVER (Revolutionaries -12.5)",
-        "covers_conf": 43.769296802603,
+        "covers_pick": "No strong pick (too close to spread)",
+        "covers_conf": 35.61614084144873,
         "total_pick": "OVER 146.5",
         "total_conf": 51.33718286756762,
         "home_games": 17,
@@ -3106,7 +3106,7 @@
       "result_checked": false
     },
     "Pirates_at_Bulls_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.691139",
+      "timestamp": "2026-01-14T08:26:00.869028",
       "game_info": {
         "home_team": "Bulls",
         "away_team": "Pirates",
@@ -3135,7 +3135,7 @@
       "result_checked": false
     },
     "Jaspers_at_Stags_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.696954",
+      "timestamp": "2026-01-14T08:26:00.912456",
       "game_info": {
         "home_team": "Stags",
         "away_team": "Jaspers",
@@ -3164,7 +3164,7 @@
       "result_checked": false
     },
     "Panthers_at_Owls_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.704360",
+      "timestamp": "2026-01-14T08:26:01.002652",
       "game_info": {
         "home_team": "Owls",
         "away_team": "Panthers",
@@ -3193,7 +3193,7 @@
       "result_checked": false
     },
     "Paladins_at_Bulldogs_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.710554",
+      "timestamp": "2026-01-14T08:26:01.050645",
       "game_info": {
         "home_team": "Bulldogs",
         "away_team": "Paladins",
@@ -3222,7 +3222,7 @@
       "result_checked": false
     },
     "Highlanders_at_Bulldogs_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.716197",
+      "timestamp": "2026-01-14T08:26:01.104167",
       "game_info": {
         "home_team": "Bulldogs",
         "away_team": "Highlanders",
@@ -3251,7 +3251,7 @@
       "result_checked": false
     },
     "Rebels_at_Bulldogs_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.722679",
+      "timestamp": "2026-01-14T08:26:01.153985",
       "game_info": {
         "home_team": "Bulldogs",
         "away_team": "Rebels",
@@ -3280,7 +3280,7 @@
       "result_checked": false
     },
     "Panthers_at_Jackets_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.730596",
+      "timestamp": "2026-01-14T08:26:01.231696",
       "game_info": {
         "home_team": "Jackets",
         "away_team": "Panthers",
@@ -3309,14 +3309,14 @@
       "result_checked": false
     },
     "Redbirds_at_Sycamores_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.757474",
+      "timestamp": "2026-01-14T08:26:01.288661",
       "game_info": {
         "home_team": "Sycamores",
         "away_team": "Redbirds",
         "home_name": "Indiana St Sycamores",
         "away_name": "Illinois St Redbirds",
         "date": "2026-01-15T00:00:00Z",
-        "spread": 5.5,
+        "spread": 6.5,
         "total": 147.0
       },
       "prediction": {
@@ -3324,8 +3324,8 @@
         "pred_away": 79.94348077983513,
         "pred_margin": 1.0131615654065769,
         "pred_total": 160.90012312507685,
-        "covers_pick": "Sycamores to COVER (Sycamores +5.5)",
-        "covers_conf": 58.18374826354,
+        "covers_pick": "Sycamores to COVER (Sycamores +6.5)",
+        "covers_conf": 61.707225462808076,
         "total_pick": "OVER 147.0",
         "total_conf": 54.82547875197163,
         "home_games": 17,
@@ -3338,7 +3338,7 @@
       "result_checked": false
     },
     "Gaels_at_Broncs_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.766829",
+      "timestamp": "2026-01-14T08:26:01.530080",
       "game_info": {
         "home_team": "Broncs",
         "away_team": "Gaels",
@@ -3346,7 +3346,7 @@
         "away_name": "Iona Gaels",
         "date": "2026-01-15T00:00:00Z",
         "spread": 7.5,
-        "total": 144.0
+        "total": 142.5
       },
       "prediction": {
         "pred_home": 70.0236714290736,
@@ -3367,14 +3367,14 @@
       "result_checked": false
     },
     "Bearkats_at_Gamecocks_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.773033",
+      "timestamp": "2026-01-14T08:26:01.575022",
       "game_info": {
         "home_team": "Gamecocks",
         "away_team": "Bearkats",
         "home_name": "Jacksonville St Gamecocks",
         "away_name": "Sam Houston St Bearkats",
         "date": "2026-01-15T00:00:00Z",
-        "spread": 0.0,
+        "spread": -1.0,
         "total": 150.0
       },
       "prediction": {
@@ -3382,8 +3382,8 @@
         "pred_away": 70.04627005750466,
         "pred_margin": 6.0885355953193,
         "pred_total": 146.18107571032863,
-        "covers_pick": "Gamecocks to COVER (Gamecocks +0.0)",
-        "covers_conf": 56.30987458361754,
+        "covers_pick": "Gamecocks to COVER (Gamecocks -1.0)",
+        "covers_conf": 52.80987458361755,
         "total_pick": "UNDER 150.0",
         "total_conf": 40.34649400553992,
         "home_games": 16,
@@ -3396,7 +3396,7 @@
       "result_checked": false
     },
     "Wildcats_at_Tigers_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.779256",
+      "timestamp": "2026-01-14T08:26:01.620892",
       "game_info": {
         "home_team": "Tigers",
         "away_team": "Wildcats",
@@ -3425,7 +3425,7 @@
       "result_checked": false
     },
     "Explorers_at_Spiders_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.786998",
+      "timestamp": "2026-01-14T08:26:01.662205",
       "game_info": {
         "home_team": "Spiders",
         "away_team": "Explorers",
@@ -3454,7 +3454,7 @@
       "result_checked": false
     },
     "Bulldogs_at_Hose_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.793337",
+      "timestamp": "2026-01-14T08:26:01.705584",
       "game_info": {
         "home_team": "Hose",
         "away_team": "Bulldogs",
@@ -3483,7 +3483,7 @@
       "result_checked": false
     },
     "Peacocks_at_Bobcats_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.800976",
+      "timestamp": "2026-01-14T08:26:01.747702",
       "game_info": {
         "home_team": "Bobcats",
         "away_team": "Peacocks",
@@ -3512,7 +3512,7 @@
       "result_checked": false
     },
     "Pioneers_at_Saints_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.808596",
+      "timestamp": "2026-01-14T08:26:01.790326",
       "game_info": {
         "home_team": "Saints",
         "away_team": "Pioneers",
@@ -3541,14 +3541,14 @@
       "result_checked": false
     },
     "Bonnies_at_Hawks_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.815654",
+      "timestamp": "2026-01-14T08:26:01.834142",
       "game_info": {
         "home_team": "Hawks",
         "away_team": "Bonnies",
         "home_name": "Saint Joseph's Hawks",
         "away_name": "St. Bonaventure Bonnies",
         "date": "2026-01-15T00:00:00Z",
-        "spread": 1.0,
+        "spread": 2.0,
         "total": 149.0
       },
       "prediction": {
@@ -3556,8 +3556,8 @@
         "pred_away": 76.98683289029994,
         "pred_margin": 0.17233133285569124,
         "pred_total": 154.14599711345556,
-        "covers_pick": "Hawks to COVER (Hawks +1.0)",
-        "covers_conf": 43.35397958708033,
+        "covers_pick": "Hawks to COVER (Hawks +2.0)",
+        "covers_conf": 47.234457017926346,
         "total_pick": "OVER 149.0",
         "total_conf": 46.79234457164542,
         "home_games": 17,
@@ -3570,7 +3570,7 @@
       "result_checked": false
     },
     "Eagles_at_Trojans_2026-01-15T00:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.823730",
+      "timestamp": "2026-01-14T08:26:01.871664",
       "game_info": {
         "home_team": "Trojans",
         "away_team": "Eagles",
@@ -3578,7 +3578,7 @@
         "away_name": "Southern Miss Golden Eagles",
         "date": "2026-01-15T00:00:00Z",
         "spread": -9.0,
-        "total": 147.5
+        "total": 147.0
       },
       "prediction": {
         "pred_home": 84.69842585989706,
@@ -3587,8 +3587,8 @@
         "pred_total": 162.63835645300028,
         "covers_pick": "Eagles to COVER (Trojans -9.0)",
         "covers_conf": 45.26715017650894,
-        "total_pick": "OVER 147.5",
-        "total_conf": 59.37011989931515,
+        "total_pick": "OVER 147.0",
+        "total_conf": 60.10968829655177,
         "home_games": 17,
         "away_games": 18,
         "home_consistency": 0,
@@ -3599,7 +3599,7 @@
       "result_checked": false
     },
     "Leopards_at_Bison_2026-01-15T00:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.831155",
+      "timestamp": "2026-01-14T08:26:01.912855",
       "game_info": {
         "home_team": "Bison",
         "away_team": "Leopards",
@@ -3628,7 +3628,7 @@
       "result_checked": false
     },
     "Raiders_at_Bulldogs_2026-01-15T00:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.837900",
+      "timestamp": "2026-01-14T08:26:01.959353",
       "game_info": {
         "home_team": "Bulldogs",
         "away_team": "Raiders",
@@ -3657,7 +3657,7 @@
       "result_checked": false
     },
     "Bears_at_Hilltoppers_2026-01-15T00:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.844622",
+      "timestamp": "2026-01-14T08:26:02.013148",
       "game_info": {
         "home_team": "Hilltoppers",
         "away_team": "Bears",
@@ -3686,14 +3686,14 @@
       "result_checked": false
     },
     "Blazers_at_Wave_2026-01-15T00:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.851660",
+      "timestamp": "2026-01-14T08:26:02.061715",
       "game_info": {
         "home_team": "Wave",
         "away_team": "Blazers",
         "home_name": "Tulane Green Wave",
         "away_name": "UAB Blazers",
         "date": "2026-01-15T00:30:00Z",
-        "spread": 2.5,
+        "spread": 2.0,
         "total": 153.0
       },
       "prediction": {
@@ -3701,8 +3701,8 @@
         "pred_away": 79.34235410249288,
         "pred_margin": -3.1423986631854746,
         "pred_total": 155.54230954180028,
-        "covers_pick": "No strong pick (too close to spread)",
-        "covers_conf": 36.862952354969515,
+        "covers_pick": "Blazers to COVER (Wave +2.0)",
+        "covers_conf": 41.07417110410822,
         "total_pick": "No strong pick (too close)",
         "total_conf": 36.862952354969515,
         "home_games": 16,
@@ -3715,7 +3715,7 @@
       "result_checked": false
     },
     "Bulldogs_at_Salukis_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.859027",
+      "timestamp": "2026-01-14T08:26:02.106933",
       "game_info": {
         "home_team": "Salukis",
         "away_team": "Bulldogs",
@@ -3744,7 +3744,7 @@
       "result_checked": false
     },
     "Rams_at_Billikens_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.865827",
+      "timestamp": "2026-01-14T08:26:02.158570",
       "game_info": {
         "home_team": "Billikens",
         "away_team": "Rams",
@@ -3773,7 +3773,7 @@
       "result_checked": false
     },
     "Knights_at_Wildcats_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.873062",
+      "timestamp": "2026-01-14T08:26:02.207343",
       "game_info": {
         "home_team": "Wildcats",
         "away_team": "Knights",
@@ -3802,7 +3802,7 @@
       "result_checked": false
     },
     "Cajuns_at_Bobcats_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.880977",
+      "timestamp": "2026-01-14T08:26:02.253212",
       "game_info": {
         "home_team": "Bobcats",
         "away_team": "Cajuns",
@@ -3831,7 +3831,7 @@
       "result_checked": false
     },
     "Owls_at_Tigers_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.887430",
+      "timestamp": "2026-01-14T08:26:02.307498",
       "game_info": {
         "home_team": "Tigers",
         "away_team": "Owls",
@@ -3860,7 +3860,7 @@
       "result_checked": false
     },
     "Jackrabbits_at_Bison_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.894915",
+      "timestamp": "2026-01-14T08:26:02.358983",
       "game_info": {
         "home_team": "Bison",
         "away_team": "Jackrabbits",
@@ -3889,7 +3889,7 @@
       "result_checked": false
     },
     "Owls_at_Roadrunners_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.901283",
+      "timestamp": "2026-01-14T08:26:02.407377",
       "game_info": {
         "home_team": "Roadrunners",
         "away_team": "Owls",
@@ -3918,14 +3918,14 @@
       "result_checked": false
     },
     "Aztecs_at_Cowboys_2026-01-15T01:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.909210",
+      "timestamp": "2026-01-14T08:26:02.455722",
       "game_info": {
         "home_team": "Cowboys",
         "away_team": "Aztecs",
         "home_name": "Wyoming Cowboys",
         "away_name": "San Diego St Aztecs",
         "date": "2026-01-15T01:00:00Z",
-        "spread": 1.5,
+        "spread": 2.0,
         "total": 148.0
       },
       "prediction": {
@@ -3933,8 +3933,8 @@
         "pred_away": 80.39062364031228,
         "pred_margin": 3.3020989465615145,
         "pred_total": 164.0833462271861,
-        "covers_pick": "Cowboys to COVER (Cowboys +1.5)",
-        "covers_conf": 53.07932686468328,
+        "covers_pick": "Cowboys to COVER (Cowboys +2.0)",
+        "covers_conf": 54.872293087119374,
         "total_pick": "OVER 148.0",
         "total_conf": 58.92884167199351,
         "home_games": 16,
@@ -3947,7 +3947,7 @@
       "result_checked": false
     },
     "Illini_at_Wildcats_2026-01-15T01:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.916261",
+      "timestamp": "2026-01-14T08:26:02.504903",
       "game_info": {
         "home_team": "Wildcats",
         "away_team": "Illini",
@@ -3955,7 +3955,7 @@
         "away_name": "Illinois Fighting Illini",
         "date": "2026-01-15T01:30:00Z",
         "spread": 8.5,
-        "total": 151.5
+        "total": 152.5
       },
       "prediction": {
         "pred_home": 77.79736593073017,
@@ -3964,8 +3964,8 @@
         "pred_total": 158.6607705728489,
         "covers_pick": "Wildcats to COVER (Wildcats +8.5)",
         "covers_conf": 55.66432792634855,
-        "total_pick": "OVER 151.5",
-        "total_conf": 46.3965833801098,
+        "total_pick": "OVER 152.5",
+        "total_conf": 44.953938115282746,
         "home_games": 16,
         "away_games": 16,
         "home_consistency": 12.24200980110129,
@@ -3976,7 +3976,7 @@
       "result_checked": false
     },
     "Bruins_at_Lions_2026-01-15T01:30:00Z": {
-      "timestamp": "2026-01-14T08:07:36.923652",
+      "timestamp": "2026-01-14T08:26:02.556857",
       "game_info": {
         "home_team": "Lions",
         "away_team": "Bruins",
@@ -4005,7 +4005,7 @@
       "result_checked": false
     },
     "Gamecocks_at_Razorbacks_2026-01-15T02:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.958690",
+      "timestamp": "2026-01-14T08:26:02.622537",
       "game_info": {
         "home_team": "Razorbacks",
         "away_team": "Gamecocks",
@@ -4034,7 +4034,7 @@
       "result_checked": false
     },
     "Eagles_at_Pioneers_2026-01-15T02:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.975729",
+      "timestamp": "2026-01-14T08:26:02.677170",
       "game_info": {
         "home_team": "Pioneers",
         "away_team": "Eagles",
@@ -4063,7 +4063,7 @@
       "result_checked": false
     },
     "Heels_at_Cardinal_2026-01-15T02:00:00Z": {
-      "timestamp": "2026-01-14T08:07:36.989955",
+      "timestamp": "2026-01-14T08:26:02.740037",
       "game_info": {
         "home_team": "Cardinal",
         "away_team": "Heels",
@@ -4092,7 +4092,7 @@
       "result_checked": false
     },
     "Pilots_at_Waves_2026-01-15T02:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.003702",
+      "timestamp": "2026-01-14T08:26:02.789256",
       "game_info": {
         "home_team": "Waves",
         "away_team": "Pilots",
@@ -4121,7 +4121,7 @@
       "result_checked": false
     },
     "Commodores_at_Longhorns_2026-01-15T02:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.019104",
+      "timestamp": "2026-01-14T08:26:02.839052",
       "game_info": {
         "home_team": "Longhorns",
         "away_team": "Commodores",
@@ -4150,7 +4150,7 @@
       "result_checked": false
     },
     "Utes_at_Raiders_2026-01-15T02:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.029651",
+      "timestamp": "2026-01-14T08:26:02.890947",
       "game_info": {
         "home_team": "Raiders",
         "away_team": "Utes",
@@ -4179,7 +4179,7 @@
       "result_checked": false
     },
     "Hokies_at_Mustangs_2026-01-15T02:00:14Z": {
-      "timestamp": "2026-01-14T08:07:37.039712",
+      "timestamp": "2026-01-14T08:26:02.944988",
       "game_info": {
         "home_team": "Mustangs",
         "away_team": "Hokies",
@@ -4208,7 +4208,7 @@
       "result_checked": false
     },
     "Lions_at_Beavers_2026-01-15T03:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.047229",
+      "timestamp": "2026-01-14T08:26:03.019162",
       "game_info": {
         "home_team": "Beavers",
         "away_team": "Lions",
@@ -4237,7 +4237,7 @@
       "result_checked": false
     },
     "Pack_at_Aggies_2026-01-15T03:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.057942",
+      "timestamp": "2026-01-14T08:26:03.097069",
       "game_info": {
         "home_team": "Aggies",
         "away_team": "Pack",
@@ -4266,7 +4266,7 @@
       "result_checked": false
     },
     "Tigers_at_Broncos_2026-01-15T03:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.066258",
+      "timestamp": "2026-01-14T08:26:03.145221",
       "game_info": {
         "home_team": "Broncos",
         "away_team": "Tigers",
@@ -4295,7 +4295,7 @@
       "result_checked": false
     },
     "Devils_at_Wildcats_2026-01-15T03:30:00Z": {
-      "timestamp": "2026-01-14T08:07:37.075823",
+      "timestamp": "2026-01-14T08:26:03.191685",
       "game_info": {
         "home_team": "Wildcats",
         "away_team": "Devils",
@@ -4324,7 +4324,7 @@
       "result_checked": false
     },
     "Wolverines_at_Huskies_2026-01-15T03:30:00Z": {
-      "timestamp": "2026-01-14T08:07:37.083581",
+      "timestamp": "2026-01-14T08:26:03.252312",
       "game_info": {
         "home_team": "Huskies",
         "away_team": "Wolverines",
@@ -4353,7 +4353,7 @@
       "result_checked": false
     },
     "Frogs_at_Cougars_2026-01-15T04:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.093224",
+      "timestamp": "2026-01-14T08:26:03.305108",
       "game_info": {
         "home_team": "Cougars",
         "away_team": "Frogs",
@@ -4382,7 +4382,7 @@
       "result_checked": false
     },
     "Devils_at_Bears_2026-01-15T04:00:00Z": {
-      "timestamp": "2026-01-14T08:07:37.102652",
+      "timestamp": "2026-01-14T08:26:03.457540",
       "game_info": {
         "home_team": "Bears",
         "away_team": "Devils",

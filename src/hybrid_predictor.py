@@ -35,15 +35,41 @@ class HybridPredictor:
         self._load_active_model()
     
     def _load_active_model(self):
-        """Load the active ML model from database."""
+        """Load the active ML model from database or fallback to latest model file."""
         active_model = self.database.get_active_model_version()
-        if active_model and os.path.exists(active_model['model_path']):
+        model_path = active_model['model_path'] if active_model else None
+        if not model_path or not os.path.exists(model_path):
+            # Fallback: pick newest model file from model directory (useful in CI without DB)
+            try:
+                from glob import glob
+                candidates = glob(os.path.join(config.MODEL_PATH, "*.keras"))
+                candidates.extend(glob(os.path.join(config.MODEL_PATH, "*.h5")))
+                if candidates:
+                    model_path = max(candidates, key=os.path.getmtime)
+                    active_model = {'model_path': model_path, 'version_number': 'latest'}
+            except Exception:
+                model_path = None
+
+        if model_path and os.path.exists(model_path):
             try:
                 self.ml_model = SpreadPredictionModel(input_dim=1)  # Will be set correctly on load
-                self.ml_model.load_model(active_model['model_path'])
+                self.ml_model.load_model(model_path)
                 
                 # Load scaler if available
                 scaler_path = active_model.get('scaler_path')
+                if not scaler_path:
+                    metadata_path = model_path.replace('.h5', '_metadata.json').replace('.keras', '_metadata.json')
+                    if not metadata_path.endswith('_metadata.json'):
+                        metadata_path = model_path + '_metadata.json'
+                    if os.path.exists(metadata_path):
+                        try:
+                            import json
+                            with open(metadata_path, 'r') as f:
+                                metadata = json.load(f)
+                                scaler_path = metadata.get('scaler_path')
+                        except Exception:
+                            scaler_path = None
+
                 if scaler_path and os.path.exists(scaler_path):
                     self.feature_engineer.load_scaler(scaler_path)
                 
@@ -115,6 +141,18 @@ class HybridPredictor:
             
             if self.ml_model is not None:
                 try:
+                    expected_dim = None
+                    if self.ml_model.model is not None:
+                        input_shape = self.ml_model.model.input_shape
+                        if isinstance(input_shape, tuple) and len(input_shape) > 1:
+                            expected_dim = input_shape[-1]
+                    if expected_dim and features_array.shape[0] != expected_dim:
+                        print(
+                            f"ML prediction skipped: feature count {features_array.shape[0]} "
+                            f"does not match model input {expected_dim}. "
+                            "Retrain the model to update feature alignment."
+                        )
+                        raise ValueError("ML feature/model shape mismatch")
                     ml_predictions = self.ml_model.predict(features_array.reshape(1, -1))
                     ml_predicted_margin = float(ml_predictions[0, 0])
                     ml_predicted_total = float(ml_predictions[0, 1])
