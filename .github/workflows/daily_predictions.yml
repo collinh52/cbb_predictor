@@ -81,10 +81,10 @@ jobs:
               browser = p.chromium.launch(headless=True)
               context = browser.new_context()
               page = context.new_page()
-              page.goto("https://kenpom.com/login.php", wait_until="domcontentloaded")
+              page.goto("https://kenpom.com/", wait_until="domcontentloaded")
 
-              if not fill_first(page, ["input[name='email']", "input[name='username']", "input[name='user']", "input[type='email']"], username):
-                  print("Could not find username field on KenPom login page.")
+              if not fill_first(page, ["input[name='email']", "input[type='email']"], username):
+                  print("Could not find email field on KenPom login page.")
                   sys.exit(1)
               if not fill_first(page, ["input[name='password']", "input[type='password']"], password):
                   print("Could not find password field on KenPom login page.")
@@ -105,6 +105,16 @@ jobs:
               except Exception:
                   pass
 
+              data_url = None
+              data_link = page.locator("a:has-text('data')")
+              if data_link.count() > 0:
+                  href = data_link.first.get_attribute("href")
+                  if href:
+                      if href.startswith("http"):
+                          data_url = href
+                      else:
+                          data_url = f"https://kenpom.com/{href.lstrip('/')}"
+
               cookies = context.cookies("https://kenpom.com/")
               cookie_str = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
               if not cookie_str:
@@ -115,7 +125,9 @@ jobs:
               if env_file:
                   with open(env_file, "a") as f:
                       f.write(f"KENPOM_COOKIE={cookie_str}\n")
-              print("KenPom cookie exported.")
+                      if data_url:
+                          f.write(f"KENPOM_DATA_URL={data_url}\n")
+              print(f"KenPom cookie exported. data_link_found={bool(data_url)}")
               browser.close()
           PY
           else
@@ -135,7 +147,7 @@ jobs:
 
       - name: Download KenPom summary (optional)
         run: |
-          if [ -n "${KENPOM_SUMMARY_URL}" ] && [ -n "${KENPOM_COOKIE}" ]; then
+          if [ -n "${KENPOM_COOKIE}" ] && ( [ -n "${KENPOM_DATA_URL}" ] || [ -n "${KENPOM_SUMMARY_URL}" ] ); then
             season_full=$(python - <<'PY'
           import config
           print(config.CURRENT_SEASON)
@@ -146,10 +158,14 @@ jobs:
           print(f"{config.CURRENT_SEASON % 100:02d}")
           PY
           )
-            url="${KENPOM_SUMMARY_URL}"
-            url="${url//\{season_short\}/${season_short}}"
-            url="${url//\{season\}/${season_short}}"
-            url="$(echo "${url}" | sed -E "s/summary[0-9]+/summary${season_short}/")"
+            if [ -n "${KENPOM_DATA_URL}" ]; then
+              url="${KENPOM_DATA_URL}"
+            else
+              url="${KENPOM_SUMMARY_URL}"
+              url="${url//\{season_short\}/${season_short}}"
+              url="${url//\{season\}/${season_short}}"
+              url="$(echo "${url}" | sed -E "s/summary[0-9]+/summary${season_short}/")"
+            fi
             echo "Downloading KenPom summary..."
             curl_args=(
               -fL
@@ -170,7 +186,7 @@ jobs:
               echo "KenPom summary not available; skipping copy."
             fi
           else
-            echo "KENPOM_SUMMARY_URL or KENPOM_COOKIE not set; skipping KenPom download"
+            echo "KENPOM_COOKIE or KenPom URL not set; skipping KenPom download"
           fi
         env:
           KENPOM_SUMMARY_URL: ${{ secrets.KENPOM_SUMMARY_URL }}

@@ -98,7 +98,7 @@ class DataCollector:
 
     def _build_kenpom_url(self, season: int) -> Optional[str]:
         """Build a KenPom download URL for a season."""
-        base_url = os.getenv("KENPOM_SUMMARY_URL")
+        base_url = os.getenv("KENPOM_DATA_URL") or os.getenv("KENPOM_SUMMARY_URL")
         if not base_url:
             return None
         season_short = f"{season % 100:02d}"
@@ -108,22 +108,23 @@ class DataCollector:
             return base_url.replace("{season}", season_short)
         return re.sub(r"summary\d+", f"summary{season_short}", base_url)
 
-    def _get_kenpom_cookie(self) -> Optional[str]:
-        """Get a KenPom cookie from env or by logging in with Playwright."""
+    def _get_kenpom_session(self) -> Dict[str, Optional[str]]:
+        """Get a KenPom session (cookie + data URL) from env or Playwright."""
         kenpom_cookie = os.getenv("KENPOM_COOKIE")
-        if kenpom_cookie:
-            return kenpom_cookie
+        kenpom_data_url = os.getenv("KENPOM_DATA_URL")
+        if kenpom_cookie or kenpom_data_url:
+            return {"cookie": kenpom_cookie, "data_url": kenpom_data_url}
 
         username = os.getenv("KENPOM_USERNAME")
         password = os.getenv("KENPOM_PASSWORD")
         if not username or not password:
-            return None
+            return {"cookie": None, "data_url": None}
 
         try:
             from playwright.sync_api import sync_playwright
         except Exception:
             print("Playwright not available; cannot log in to KenPom.")
-            return None
+            return {"cookie": None, "data_url": None}
 
         def _fill_first(page, selectors: List[str], value: str) -> bool:
             for selector in selectors:
@@ -138,11 +139,10 @@ class DataCollector:
                 browser = p.chromium.launch(headless=True)
                 context = browser.new_context()
                 page = context.new_page()
-                page.goto("https://kenpom.com/login.php", wait_until="domcontentloaded")
+                page.goto("https://kenpom.com/", wait_until="domcontentloaded")
 
-                if not _fill_first(page, ["input[name='email']", "input[name='username']",
-                                          "input[name='user']", "input[type='email']"], username):
-                    print("Could not find KenPom username field.")
+                if not _fill_first(page, ["input[name='email']", "input[type='email']"], username):
+                    print("Could not find KenPom email field.")
                     return None
                 if not _fill_first(page, ["input[name='password']", "input[type='password']"], password):
                     print("Could not find KenPom password field.")
@@ -164,17 +164,28 @@ class DataCollector:
                 except Exception:
                     pass
 
+                data_url = None
+                data_link = page.locator("a:has-text('data')")
+                if data_link.count() > 0:
+                    href = data_link.first.get_attribute("href")
+                    if href:
+                        if href.startswith("http"):
+                            data_url = href
+                        else:
+                            data_url = f"https://kenpom.com/{href.lstrip('/')}"
+
                 cookies = context.cookies("https://kenpom.com/")
                 cookie_str = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
                 browser.close()
-                return cookie_str or None
+                return {"cookie": cookie_str or None, "data_url": data_url}
         except Exception as exc:
             print(f"KenPom login failed: {exc}")
-            return None
+            return {"cookie": None, "data_url": None}
 
     def _download_kenpom_summary(self, season: int, target_paths: List[Path]) -> bool:
         """Download KenPom summary CSV for a season."""
-        url = self._build_kenpom_url(season)
+        session = self._get_kenpom_session()
+        url = session.get("data_url") or self._build_kenpom_url(season)
         if not url:
             return False
 
@@ -182,7 +193,7 @@ class DataCollector:
             "User-Agent": "Mozilla/5.0",
             "Referer": "https://kenpom.com/",
         }
-        kenpom_cookie = self._get_kenpom_cookie()
+        kenpom_cookie = session.get("cookie")
         if kenpom_cookie:
             headers["Cookie"] = kenpom_cookie
 
