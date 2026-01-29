@@ -144,7 +144,10 @@ def collect_odds_and_predictions(target_date: str = None):
                         for outcome in outcomes:
                             # Find home team spread
                             if home_team.lower() in outcome.get('name', '').lower():
-                                vegas_spread = float(outcome.get('point', 0))
+                                # API returns bookmaker convention: negative = favored
+                                # Model uses home perspective: positive = home wins by that much
+                                # Negate to convert: -17 (favored by 17) → +17 (expected to win by 17)
+                                vegas_spread = -float(outcome.get('point', 0))
                                 break
                     elif market.get('key') == 'totals':
                         outcomes = market.get('outcomes', [])

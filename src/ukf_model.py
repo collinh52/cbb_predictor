@@ -176,9 +176,10 @@ class TeamUKF:
         expected_diff += health_impact + momentum_impact - fatigue_impact
         
         # Expected total - ratings are points per 100 possessions
+        # Expected score = (team_offense - opponent_defense + baseline) * pace
         actual_pace_clamped = max(60.0, min(80.0, actual_pace))
-        our_expected = (our_off / 100.0) * actual_pace_clamped
-        opp_expected = (opp_off / 100.0) * actual_pace_clamped
+        our_expected = ((our_off - opp_def + 100.0) / 100.0) * actual_pace_clamped
+        opp_expected = ((opp_off - our_def + 100.0) / 100.0) * actual_pace_clamped
         expected_total = our_expected + opp_expected
         expected_total *= features.get('health_status', 1.0)
         
@@ -230,10 +231,11 @@ class TeamUKF:
         expected_diff += health_impact + momentum_impact - fatigue_impact
         
         # Expected total - use same formula as predictor
+        # Expected score = (team_offense - opponent_defense + baseline) * pace
         pace = max(60.0, min(80.0, x[self.PACE]))
-        our_expected = (our_off / 100.0) * pace
-        opp_expected = (opp_off / 100.0) * pace
-        expected_total = (our_expected + opp_expected) * 1.15
+        our_expected = ((our_off - opp_def + 100.0) / 100.0) * pace
+        opp_expected = ((opp_off - our_def + 100.0) / 100.0) * pace
+        expected_total = our_expected + opp_expected
         expected_total *= features.get('health_status', 1.0)
         
         return np.array([expected_diff, expected_total, pace])

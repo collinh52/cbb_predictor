@@ -278,15 +278,17 @@ class Predictor:
         avg_pace = max(60.0, min(80.0, avg_pace))
 
         # UKF ratings are on a ~100 scale (points per 100 possessions, KenPom-like)
-        # Convert to expected points: (rating / 100) * pace
-        home_ukf_points = (home_off / 100.0) * avg_pace
-        away_ukf_points = (away_off / 100.0) * avg_pace
+        # Expected score = (team_offense - opponent_defense + baseline) * pace
+        # This accounts for both offensive strength and defensive matchup
+        home_ukf_points = ((home_off - away_def + 100.0) / 100.0) * avg_pace
+        away_ukf_points = ((away_off - home_def + 100.0) / 100.0) * avg_pace
 
         # Blend with KenPom offensive ratings if available and valid
         if config.KENPOM_RATINGS_WEIGHT > 0:
             # KenPom adj_o/adj_d are already points-per-100-possessions
-            home_kenpom_points = (kenpom_home['adj_o'] / 100.0) * kenpom_pace
-            away_kenpom_points = (kenpom_away['adj_o'] / 100.0) * kenpom_pace
+            # Expected score = (team_offense - opponent_defense + baseline) * pace
+            home_kenpom_points = ((kenpom_home['adj_o'] - kenpom_away['adj_d'] + 100.0) / 100.0) * kenpom_pace
+            away_kenpom_points = ((kenpom_away['adj_o'] - kenpom_home['adj_d'] + 100.0) / 100.0) * kenpom_pace
 
             # Only blend if KenPom values are not defaults
             if kenpom_home['adj_o'] != config.KENPOM_DEFAULT_ADJ_O:
