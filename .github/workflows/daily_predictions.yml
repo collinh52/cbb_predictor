@@ -54,10 +54,15 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Login to KenPom and export cookie
+        continue-on-error: true
         run: |
           if [ -n "${KENPOM_COOKIE}" ]; then
             echo "KENPOM_COOKIE already set; skipping login"
           elif [ -n "${KENPOM_USERNAME}" ] && [ -n "${KENPOM_PASSWORD}" ]; then
+            echo "⚠️  WARNING: KenPom login via Playwright is blocked by Cloudflare Turnstile."
+            echo "Skipping KenPom login - predictions will use default ratings."
+            echo "To include KenPom data, manually upload data/summaryXX.csv to the repository."
+            exit 0
             python - <<'PY'
           import os
           import sys
@@ -146,6 +151,7 @@ jobs:
         run: mkdir -p data
 
       - name: Download KenPom summary (optional)
+        continue-on-error: true
         run: |
           if [ -n "${KENPOM_COOKIE}" ] && ( [ -n "${KENPOM_DATA_URL}" ] || [ -n "${KENPOM_SUMMARY_URL}" ] ); then
             season_full=$(python - <<'PY'
