@@ -9,7 +9,7 @@ from scipy.stats import norm
 from src.data_collector import DataCollector
 from src.feature_calculator import FeatureCalculator
 from src.ukf_model import MultiTeamUKF, TeamUKF
-from src.utils import normalize_team_id
+from src.utils import normalize_team_id, is_neutral_court
 import config
 
 
@@ -75,18 +75,23 @@ class Predictor:
         
         # Get all games up to this point for feature calculation
         games_before = all_games[:game_index]
-        
+
+        # Get current team ratings for SOS calculation
+        team_ratings = self.ukf.get_all_team_ratings()
+
         # Calculate features for both teams
         home_features = self.calculator.get_game_features(
             game, home_team_id, is_home=True,
             all_games=games_before, current_date=game_date,
-            team_name=game.get('HomeTeam') or game.get('HomeTeamName')
+            team_name=game.get('HomeTeam') or game.get('HomeTeamName'),
+            team_ratings=team_ratings
         )
-        
+
         away_features = self.calculator.get_game_features(
             game, away_team_id, is_home=False,
             all_games=games_before, current_date=game_date,
-            team_name=game.get('AwayTeam') or game.get('AwayTeamName')
+            team_name=game.get('AwayTeam') or game.get('AwayTeamName'),
+            team_ratings=team_ratings
         )
         
         # Estimate actual pace (simplified - would need possession data)
@@ -106,6 +111,10 @@ class Predictor:
             estimated_pace,
             home_features, away_features
         )
+
+        # Invalidate feature cache for both teams since they played
+        self.calculator.invalidate_cache(home_team_id)
+        self.calculator.invalidate_cache(away_team_id)
     
     def _get_team_id(self, game: Dict, name_key: str, id_key: str) -> Optional[int]:
         """Extract team ID from game data."""
@@ -168,17 +177,22 @@ class Predictor:
         # Get current features
         all_games = self._get_completed_games_cached()
         game_date = datetime.now()
-        
+
+        # Get current team ratings for SOS calculation
+        team_ratings = self.ukf.get_all_team_ratings()
+
         home_features = self.calculator.get_game_features(
             game, home_team_id, is_home=True,
             all_games=all_games, current_date=game_date,
-            team_name=game.get('HomeTeam') or game.get('HomeTeamName')
+            team_name=game.get('HomeTeam') or game.get('HomeTeamName'),
+            team_ratings=team_ratings
         )
-        
+
         away_features = self.calculator.get_game_features(
             game, away_team_id, is_home=False,
             all_games=all_games, current_date=game_date,
-            team_name=game.get('AwayTeam') or game.get('AwayTeamName')
+            team_name=game.get('AwayTeam') or game.get('AwayTeamName'),
+            team_ratings=team_ratings
         )
         
         # Get uncertainties
@@ -193,7 +207,11 @@ class Predictor:
         away_off = away_state[TeamUKF.OFF_RATING]
         away_def = away_state[TeamUKF.DEF_RATING]
         home_adv = home_state[TeamUKF.HOME_ADV]
-        
+
+        # Check for neutral court - no home advantage
+        if is_neutral_court(game):
+            home_adv = 0.0
+
         # Base prediction
         predicted_margin = (home_off - away_def) - (away_off - home_def) + home_adv
         
@@ -214,25 +232,90 @@ class Predictor:
         kenpom_pace = (kenpom_home['adj_t'] + kenpom_away['adj_t']) / 2.0
         kenpom_margin = (kenpom_home['adj_em'] - kenpom_away['adj_em']) * (kenpom_pace / 100.0)
         predicted_margin += kenpom_margin * config.KENPOM_MARGIN_WEIGHT
-        
+
+        # SOS adjustment - teams with tougher schedules get slight bonus
+        # Weight: 0.3 means 10 point SOS difference = 3 point margin adjustment
+        SOS_WEIGHT = 0.3
+        home_sos = home_features.get('sos', 0.0)
+        away_sos = away_features.get('sos', 0.0)
+        sos_adjustment = (home_sos - away_sos) * SOS_WEIGHT
+        predicted_margin += sos_adjustment
+
+        # Four Factors adjustment (Dean Oliver's Basketball on Paper)
+        # eFG%: 40% of game outcome, TOV%: 25%, REB%: 20%, FT Rate: 15%
+        # Higher eFG% and FT Rate are better for offense
+        # Lower TOV% is better (fewer turnovers)
+        # Higher OREB% is better
+        home_efg = home_features.get('efg_o', 50.0) - home_features.get('efg_d', 50.0)
+        away_efg = away_features.get('efg_o', 50.0) - away_features.get('efg_d', 50.0)
+        efg_advantage = (home_efg - away_efg) * 0.4  # 40% weight
+
+        # Lower TOV% is better (fewer turnovers), so flip the sign
+        home_tov = home_features.get('tov_d', 20.0) - home_features.get('tov_o', 20.0)  # Force TO - commit TO
+        away_tov = away_features.get('tov_d', 20.0) - away_features.get('tov_o', 20.0)
+        tov_advantage = (home_tov - away_tov) * 0.25  # 25% weight
+
+        # OREB% advantage
+        home_oreb = home_features.get('oreb_pct', 30.0)
+        away_oreb = away_features.get('oreb_pct', 30.0)
+        oreb_advantage = (home_oreb - away_oreb) * 0.20  # 20% weight
+
+        # FT Rate advantage
+        home_ftr = home_features.get('ft_rate', 35.0)
+        away_ftr = away_features.get('ft_rate', 35.0)
+        ftr_advantage = (home_ftr - away_ftr) * 0.15  # 15% weight
+
+        # Combine Four Factors (scale down as these are percentage differences)
+        four_factors_adjustment = (efg_advantage + tov_advantage + oreb_advantage + ftr_advantage) * 0.5
+        predicted_margin += four_factors_adjustment
+
         # Predict total points
-        # Offensive ratings represent points per 100 possessions
+        # Calculate average pace from both teams
         avg_pace = (home_features['pace'] + away_features['pace']) / 2.0
         if config.KENPOM_PACE_WEIGHT > 0:
             avg_pace = (1.0 - config.KENPOM_PACE_WEIGHT) * avg_pace + config.KENPOM_PACE_WEIGHT * kenpom_pace
         # Clamp pace to reasonable range (60-80 possessions per game)
         avg_pace = max(60.0, min(80.0, avg_pace))
-        
-        # Calculate expected points for each team: (offensive_rating / 100) * pace
-        # With ratings ~90 and pace ~70: (90/100)*70 = 63 points per team = 126 total
-        # Typical college basketball totals are 140-150, so scale factor ~1.15-1.20
-        home_expected_points = (home_off / 100.0) * avg_pace
-        away_expected_points = (away_off / 100.0) * avg_pace
-        predicted_total = (home_expected_points + away_expected_points) * 1.15
-        
+
+        # UKF ratings are on a ~100 scale (points per 100 possessions, KenPom-like)
+        # Convert to expected points: (rating / 100) * pace
+        home_ukf_points = (home_off / 100.0) * avg_pace
+        away_ukf_points = (away_off / 100.0) * avg_pace
+
+        # Blend with KenPom offensive ratings if available and valid
+        if config.KENPOM_RATINGS_WEIGHT > 0:
+            # KenPom adj_o/adj_d are already points-per-100-possessions
+            home_kenpom_points = (kenpom_home['adj_o'] / 100.0) * kenpom_pace
+            away_kenpom_points = (kenpom_away['adj_o'] / 100.0) * kenpom_pace
+
+            # Only blend if KenPom values are not defaults
+            if kenpom_home['adj_o'] != config.KENPOM_DEFAULT_ADJ_O:
+                home_ukf_points = ((1.0 - config.KENPOM_RATINGS_WEIGHT) * home_ukf_points +
+                                  config.KENPOM_RATINGS_WEIGHT * home_kenpom_points)
+            if kenpom_away['adj_o'] != config.KENPOM_DEFAULT_ADJ_O:
+                away_ukf_points = ((1.0 - config.KENPOM_RATINGS_WEIGHT) * away_ukf_points +
+                                  config.KENPOM_RATINGS_WEIGHT * away_kenpom_points)
+
+        # Calculate total (no arbitrary multiplier - ratings should be calibrated)
+        predicted_total = home_ukf_points + away_ukf_points
+
         # Apply health adjustment (health_status is 0-1, adjusts down if teams unhealthy)
         health_factor = (home_features['health_status'] + away_features['health_status']) / 2.0
         predicted_total *= health_factor
+
+        # Calibration adjustment: if ratings are miscalibrated, blend with expected average
+        # College basketball average is ~140 points per game
+        # If predicted total seems off (too low/high), pull toward prior
+        COLLEGE_AVG_TOTAL = 140.0
+        if predicted_total < 100.0 or predicted_total > 180.0:
+            # Ratings likely miscalibrated, blend with prior
+            predicted_total = 0.6 * predicted_total + 0.4 * COLLEGE_AVG_TOTAL
+        
+        # Sanity check predictions - clamp to reasonable ranges
+        # Margins should be between -60 and +60 (even blowouts rarely exceed this)
+        # Totals should be between 80 and 220 (typical range for college basketball)
+        predicted_margin = max(-60.0, min(60.0, predicted_margin))
+        predicted_total = max(80.0, min(220.0, predicted_total))
         
         # Calculate uncertainty in predictions
         margin_uncertainty = np.sqrt(
@@ -248,6 +331,12 @@ class Predictor:
             away_uncertainty[TeamUKF.OFF_RATING]**2 +
             config.MEASUREMENT_NOISE['total_points']**2
         )
+        
+        # Enforce minimum uncertainty to prevent overconfident predictions
+        MIN_MARGIN_UNCERTAINTY = 8.0
+        MIN_TOTAL_UNCERTAINTY = 10.0
+        margin_uncertainty = max(MIN_MARGIN_UNCERTAINTY, margin_uncertainty)
+        total_uncertainty = max(MIN_TOTAL_UNCERTAINTY, total_uncertainty)
         
         # Get spread and total from game
         spread = game.get('PointSpread')
@@ -268,10 +357,12 @@ class Predictor:
             # Home team covers if: home_score - away_score > spread
             # Which means: predicted_margin > spread
             prob_home_covers = 1.0 - norm.cdf(spread, predicted_margin, margin_uncertainty)
+            # Clamp to prevent extreme probabilities (max ~95% confidence)
+            prob_home_covers = max(0.025, min(0.975, prob_home_covers))
             predictions['spread'] = float(spread)
             predictions['home_covers_probability'] = float(prob_home_covers)
             predictions['away_covers_probability'] = float(1.0 - prob_home_covers)
-            predictions['home_covers_confidence'] = float(abs(prob_home_covers - 0.5) * 200)  # 0-100%
+            predictions['home_covers_confidence'] = float(abs(prob_home_covers - 0.5) * 200)  # 0-95%
         else:
             predictions['spread'] = None
             predictions['home_covers_probability'] = None
@@ -281,10 +372,12 @@ class Predictor:
         # Calculate over/under probability
         if total_line is not None:
             prob_over = 1.0 - norm.cdf(total_line, predicted_total, total_uncertainty)
+            # Clamp to prevent extreme probabilities
+            prob_over = max(0.025, min(0.975, prob_over))
             predictions['total_line'] = float(total_line)
             predictions['over_probability'] = float(prob_over)
             predictions['under_probability'] = float(1.0 - prob_over)
-            predictions['over_confidence'] = float(abs(prob_over - 0.5) * 200)  # 0-100%
+            predictions['over_confidence'] = float(abs(prob_over - 0.5) * 200)  # 0-95%
         else:
             predictions['total_line'] = None
             predictions['over_probability'] = None

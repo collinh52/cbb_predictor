@@ -6,12 +6,16 @@ import json
 import time
 import csv
 import re
+import logging
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional, Any
 import requests
 from pathlib import Path
 
 import config
+
+# Set up logging
+logger = logging.getLogger(__name__)
 
 
 class DataCollector:
@@ -24,6 +28,11 @@ class DataCollector:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.cache_expiry = timedelta(minutes=config.CACHE_EXPIRY_MINUTES)
         self._kenpom_cache: Dict[int, Dict[str, Dict]] = {}
+        # Statistics tracking
+        self._cache_hits = 0
+        self._cache_misses = 0
+        self._cache_errors = 0
+        self._default_fallbacks = 0
         
     def _get_cache_path(self, cache_key: str) -> Path:
         """Get path for cached data."""
@@ -33,20 +42,54 @@ class DataCollector:
         """Load data from cache if not expired."""
         cache_path = self._get_cache_path(cache_key)
         if not cache_path.exists():
+            self._cache_misses += 1
             return None
-        
+
         try:
             with open(cache_path, 'r') as f:
                 cached_data = json.load(f)
-            
+
             # Check if cache is expired
             cache_time = datetime.fromisoformat(cached_data.get('timestamp', ''))
             if datetime.now() - cache_time > self.cache_expiry:
+                self._cache_misses += 1
                 return None
-            
+
+            self._cache_hits += 1
             return cached_data.get('data')
-        except Exception:
+        except FileNotFoundError:
+            # File not found - expected, no cache yet
+            self._cache_misses += 1
             return None
+        except json.JSONDecodeError as e:
+            logger.warning(f"Corrupt cache file {cache_path}: {e}. Deleting.")
+            self._cache_errors += 1
+            try:
+                cache_path.unlink()  # Delete corrupt cache
+            except Exception:
+                pass
+            return None
+        except (PermissionError, OSError) as e:
+            logger.error(f"Cache access error for {cache_path}: {e}")
+            self._cache_errors += 1
+            return None
+        except (ValueError, KeyError) as e:
+            logger.warning(f"Invalid cache format in {cache_path}: {e}")
+            self._cache_errors += 1
+            return None
+
+    def get_cache_stats(self) -> Dict[str, any]:
+        """Get cache performance statistics."""
+        total = self._cache_hits + self._cache_misses
+        hit_rate = (self._cache_hits / total * 100) if total > 0 else 0.0
+
+        return {
+            'hits': self._cache_hits,
+            'misses': self._cache_misses,
+            'errors': self._cache_errors,
+            'fallbacks': self._default_fallbacks,
+            'hit_rate': hit_rate
+        }
     
     def _save_to_cache(self, cache_key: str, data: Dict):
         """Save data to cache."""
@@ -122,8 +165,11 @@ class DataCollector:
 
         try:
             from playwright.sync_api import sync_playwright
-        except Exception:
-            print("Playwright not available; cannot log in to KenPom.")
+        except ImportError:
+            logger.info("Playwright not installed; cannot log in to KenPom. Install with: pip install playwright")
+            return {"cookie": None, "data_url": None}
+        except Exception as e:
+            logger.error(f"Unexpected error importing Playwright: {e}")
             return {"cookie": None, "data_url": None}
 
         def _fill_first(page, selectors: List[str], value: str) -> bool:
@@ -162,6 +208,7 @@ class DataCollector:
                 try:
                     page.wait_for_load_state("networkidle", timeout=15000)
                 except Exception:
+                    # Timeout is expected - login may complete before networkidle state
                     pass
 
                 data_url = None
@@ -252,6 +299,13 @@ class DataCollector:
                 adj_o_field = _find_field(['AdjO', 'AdjOE', 'AdjOff'])
                 adj_d_field = _find_field(['AdjD', 'AdjDE', 'AdjDef'])
                 adj_t_field = _find_field(['AdjT', 'AdjTempo', 'AdjT.'])
+                # Four Factors fields
+                efg_o_field = _find_field(['eFG%O', 'eFGPctO', 'eFG_Pct_O', 'OffensiveeFG%'])
+                efg_d_field = _find_field(['eFG%D', 'eFGPctD', 'eFG_Pct_D', 'DefensiveeFG%'])
+                tov_o_field = _find_field(['TO%O', 'TOPctO', 'TO_Pct_O', 'OffensiveTO%'])
+                tov_d_field = _find_field(['TO%D', 'TOPctD', 'TO_Pct_D', 'DefensiveTO%'])
+                oreb_field = _find_field(['OR%', 'OREBPct', 'OREB_Pct', 'OffensiveReboundPct'])
+                ft_rate_field = _find_field(['FTRate', 'FT_Rate', 'FTR'])
 
                 if not team_field:
                     self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
@@ -267,6 +321,14 @@ class DataCollector:
                     adj_d = self._parse_float(row.get(adj_d_field)) if adj_d_field else None
                     adj_t = self._parse_float(row.get(adj_t_field)) if adj_t_field else None
 
+                    # Four Factors
+                    efg_o = self._parse_float(row.get(efg_o_field)) if efg_o_field else None
+                    efg_d = self._parse_float(row.get(efg_d_field)) if efg_d_field else None
+                    tov_o = self._parse_float(row.get(tov_o_field)) if tov_o_field else None
+                    tov_d = self._parse_float(row.get(tov_d_field)) if tov_d_field else None
+                    oreb = self._parse_float(row.get(oreb_field)) if oreb_field else None
+                    ft_rate = self._parse_float(row.get(ft_rate_field)) if ft_rate_field else None
+
                     if adj_em is None and adj_o is not None and adj_d is not None:
                         adj_em = adj_o - adj_d
 
@@ -274,13 +336,33 @@ class DataCollector:
                         'adj_em': float(adj_em) if adj_em is not None else float(config.KENPOM_DEFAULT_ADJ_EM),
                         'adj_o': float(adj_o) if adj_o is not None else float(config.KENPOM_DEFAULT_ADJ_O),
                         'adj_d': float(adj_d) if adj_d is not None else float(config.KENPOM_DEFAULT_ADJ_D),
-                        'adj_t': float(adj_t) if adj_t is not None else float(config.KENPOM_DEFAULT_ADJ_T)
+                        'adj_t': float(adj_t) if adj_t is not None else float(config.KENPOM_DEFAULT_ADJ_T),
+                        # Four Factors (percentages, so default to 50.0 for neutral)
+                        'efg_o': float(efg_o) if efg_o is not None else 50.0,
+                        'efg_d': float(efg_d) if efg_d is not None else 50.0,
+                        'tov_o': float(tov_o) if tov_o is not None else 20.0,  # ~20% typical turnover rate
+                        'tov_d': float(tov_d) if tov_d is not None else 20.0,
+                        'oreb_pct': float(oreb) if oreb is not None else 30.0,  # ~30% typical off reb rate
+                        'ft_rate': float(ft_rate) if ft_rate is not None else 35.0  # ~35 FTA per 100 FGA typical
                     }
 
                     normalized_name = self._normalize_team_name(team_name)
                     ratings_by_normalized[normalized_name] = rating
                     ratings_by_original[team_name] = rating
-        except Exception:
+        except FileNotFoundError:
+            logger.info(f"KenPom summary file not found: {summary_path}")
+            self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+            return {}
+        except (csv.Error, UnicodeDecodeError) as e:
+            logger.error(f"Error parsing KenPom CSV {summary_path}: {e}")
+            self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+            return {}
+        except (PermissionError, OSError) as e:
+            logger.error(f"Error accessing KenPom file {summary_path}: {e}")
+            self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
+            return {}
+        except Exception as e:
+            logger.error(f"Unexpected error loading KenPom data from {summary_path}: {e}")
             self._kenpom_cache[season] = {'normalized': {}, 'original': {}}
             return {}
 
@@ -331,6 +413,10 @@ class DataCollector:
                 print(f"API authentication error: {error_msg}")
                 if 'Unauthorized Season' in error_msg:
                     print(f"  Hint: Free trial may not have access to this season. Try updating CURRENT_SEASON in config.py")
+            elif response.status_code == 404:
+                # 404s are expected for many requests (teams without data, etc.)
+                # Log at debug level only to avoid spam
+                logger.debug(f"API resource not found (404): {endpoint}")
             else:
                 print(f"API request failed ({response.status_code}): {response.text[:200]}")
             # Return mock data structure for development

@@ -7,15 +7,15 @@ from datetime import datetime, timedelta
 from typing import List, Dict, Optional
 import time
 
+from src.http_session import get_shared_session
+
 class ESPNCollector:
     """Collects college basketball data from ESPN's hidden API."""
-    
+
     def __init__(self):
         self.base_url = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball"
-        self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        })
+        # Use shared session for connection pooling
+        self.session = get_shared_session()
     
     def get_scoreboard(self, date: Optional[str] = None) -> Dict:
         """
@@ -297,7 +297,12 @@ class ESPNCollector:
             
             return games
         except requests.exceptions.RequestException as e:
-            print(f"ESPN team schedule request failed for team {team_id}: {e}")
+            # Suppress 404s which are expected for invalid/inactive teams
+            if hasattr(e, 'response') and e.response is not None and e.response.status_code == 404:
+                # Silently ignore 404s (team doesn't exist or no schedule available)
+                pass
+            else:
+                print(f"ESPN team schedule request failed for team {team_id}: {e}")
             return []
     
     def get_all_games_via_team_schedules(self, season: int = 2026) -> List[Dict]:

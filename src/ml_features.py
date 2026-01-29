@@ -82,9 +82,16 @@ class MLFeatureEngineer:
         # Days of rest
         home_rest_days = self._calculate_rest_days(home_team_id, game_date, all_games)
         away_rest_days = self._calculate_rest_days(away_team_id, game_date, all_games)
-        features['home_rest_days'] = float(home_rest_days)
-        features['away_rest_days'] = float(away_rest_days)
-        features['rest_days_diff'] = float(home_rest_days - away_rest_days)
+
+        # Use median rest days (2-3 days) as default for early season
+        DEFAULT_REST_DAYS = 3.0
+        features['home_rest_days'] = float(home_rest_days) if home_rest_days is not None else DEFAULT_REST_DAYS
+        features['away_rest_days'] = float(away_rest_days) if away_rest_days is not None else DEFAULT_REST_DAYS
+        # If either is None, diff is 0 (neutral advantage)
+        if home_rest_days is not None and away_rest_days is not None:
+            features['rest_days_diff'] = float(home_rest_days - away_rest_days)
+        else:
+            features['rest_days_diff'] = 0.0
         
         # Recent form (last 5 and 10 games)
         home_form_5 = self._calculate_recent_form(home_team_id, game_date, all_games, window=5)
@@ -126,6 +133,14 @@ class MLFeatureEngineer:
         # KenPom ratings
         home_kp = self.collector.get_kenpom_team_rating(home_team_name)
         away_kp = self.collector.get_kenpom_team_rating(away_team_name)
+        
+        # Check if we got default values (indicates KenPom data not found)
+        from config import KENPOM_DEFAULT_ADJ_EM, KENPOM_DEFAULT_ADJ_O, KENPOM_DEFAULT_ADJ_D, KENPOM_DEFAULT_ADJ_T
+        home_has_real_kp = (home_kp['adj_em'] != KENPOM_DEFAULT_ADJ_EM or 
+                           home_kp['adj_o'] != KENPOM_DEFAULT_ADJ_O)
+        away_has_real_kp = (away_kp['adj_em'] != KENPOM_DEFAULT_ADJ_EM or 
+                           away_kp['adj_o'] != KENPOM_DEFAULT_ADJ_O)
+        
         features['home_kp_adj_em'] = float(home_kp['adj_em'])
         features['home_kp_adj_o'] = float(home_kp['adj_o'])
         features['home_kp_adj_d'] = float(home_kp['adj_d'])
@@ -141,8 +156,13 @@ class MLFeatureEngineer:
         
         return features
     
-    def _calculate_rest_days(self, team_id: int, game_date: datetime, all_games: List[Dict]) -> int:
-        """Calculate days of rest since last game."""
+    def _calculate_rest_days(self, team_id: int, game_date: datetime, all_games: List[Dict]) -> Optional[int]:
+        """
+        Calculate days of rest since last game.
+
+        Returns:
+            Number of rest days (0 for back-to-back/same day), or None if no previous games.
+        """
         team_games = []
         for game in all_games:
             if game.get('Status') != 'Final':
@@ -150,22 +170,27 @@ class MLFeatureEngineer:
             home_id = self.calculator._normalize_team_id(game.get('HomeTeamID') or game.get('HomeTeam'))
             away_id = self.calculator._normalize_team_id(game.get('AwayTeamID') or game.get('AwayTeam'))
             team_norm = self.calculator._normalize_team_id(team_id)
-            
+
             if home_id == team_norm or away_id == team_norm:
                 game_date_str = game.get('DateTime', '')
                 if game_date_str:
                     try:
                         g_date = datetime.fromisoformat(game_date_str.replace('Z', '+00:00'))
+                        # Only consider games before current game
                         if g_date < game_date:
                             team_games.append(g_date)
-                    except:
+                    except Exception:
                         continue
-        
+
         if team_games:
             last_game = max(team_games)
             rest_days = (game_date.date() - last_game.date()).days
+            # Return 0 for same-day games (tournament scenarios)
             return max(0, rest_days)
-        return 7  # Default if no previous games
+
+        # No previous games - return None to indicate missing data
+        # Don't assume 7 days, let feature engineering handle this
+        return None
     
     def _calculate_recent_form(self, team_id: int, game_date: datetime, 
                               all_games: List[Dict], window: int = 5) -> float:
@@ -311,11 +336,21 @@ class MLFeatureEngineer:
         # Combine all features
         all_features = {**ukf_features, **contextual_features}
         
-        # Store feature names on first call
+        # If feature names are already set (from loaded scaler), use that order
+        # Otherwise, create sorted list and store it
         if not self.feature_names:
             self.feature_names = sorted(all_features.keys())
+        else:
+            # Verify all features are present
+            missing_features = set(self.feature_names) - set(all_features.keys())
+            if missing_features:
+                raise ValueError(f"Missing features: {missing_features}")
+            # Check for extra features (warn but don't fail)
+            extra_features = set(all_features.keys()) - set(self.feature_names)
+            if extra_features:
+                print(f"Warning: Extra features not in model: {extra_features}")
         
-        # Convert to array in consistent order
+        # Convert to array in consistent order (must match training order)
         features_array = np.array([all_features[name] for name in self.feature_names], dtype=np.float32)
         
         return features_array, all_features

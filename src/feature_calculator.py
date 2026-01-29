@@ -12,9 +12,13 @@ from src.utils import normalize_team_id
 
 class FeatureCalculator:
     """Calculates derived features from game data."""
-    
+
     def __init__(self, collector: Optional[DataCollector] = None):
         self.collector = collector or DataCollector()
+        # Feature cache: {team_id: {'features': dict, 'valid_until': datetime, 'last_game_count': int}}
+        self._feature_cache: Dict[int, Dict] = {}
+        self._cache_hits = 0
+        self._cache_misses = 0
     
     def _normalize_team_id(self, team_id_or_name) -> Optional[int]:
         """Normalize team identifier to integer ID."""
@@ -48,49 +52,49 @@ class FeatureCalculator:
         # Sort by date (most recent first)
         recent_games.sort(key=lambda g: g.get('DateTime', ''), reverse=True)
         recent_games = recent_games[:config.MOMENTUM_WINDOW]
-        
-        # Calculate win/loss record
-        wins = 0
-        point_differential_sum = 0.0
-        
-        for game in recent_games:
+
+        # Calculate weighted momentum with exponential decay per game
+        # More recent games get higher weight
+        team_id_norm = self._normalize_team_id(team_id)
+        weighted_wins = 0.0
+        weighted_point_diff = 0.0
+        total_weight = 0.0
+
+        for i, game in enumerate(recent_games):
+            # Exponential decay: most recent = 1.0, then 0.85, 0.7225, etc.
+            weight = config.MOMENTUM_DECAY ** i
+
             home_team_id = self._normalize_team_id(game.get('HomeTeamID') or game.get('HomeTeam'))
             away_team_id = self._normalize_team_id(game.get('AwayTeamID') or game.get('AwayTeam'))
-            team_id_norm = self._normalize_team_id(team_id)
             home_score = game.get('HomeTeamScore')
             away_score = game.get('AwayTeamScore')
-            
+
             if home_score is None or away_score is None:
                 continue
-            
+
             if home_team_id == team_id_norm:
                 point_diff = home_score - away_score
-                if point_diff > 0:
-                    wins += 1
+                won = 1.0 if point_diff > 0 else 0.0
             elif away_team_id == team_id_norm:
                 point_diff = away_score - home_score
-                if point_diff > 0:
-                    wins += 1
+                won = 1.0 if point_diff > 0 else 0.0
             else:
                 continue
-            
-            point_differential_sum += point_diff
-        
-        if len(recent_games) == 0:
+
+            weighted_wins += won * weight
+            weighted_point_diff += point_diff * weight
+            total_weight += weight
+
+        if total_weight == 0.0:
             return 0.0
-        
-        # Win percentage
-        win_pct = wins / len(recent_games)
-        
-        # Average point differential (normalized)
-        avg_point_diff = point_differential_sum / len(recent_games) if recent_games else 0.0
+
+        # Calculate weighted averages
+        win_pct = weighted_wins / total_weight
+        avg_point_diff = weighted_point_diff / total_weight
         normalized_diff = np.tanh(avg_point_diff / 20.0)  # Normalize to [-1, 1]
-        
+
         # Combine win percentage and point differential
         momentum = (win_pct * 0.6 + normalized_diff * 0.4)
-        
-        # Apply exponential decay for older games
-        momentum *= config.MOMENTUM_DECAY
         
         return float(np.clip(momentum, -1.0, 1.0))
     
@@ -200,44 +204,115 @@ class FeatureCalculator:
     def calculate_pace(self, team_id: int, games: List[Dict]) -> float:
         """
         Calculate team's preferred pace (possessions per game).
-        
+
         Returns average possessions per game.
         """
         # Try to get from team stats first
         team_stats = self.collector.get_team_stats(team_id)
         if team_stats and 'Possessions' in team_stats:
             return float(team_stats['Possessions'])
-        
-        # Fallback: estimate from scores (simplified)
-        # In reality, would need possession data
-        total_points = []
+
+        # Try to get from KenPom (most reliable source)
+        kenpom_data = self.collector.get_kenpom_ratings()
         team_id_norm = self._normalize_team_id(team_id)
+        if team_id_norm in kenpom_data:
+            adj_t = kenpom_data[team_id_norm].get('adj_t')
+            # Only use if it's not the default value (70.0)
+            if adj_t is not None and adj_t != config.KENPOM_DEFAULT_ADJ_T:
+                return float(np.clip(adj_t, 60.0, 80.0))
+
+        # Fallback: estimate from team's average scoring
+        # This is a rough approximation assuming ~1.0 points per possession
+        team_points = []
         for game in games:
             home_team_id = self._normalize_team_id(game.get('HomeTeamID') or game.get('HomeTeam'))
             away_team_id = self._normalize_team_id(game.get('AwayTeamID') or game.get('AwayTeam'))
             home_score = game.get('HomeTeamScore')
             away_score = game.get('AwayTeamScore')
-            
+
             if home_score is None or away_score is None:
                 continue
-            
-            if home_team_id == team_id_norm or away_team_id == team_id_norm:
-                total_points.append(home_score + away_score)
-        
-        if total_points:
-            # Rough estimate: pace ≈ total_points / 2 (very simplified)
-            avg_total = np.mean(total_points)
-            estimated_pace = avg_total / 2.0
+
+            # Only collect the team's own scores
+            if home_team_id == team_id_norm:
+                team_points.append(home_score)
+            elif away_team_id == team_id_norm:
+                team_points.append(away_score)
+
+        if team_points and len(team_points) >= 3:
+            # Estimate pace as: team's average points / estimated efficiency
+            # College basketball efficiency ~0.95-1.05 PPP, assume 1.0 for neutral estimate
+            avg_points = np.mean(team_points)
+            ASSUMED_EFFICIENCY = 1.0  # points per possession
+            estimated_pace = avg_points / ASSUMED_EFFICIENCY
             return float(np.clip(estimated_pace, 60.0, 80.0))
-        
+
         return config.DEFAULT_PACE
-    
-    def get_game_features(self, game: Dict, team_id: int, is_home: bool, 
+
+    def calculate_sos(self, team_id: int, games: List[Dict],
+                     team_ratings: Optional[Dict[int, float]] = None) -> float:
+        """
+        Calculate Strength of Schedule (SOS) for a team.
+
+        SOS is the average rating of all opponents faced.
+        Positive SOS = tough schedule, Negative SOS = weak schedule.
+
+        Args:
+            team_id: Team to calculate SOS for
+            games: All games to analyze
+            team_ratings: Dict mapping team_id to rating (offensive - defensive)
+
+        Returns:
+            Average opponent rating (0.0 if no data)
+        """
+        if not team_ratings:
+            return 0.0
+
+        team_id_norm = self._normalize_team_id(team_id)
+        opponent_ratings = []
+
+        for game in games:
+            if game.get('Status') != 'Final':
+                continue
+
+            home_id = self._normalize_team_id(game.get('HomeTeamID') or game.get('HomeTeam'))
+            away_id = self._normalize_team_id(game.get('AwayTeamID') or game.get('AwayTeam'))
+
+            # Identify opponent
+            opponent_id = None
+            if home_id == team_id_norm:
+                opponent_id = away_id
+            elif away_id == team_id_norm:
+                opponent_id = home_id
+            else:
+                continue
+
+            # Get opponent rating
+            if opponent_id and opponent_id in team_ratings:
+                opponent_ratings.append(team_ratings[opponent_id])
+
+        if opponent_ratings:
+            return float(np.mean(opponent_ratings))
+
+        return 0.0
+
+    def get_game_features(self, game: Dict, team_id: int, is_home: bool,
                          all_games: List[Dict], current_date: datetime,
-                         team_name: Optional[str] = None) -> Dict:
+                         team_name: Optional[str] = None,
+                         team_ratings: Optional[Dict[int, float]] = None) -> Dict:
         """
         Get all features for a team in a specific game context.
-        
+        Uses caching to avoid recalculating features unnecessarily.
+
+        Args:
+            game: Game dictionary
+            team_id: Team identifier
+            is_home: Whether team is home
+            all_games: All games for context
+            current_date: Current date for time-based features
+            team_name: Team name (optional)
+            team_ratings: Dict of team_id -> rating for SOS calculation (optional)
+
         Returns dictionary with all feature values.
         """
         if team_name is None:
@@ -245,9 +320,38 @@ class FeatureCalculator:
                 game.get('AwayTeam') or game.get('AwayTeamName')
             )
 
+        # Create cache key that includes game context
+        team_id_norm = self._normalize_team_id(team_id)
+        if team_id_norm is None:
+            team_id_norm = team_id
+
+        # Check cache validity
+        cache_key = team_id_norm
+        current_game_count = len(all_games)
+
+        if cache_key in self._feature_cache:
+            cached = self._feature_cache[cache_key]
+            cached_game_count = cached.get('last_game_count', 0)
+            cached_date = cached.get('valid_until')
+
+            # Cache is valid if:
+            # 1. Same or fewer games (no new results)
+            # 2. Current date is before cached validity date
+            if (cached_game_count == current_game_count and
+                cached_date and current_date <= cached_date):
+                self._cache_hits += 1
+                # Return cached features, but update home_advantage for context
+                features = cached['features'].copy()
+                features['home_advantage'] = (self.calculate_home_advantage(team_id, all_games)
+                                             if is_home else 0.0)
+                return features
+
+        # Cache miss - calculate features
+        self._cache_misses += 1
+
         kenpom = self.collector.get_kenpom_team_rating(team_name)
 
-        return {
+        features = {
             'momentum': self.calculate_momentum(team_id, all_games, current_date),
             'fatigue': self.calculate_fatigue(team_id, all_games, current_date),
             'health_status': self.calculate_health_status(team_id),
@@ -256,7 +360,55 @@ class FeatureCalculator:
             'kenpom_adj_em': kenpom['adj_em'],
             'kenpom_adj_o': kenpom['adj_o'],
             'kenpom_adj_d': kenpom['adj_d'],
-            'kenpom_adj_t': kenpom['adj_t']
+            'kenpom_adj_t': kenpom['adj_t'],
+            'sos': self.calculate_sos(team_id, all_games, team_ratings) if team_ratings else 0.0,
+            # Four Factors from KenPom
+            'efg_o': kenpom.get('efg_o', 50.0),
+            'efg_d': kenpom.get('efg_d', 50.0),
+            'tov_o': kenpom.get('tov_o', 20.0),
+            'tov_d': kenpom.get('tov_d', 20.0),
+            'oreb_pct': kenpom.get('oreb_pct', 30.0),
+            'ft_rate': kenpom.get('ft_rate', 35.0)
+        }
+
+        # Cache the calculated features (valid until next game)
+        self._feature_cache[cache_key] = {
+            'features': features.copy(),
+            'valid_until': current_date + timedelta(days=1),  # Valid for 1 day
+            'last_game_count': current_game_count
+        }
+
+        return features
+
+    def invalidate_cache(self, team_id: Optional[int] = None):
+        """
+        Invalidate feature cache for a specific team or all teams.
+
+        Args:
+            team_id: If provided, only invalidate this team. If None, clear all cache.
+        """
+        if team_id is None:
+            self._feature_cache.clear()
+        else:
+            team_id_norm = self._normalize_team_id(team_id)
+            if team_id_norm in self._feature_cache:
+                del self._feature_cache[team_id_norm]
+
+    def get_cache_stats(self) -> Dict[str, int]:
+        """
+        Get cache performance statistics.
+
+        Returns:
+            Dictionary with cache hits, misses, and hit rate.
+        """
+        total = self._cache_hits + self._cache_misses
+        hit_rate = (self._cache_hits / total * 100) if total > 0 else 0.0
+
+        return {
+            'hits': self._cache_hits,
+            'misses': self._cache_misses,
+            'hit_rate': hit_rate,
+            'cached_teams': len(self._feature_cache)
         }
 
 

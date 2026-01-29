@@ -413,3 +413,126 @@ def fuzzy_match_team(team_name: str, candidates: list, threshold: float = 0.6) -
     
     return best_match
 
+
+# Cache for ESPN team ID lookups
+_espn_team_cache = {}
+
+
+def get_espn_team_id_from_name(team_name: str) -> int:
+    """
+    Look up ESPN team ID from team name (e.g., "Kansas Jayhawks" -> 2305).
+    
+    This is critical for matching Odds API teams to ESPN historical data.
+    Uses a combination of exact matches, abbreviation lookups, and fuzzy matching.
+    
+    Args:
+        team_name: Full team name from Odds API (e.g., "Kansas Jayhawks")
+    
+    Returns:
+        ESPN team ID or 0 if not found
+    """
+    global _espn_team_cache
+    
+    if not team_name:
+        return 0
+    
+    # Check cache first
+    if team_name in _espn_team_cache:
+        return _espn_team_cache[team_name]
+    
+    # Try reverse lookup from our mapping (Odds API name -> SportsData abbr)
+    abbr = get_sportsdata_abbr(team_name)
+    
+    # Build ESPN teams cache if needed
+    if not _espn_team_cache:
+        _build_espn_team_cache()
+    
+    # Try exact match
+    if team_name in _espn_team_cache:
+        return _espn_team_cache[team_name]
+    
+    # Try by abbreviation match
+    team_name_lower = team_name.lower()
+    for cached_name, team_id in _espn_team_cache.items():
+        if cached_name.lower() == team_name_lower:
+            _espn_team_cache[team_name] = team_id
+            return team_id
+    
+    # Try fuzzy matching against cached team names
+    candidates = list(_espn_team_cache.keys())
+    match = fuzzy_match_team(team_name, candidates, threshold=0.7)
+    if match:
+        team_id = _espn_team_cache[match]
+        _espn_team_cache[team_name] = team_id  # Cache for future lookups
+        return team_id
+    
+    # Not found - return 0 to signal we couldn't find it
+    return 0
+
+
+def _build_espn_team_cache():
+    """Build cache of ESPN team names to IDs from the ESPN API."""
+    global _espn_team_cache
+    
+    try:
+        from src.espn_collector import get_espn_collector
+        espn = get_espn_collector()
+        teams = espn.get_all_teams()
+        
+        for team in teams:
+            team_id = team.get('id', 0)
+            if team_id:
+                # Store by various name formats
+                name = team.get('name', '')
+                abbr = team.get('abbreviation', '')
+                location = team.get('location', '')
+                
+                if name:
+                    _espn_team_cache[name] = team_id
+                if abbr:
+                    _espn_team_cache[abbr] = team_id
+                if location:
+                    _espn_team_cache[location] = team_id
+        
+        print(f"Built ESPN team cache with {len(_espn_team_cache)} entries")
+    except Exception as e:
+        print(f"Warning: Could not build ESPN team cache: {e}")
+
+
+def find_espn_team_id_from_games(team_name: str, completed_games: list) -> int:
+    """
+    Find ESPN team ID by matching team name against completed games.
+    
+    This is a fallback method that searches historical game data.
+    
+    Args:
+        team_name: Team name to look up
+        completed_games: List of completed game dictionaries
+    
+    Returns:
+        ESPN team ID or 0 if not found
+    """
+    if not team_name or not completed_games:
+        return 0
+    
+    team_name_lower = team_name.lower()
+    
+    # Search for exact or partial matches in game data
+    for game in completed_games:
+        home_name = (game.get('HomeTeamName') or game.get('HomeTeam') or '').lower()
+        away_name = (game.get('AwayTeamName') or game.get('AwayTeam') or '').lower()
+        
+        # Check home team
+        if home_name and (team_name_lower in home_name or home_name in team_name_lower):
+            home_id = game.get('HomeTeamID')
+            if home_id and isinstance(home_id, int) and home_id > 0:
+                return home_id
+        
+        # Check away team
+        if away_name and (team_name_lower in away_name or away_name in team_name_lower):
+            away_id = game.get('AwayTeamID')
+            if away_id and isinstance(away_id, int) and away_id > 0:
+                return away_id
+    
+    return 0
+

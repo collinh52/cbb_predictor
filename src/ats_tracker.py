@@ -172,6 +172,19 @@ class ATSTracker:
         Returns:
             ATSRecord for the stored prediction
         """
+        # Sanity check predictions - clamp to reasonable ranges
+        # Margins should be between -60 and +60 (even blowouts rarely exceed this)
+        # Totals should be between 80 and 220 (typical range for college basketball)
+        if predicted_margin < -60 or predicted_margin > 60:
+            print(f"   ⚠️  Warning: predicted_margin {predicted_margin:.1f} out of range, clamping to [-60, 60]")
+            predicted_margin = max(-60.0, min(60.0, predicted_margin))
+        if predicted_total < 80 or predicted_total > 220:
+            print(f"   ⚠️  Warning: predicted_total {predicted_total:.1f} out of range, clamping to [80, 220]")
+            predicted_total = max(80.0, min(220.0, predicted_total))
+        
+        # Clamp confidence to valid range
+        prediction_confidence = max(0.0, min(95.0, prediction_confidence))
+        
         has_vegas = vegas_spread is not None
         
         # Determine picks
