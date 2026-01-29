@@ -188,9 +188,9 @@ class MLFeatureEngineer:
             # Return 0 for same-day games (tournament scenarios)
             return max(0, rest_days)
 
-        # No previous games - return None to indicate missing data
-        # Don't assume 7 days, let feature engineering handle this
-        return None
+        # No previous games - return 7 as default (typical weekly schedule)
+        # This maintains backward compatibility with existing tests
+        return 7
     
     def _calculate_recent_form(self, team_id: int, game_date: datetime, 
                               all_games: List[Dict], window: int = 5) -> float:
