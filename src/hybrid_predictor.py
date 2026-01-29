@@ -121,7 +121,7 @@ class HybridPredictor:
         
         # Get all games for feature engineering
         all_games = self.ukf_predictor.collector.get_completed_games()
-        
+
         # Engineer features for ML model
         try:
             features_array, features_dict = self.feature_engineer.engineer_features(
@@ -130,15 +130,20 @@ class HybridPredictor:
                 game, home_team_id, away_team_id,
                 game_date, all_games
             )
-            
+
             # Transform features if scaler is fitted
             if self.feature_engineer.scaler_fitted:
                 features_array = self.feature_engineer.transform_features(features_array)
-            
+
+                # Debug: Check for NaN or Inf values
+                if np.any(np.isnan(features_array)) or np.any(np.isinf(features_array)):
+                    print(f"   ⚠️  Warning: NaN or Inf values in features, using UKF only")
+                    raise ValueError("Invalid feature values")
+
             # Get ML prediction if model is available
             ml_predicted_margin = None
             ml_predicted_total = None
-            
+
             if self.ml_model is not None:
                 try:
                     expected_dim = None
@@ -146,18 +151,36 @@ class HybridPredictor:
                         input_shape = self.ml_model.model.input_shape
                         if isinstance(input_shape, tuple) and len(input_shape) > 1:
                             expected_dim = input_shape[-1]
-                    if expected_dim and features_array.shape[0] != expected_dim:
+
+                    # Validate feature dimension
+                    actual_dim = features_array.shape[0]
+                    if expected_dim and actual_dim != expected_dim:
                         print(
-                            f"ML prediction skipped: feature count {features_array.shape[0]} "
+                            f"   ⚠️  ML prediction skipped: feature count {actual_dim} "
                             f"does not match model input {expected_dim}. "
                             "Retrain the model to update feature alignment."
                         )
                         raise ValueError("ML feature/model shape mismatch")
-                    ml_predictions = self.ml_model.predict(features_array.reshape(1, -1))
+
+                    # Make prediction
+                    ml_predictions = self.ml_model.predict(features_array.reshape(1, -1), verbose=0)
                     ml_predicted_margin = float(ml_predictions[0, 0])
                     ml_predicted_total = float(ml_predictions[0, 1])
+
+                    # Validate predictions are reasonable before using
+                    if abs(ml_predicted_margin) > 100 or ml_predicted_total < 50 or ml_predicted_total > 300:
+                        print(
+                            f"   ⚠️  ML prediction out of reasonable range "
+                            f"(margin={ml_predicted_margin:.1f}, total={ml_predicted_total:.1f}), "
+                            "using UKF only"
+                        )
+                        raise ValueError("ML prediction out of range")
+
                 except Exception as e:
-                    print(f"ML prediction failed: {e}")
+                    if "ML prediction" not in str(e) and "feature count" not in str(e):
+                        print(f"   ⚠️  ML prediction failed: {e}")
+                    ml_predicted_margin = None
+                    ml_predicted_total = None
         except Exception as e:
             print(f"Feature engineering failed: {e}")
             features_dict = {}
@@ -168,18 +191,41 @@ class HybridPredictor:
         ukf_margin = ukf_prediction.get('predicted_margin', 0.0)
         ukf_total = ukf_prediction.get('predicted_total', 0.0)
         
+        # Sanity check UKF predictions - clamp to reasonable ranges
+        # Margins should be between -60 and +60 (even blowouts rarely exceed this)
+        # Totals should be between 80 and 220 (typical range for college basketball)
+        ukf_margin = max(-60.0, min(60.0, ukf_margin))
+        ukf_total = max(80.0, min(220.0, ukf_total))
+        
         if ml_predicted_margin is not None and ml_predicted_total is not None:
-            # Weighted combination
-            hybrid_margin = (config.HYBRID_WEIGHT_UKF * ukf_margin + 
-                           config.HYBRID_WEIGHT_ML * ml_predicted_margin)
-            hybrid_total = (config.HYBRID_WEIGHT_UKF * ukf_total + 
-                          config.HYBRID_WEIGHT_ML * ml_predicted_total)
-            prediction_source = 'hybrid'
+            # Sanity check ML predictions - detect garbage output
+            ml_margin_valid = -60.0 <= ml_predicted_margin <= 60.0
+            ml_total_valid = 80.0 <= ml_predicted_total <= 220.0
+            
+            if ml_margin_valid and ml_total_valid:
+                # ML predictions are reasonable - use weighted combination
+                hybrid_margin = (config.HYBRID_WEIGHT_UKF * ukf_margin + 
+                               config.HYBRID_WEIGHT_ML * ml_predicted_margin)
+                hybrid_total = (config.HYBRID_WEIGHT_UKF * ukf_total + 
+                              config.HYBRID_WEIGHT_ML * ml_predicted_total)
+                prediction_source = 'hybrid'
+            else:
+                # ML predictions are garbage (likely due to unknown teams) - use UKF only
+                print(f"   ⚠️  ML prediction out of range (margin={ml_predicted_margin:.1f}, total={ml_predicted_total:.1f}), using UKF only")
+                hybrid_margin = ukf_margin
+                hybrid_total = ukf_total
+                prediction_source = 'ukf'
+                ml_predicted_margin = None
+                ml_predicted_total = None
         else:
             # Fallback to UKF only
             hybrid_margin = ukf_margin
             hybrid_total = ukf_total
             prediction_source = 'ukf'
+        
+        # Final sanity clamp on hybrid predictions
+        hybrid_margin = max(-60.0, min(60.0, hybrid_margin))
+        hybrid_total = max(80.0, min(220.0, hybrid_total))
         
         # Get pregame lines
         pregame_spread = game.get('PointSpread')
@@ -189,16 +235,27 @@ class HybridPredictor:
         margin_uncertainty = ukf_prediction.get('margin_uncertainty', 10.0)
         total_uncertainty = ukf_prediction.get('total_uncertainty', 12.0)
         
+        # Enforce minimum uncertainty to prevent overconfident predictions
+        # College basketball games have inherent variance - minimum ~8 points for margin
+        MIN_MARGIN_UNCERTAINTY = 8.0
+        MIN_TOTAL_UNCERTAINTY = 10.0
+        margin_uncertainty = max(MIN_MARGIN_UNCERTAINTY, margin_uncertainty)
+        total_uncertainty = max(MIN_TOTAL_UNCERTAINTY, total_uncertainty)
+        
         home_covers_probability = None
         over_probability = None
         
         if pregame_spread is not None:
             # Probability that home team covers: P(home_margin > spread)
             home_covers_probability = 1.0 - norm.cdf(pregame_spread, hybrid_margin, margin_uncertainty)
+            # Clamp to prevent extreme probabilities (max ~95% confidence)
+            home_covers_probability = max(0.025, min(0.975, home_covers_probability))
         
         if pregame_total is not None:
             # Probability that total goes over
             over_probability = 1.0 - norm.cdf(pregame_total, hybrid_total, total_uncertainty)
+            # Clamp to prevent extreme probabilities
+            over_probability = max(0.025, min(0.975, over_probability))
         
         # Build comprehensive prediction dictionary
         prediction = {

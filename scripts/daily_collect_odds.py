@@ -21,6 +21,7 @@ from src.odds_collector import get_odds_collector
 from src.predictor import get_hybrid_predictor
 from src.ats_tracker import get_ats_tracker
 from src.data_collector import DataCollector
+from src.team_name_mapping import get_espn_team_id_from_name, find_espn_team_id_from_games
 import config
 
 
@@ -154,16 +155,38 @@ def collect_odds_and_predictions(target_date: str = None):
                 if vegas_spread is not None:
                     break
         
+        # Look up actual ESPN team IDs (critical for model accuracy)
+        home_team_id = get_espn_team_id_from_name(home_team)
+        away_team_id = get_espn_team_id_from_name(away_team)
+        
+        # If ESPN lookup failed, try finding from completed games
+        if home_team_id == 0 or away_team_id == 0:
+            completed_games = predictor.ukf_predictor.collector.get_completed_games() if hasattr(predictor, 'ukf_predictor') else []
+            if home_team_id == 0:
+                home_team_id = find_espn_team_id_from_games(home_team, completed_games)
+            if away_team_id == 0:
+                away_team_id = find_espn_team_id_from_games(away_team, completed_games)
+        
+        # Final fallback: use hash (but warn that predictions may be poor)
+        if home_team_id == 0:
+            home_team_id = abs(hash(home_team)) % 100000
+            print(f"   ⚠️  Could not find ESPN ID for {home_team}, using fallback")
+        if away_team_id == 0:
+            away_team_id = abs(hash(away_team)) % 100000
+            print(f"   ⚠️  Could not find ESPN ID for {away_team}, using fallback")
+        
         # Build a game dict compatible with predictor
         game_for_prediction = {
             'GameID': game_id,
             'HomeTeam': home_team,
             'AwayTeam': away_team,
-            'HomeTeamID': abs(hash(home_team)) % 100000,
-            'AwayTeamID': abs(hash(away_team)) % 100000,
+            'HomeTeamID': home_team_id,
+            'AwayTeamID': away_team_id,
             'DateTime': commence_time,
             'PointSpread': vegas_spread,
-            'OverUnder': vegas_total
+            'OverUnder': vegas_total,
+            'HomeTeamName': home_team,
+            'AwayTeamName': away_team
         }
         
         # Generate prediction

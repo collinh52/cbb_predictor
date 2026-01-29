@@ -175,11 +175,11 @@ class TeamUKF:
         
         expected_diff += health_impact + momentum_impact - fatigue_impact
         
-        # Expected total - use same formula as predictor
+        # Expected total - ratings are points per 100 possessions
         actual_pace_clamped = max(60.0, min(80.0, actual_pace))
         our_expected = (our_off / 100.0) * actual_pace_clamped
         opp_expected = (opp_off / 100.0) * actual_pace_clamped
-        expected_total = (our_expected + opp_expected) * 1.15
+        expected_total = our_expected + opp_expected
         expected_total *= features.get('health_status', 1.0)
         
         # Measurement vector
@@ -295,4 +295,19 @@ class MultiTeamUKF:
     def get_all_states(self) -> Dict[int, np.ndarray]:
         """Get states for all teams."""
         return {team_id: ukf.get_state() for team_id, ukf in self.teams.items()}
+
+    def get_all_team_ratings(self) -> Dict[int, float]:
+        """
+        Get overall ratings for all teams (offensive - defensive).
+
+        Returns:
+            Dict mapping team_id to rating (higher is better)
+        """
+        ratings = {}
+        for team_id, ukf in self.teams.items():
+            state = ukf.get_state()
+            # Rating = offensive - defensive (higher is better)
+            rating = state[TeamUKF.OFF_RATING] - state[TeamUKF.DEF_RATING]
+            ratings[team_id] = float(rating)
+        return ratings
 

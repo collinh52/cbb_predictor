@@ -8,16 +8,19 @@ import json
 from pathlib import Path
 
 import config
+from src.http_session import get_shared_session
 
 
 class OddsCollector:
     """Collects betting odds from The Odds API."""
-    
+
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key or config.THE_ODDS_API_KEY
         self.base_url = config.THE_ODDS_API_BASE_URL
         self.sport = "basketball_ncaab"
-        
+        # Use shared session for connection pooling
+        self.session = get_shared_session()
+
         if not self.api_key:
             print("Warning: THE_ODDS_API_KEY not set. Odds data will not be available.")
     
@@ -46,7 +49,7 @@ class OddsCollector:
         }
         
         try:
-            response = requests.get(endpoint, params=params, timeout=10)
+            response = self.session.get(endpoint, params=params, timeout=10)
             response.raise_for_status()
             
             # Check remaining quota
@@ -206,7 +209,7 @@ class OddsCollector:
         params = {'apiKey': self.api_key}
         
         try:
-            response = requests.get(endpoint, params=params, timeout=10)
+            response = self.session.get(endpoint, params=params, timeout=10)
             response.raise_for_status()
             return response.json()
         except Exception as e:
