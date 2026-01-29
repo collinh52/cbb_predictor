@@ -59,82 +59,10 @@ jobs:
           if [ -n "${KENPOM_COOKIE}" ]; then
             echo "KENPOM_COOKIE already set; skipping login"
           elif [ -n "${KENPOM_USERNAME}" ] && [ -n "${KENPOM_PASSWORD}" ]; then
-            echo "⚠️  WARNING: KenPom login via Playwright is blocked by Cloudflare Turnstile."
-            echo "Skipping KenPom login - predictions will use default ratings."
-            echo "To include KenPom data, manually upload data/summaryXX.csv to the repository."
-            exit 0
-            python - <<'PY'
-          import os
-          import sys
-          from playwright.sync_api import sync_playwright
-
-          username = os.getenv("KENPOM_USERNAME")
-          password = os.getenv("KENPOM_PASSWORD")
-          if not username or not password:
-              print("KENPOM_USERNAME or KENPOM_PASSWORD not set; skipping login")
-              raise SystemExit(0)
-
-          def fill_first(page, selectors, value):
-              for selector in selectors:
-                  locator = page.locator(selector)
-                  if locator.count() > 0:
-                      locator.first.fill(value)
-                      return True
-              return False
-
-          with sync_playwright() as p:
-              browser = p.chromium.launch(headless=True)
-              context = browser.new_context()
-              page = context.new_page()
-              page.goto("https://kenpom.com/", wait_until="domcontentloaded")
-
-              if not fill_first(page, ["input[name='email']", "input[type='email']"], username):
-                  print("Could not find email field on KenPom login page.")
-                  sys.exit(1)
-              if not fill_first(page, ["input[name='password']", "input[type='password']"], password):
-                  print("Could not find password field on KenPom login page.")
-                  sys.exit(1)
-
-              submitted = False
-              for selector in ["input[type='submit']", "button[type='submit']", "input[value*='Login']", "button:has-text('Login')"]:
-                  locator = page.locator(selector)
-                  if locator.count() > 0:
-                      locator.first.click()
-                      submitted = True
-                      break
-              if not submitted:
-                  page.keyboard.press("Enter")
-
-              try:
-                  page.wait_for_load_state("networkidle", timeout=15000)
-              except Exception:
-                  pass
-
-              data_url = None
-              data_link = page.locator("a:has-text('data')")
-              if data_link.count() > 0:
-                  href = data_link.first.get_attribute("href")
-                  if href:
-                      if href.startswith("http"):
-                          data_url = href
-                      else:
-                          data_url = f"https://kenpom.com/{href.lstrip('/')}"
-
-              cookies = context.cookies("https://kenpom.com/")
-              cookie_str = "; ".join([f"{cookie['name']}={cookie['value']}" for cookie in cookies])
-              if not cookie_str:
-                  print("KenPom login did not yield cookies; aborting.")
-                  sys.exit(1)
-
-              env_file = os.getenv("GITHUB_ENV")
-              if env_file:
-                  with open(env_file, "a") as f:
-                      f.write(f"KENPOM_COOKIE={cookie_str}\n")
-                      if data_url:
-                          f.write(f"KENPOM_DATA_URL={data_url}\n")
-              print(f"KenPom cookie exported. data_link_found={bool(data_url)}")
-              browser.close()
-          PY
+            echo "Attempting KenPom login with improved anti-detection..."
+            python scripts/kenpom_login_improved.py \
+              --export-env "${GITHUB_ENV}" \
+              || echo "⚠️  KenPom login failed - predictions will use default ratings"
           else
             echo "KENPOM_USERNAME or KENPOM_PASSWORD not set; skipping KenPom login"
           fi
