@@ -5,12 +5,46 @@ const API_BASE = '/api';
 // Load games on page load
 document.addEventListener('DOMContentLoaded', () => {
     loadGames();
-    
+    loadTeams();
+
     // Set up refresh button
     document.getElementById('refreshBtn').addEventListener('click', () => {
         loadGames();
     });
+
+    // Set up navigation
+    document.getElementById('todayGamesBtn').addEventListener('click', () => {
+        showView('today');
+    });
+
+    document.getElementById('customPredictionBtn').addEventListener('click', () => {
+        showView('custom');
+    });
+
+    // Set up custom prediction form
+    document.getElementById('generatePredictionBtn').addEventListener('click', () => {
+        generateCustomPrediction();
+    });
 });
+
+function showView(view) {
+    const todayGamesView = document.getElementById('todayGamesView');
+    const customPredictionView = document.getElementById('customPredictionView');
+    const todayGamesBtn = document.getElementById('todayGamesBtn');
+    const customPredictionBtn = document.getElementById('customPredictionBtn');
+
+    if (view === 'today') {
+        todayGamesView.style.display = 'block';
+        customPredictionView.style.display = 'none';
+        todayGamesBtn.classList.add('nav-btn-active');
+        customPredictionBtn.classList.remove('nav-btn-active');
+    } else {
+        todayGamesView.style.display = 'none';
+        customPredictionView.style.display = 'block';
+        todayGamesBtn.classList.remove('nav-btn-active');
+        customPredictionBtn.classList.add('nav-btn-active');
+    }
+}
 
 async function loadGames() {
     const loading = document.getElementById('loading');
@@ -202,5 +236,297 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Load team list for custom prediction
+async function loadTeams() {
+    try {
+        const response = await fetch(`${API_BASE}/teams/list`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Failed to load teams');
+            return;
+        }
+
+        const teams = data.teams || [];
+        const homeSelect = document.getElementById('homeTeamSelect');
+        const awaySelect = document.getElementById('awayTeamSelect');
+
+        // Clear existing options except the default
+        homeSelect.innerHTML = '<option value="">Select Home Team</option>';
+        awaySelect.innerHTML = '<option value="">Select Away Team</option>';
+
+        // Add teams to both dropdowns
+        teams.forEach(team => {
+            const homeOption = document.createElement('option');
+            homeOption.value = team.id;
+            homeOption.textContent = team.name;
+            homeSelect.appendChild(homeOption);
+
+            const awayOption = document.createElement('option');
+            awayOption.value = team.id;
+            awayOption.textContent = team.name;
+            awaySelect.appendChild(awayOption);
+        });
+    } catch (err) {
+        console.error('Error loading teams:', err);
+    }
+}
+
+// Generate custom prediction
+async function generateCustomPrediction() {
+    const homeTeamId = document.getElementById('homeTeamSelect').value;
+    const awayTeamId = document.getElementById('awayTeamSelect').value;
+    const neutralCourt = document.getElementById('neutralCourt').checked;
+
+    const loading = document.getElementById('customLoading');
+    const error = document.getElementById('customError');
+    const result = document.getElementById('customPredictionResult');
+
+    // Validation
+    if (!homeTeamId || !awayTeamId) {
+        error.style.display = 'block';
+        error.textContent = 'Please select both home and away teams';
+        return;
+    }
+
+    if (homeTeamId === awayTeamId) {
+        error.style.display = 'block';
+        error.textContent = 'Please select different teams';
+        return;
+    }
+
+    loading.style.display = 'block';
+    error.style.display = 'none';
+    result.innerHTML = '';
+
+    try {
+        const response = await fetch(`${API_BASE}/predictions/custom`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                home_team_id: parseInt(homeTeamId),
+                away_team_id: parseInt(awayTeamId),
+                neutral_court: neutralCourt
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || 'Failed to generate prediction');
+        }
+
+        loading.style.display = 'none';
+        displayCustomPrediction(data);
+    } catch (err) {
+        loading.style.display = 'none';
+        error.style.display = 'block';
+        error.textContent = `Error: ${err.message}`;
+        console.error('Error generating prediction:', err);
+    }
+}
+
+// Display custom prediction results
+function displayCustomPrediction(data) {
+    const result = document.getElementById('customPredictionResult');
+
+    const pred = data.prediction || {};
+    const homeStats = data.home_team_stats || {};
+    const awayStats = data.away_team_stats || {};
+
+    result.innerHTML = `
+        <div class="game-card">
+            <div class="game-header">
+                <div class="matchup">
+                    <div class="away-team">${escapeHtml(data.away_team)}</div>
+                    <div class="vs">@</div>
+                    <div class="home-team">${escapeHtml(data.home_team)}</div>
+                    ${data.neutral_court ? '<div class="neutral-badge">Neutral Court</div>' : ''}
+                </div>
+            </div>
+
+            <div class="prediction-section">
+                <div class="section-title">Prediction Results</div>
+
+                <div class="prediction-details">
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <div class="detail-title">Predicted Winner</div>
+                            <div class="detail-value">
+                                ${pred.predicted_winner === 'home' ? data.home_team : data.away_team}
+                                <span class="winner-badge ${pred.predicted_winner === 'home' ? 'winner-home' : 'winner-away'}">
+                                    ${pred.predicted_winner === 'home' ? 'Home' : 'Away'}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-title">Predicted Margin</div>
+                            <div class="detail-value">${formatNumber(pred.predicted_margin, 1)} points</div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-title">Predicted Total</div>
+                            <div class="detail-value">${formatNumber(pred.predicted_total, 1)} points</div>
+                        </div>
+
+                        <div class="detail-card">
+                            <div class="detail-title">Confidence</div>
+                            <div class="detail-value">${formatNumber(pred.overall_confidence || 0, 1)}%</div>
+                        </div>
+                    </div>
+                </div>
+
+                ${pred.predicted_margin ? createCustomPredictionBreakdown(pred) : ''}
+            </div>
+        </div>
+
+        ${createTeamStatsComparison(data.home_team, homeStats, data.away_team, awayStats)}
+    `;
+}
+
+function createCustomPredictionBreakdown(pred) {
+    return `
+        <div class="prediction-details" style="margin-top: 20px;">
+            <div class="section-title">Prediction Breakdown</div>
+            <div class="details-grid">
+                ${pred.ukf_predicted_margin !== undefined ? `
+                    <div class="detail-card">
+                        <div class="detail-title">UKF Margin</div>
+                        <div class="detail-value">${formatNumber(pred.ukf_predicted_margin, 1)}</div>
+                    </div>
+                ` : ''}
+                ${pred.ml_predicted_margin !== undefined && pred.ml_predicted_margin !== null ? `
+                    <div class="detail-card">
+                        <div class="detail-title">ML Margin</div>
+                        <div class="detail-value">${formatNumber(pred.ml_predicted_margin, 1)}</div>
+                    </div>
+                ` : ''}
+                ${pred.ukf_predicted_total !== undefined ? `
+                    <div class="detail-card">
+                        <div class="detail-title">UKF Total</div>
+                        <div class="detail-value">${formatNumber(pred.ukf_predicted_total, 1)}</div>
+                    </div>
+                ` : ''}
+                ${pred.ml_predicted_total !== undefined && pred.ml_predicted_total !== null ? `
+                    <div class="detail-card">
+                        <div class="detail-title">ML Total</div>
+                        <div class="detail-value">${formatNumber(pred.ml_predicted_total, 1)}</div>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+}
+
+function createTeamStatsComparison(homeTeam, homeStats, awayTeam, awayStats) {
+    return `
+        <div class="team-stats">
+            <div class="team-stat-card">
+                <div class="team-stat-header">${escapeHtml(homeTeam)}</div>
+                ${createTeamStatRows(homeStats)}
+            </div>
+
+            <div class="team-stat-card">
+                <div class="team-stat-header">${escapeHtml(awayTeam)}</div>
+                ${createTeamStatRows(awayStats)}
+            </div>
+        </div>
+    `;
+}
+
+function createTeamStatRows(stats) {
+    const rows = [];
+
+    if (stats.offensive_rating !== undefined) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">Offensive Rating</span>
+                <span class="stat-value">${formatNumber(stats.offensive_rating, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.defensive_rating !== undefined) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">Defensive Rating</span>
+                <span class="stat-value">${formatNumber(stats.defensive_rating, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.pace !== undefined) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">Pace</span>
+                <span class="stat-value">${formatNumber(stats.pace, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.kenpom_adj_em !== undefined && stats.kenpom_adj_em !== 0) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">KenPom Adj EM</span>
+                <span class="stat-value">${formatNumber(stats.kenpom_adj_em, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.kenpom_adj_o !== undefined && stats.kenpom_adj_o !== 100) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">KenPom Adj O</span>
+                <span class="stat-value">${formatNumber(stats.kenpom_adj_o, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.kenpom_adj_d !== undefined && stats.kenpom_adj_d !== 100) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">KenPom Adj D</span>
+                <span class="stat-value">${formatNumber(stats.kenpom_adj_d, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.momentum !== undefined) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">Momentum</span>
+                <span class="stat-value">${formatNumber(stats.momentum, 2)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.fatigue !== undefined) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">Fatigue</span>
+                <span class="stat-value">${formatNumber(stats.fatigue, 2)}</span>
+            </div>
+        `);
+    }
+
+    if (stats.sos !== undefined) {
+        rows.push(`
+            <div class="stat-row">
+                <span class="stat-label">Strength of Schedule</span>
+                <span class="stat-value">${formatNumber(stats.sos, 1)}</span>
+            </div>
+        `);
+    }
+
+    if (rows.length === 0) {
+        return '<div class="stat-row"><span class="stat-label">No detailed stats available</span></div>';
+    }
+
+    return rows.join('');
 }
 

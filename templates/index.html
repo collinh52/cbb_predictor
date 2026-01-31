@@ -13,14 +13,65 @@
             <p class="subtitle">College Basketball Game Predictions using Unscented Kalman Filter</p>
         </header>
 
-        <div class="controls">
-            <button id="refreshBtn" class="btn-primary">Refresh Predictions</button>
-            <span id="lastUpdate" class="last-update"></span>
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <button id="todayGamesBtn" class="nav-btn nav-btn-active">Today's Games</button>
+            <button id="customPredictionBtn" class="nav-btn">Custom Prediction</button>
+        </nav>
+
+        <!-- Today's Games View -->
+        <div id="todayGamesView" class="view-section">
+            <div class="controls">
+                <button id="refreshBtn" class="btn-primary">Refresh Predictions</button>
+                <span id="lastUpdate" class="last-update"></span>
+            </div>
+
+            <div id="loading" class="loading">Loading predictions...</div>
+            <div id="error" class="error" style="display: none;"></div>
+            <div id="gamesContainer" class="games-container"></div>
         </div>
 
-        <div id="loading" class="loading">Loading predictions...</div>
-        <div id="error" class="error" style="display: none;"></div>
-        <div id="gamesContainer" class="games-container"></div>
+        <!-- Custom Prediction View -->
+        <div id="customPredictionView" class="view-section" style="display: none;">
+            <div class="custom-prediction-container">
+                <h2 class="section-header">Generate Custom Prediction</h2>
+
+                <div class="custom-prediction-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="awayTeamSelect">Away Team</label>
+                            <select id="awayTeamSelect" class="team-select">
+                                <option value="">Select Away Team</option>
+                            </select>
+                        </div>
+
+                        <div class="at-symbol">@</div>
+
+                        <div class="form-group">
+                            <label for="homeTeamSelect">Home Team</label>
+                            <select id="homeTeamSelect" class="team-select">
+                                <option value="">Select Home Team</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="neutralCourt">
+                            <span>Neutral Court Game</span>
+                        </label>
+                    </div>
+
+                    <button id="generatePredictionBtn" class="btn-primary btn-large">
+                        Generate Prediction
+                    </button>
+                </div>
+
+                <div id="customLoading" class="loading" style="display: none;">Generating prediction...</div>
+                <div id="customError" class="error" style="display: none;"></div>
+                <div id="customPredictionResult" class="custom-prediction-result"></div>
+            </div>
+        </div>
     </div>
 
     <script src="/static/app.js"></script>
