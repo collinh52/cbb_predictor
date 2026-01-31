@@ -111,6 +111,26 @@ header h1 {
     transform: translateY(1px);
 }
 
+.btn-secondary {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-secondary:hover {
+    background: #5568d3;
+}
+
+.btn-secondary:active {
+    transform: translateY(1px);
+}
+
 .last-update {
     color: white;
     font-size: 0.9em;

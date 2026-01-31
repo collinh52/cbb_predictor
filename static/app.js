@@ -9,7 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set up refresh button
     document.getElementById('refreshBtn').addEventListener('click', () => {
-        loadGames();
+        loadGames(false);
+    });
+
+    // Set up force refresh button
+    document.getElementById('forceRefreshBtn').addEventListener('click', () => {
+        if (confirm('Force regenerate all predictions? This will take longer.')) {
+            loadGames(true);
+        }
     });
 
     // Set up navigation
@@ -63,18 +70,21 @@ function showView(view) {
     }
 }
 
-async function loadGames() {
+async function loadGames(forceRefresh = false) {
     const loading = document.getElementById('loading');
     const error = document.getElementById('error');
     const container = document.getElementById('gamesContainer');
     const lastUpdate = document.getElementById('lastUpdate');
-    
+
     loading.style.display = 'block';
     error.style.display = 'none';
     container.innerHTML = '';
-    
+
+    const startTime = Date.now();
+
     try {
-        const response = await fetch(`${API_BASE}/games/today`);
+        const url = forceRefresh ? `${API_BASE}/games/today?force_refresh=true` : `${API_BASE}/games/today`;
+        const response = await fetch(url);
         const data = await response.json();
         
         if (!response.ok) {
@@ -82,7 +92,9 @@ async function loadGames() {
         }
         
         loading.style.display = 'none';
-        
+
+        const loadTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
         if (data.games && data.games.length > 0) {
             data.games.forEach(game => {
                 container.appendChild(createGameCard(game));
@@ -90,8 +102,11 @@ async function loadGames() {
         } else {
             container.innerHTML = '<div class="no-games">No games scheduled for today.</div>';
         }
-        
-        lastUpdate.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+
+        const updateText = forceRefresh
+            ? `Regenerated at ${new Date().toLocaleTimeString()} (${loadTime}s)`
+            : `Loaded at ${new Date().toLocaleTimeString()} (${loadTime}s)`;
+        lastUpdate.textContent = updateText;
     } catch (err) {
         loading.style.display = 'none';
         error.style.display = 'block';

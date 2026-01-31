@@ -19,6 +19,13 @@ from src.feature_calculator import FeatureCalculator
 
 app = FastAPI(title="UKF Basketball Predictor")
 
+# In-memory cache for rankings (cleared on server restart)
+_rankings_cache = {
+    'data': None,
+    'timestamp': None,
+    'ttl_seconds': 300  # 5 minutes
+}
+
 
 # Pydantic models for request/response
 class CustomPredictionRequest(BaseModel):
@@ -58,44 +65,95 @@ async def root():
 
 
 @app.get("/api/games/today")
-async def get_todays_games():
-    """Get today's games with hybrid predictions."""
+async def get_todays_games(force_refresh: bool = False):
+    """
+    Get today's games with hybrid predictions.
+
+    Args:
+        force_refresh: If True, regenerate predictions even if cached. Default False.
+    """
     try:
         collector = get_collector()
         hybrid_predictor = get_hybrid_predictor()
         database = get_database()
-        
+
         games = collector.get_todays_games()
-        
+
         # Format response
         results = []
+        predictions_generated = 0
+        predictions_from_cache = 0
+
         for game in games:
             game_id = game.get('GameID')
             game_date_str = game.get('DateTime', '')
-            
+
             try:
                 game_date = datetime.fromisoformat(game_date_str.replace('Z', '+00:00')) if game_date_str else datetime.now()
             except:
                 game_date = datetime.now()
-            
-            # Generate hybrid prediction
-            pred = hybrid_predictor.predict_game(game)
-            
-            # Save prediction to database
-            home_team_id = pred.get('home_team_id')
-            away_team_id = pred.get('away_team_id')
-            if game_id and home_team_id and away_team_id:
-                hybrid_predictor.save_prediction_to_database(
-                    game_id, game_date, home_team_id, away_team_id, pred
-                )
-            
+
+            # Try to get prediction from database first (much faster)
+            cached_pred = None
+            if game_id and not force_refresh:
+                cached_pred = database.get_prediction_by_game_id(game_id)
+
+            # Use cached prediction if available and recent (within 24 hours)
+            if cached_pred and not force_refresh:
+                pred_date = cached_pred.get('game_date')
+                if isinstance(pred_date, datetime):
+                    age_hours = (datetime.now() - pred_date).total_seconds() / 3600
+                    if age_hours < 24:
+                        predictions_from_cache += 1
+                        # Build prediction dict from cached data
+                        home_covers_prob = cached_pred.get('home_covers_probability')
+                        over_prob = cached_pred.get('over_probability')
+
+                        pred = {
+                            'home_team_id': cached_pred.get('home_team_id') or game.get('HomeTeamID'),
+                            'away_team_id': cached_pred.get('away_team_id') or game.get('AwayTeamID'),
+                            'spread': cached_pred.get('pregame_spread'),
+                            'total_line': cached_pred.get('pregame_total'),
+                            'ukf_predicted_margin': cached_pred.get('ukf_predicted_margin'),
+                            'ukf_predicted_total': cached_pred.get('ukf_predicted_total'),
+                            'ml_predicted_margin': cached_pred.get('ml_predicted_margin'),
+                            'ml_predicted_total': cached_pred.get('ml_predicted_total'),
+                            'hybrid_predicted_margin': cached_pred.get('hybrid_predicted_margin'),
+                            'hybrid_predicted_total': cached_pred.get('hybrid_predicted_total'),
+                            'predicted_winner': 'home' if (cached_pred.get('hybrid_predicted_margin') or 0) > 0 else 'away',
+                            'prediction_source': cached_pred.get('prediction_source', 'hybrid'),
+                            'home_covers_probability': home_covers_prob,
+                            'away_covers_probability': 1.0 - home_covers_prob if home_covers_prob is not None else None,
+                            'over_probability': over_prob,
+                            'under_probability': 1.0 - over_prob if over_prob is not None else None,
+                            'home_covers_confidence': abs((home_covers_prob or 0.5) - 0.5) * 200 if home_covers_prob is not None else None,
+                            'over_confidence': abs((over_prob or 0.5) - 0.5) * 200 if over_prob is not None else None,
+                            'overall_confidence': cached_pred.get('prediction_confidence', 50.0)
+                        }
+                    else:
+                        # Prediction is stale, regenerate
+                        cached_pred = None
+
+            # Generate new prediction if not cached or stale
+            if not cached_pred or force_refresh:
+                predictions_generated += 1
+                pred = hybrid_predictor.predict_game(game)
+
+                # Save prediction to database for future requests
+                home_team_id = pred.get('home_team_id')
+                away_team_id = pred.get('away_team_id')
+                if game_id and home_team_id and away_team_id:
+                    hybrid_predictor.save_prediction_to_database(
+                        game_id, game_date, home_team_id, away_team_id, pred
+                    )
+
             results.append({
                 'game_id': game_id,
                 'date': game_date_str,
                 'home_team': game.get('HomeTeam'),
                 'away_team': game.get('AwayTeam'),
-                'home_team_id': home_team_id,
-                'away_team_id': away_team_id,
+                'home_team_id': pred.get('home_team_id'),
+                'away_team_id': pred.get('away_team_id'),
                 'spread': pred.get('spread'),
                 'total_line': pred.get('total_line'),
                 'prediction': {
@@ -116,7 +174,8 @@ async def get_todays_games():
                     'overall_confidence': pred.get('overall_confidence')
                 }
             })
-        
+
+        print(f"Performance: {predictions_from_cache} cached, {predictions_generated} generated")
         return {'games': results, 'count': len(results)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -203,9 +262,17 @@ async def get_team_ratings():
 
 
 @app.get("/api/teams/rankings")
-async def get_team_rankings():
+async def get_team_rankings(force_refresh: bool = False):
     """Get comprehensive team rankings with all stats (similar to KenPom homepage)."""
     try:
+        # Check cache first
+        if not force_refresh and _rankings_cache['data'] is not None and _rankings_cache['timestamp'] is not None:
+            age = (datetime.now() - _rankings_cache['timestamp']).total_seconds()
+            if age < _rankings_cache['ttl_seconds']:
+                print(f"Returning cached rankings (age: {age:.1f}s)")
+                return _rankings_cache['data']
+
+        print("Generating fresh rankings...")
         predictor = get_predictor()
         espn_collector = get_espn_collector()
         collector = get_collector()
@@ -299,7 +366,13 @@ async def get_team_rankings():
         for i, team in enumerate(rankings, 1):
             team['rank'] = i
 
-        return {'teams': rankings, 'count': len(rankings)}
+        result = {'teams': rankings, 'count': len(rankings)}
+
+        # Cache the result
+        _rankings_cache['data'] = result
+        _rankings_cache['timestamp'] = datetime.now()
+
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

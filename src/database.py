@@ -472,12 +472,19 @@ class Database:
                     'prediction_id': pred.prediction_id,
                     'game_id': pred.game_id,
                     'game_date': pred.game_date,
+                    'home_team_id': pred.home_team_id,
+                    'away_team_id': pred.away_team_id,
                     'pregame_spread': pred.pregame_spread,
                     'pregame_total': pred.pregame_total,
+                    'ukf_predicted_margin': pred.ukf_predicted_margin,
+                    'ukf_predicted_total': pred.ukf_predicted_total,
+                    'ml_predicted_margin': pred.ml_predicted_margin,
+                    'ml_predicted_total': pred.ml_predicted_total,
                     'hybrid_predicted_margin': pred.hybrid_predicted_margin,
                     'hybrid_predicted_total': pred.hybrid_predicted_total,
                     'home_covers_probability': pred.home_covers_probability,
                     'over_probability': pred.over_probability,
+                    'prediction_confidence': pred.prediction_confidence,
                     'prediction_source': pred.prediction_source
                 }
             return None
