@@ -3,9 +3,9 @@ name: Daily Predictions & Accuracy Tracking
 on:
   schedule:
     # Run twice daily during basketball season:
-    # - 10 AM ET (3 PM UTC) - Collect odds for evening games
+    # - 7 AM ET (12 PM UTC) - Collect odds for evening games
     # - 11 PM ET (4 AM UTC next day) - Check results from completed games
-    - cron: '0 15 * * *'  # 10 AM ET / 3 PM UTC
+    - cron: '0 12 * * *'  # 7 AM ET / 12 PM UTC
     - cron: '0 4 * * *'   # 11 PM ET / 4 AM UTC
   
   # Allow manual trigger
@@ -29,7 +29,7 @@ jobs:
   collect-odds:
     name: Collect Odds & Generate Predictions
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'collect_odds' || github.event.inputs.action == 'both') || github.event.schedule == '0 15 * * *'
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'collect_odds' || github.event.inputs.action == 'both') || github.event.schedule == '0 12 * * *'
     
     steps:
       - name: Checkout Repository
