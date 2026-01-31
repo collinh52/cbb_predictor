@@ -125,6 +125,21 @@ jobs:
         env:
           KENPOM_SUMMARY_URL: ${{ secrets.KENPOM_SUMMARY_URL }}
       
+      - name: Get current week
+        id: week
+        run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
+
+      - name: Cache completed games data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/cache
+          # Cache key includes week number - refreshes automatically each week
+          # Format: game-cache-2026-W05 (year-week number)
+          key: game-cache-${{ steps.week.outputs.week }}
+          restore-keys: |
+            game-cache-
+
       - name: Download existing ATS data
         uses: actions/cache@v4
         with:
@@ -136,7 +151,7 @@ jobs:
           key: ats-data-${{ github.run_number }}
           restore-keys: |
             ats-data-
-      
+
       - name: Cache ML models
         uses: actions/cache@v4
         with:
@@ -145,7 +160,16 @@ jobs:
           key: ml-models-${{ github.run_number }}
           restore-keys: |
             ml-models-
-      
+
+      - name: Check cache status
+        run: |
+          if [ -f "data/cache/completed_games_2026.json" ]; then
+            echo "✓ Cache found - checking status..."
+            python scripts/check_cache.py || echo "Cache check script failed, continuing anyway"
+          else
+            echo "⚠️  No cache found - predictions will fetch fresh data from ESPN"
+          fi
+
       - name: Collect Odds and Generate Predictions
         run: python scripts/predict_today.py --days 2
       
@@ -195,7 +219,21 @@ jobs:
         run: |
           echo "THE_ODDS_API_KEY=${{ secrets.THE_ODDS_API_KEY }}" > .env
           echo "BASKETBALL_API_KEY=${{ secrets.BASKETBALL_API_KEY }}" >> .env
-      
+
+      - name: Get current week
+        id: week
+        run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
+
+      - name: Cache completed games data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/cache
+          # Cache key includes week number - refreshes automatically each week
+          key: game-cache-${{ steps.week.outputs.week }}
+          restore-keys: |
+            game-cache-
+
       - name: Download existing ATS data
         uses: actions/cache@v4
         with:
@@ -216,15 +254,33 @@ jobs:
           key: ml-models-${{ github.run_number }}
           restore-keys: |
             ml-models-
-      
+
+      - name: Check cache status (before)
+        run: |
+          echo "📊 Cache status before processing:"
+          if [ -f "data/cache/completed_games_2026.json" ]; then
+            python scripts/check_cache.py || echo "Cache check script failed, continuing anyway"
+          else
+            echo "⚠️  No cache found - will be created during retrain"
+          fi
+
       - name: Check Results
         run: python scripts/daily_check_results.py --days 7
-      
+
       - name: Update README
         run: python scripts/update_readme_accuracy.py
 
       - name: Retrain ML model
         run: python scripts/setup_and_train.py --populate 200 --train
+
+      - name: Verify cache updated
+        run: |
+          echo "📊 Cache status after retrain:"
+          if [ -f "data/cache/completed_games_2026.json" ]; then
+            python scripts/check_cache.py || echo "✓ Cache file exists"
+          else
+            echo "⚠️  Warning: Cache was not created during retrain"
+          fi
       
       - name: Upload Updated ATS Data
         uses: actions/upload-artifact@v4
@@ -266,7 +322,21 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
+
+      - name: Get current week
+        id: week
+        run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
+
+      - name: Cache completed games data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/cache
+          # Cache key includes week number - refreshes automatically each week
+          key: game-cache-${{ steps.week.outputs.week }}
+          restore-keys: |
+            game-cache-
+
       - name: Download existing ATS data
         uses: actions/cache@v4
         with:
