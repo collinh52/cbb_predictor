@@ -215,7 +215,8 @@ class FeatureCalculator:
         # Try to get from KenPom (most reliable source)
         kenpom_data = self.collector.get_kenpom_ratings()
         team_id_norm = self._normalize_team_id(team_id)
-        if team_id_norm in kenpom_data:
+        # Handle case where kenpom_data might be None or Mock object in tests
+        if kenpom_data and isinstance(kenpom_data, dict) and team_id_norm in kenpom_data:
             adj_t = kenpom_data[team_id_norm].get('adj_t')
             # Only use if it's not the default value (70.0)
             if adj_t is not None and adj_t != config.KENPOM_DEFAULT_ADJ_T:

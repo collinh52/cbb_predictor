@@ -515,7 +515,12 @@ class TestGetGameFeatures:
         
         expected_keys = {
             'momentum', 'fatigue', 'health_status', 'home_advantage', 'pace',
-            'kenpom_adj_em', 'kenpom_adj_o', 'kenpom_adj_d', 'kenpom_adj_t'
+            'kenpom_adj_em', 'kenpom_adj_o', 'kenpom_adj_d', 'kenpom_adj_t',
+            'sos',  # Strength of Schedule
+            'efg_o', 'efg_d',  # Four Factors: Effective FG%
+            'tov_o', 'tov_d',  # Four Factors: Turnover%
+            'oreb_pct',        # Four Factors: Offensive Rebound%
+            'ft_rate'          # Four Factors: Free Throw Rate
         }
         assert set(features.keys()) == expected_keys
     

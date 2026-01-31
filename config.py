@@ -55,7 +55,7 @@ FATIGUE_TRAVEL_WEIGHT: float = 0.1  # Additional fatigue per 100 miles traveled
 REST_DECAY: float = 0.2  # Fatigue reduction per rest day
 
 # Data Refresh Intervals
-CACHE_EXPIRY_MINUTES: int = 60  # Cache game data for 1 hour
+CACHE_EXPIRY_MINUTES: int = 10080  # Cache game data for 7 days (completed games don't change)
 DATA_REFRESH_INTERVAL: int = 30  # Refresh predictions every 30 minutes
 
 # Data Storage
