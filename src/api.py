@@ -196,8 +196,110 @@ async def get_team_ratings():
     try:
         predictor = get_predictor()
         ratings = predictor.get_team_ratings()
-        
+
         return {'ratings': ratings, 'count': len(ratings)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/teams/rankings")
+async def get_team_rankings():
+    """Get comprehensive team rankings with all stats (similar to KenPom homepage)."""
+    try:
+        predictor = get_predictor()
+        espn_collector = get_espn_collector()
+        collector = get_collector()
+
+        # Get all teams
+        all_teams = espn_collector.get_all_teams()
+
+        # Get UKF ratings for all teams
+        ukf_ratings = predictor.get_team_ratings()
+
+        # Get completed games for record calculation
+        completed_games = collector.get_completed_games()
+
+        # Build comprehensive rankings
+        rankings = []
+        for team in all_teams:
+            team_id = team.get('id')
+            team_name = team.get('name', 'Unknown')
+
+            if not team_id:
+                continue
+
+            # Get UKF ratings
+            ukf_rating = ukf_ratings.get(team_id, {})
+            offensive_rating = ukf_rating.get('offensive_rating', 100.0)
+            defensive_rating = ukf_rating.get('defensive_rating', 100.0)
+            pace = ukf_rating.get('pace', 70.0)
+            momentum = ukf_rating.get('momentum', 0.0)
+
+            # Calculate efficiency margin (offensive - defensive)
+            efficiency_margin = offensive_rating - defensive_rating
+
+            # Get KenPom ratings
+            kenpom = collector.get_kenpom_team_rating(team_name)
+
+            # Calculate record
+            wins = 0
+            losses = 0
+            for game in completed_games:
+                home_id = game.get('HomeTeamID')
+                away_id = game.get('AwayTeamID')
+                home_score = game.get('HomeTeamScore')
+                away_score = game.get('AwayTeamScore')
+
+                if home_score is None or away_score is None:
+                    continue
+
+                if home_id == team_id:
+                    if home_score > away_score:
+                        wins += 1
+                    else:
+                        losses += 1
+                elif away_id == team_id:
+                    if away_score > home_score:
+                        wins += 1
+                    else:
+                        losses += 1
+
+            rankings.append({
+                'team_id': team_id,
+                'team_name': team_name,
+                'abbreviation': team.get('abbreviation', ''),
+                'conference': team.get('conference', ''),
+                'wins': wins,
+                'losses': losses,
+                'record': f"{wins}-{losses}",
+                # Efficiency metrics
+                'adj_em': kenpom.get('adj_em', 0.0),
+                'adj_o': kenpom.get('adj_o', 100.0),
+                'adj_d': kenpom.get('adj_d', 100.0),
+                'adj_t': kenpom.get('adj_t', 70.0),
+                # UKF ratings
+                'offensive_rating': offensive_rating,
+                'defensive_rating': defensive_rating,
+                'efficiency_margin': efficiency_margin,
+                'pace': pace,
+                'momentum': momentum,
+                # Four Factors
+                'efg_o': kenpom.get('efg_o', 50.0),
+                'efg_d': kenpom.get('efg_d', 50.0),
+                'tov_o': kenpom.get('tov_o', 20.0),
+                'tov_d': kenpom.get('tov_d', 20.0),
+                'oreb_pct': kenpom.get('oreb_pct', 30.0),
+                'ft_rate': kenpom.get('ft_rate', 35.0)
+            })
+
+        # Sort by adjusted efficiency margin by default (best to worst)
+        rankings.sort(key=lambda x: x['adj_em'], reverse=True)
+
+        # Add rank numbers
+        for i, team in enumerate(rankings, 1):
+            team['rank'] = i
+
+        return {'teams': rankings, 'count': len(rankings)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

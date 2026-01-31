@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         showView('today');
     });
 
+    document.getElementById('rankingsBtn').addEventListener('click', () => {
+        showView('rankings');
+        loadRankings();
+    });
+
     document.getElementById('customPredictionBtn').addEventListener('click', () => {
         showView('custom');
     });
@@ -29,19 +34,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showView(view) {
     const todayGamesView = document.getElementById('todayGamesView');
+    const rankingsView = document.getElementById('rankingsView');
     const customPredictionView = document.getElementById('customPredictionView');
     const todayGamesBtn = document.getElementById('todayGamesBtn');
+    const rankingsBtn = document.getElementById('rankingsBtn');
     const customPredictionBtn = document.getElementById('customPredictionBtn');
 
+    // Hide all views
+    todayGamesView.style.display = 'none';
+    rankingsView.style.display = 'none';
+    customPredictionView.style.display = 'none';
+
+    // Remove active class from all buttons
+    todayGamesBtn.classList.remove('nav-btn-active');
+    rankingsBtn.classList.remove('nav-btn-active');
+    customPredictionBtn.classList.remove('nav-btn-active');
+
+    // Show selected view and activate button
     if (view === 'today') {
         todayGamesView.style.display = 'block';
-        customPredictionView.style.display = 'none';
         todayGamesBtn.classList.add('nav-btn-active');
-        customPredictionBtn.classList.remove('nav-btn-active');
-    } else {
-        todayGamesView.style.display = 'none';
+    } else if (view === 'rankings') {
+        rankingsView.style.display = 'block';
+        rankingsBtn.classList.add('nav-btn-active');
+    } else if (view === 'custom') {
         customPredictionView.style.display = 'block';
-        todayGamesBtn.classList.remove('nav-btn-active');
         customPredictionBtn.classList.add('nav-btn-active');
     }
 }
@@ -640,5 +657,145 @@ function createTeamStatRows(stats) {
     }
 
     return rows.join('');
+}
+
+// ==================== RANKINGS PAGE ====================
+
+let rankingsData = [];
+let currentSortColumn = 'rank';
+let currentSortDirection = 'asc';
+
+async function loadRankings() {
+    const loading = document.getElementById('rankingsLoading');
+    const error = document.getElementById('rankingsError');
+    const tableContainer = document.getElementById('rankingsTableContainer');
+
+    loading.style.display = 'block';
+    error.style.display = 'none';
+    tableContainer.style.display = 'none';
+
+    try {
+        const response = await fetch(`${API_BASE}/teams/rankings`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || 'Failed to load rankings');
+        }
+
+        rankingsData = data.teams || [];
+        currentSortColumn = 'rank';
+        currentSortDirection = 'asc';
+
+        renderRankingsTable();
+
+        loading.style.display = 'none';
+        tableContainer.style.display = 'block';
+
+        // Set up sorting listeners
+        setupRankingsSortListeners();
+    } catch (err) {
+        loading.style.display = 'none';
+        error.style.display = 'block';
+        error.textContent = `Error: ${err.message}`;
+        console.error('Error loading rankings:', err);
+    }
+}
+
+function setupRankingsSortListeners() {
+    const headers = document.querySelectorAll('#rankingsTable th.sortable');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const column = header.getAttribute('data-sort');
+            sortRankings(column);
+        });
+    });
+}
+
+function sortRankings(column) {
+    // Toggle direction if clicking same column
+    if (column === currentSortColumn) {
+        currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSortColumn = column;
+        // Default sort direction based on column
+        if (column === 'rank' || column === 'defensive_rating' || column === 'adj_d') {
+            currentSortDirection = 'asc'; // Lower is better for rank and defense
+        } else {
+            currentSortDirection = 'desc'; // Higher is better for most stats
+        }
+    }
+
+    // Sort data
+    rankingsData.sort((a, b) => {
+        let aVal = a[column];
+        let bVal = b[column];
+
+        // Handle string vs number comparison
+        if (typeof aVal === 'string' && typeof bVal === 'string') {
+            aVal = aVal.toLowerCase();
+            bVal = bVal.toLowerCase();
+        }
+
+        if (currentSortDirection === 'asc') {
+            return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+        } else {
+            return aVal < bVal ? 1 : aVal > bVal ? -1 : 0;
+        }
+    });
+
+    renderRankingsTable();
+}
+
+function renderRankingsTable() {
+    const tbody = document.getElementById('rankingsTableBody');
+    tbody.innerHTML = '';
+
+    // Update header sort indicators
+    const headers = document.querySelectorAll('#rankingsTable th.sortable');
+    headers.forEach(header => {
+        header.classList.remove('active', 'sort-asc', 'sort-desc');
+        if (header.getAttribute('data-sort') === currentSortColumn) {
+            header.classList.add('active', currentSortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
+        }
+    });
+
+    // Render rows
+    rankingsData.forEach((team, index) => {
+        const row = document.createElement('tr');
+
+        // Add hover effect class
+        row.className = 'rankings-row';
+
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td class="team-name-cell">${escapeHtml(team.team_name)}</td>
+            <td>${escapeHtml(team.conference || '-')}</td>
+            <td>${team.record || '0-0'}</td>
+            <td>${formatNumber(team.adj_em, 1)}</td>
+            <td>${formatNumber(team.adj_o, 1)}</td>
+            <td>${formatNumber(team.adj_d, 1)}</td>
+            <td>${formatNumber(team.adj_t, 1)}</td>
+            <td>${formatNumber(team.offensive_rating, 1)}</td>
+            <td>${formatNumber(team.defensive_rating, 1)}</td>
+            <td>${formatNumber(team.pace, 1)}</td>
+            <td>${formatMomentum(team.momentum)}</td>
+        `;
+
+        tbody.appendChild(row);
+    });
+}
+
+function formatMomentum(momentum) {
+    if (momentum === undefined || momentum === null) {
+        return '-';
+    }
+    const formatted = formatNumber(momentum, 2);
+    if (momentum > 0.2) {
+        return `<span style="color: #4CAF50; font-weight: 600;">+${formatted}</span>`;
+    } else if (momentum < -0.2) {
+        return `<span style="color: #f44336; font-weight: 600;">${formatted}</span>`;
+    } else {
+        return formatted;
+    }
 }
 

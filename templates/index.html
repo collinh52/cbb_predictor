@@ -16,6 +16,7 @@
         <!-- Navigation Menu -->
         <nav class="nav-menu">
             <button id="todayGamesBtn" class="nav-btn nav-btn-active">Today's Games</button>
+            <button id="rankingsBtn" class="nav-btn">Team Rankings</button>
             <button id="customPredictionBtn" class="nav-btn">Custom Prediction</button>
         </nav>
 
@@ -29,6 +30,40 @@
             <div id="loading" class="loading">Loading predictions...</div>
             <div id="error" class="error" style="display: none;"></div>
             <div id="gamesContainer" class="games-container"></div>
+        </div>
+
+        <!-- Team Rankings View -->
+        <div id="rankingsView" class="view-section" style="display: none;">
+            <div class="rankings-container">
+                <h2 class="section-header">Team Rankings</h2>
+
+                <div id="rankingsLoading" class="loading" style="display: none;">Loading rankings...</div>
+                <div id="rankingsError" class="error" style="display: none;"></div>
+
+                <div id="rankingsTableContainer" class="rankings-table-container">
+                    <table id="rankingsTable" class="rankings-table">
+                        <thead>
+                            <tr>
+                                <th data-sort="rank" class="sortable active">Rk</th>
+                                <th data-sort="team_name" class="sortable">Team</th>
+                                <th data-sort="conference" class="sortable">Conf</th>
+                                <th data-sort="record" class="sortable">Record</th>
+                                <th data-sort="adj_em" class="sortable" title="KenPom Adjusted Efficiency Margin">AdjEM</th>
+                                <th data-sort="adj_o" class="sortable" title="KenPom Adjusted Offensive Efficiency">AdjO</th>
+                                <th data-sort="adj_d" class="sortable" title="KenPom Adjusted Defensive Efficiency">AdjD</th>
+                                <th data-sort="adj_t" class="sortable" title="KenPom Adjusted Tempo">AdjT</th>
+                                <th data-sort="offensive_rating" class="sortable" title="UKF Offensive Rating">Off</th>
+                                <th data-sort="defensive_rating" class="sortable" title="UKF Defensive Rating">Def</th>
+                                <th data-sort="pace" class="sortable" title="Possessions per game">Pace</th>
+                                <th data-sort="momentum" class="sortable" title="Recent performance trend">Mom</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingsTableBody">
+                            <!-- Rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- Custom Prediction View -->
