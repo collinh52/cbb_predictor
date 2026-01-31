@@ -349,6 +349,47 @@ SPORTSDATA_TO_ODDS_API = {
 # Reverse mapping: The Odds API name to SportsDataIO abbreviation
 ODDS_API_TO_SPORTSDATA = {v: k for k, v in SPORTSDATA_TO_ODDS_API.items()}
 
+# ESPN to KenPom team name mappings for teams that might have different names
+# This helps avoid fuzzy matching issues
+ESPN_TO_KENPOM_NAMES = {
+    # Michigan schools - ensure exact matches
+    'Michigan Wolverines': 'Michigan',
+    'Michigan State Spartans': 'Michigan St.',
+    'Western Michigan Broncos': 'Western Michigan',
+    'Eastern Michigan Eagles': 'Eastern Michigan',
+    'Central Michigan Chippewas': 'Central Michigan',
+
+    # Other common variations
+    'UConn Huskies': 'Connecticut',
+    'Connecticut Huskies': 'Connecticut',
+    'Miami Hurricanes': 'Miami FL',
+    'Miami (FL) Hurricanes': 'Miami FL',
+    'Miami (OH) RedHawks': 'Miami OH',
+    'Ole Miss Rebels': 'Mississippi',
+    'Mississippi Rebels': 'Mississippi',
+    'LSU Tigers': 'Louisiana St.',
+    'Louisiana State Tigers': 'Louisiana St.',
+    'NC State Wolfpack': 'North Carolina St.',
+    'North Carolina State Wolfpack': 'North Carolina St.',
+    'UNC Tar Heels': 'North Carolina',
+    'North Carolina Tar Heels': 'North Carolina',
+    'USC Trojans': 'Southern California',
+    'Southern California Trojans': 'Southern California',
+    'UCF Knights': 'Central Florida',
+    'Central Florida Knights': 'Central Florida',
+    'SMU Mustangs': 'Southern Methodist',
+    'TCU Horned Frogs': 'Texas Christian',
+    'VCU Rams': 'Virginia Commonwealth',
+    'Saint Mary\'s Gaels': 'Saint Mary\'s CA',
+    'St. Mary\'s Gaels': 'Saint Mary\'s CA',
+    'Saint Joseph\'s Hawks': 'Saint Joseph\'s',
+    'St. Joseph\'s Hawks': 'Saint Joseph\'s',
+    'Saint Louis Billikens': 'Saint Louis',
+    'St. Louis Billikens': 'Saint Louis',
+    'LIU Sharks': 'Long Island University',
+    'Long Island Sharks': 'Long Island University',
+}
+
 
 def get_odds_api_name(sportsdata_abbr: str) -> str:
     """
@@ -381,36 +422,65 @@ def get_sportsdata_abbr(odds_api_name: str) -> str:
 def fuzzy_match_team(team_name: str, candidates: list, threshold: float = 0.6) -> str:
     """
     Find the best fuzzy match for a team name from a list of candidates.
-    
+
     Args:
         team_name: Team name to match
         candidates: List of candidate team names
         threshold: Minimum similarity score (0-1)
-    
+
     Returns:
         Best matching candidate or empty string if no good match
     """
     from difflib import SequenceMatcher
-    
+
     best_match = ""
     best_score = 0.0
-    
-    team_lower = team_name.lower()
-    
+
+    team_lower = team_name.lower().strip()
+
+    # First pass: Look for exact matches
     for candidate in candidates:
-        candidate_lower = candidate.lower()
-        
-        # Check for substring match first
-        if team_lower in candidate_lower or candidate_lower in team_lower:
-            score = 0.9
-        else:
-            # Use sequence matcher
-            score = SequenceMatcher(None, team_lower, candidate_lower).ratio()
-        
+        candidate_lower = candidate.lower().strip()
+        if team_lower == candidate_lower:
+            return candidate  # Exact match - return immediately
+
+    # Second pass: Calculate similarity scores
+    for candidate in candidates:
+        candidate_lower = candidate.lower().strip()
+
+        # Use sequence matcher for similarity
+        score = SequenceMatcher(None, team_lower, candidate_lower).ratio()
+
+        # Bonus for word-level matches (e.g., "Michigan State" vs "Michigan")
+        # Split into words and check if all words from shorter name are in longer name
+        team_words = set(team_lower.split())
+        candidate_words = set(candidate_lower.split())
+
+        # Both names must share significant words, but penalize if lengths differ greatly
+        common_words = team_words & candidate_words
+        if common_words:
+            # Check that the common words are significant (not just "state", "university", etc.)
+            stopwords = {'state', 'university', 'college', 'tech', 'a&m', 'st'}
+            significant_common = common_words - stopwords
+
+            # Only boost score if we have significant common words
+            # and the word counts are similar
+            word_count_ratio = min(len(team_words), len(candidate_words)) / max(len(team_words), len(candidate_words))
+
+            if significant_common and word_count_ratio > 0.5:
+                # Penalize if one is a subset of the other (e.g., "Michigan" subset of "Michigan State")
+                if team_words < candidate_words or candidate_words < team_words:
+                    # This is a subset match - lower the score significantly
+                    score *= 0.6
+                else:
+                    # Good word match with similar structure
+                    word_match_score = len(common_words) / max(len(team_words), len(candidate_words))
+                    score = max(score, word_match_score * 0.95)
+
         if score > best_score and score >= threshold:
             best_score = score
             best_match = candidate
-    
+
     return best_match
 
 

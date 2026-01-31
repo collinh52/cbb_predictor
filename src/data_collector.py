@@ -379,11 +379,23 @@ class DataCollector:
         if not team_name:
             return self._default_kenpom_rating()
 
+        # Try direct ESPN to KenPom name mapping first (for known problematic teams)
+        from src.team_name_mapping import ESPN_TO_KENPOM_NAMES
+        kenpom_name = ESPN_TO_KENPOM_NAMES.get(team_name)
+        if kenpom_name:
+            # Look up by the mapped KenPom name
+            normalized_kenpom = self._normalize_team_name(kenpom_name)
+            rating = ratings_by_normalized.get(normalized_kenpom)
+            if rating:
+                return rating
+
+        # Try normalized ESPN name
         normalized_name = self._normalize_team_name(team_name)
         rating = ratings_by_normalized.get(normalized_name)
         if rating:
             return rating
 
+        # Fall back to fuzzy matching (now improved to avoid subset matches)
         cached_original = self._kenpom_cache.get(season, {}).get('original', {})
         if cached_original:
             from src.team_name_mapping import fuzzy_match_team
