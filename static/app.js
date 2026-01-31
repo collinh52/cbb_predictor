@@ -238,6 +238,9 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// Store teams globally for searchable dropdowns
+let allTeams = [];
+
 // Load team list for custom prediction
 async function loadTeams() {
     try {
@@ -249,29 +252,138 @@ async function loadTeams() {
             return;
         }
 
-        const teams = data.teams || [];
-        const homeSelect = document.getElementById('homeTeamSelect');
-        const awaySelect = document.getElementById('awayTeamSelect');
+        allTeams = data.teams || [];
 
-        // Clear existing options except the default
-        homeSelect.innerHTML = '<option value="">Select Home Team</option>';
-        awaySelect.innerHTML = '<option value="">Select Away Team</option>';
-
-        // Add teams to both dropdowns
-        teams.forEach(team => {
-            const homeOption = document.createElement('option');
-            homeOption.value = team.id;
-            homeOption.textContent = team.name;
-            homeSelect.appendChild(homeOption);
-
-            const awayOption = document.createElement('option');
-            awayOption.value = team.id;
-            awayOption.textContent = team.name;
-            awaySelect.appendChild(awayOption);
-        });
+        // Initialize searchable dropdowns
+        initializeSearchableSelect('away');
+        initializeSearchableSelect('home');
     } catch (err) {
         console.error('Error loading teams:', err);
     }
+}
+
+// Initialize searchable select dropdown
+function initializeSearchableSelect(type) {
+    const searchInput = document.getElementById(`${type}TeamSearch`);
+    const dropdown = document.getElementById(`${type}TeamDropdown`);
+    const hiddenSelect = document.getElementById(`${type}TeamSelect`);
+
+    let highlightedIndex = -1;
+    let filteredTeams = [];
+
+    // Handle input changes
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
+
+        if (searchTerm === '') {
+            // If cleared, reset
+            hiddenSelect.value = '';
+            searchInput.classList.remove('has-value');
+            dropdown.style.display = 'none';
+            return;
+        }
+
+        // Filter teams
+        filteredTeams = allTeams.filter(team =>
+            team.name.toLowerCase().includes(searchTerm)
+        );
+
+        // Display filtered teams
+        displayFilteredTeams(filteredTeams, dropdown, searchInput, hiddenSelect, type);
+        highlightedIndex = -1;
+    });
+
+    // Handle focus
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim() !== '' && hiddenSelect.value === '') {
+            // Show dropdown if there's text but no selection
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            filteredTeams = allTeams.filter(team =>
+                team.name.toLowerCase().includes(searchTerm)
+            );
+            displayFilteredTeams(filteredTeams, dropdown, searchInput, hiddenSelect, type);
+        }
+    });
+
+    // Handle keyboard navigation
+    searchInput.addEventListener('keydown', (e) => {
+        if (dropdown.style.display === 'none') return;
+
+        const items = dropdown.querySelectorAll('.searchable-select-dropdown-item:not(.searchable-select-dropdown-no-results)');
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1);
+            updateHighlight(items, highlightedIndex);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            highlightedIndex = Math.max(highlightedIndex - 1, 0);
+            updateHighlight(items, highlightedIndex);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (highlightedIndex >= 0 && items[highlightedIndex]) {
+                items[highlightedIndex].click();
+            }
+        } else if (e.key === 'Escape') {
+            dropdown.style.display = 'none';
+            highlightedIndex = -1;
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.style.display = 'none';
+            highlightedIndex = -1;
+        }
+    });
+}
+
+// Display filtered teams in dropdown
+function displayFilteredTeams(teams, dropdown, searchInput, hiddenSelect, type) {
+    dropdown.innerHTML = '';
+
+    if (teams.length === 0) {
+        dropdown.innerHTML = '<div class="searchable-select-dropdown-no-results">No teams found</div>';
+        dropdown.style.display = 'block';
+        return;
+    }
+
+    teams.forEach((team, index) => {
+        const item = document.createElement('div');
+        item.className = 'searchable-select-dropdown-item';
+        item.textContent = team.name;
+        item.dataset.teamId = team.id;
+        item.dataset.teamName = team.name;
+
+        item.addEventListener('click', () => {
+            selectTeam(team, searchInput, hiddenSelect, dropdown, type);
+        });
+
+        dropdown.appendChild(item);
+    });
+
+    dropdown.style.display = 'block';
+}
+
+// Select a team
+function selectTeam(team, searchInput, hiddenSelect, dropdown, type) {
+    searchInput.value = team.name;
+    searchInput.classList.add('has-value');
+    hiddenSelect.value = team.id;
+    dropdown.style.display = 'none';
+}
+
+// Update highlighted item in dropdown
+function updateHighlight(items, index) {
+    items.forEach((item, i) => {
+        if (i === index) {
+            item.classList.add('highlighted');
+            item.scrollIntoView({ block: 'nearest' });
+        } else {
+            item.classList.remove('highlighted');
+        }
+    });
 }
 
 // Generate custom prediction

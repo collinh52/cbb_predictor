@@ -39,19 +39,35 @@
                 <div class="custom-prediction-form">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="awayTeamSelect">Away Team</label>
-                            <select id="awayTeamSelect" class="team-select">
-                                <option value="">Select Away Team</option>
-                            </select>
+                            <label for="awayTeamSearch">Away Team</label>
+                            <div class="searchable-select-container">
+                                <input
+                                    type="text"
+                                    id="awayTeamSearch"
+                                    class="searchable-select-input"
+                                    placeholder="Type to search teams..."
+                                    autocomplete="off"
+                                >
+                                <div id="awayTeamDropdown" class="searchable-select-dropdown" style="display: none;"></div>
+                                <input type="hidden" id="awayTeamSelect" value="">
+                            </div>
                         </div>
 
                         <div class="at-symbol">@</div>
 
                         <div class="form-group">
-                            <label for="homeTeamSelect">Home Team</label>
-                            <select id="homeTeamSelect" class="team-select">
-                                <option value="">Select Home Team</option>
-                            </select>
+                            <label for="homeTeamSearch">Home Team</label>
+                            <div class="searchable-select-container">
+                                <input
+                                    type="text"
+                                    id="homeTeamSearch"
+                                    class="searchable-select-input"
+                                    placeholder="Type to search teams..."
+                                    autocomplete="off"
+                                >
+                                <div id="homeTeamDropdown" class="searchable-select-dropdown" style="display: none;"></div>
+                                <input type="hidden" id="homeTeamSelect" value="">
+                            </div>
                         </div>
                     </div>
 
