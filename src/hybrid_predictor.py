@@ -317,6 +317,12 @@ class HybridPredictor:
                                    home_team_id: int, away_team_id: int,
                                    prediction: Dict):
         """Save prediction to database."""
+        import json
+
+        # Convert feature dicts to JSON strings for database storage
+        ukf_features = prediction.get('ukf_features_json')
+        ml_features = prediction.get('ml_features_json')
+
         prediction_data = {
             'pregame_spread': prediction.get('spread'),
             'pregame_total': prediction.get('total_line'),
@@ -329,11 +335,11 @@ class HybridPredictor:
             'home_covers_probability': prediction.get('home_covers_probability'),
             'over_probability': prediction.get('over_probability'),
             'prediction_confidence': prediction.get('prediction_confidence'),
-            'ukf_features_json': prediction.get('ukf_features_json'),
-            'ml_features_json': prediction.get('ml_features_json'),
+            'ukf_features_json': json.dumps(ukf_features) if ukf_features else None,
+            'ml_features_json': json.dumps(ml_features) if ml_features else None,
             'prediction_source': prediction.get('prediction_source', 'hybrid')
         }
-        
+
         self.database.save_prediction(
             game_id, game_date, home_team_id, away_team_id, prediction_data
         )
