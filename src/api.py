@@ -7,14 +7,25 @@ from fastapi.responses import HTMLResponse, FileResponse
 from jinja2 import Template
 from typing import List, Dict, Optional
 from datetime import datetime
+from pydantic import BaseModel
 import os
 import json
 
 from src.predictor import get_predictor, get_hybrid_predictor
 from src.data_collector import get_collector
 from src.database import get_database
+from src.espn_collector import get_espn_collector
+from src.feature_calculator import FeatureCalculator
 
 app = FastAPI(title="UKF Basketball Predictor")
+
+
+# Pydantic models for request/response
+class CustomPredictionRequest(BaseModel):
+    home_team_id: int
+    away_team_id: int
+    neutral_court: bool = False
+
 
 # Mount static files
 static_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
@@ -329,6 +340,120 @@ async def get_prediction_history(start_date: Optional[str] = None, end_date: Opt
             session.close()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/teams/list")
+async def get_teams_list():
+    """Get list of all teams for dropdowns."""
+    try:
+        espn_collector = get_espn_collector()
+        teams = espn_collector.get_all_teams()
+
+        # Sort teams alphabetically by name
+        sorted_teams = sorted(teams, key=lambda t: t.get('name', ''))
+
+        # Format for frontend
+        teams_list = [
+            {
+                'id': team.get('id'),
+                'name': team.get('name'),
+                'abbreviation': team.get('abbreviation', '')
+            }
+            for team in sorted_teams
+            if team.get('id') and team.get('name')
+        ]
+
+        return {'teams': teams_list}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/predictions/custom")
+async def generate_custom_prediction(request: CustomPredictionRequest):
+    """Generate a custom prediction for any two teams."""
+    try:
+        espn_collector = get_espn_collector()
+        hybrid_predictor = get_hybrid_predictor()
+        collector = get_collector()
+
+        # Get team names
+        teams = espn_collector.get_all_teams()
+        home_team_info = next((t for t in teams if t.get('id') == request.home_team_id), None)
+        away_team_info = next((t for t in teams if t.get('id') == request.away_team_id), None)
+
+        if not home_team_info or not away_team_info:
+            raise HTTPException(status_code=404, detail="Team not found")
+
+        home_team_name = home_team_info.get('name', 'Home Team')
+        away_team_name = away_team_info.get('name', 'Away Team')
+
+        # Create a synthetic game object
+        game = {
+            'HomeTeam': home_team_name,
+            'AwayTeam': away_team_name,
+            'HomeTeamID': request.home_team_id,
+            'AwayTeamID': request.away_team_id,
+            'NeutralSite': request.neutral_court,
+            'DateTime': datetime.now().isoformat()
+        }
+
+        # Generate prediction
+        pred = hybrid_predictor.predict_game(game)
+
+        # Get team stats using feature calculator
+        feature_calc = FeatureCalculator(collector)
+        home_features = feature_calc.calculate_features(request.home_team_id)
+        away_features = feature_calc.calculate_features(request.away_team_id)
+
+        # Format response with full stats
+        return {
+            'home_team': home_team_name,
+            'away_team': away_team_name,
+            'home_team_id': request.home_team_id,
+            'away_team_id': request.away_team_id,
+            'neutral_court': request.neutral_court,
+            'prediction': {
+                'predicted_margin': pred.get('hybrid_predicted_margin'),
+                'predicted_total': pred.get('hybrid_predicted_total'),
+                'ukf_predicted_margin': pred.get('ukf_predicted_margin'),
+                'ukf_predicted_total': pred.get('ukf_predicted_total'),
+                'ml_predicted_margin': pred.get('ml_predicted_margin'),
+                'ml_predicted_total': pred.get('ml_predicted_total'),
+                'predicted_winner': pred.get('predicted_winner'),
+                'prediction_source': pred.get('prediction_source'),
+                'overall_confidence': pred.get('overall_confidence', 0)
+            },
+            'home_team_stats': {
+                'offensive_rating': home_features.get('offensive_rating', 100),
+                'defensive_rating': home_features.get('defensive_rating', 100),
+                'pace': home_features.get('pace', 70),
+                'kenpom_adj_em': home_features.get('kenpom_adj_em', 0),
+                'kenpom_adj_o': home_features.get('kenpom_adj_o', 100),
+                'kenpom_adj_d': home_features.get('kenpom_adj_d', 100),
+                'kenpom_adj_t': home_features.get('kenpom_adj_t', 70),
+                'momentum': home_features.get('momentum', 0),
+                'fatigue': home_features.get('fatigue', 0),
+                'health_status': home_features.get('health_status', 1.0),
+                'sos': home_features.get('sos', 0)
+            },
+            'away_team_stats': {
+                'offensive_rating': away_features.get('offensive_rating', 100),
+                'defensive_rating': away_features.get('defensive_rating', 100),
+                'pace': away_features.get('pace', 70),
+                'kenpom_adj_em': away_features.get('kenpom_adj_em', 0),
+                'kenpom_adj_o': away_features.get('kenpom_adj_o', 100),
+                'kenpom_adj_d': away_features.get('kenpom_adj_d', 100),
+                'kenpom_adj_t': away_features.get('kenpom_adj_t', 70),
+                'momentum': away_features.get('momentum', 0),
+                'fatigue': away_features.get('fatigue', 0),
+                'health_status': away_features.get('health_status', 1.0),
+                'sos': away_features.get('sos', 0)
+            }
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating prediction: {str(e)}")
 
 
 @app.get("/api/health")
