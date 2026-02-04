@@ -21,6 +21,7 @@ from src.odds_collector import get_odds_collector
 from src.predictor import get_hybrid_predictor
 from src.ats_tracker import get_ats_tracker
 from src.data_collector import DataCollector
+from src.database import get_database
 from src.team_name_mapping import get_espn_team_id_from_name, find_espn_team_id_from_games
 import config
 
@@ -49,9 +50,10 @@ def collect_odds_and_predictions(target_date: str = None):
     if not kenpom_ratings:
         print("⚠️  KenPom summary file not found; predictions will skip KenPom blending")
     
-    # Initialize collectors
+    # Initialize collectors and database
     odds_collector = get_odds_collector()
     ats_tracker = get_ats_tracker()
+    database = get_database()
     
     # PRIMARY: Fetch all games with odds from The Odds API
     print("🎰 Fetching games from The Odds API (primary source)...")
@@ -204,7 +206,7 @@ def collect_odds_and_predictions(target_date: str = None):
             print(f"⚠️  Error predicting {away_team} @ {home_team}: {e}")
             continue
         
-        # Store prediction with Vegas lines
+        # Store prediction with Vegas lines in ATS tracker (JSON)
         record = ats_tracker.store_prediction(
             game_id=game_id,
             game_date=target_date,
@@ -218,7 +220,41 @@ def collect_odds_and_predictions(target_date: str = None):
             vegas_spread=vegas_spread,
             vegas_total=vegas_total
         )
-        
+
+        # Also save prediction to database for unified storage
+        # Use numeric game_id (hash of string ID if needed)
+        numeric_game_id = game_for_prediction['HomeTeamID'] * 100000 + game_for_prediction['AwayTeamID']
+        try:
+            game_datetime = datetime.fromisoformat(commence_time.replace('Z', '+00:00'))
+        except (ValueError, AttributeError):
+            game_datetime = datetime.strptime(target_date, '%Y-%m-%d')
+
+        prediction_data = {
+            'pregame_spread': vegas_spread,
+            'pregame_total': vegas_total,
+            'ukf_predicted_margin': prediction.get('ukf_predicted_margin'),
+            'ukf_predicted_total': prediction.get('ukf_predicted_total'),
+            'ml_predicted_margin': prediction.get('ml_predicted_margin'),
+            'ml_predicted_total': prediction.get('ml_predicted_total'),
+            'hybrid_predicted_margin': predicted_margin,
+            'hybrid_predicted_total': predicted_total,
+            'home_covers_probability': prediction.get('home_covers_probability'),
+            'over_probability': prediction.get('over_probability'),
+            'prediction_confidence': confidence,
+            'prediction_source': prediction.get('prediction_source', 'hybrid')
+        }
+
+        try:
+            database.save_prediction(
+                game_id=numeric_game_id,
+                game_date=game_datetime,
+                home_team_id=game_for_prediction['HomeTeamID'],
+                away_team_id=game_for_prediction['AwayTeamID'],
+                prediction_data=prediction_data
+            )
+        except Exception as db_err:
+            print(f"   ⚠️  Database save failed (continuing): {db_err}")
+
         predictions_stored += 1
         
         # Print prediction details
@@ -294,8 +330,9 @@ def _collect_from_espn_fallback(target_date: str, ats_tracker) -> Dict:
     Games collected this way won't have Vegas lines (straight-up only).
     """
     from src.espn_collector import get_espn_collector
-    
+
     espn = get_espn_collector()
+    database = get_database()
     target_datetime = datetime.strptime(target_date, '%Y-%m-%d')
     
     print(f"📅 Fetching games from ESPN for {target_date}...")
@@ -353,6 +390,38 @@ def _collect_from_espn_fallback(target_date: str, ats_tracker) -> Dict:
             vegas_spread=None,  # No Vegas line from ESPN fallback
             vegas_total=None
         )
+
+        # Also save prediction to database for unified storage
+        home_team_id = game.get('HomeTeamID', 0)
+        away_team_id = game.get('AwayTeamID', 0)
+        numeric_game_id = home_team_id * 100000 + away_team_id
+
+        prediction_data = {
+            'pregame_spread': None,
+            'pregame_total': None,
+            'ukf_predicted_margin': prediction.get('ukf_predicted_margin'),
+            'ukf_predicted_total': prediction.get('ukf_predicted_total'),
+            'ml_predicted_margin': prediction.get('ml_predicted_margin'),
+            'ml_predicted_total': prediction.get('ml_predicted_total'),
+            'hybrid_predicted_margin': predicted_margin,
+            'hybrid_predicted_total': predicted_total,
+            'home_covers_probability': prediction.get('home_covers_probability'),
+            'over_probability': prediction.get('over_probability'),
+            'prediction_confidence': confidence,
+            'prediction_source': prediction.get('prediction_source', 'hybrid')
+        }
+
+        try:
+            database.save_prediction(
+                game_id=numeric_game_id,
+                game_date=target_datetime,
+                home_team_id=home_team_id,
+                away_team_id=away_team_id,
+                prediction_data=prediction_data
+            )
+        except Exception as db_err:
+            print(f"   ⚠️  Database save failed (continuing): {db_err}")
+
         predictions_stored += 1
         print(f"✈️ {away_team} @ {home_team} - Predicted: {home_team} by {predicted_margin:+.1f} (no line)")
     

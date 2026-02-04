@@ -47,14 +47,16 @@ class MLFeatureEngineer:
             # Away team features
             'away_off_rating': float(away_state[TeamUKF.OFF_RATING]),
             'away_def_rating': float(away_state[TeamUKF.DEF_RATING]),
+            'away_home_adv': float(away_state[TeamUKF.HOME_ADV]),
             'away_health': float(away_state[TeamUKF.HEALTH]),
             'away_momentum': float(away_state[TeamUKF.MOMENTUM]),
             'away_fatigue': float(away_state[TeamUKF.FATIGUE]),
             'away_pace': float(away_state[TeamUKF.PACE]),
-            
+
             # Away team uncertainties
             'away_off_uncertainty': float(away_uncertainty[TeamUKF.OFF_RATING]),
             'away_def_uncertainty': float(away_uncertainty[TeamUKF.DEF_RATING]),
+            'away_home_adv_uncertainty': float(away_uncertainty[TeamUKF.HOME_ADV]),
             
             # Derived features
             'off_rating_diff': float(home_state[TeamUKF.OFF_RATING] - away_state[TeamUKF.OFF_RATING]),
@@ -72,13 +74,11 @@ class MLFeatureEngineer:
         features = {}
         home_team_name = game.get('HomeTeam') or game.get('HomeTeamName')
         away_team_name = game.get('AwayTeam') or game.get('AwayTeamName')
-        
-        # Pregame lines
-        pregame_spread = game.get('PointSpread')
-        pregame_total = game.get('OverUnder')
-        features['pregame_spread'] = float(pregame_spread) if pregame_spread is not None else 0.0
-        features['pregame_total'] = float(pregame_total) if pregame_total is not None else 0.0
-        
+
+        # Note: Pregame lines (PointSpread, OverUnder) are intentionally excluded
+        # from ML features to prevent data leakage. Including Vegas lines causes
+        # the model to learn to copy the line rather than make independent predictions.
+
         # Days of rest
         home_rest_days = self._calculate_rest_days(home_team_id, game_date, all_games)
         away_rest_days = self._calculate_rest_days(away_team_id, game_date, all_games)

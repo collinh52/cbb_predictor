@@ -13,14 +13,117 @@
             <p class="subtitle">College Basketball Game Predictions using Unscented Kalman Filter</p>
         </header>
 
-        <div class="controls">
-            <button id="refreshBtn" class="btn-primary">Refresh Predictions</button>
-            <span id="lastUpdate" class="last-update"></span>
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <button id="todayGamesBtn" class="nav-btn nav-btn-active">Today's Games</button>
+            <button id="rankingsBtn" class="nav-btn">Team Rankings</button>
+            <button id="customPredictionBtn" class="nav-btn">Custom Prediction</button>
+        </nav>
+
+        <!-- Today's Games View -->
+        <div id="todayGamesView" class="view-section">
+            <div class="controls">
+                <button id="refreshBtn" class="btn-primary">Refresh Predictions</button>
+                <button id="forceRefreshBtn" class="btn-secondary">Force Regenerate</button>
+                <span id="lastUpdate" class="last-update"></span>
+            </div>
+
+            <div id="loading" class="loading">Loading predictions...</div>
+            <div id="error" class="error" style="display: none;"></div>
+            <div id="gamesContainer" class="games-container"></div>
         </div>
 
-        <div id="loading" class="loading">Loading predictions...</div>
-        <div id="error" class="error" style="display: none;"></div>
-        <div id="gamesContainer" class="games-container"></div>
+        <!-- Team Rankings View -->
+        <div id="rankingsView" class="view-section" style="display: none;">
+            <div class="rankings-container">
+                <h2 class="section-header">Team Rankings</h2>
+
+                <div id="rankingsLoading" class="loading" style="display: none;">Loading rankings...</div>
+                <div id="rankingsError" class="error" style="display: none;"></div>
+
+                <div id="rankingsTableContainer" class="rankings-table-container">
+                    <table id="rankingsTable" class="rankings-table">
+                        <thead>
+                            <tr>
+                                <th data-sort="rank" class="sortable active">Rk</th>
+                                <th data-sort="team_name" class="sortable">Team</th>
+                                <th data-sort="conference" class="sortable">Conf</th>
+                                <th data-sort="record" class="sortable">Record</th>
+                                <th data-sort="adj_em" class="sortable" title="KenPom Adjusted Efficiency Margin">AdjEM</th>
+                                <th data-sort="adj_o" class="sortable" title="KenPom Adjusted Offensive Efficiency">AdjO</th>
+                                <th data-sort="adj_d" class="sortable" title="KenPom Adjusted Defensive Efficiency">AdjD</th>
+                                <th data-sort="adj_t" class="sortable" title="KenPom Adjusted Tempo">AdjT</th>
+                                <th data-sort="offensive_rating" class="sortable" title="UKF Offensive Rating">Off</th>
+                                <th data-sort="defensive_rating" class="sortable" title="UKF Defensive Rating">Def</th>
+                                <th data-sort="pace" class="sortable" title="Possessions per game">Pace</th>
+                                <th data-sort="momentum" class="sortable" title="Recent performance trend">Mom</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingsTableBody">
+                            <!-- Rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Prediction View -->
+        <div id="customPredictionView" class="view-section" style="display: none;">
+            <div class="custom-prediction-container">
+                <h2 class="section-header">Generate Custom Prediction</h2>
+
+                <div class="custom-prediction-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="awayTeamSearch">Away Team</label>
+                            <div class="searchable-select-container">
+                                <input
+                                    type="text"
+                                    id="awayTeamSearch"
+                                    class="searchable-select-input"
+                                    placeholder="Type to search teams..."
+                                    autocomplete="off"
+                                >
+                                <div id="awayTeamDropdown" class="searchable-select-dropdown" style="display: none;"></div>
+                                <input type="hidden" id="awayTeamSelect" value="">
+                            </div>
+                        </div>
+
+                        <div class="at-symbol">@</div>
+
+                        <div class="form-group">
+                            <label for="homeTeamSearch">Home Team</label>
+                            <div class="searchable-select-container">
+                                <input
+                                    type="text"
+                                    id="homeTeamSearch"
+                                    class="searchable-select-input"
+                                    placeholder="Type to search teams..."
+                                    autocomplete="off"
+                                >
+                                <div id="homeTeamDropdown" class="searchable-select-dropdown" style="display: none;"></div>
+                                <input type="hidden" id="homeTeamSelect" value="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="neutralCourt">
+                            <span>Neutral Court Game</span>
+                        </label>
+                    </div>
+
+                    <button id="generatePredictionBtn" class="btn-primary btn-large">
+                        Generate Prediction
+                    </button>
+                </div>
+
+                <div id="customLoading" class="loading" style="display: none;">Generating prediction...</div>
+                <div id="customError" class="error" style="display: none;"></div>
+                <div id="customPredictionResult" class="custom-prediction-result"></div>
+            </div>
+        </div>
     </div>
 
     <script src="/static/app.js"></script>

@@ -95,21 +95,32 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 4
 - **Overall Winner Accuracy**: 50.0%
 
-#### 📅 Predictions for 2026-01-28
+#### 📅 Predictions for 2026-02-02
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Gardner-Webb Bulldogs @ UNC Asheville Bulldogs | **HOME** (-17.5) | **UNDER** (149.5) | 95% |
-| Portland Pilots @ Pacific Tigers | **HOME** (-23.5) | - | 95% |
-| Colorado St Rams @ San Diego St Aztecs | **HOME** (-11.5) | **UNDER** (134.5) | 84% |
-| San Francisco Dons @ Santa Clara Broncos | **HOME** (-3.5) | **UNDER** (137.5) | 82% |
-| UCLA Bruins @ Oregon Ducks | **AWAY** (+12.5) | **UNDER** (129.5) | 46% |
-| Samford Bulldogs @ Furman Paladins | **HOME** (-7.0) | **UNDER** (149.0) | 75% |
-| NJIT Highlanders @ Albany Great Danes | **AWAY** (-4.5) | **UNDER** (138.5) | 44% |
-| Bryant Bulldogs @ Binghamton Bearcats | **HOME** (+1.5) | **UNDER** (131.5) | 58% |
-| Oregon St Beavers @ Loyola Marymount Lions | **HOME** (+4.5) | - | 11% |
-| Wofford Terriers @ Chattanooga Mocs | **AWAY** (-1.0) | **UNDER** (150.0) | 50% |
-| UMass Lowell River Hawks @ New Hampshire Wildcats | **HOME** (-2.5) | **UNDER** (142.5) | 45% |
+| Grambling St Tigers @ Alcorn St Braves | **HOME** (-5.0) | **UNDER** (143.0) | 95% |
+| Howard Bison @ Coppin St Eagles | **HOME** (-13.5) | **UNDER** (147.0) | 95% |
+| Nicholls St Colonels @ Northwestern St Demons | **HOME** (-1.0) | **UNDER** (148.0) | 95% |
+| Gardner-Webb Bulldogs @ Charleston Southern Buccaneers | **AWAY** (+18.0) | **UNDER** (158.5) | 89% |
+| Florida A&M Rattlers @ Alabama St Hornets | **HOME** (+4.0) | **UNDER** (140.5) | 88% |
+| Southern Jaguars @ Jackson St Tigers | **HOME** (-6.0) | **UNDER** (152.0) | 86% |
+| Akron Zips @ Eastern Michigan Eagles | **HOME** (-12.0) | **UNDER** (153.0) | 82% |
+| Houston Christian Huskies @ UT Rio Grande Valley Vaqueros | **AWAY** (+9.0) | **UNDER** (140.5) | 82% |
+| Canisius Golden Griffins @ Niagara Purple Eagles | **AWAY** (+2.5) | **UNDER** (126.5) | 70% |
+| Maryland-Eastern Shore Hawks @ North Carolina Central Eagles | **AWAY** (+3.0) | **UNDER** (134.0) | 69% |
+| McNeese Cowboys @ Stephen F. Austin Lumberjacks | **HOME** (-3.5) | **UNDER** (142.5) | 68% |
+| Idaho State Bengals @ Portland St Vikings | **AWAY** (+7.0) | **UNDER** (136.0) | 66% |
+| Tennessee Tech Golden Eagles @ Tennessee St Tigers | **AWAY** (+8.0) | **UNDER** (153.5) | 66% |
+| Boston Univ. Terriers @ Holy Cross Crusaders | **HOME** (-1.5) | **UNDER** (139.0) | 65% |
+| Kansas Jayhawks @ Texas Tech Red Raiders | **HOME** (+4.5) | **UNDER** (155.5) | 63% |
+| Weber State Wildcats @ Sacramento St Hornets | **HOME** (-1.0) | **UNDER** (162.0) | 59% |
+| Miami (OH) RedHawks @ Buffalo Bulls | **AWAY** (-4.5) | **UNDER** (164.5) | 57% |
+| Bethune-Cookman Wildcats @ Alabama A&M Bulldogs | **AWAY** (-2.0) | **UNDER** (142.0) | 54% |
+| New Orleans Privateers @ East Texas A&M Lions | **AWAY** (-1.5) | **UNDER** (150.5) | 53% |
+| Incarnate Word Cardinals @ Texas A&M-CC Islanders | **AWAY** (+5.0) | **UNDER** (138.0) | 51% |
+| SE Louisiana Lions @ Lamar Cardinals | **AWAY** (+6.0) | **UNDER** (132.5) | 50% |
+| Syracuse Orange @ North Carolina Tar Heels | **HOME** (+11.5) | **UNDER** (158.5) | 49% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -140,10 +151,13 @@ cbb_predictor/
 │   ├── accuracy_tracker.py      # Accuracy tracking
 │   └── team_name_mapping.py     # Team name reconciliation
 ├── scripts/                      # Utility scripts
-│   ├── show_team_ratings_v3.py  # Display team ratings (Phase 3D Enhanced)
+│   ├── show_team_ratings_v3.py  # Display team ratings
 │   ├── predict_today.py         # Today's game predictions
 │   ├── populate_season.py       # Populate database with season data
-│   ├── update_accuracy.py       # Update accuracy metrics
+│   ├── setup_and_train.py       # Database setup + training
+│   ├── daily_collect_odds.py    # Odds collection (GitHub Actions)
+│   ├── daily_check_results.py   # Results checking (GitHub Actions)
+│   ├── update_readme_accuracy.py # README accuracy updates
 │   └── test_odds_api.py         # Test Odds API integration
 ├── validation/                   # Backtesting & validation
 │   ├── backtest_option1_last_season.py
@@ -151,13 +165,10 @@ cbb_predictor/
 │   ├── backtest_option3_cross_validation.py
 │   └── run_all_backtests.py
 ├── docs/                         # Documentation
-│   ├── PHASE1_COMPLETE.md       # Phase 1 implementation details
-│   ├── RATING_IMPROVEMENTS.md   # Roadmap for improvements
-│   ├── ESPN_INTEGRATION_COMPLETE.md
-│   ├── DATA_COLLECTION_FIX.md
-│   ├── SOS_ADJUSTMENT_SUMMARY.md
-│   ├── ALTERNATIVE_APIS.md
-│   └── HYBRID_MODEL_README.md
+│   ├── ARCHITECTURE.md          # Technical architecture
+│   ├── STATUS.md                # Development status
+│   ├── DEVELOPMENT_HISTORY.md   # Historical development notes
+│   └── backtest_results/        # Historical backtest outputs
 ├── data/                         # Data storage
 │   ├── cache/                   # API response cache
 │   └── models/                  # Trained ML models

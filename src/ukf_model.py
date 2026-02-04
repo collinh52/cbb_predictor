@@ -195,13 +195,16 @@ class TeamUKF:
         residual_total = total_points - expected_total
         
         # Update offensive rating based on scoring
+        # Use consistent formula with measurement model: expected = ((off - def + 100) / 100) * pace
         our_score = (total_points + score_diff) / 2.0 if score_diff > 0 else (total_points - score_diff) / 2.0
-        offensive_update = (our_score - (our_off * actual_pace / 70.0)) * 0.1
-        self.ukf.x[self.OFF_RATING] += offensive_update
-        
-        # Update defensive rating based on opponent scoring
         opp_score = total_points - our_score
-        defensive_update = ((opp_off * actual_pace / 70.0) - opp_score) * 0.1
+        expected_our_score = ((our_off - opp_def + 100.0) / 100.0) * actual_pace_clamped
+        offensive_update = (our_score - expected_our_score) * 0.1
+        self.ukf.x[self.OFF_RATING] += offensive_update
+
+        # Update defensive rating based on opponent scoring
+        expected_opp_score = ((opp_off - our_def + 100.0) / 100.0) * actual_pace_clamped
+        defensive_update = (expected_opp_score - opp_score) * 0.1
         self.ukf.x[self.DEF_RATING] += defensive_update
         
         # Clamp values

@@ -314,9 +314,9 @@ class TestHealthCalculation:
             {'Status': 'Out', 'PlayerName': 'Player 1'},
             {'Status': 'Doubtful', 'PlayerName': 'Player 2'},
         ]
-        
-        health = calculator.calculate_health_status(team_id=1234)
-        
+
+        health = calculator.calculate_health_status(team_id=1234, fetch_injuries=True)
+
         assert health < 1.0, "Health should be less than 1.0 with injuries"
         assert health >= 0.5, "Health shouldn't drop too low"
     
@@ -443,9 +443,9 @@ class TestPaceCalculation:
     def test_pace_from_stats(self, calculator):
         """Test pace from team stats if available."""
         calculator.collector.get_team_stats.return_value = {'Possessions': 72.5}
-        
-        pace = calculator.calculate_pace(team_id=1234, games=[])
-        
+
+        pace = calculator.calculate_pace(team_id=1234, games=[], fetch_team_stats=True)
+
         assert pace == 72.5
     
     @pytest.mark.unit
