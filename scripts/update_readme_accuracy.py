@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """
-README Accuracy Updater Script
+README Updater Script
 
-This script updates the README.md file with current ATS accuracy statistics.
-It looks for markers in the README and replaces the content between them.
+This script updates the README.md file with:
+1. Current ATS accuracy statistics
+2. Today's predictions table
+3. Top 25 team rankings
 
-Run this after checking results to keep the README up-to-date.
+Run this after checking results or generating predictions to keep the README up-to-date.
 """
 import os
 import sys
@@ -16,13 +18,59 @@ from datetime import datetime
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.ats_tracker import get_ats_tracker
+import config
+
+
+def generate_rankings_section(top_n: int = 25) -> str:
+    """Generate Top 25 rankings markdown table."""
+    # Import from the same directory - handle both direct run and module run
+    try:
+        from show_team_ratings_v3 import calculate_team_ratings
+    except ImportError:
+        from scripts.show_team_ratings_v3 import calculate_team_ratings
+    from src.espn_collector import get_espn_collector
+
+    print("📊 Generating Top 25 Rankings...")
+
+    # Get games and calculate ratings
+    espn = get_espn_collector()
+    games = espn.get_all_games_via_team_schedules(config.CURRENT_SEASON)
+    completed = [g for g in games if g.get('HomeTeamScore') is not None]
+
+    print(f"   Processing {len(completed)} completed games...")
+    ratings, _ = calculate_team_ratings(completed, min_games=5)
+
+    # Build markdown table
+    lines = [
+        "",
+        "### 🏆 Top 25 Team Rankings",
+        "",
+        f"*Updated: {datetime.now().strftime('%B %d, %Y')}*",
+        "",
+        "| Rank | Team | Record | Rating | Off | Def |",
+        "|------|------|--------|--------|-----|-----|",
+    ]
+
+    for i, team in enumerate(ratings[:top_n], 1):
+        record = f"{team['wins']}-{team['losses']}"
+        rating = f"{team['overall_rating']:+.1f}"
+        off = f"{team['offensive_rating']:.1f}"
+        def_ = f"{team['defensive_rating']:.1f}"
+        lines.append(f"| {i} | {team['team_name']} | {record} | {rating} | {off} | {def_} |")
+
+    lines.append("")
+    lines.append("> *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*")
+    lines.append("")
+
+    print(f"   ✓ Generated rankings for top {top_n} teams")
+    return "\n".join(lines)
 
 
 def update_readme():
-    """Update README.md with current accuracy statistics."""
+    """Update README.md with current accuracy statistics and rankings."""
     print()
     print("=" * 80)
-    print("README ACCURACY UPDATER")
+    print("README UPDATER")
     print("=" * 80)
     print()
     
@@ -96,13 +144,41 @@ def update_readme():
         
         print("✓ No existing accuracy section found, adding new section...")
     
+    # Update rankings section
+    print()
+    rankings_section = generate_rankings_section(top_n=25)
+
+    rankings_start = "<!-- RANKINGS_START -->"
+    rankings_end = "<!-- RANKINGS_END -->"
+
+    if rankings_start in new_content and rankings_end in new_content:
+        # Replace existing rankings section
+        pattern = f"{re.escape(rankings_start)}.*?{re.escape(rankings_end)}"
+        new_content = re.sub(
+            pattern,
+            f"{rankings_start}\n{rankings_section}\n{rankings_end}",
+            new_content,
+            flags=re.DOTALL
+        )
+        print("✓ Found existing rankings section, updating...")
+    else:
+        # Insert after accuracy section
+        insert_pos = new_content.find("<!-- ACCURACY_STATS_END -->")
+        if insert_pos > 0:
+            insert_pos = new_content.find("\n", insert_pos) + 1
+            new_section = f"\n{rankings_start}\n{rankings_section}\n{rankings_end}\n"
+            new_content = new_content[:insert_pos] + new_section + new_content[insert_pos:]
+            print("✓ No existing rankings section found, adding after accuracy section...")
+        else:
+            print("⚠️  Could not find ACCURACY_STATS_END marker, skipping rankings insertion")
+
     # Write updated README
     with open(readme_path, 'w') as f:
         f.write(new_content)
-    
+
     print(f"✓ README.md updated at {readme_path}")
     print()
-    
+
     return True
 
 

@@ -95,36 +95,49 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 4
 - **Overall Winner Accuracy**: 50.0%
 
-#### 📅 Predictions for 2026-02-02
-
-| Matchup | Spread Pick | Total Pick | Confidence |
-|---------|-------------|------------|------------|
-| Grambling St Tigers @ Alcorn St Braves | **HOME** (-5.0) | **UNDER** (143.0) | 95% |
-| Howard Bison @ Coppin St Eagles | **HOME** (-13.5) | **UNDER** (147.0) | 95% |
-| Nicholls St Colonels @ Northwestern St Demons | **HOME** (-1.0) | **UNDER** (148.0) | 95% |
-| Gardner-Webb Bulldogs @ Charleston Southern Buccaneers | **AWAY** (+18.0) | **UNDER** (158.5) | 89% |
-| Florida A&M Rattlers @ Alabama St Hornets | **HOME** (+4.0) | **UNDER** (140.5) | 88% |
-| Southern Jaguars @ Jackson St Tigers | **HOME** (-6.0) | **UNDER** (152.0) | 86% |
-| Akron Zips @ Eastern Michigan Eagles | **HOME** (-12.0) | **UNDER** (153.0) | 82% |
-| Houston Christian Huskies @ UT Rio Grande Valley Vaqueros | **AWAY** (+9.0) | **UNDER** (140.5) | 82% |
-| Canisius Golden Griffins @ Niagara Purple Eagles | **AWAY** (+2.5) | **UNDER** (126.5) | 70% |
-| Maryland-Eastern Shore Hawks @ North Carolina Central Eagles | **AWAY** (+3.0) | **UNDER** (134.0) | 69% |
-| McNeese Cowboys @ Stephen F. Austin Lumberjacks | **HOME** (-3.5) | **UNDER** (142.5) | 68% |
-| Idaho State Bengals @ Portland St Vikings | **AWAY** (+7.0) | **UNDER** (136.0) | 66% |
-| Tennessee Tech Golden Eagles @ Tennessee St Tigers | **AWAY** (+8.0) | **UNDER** (153.5) | 66% |
-| Boston Univ. Terriers @ Holy Cross Crusaders | **HOME** (-1.5) | **UNDER** (139.0) | 65% |
-| Kansas Jayhawks @ Texas Tech Red Raiders | **HOME** (+4.5) | **UNDER** (155.5) | 63% |
-| Weber State Wildcats @ Sacramento St Hornets | **HOME** (-1.0) | **UNDER** (162.0) | 59% |
-| Miami (OH) RedHawks @ Buffalo Bulls | **AWAY** (-4.5) | **UNDER** (164.5) | 57% |
-| Bethune-Cookman Wildcats @ Alabama A&M Bulldogs | **AWAY** (-2.0) | **UNDER** (142.0) | 54% |
-| New Orleans Privateers @ East Texas A&M Lions | **AWAY** (-1.5) | **UNDER** (150.5) | 53% |
-| Incarnate Word Cardinals @ Texas A&M-CC Islanders | **AWAY** (+5.0) | **UNDER** (138.0) | 51% |
-| SE Louisiana Lions @ Lamar Cardinals | **AWAY** (+6.0) | **UNDER** (132.5) | 50% |
-| Syracuse Orange @ North Carolina Tar Heels | **HOME** (+11.5) | **UNDER** (158.5) | 49% |
+*No predictions available for today.*
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
 <!-- ACCURACY_STATS_END -->
+
+<!-- RANKINGS_START -->
+
+### 🏆 Top 25 Team Rankings
+
+*Updated: February 04, 2026*
+
+| Rank | Team | Record | Rating | Off | Def |
+|------|------|--------|--------|-----|-----|
+| 1 | Michigan Wolverines | 20-1 | +32.8 | 78.2 | 45.5 |
+| 2 | Arizona Wildcats | 22-0 | +29.4 | 75.8 | 46.4 |
+| 3 | Louisville Cardinals | 15-6 | +27.8 | 75.5 | 48.2 |
+| 4 | Iowa State Cyclones | 20-2 | +27.7 | 73.2 | 45.5 |
+| 5 | Duke Blue Devils | 21-1 | +27.4 | 70.0 | 42.6 |
+| 6 | Gonzaga Bulldogs | 22-1 | +27.0 | 72.0 | 45.0 |
+| 7 | Illinois Fighting Illini | 19-3 | +26.2 | 72.4 | 46.2 |
+| 8 | Alabama Crimson Tide | 14-7 | +26.2 | 79.2 | 53.0 |
+| 9 | Purdue Boilermakers | 18-4 | +26.1 | 72.0 | 45.9 |
+| 10 | Florida Gators | 16-6 | +25.9 | 71.6 | 46.1 |
+| 11 | Vanderbilt Commodores | 19-3 | +25.6 | 74.5 | 48.9 |
+| 12 | Houston Cougars | 19-2 | +25.2 | 67.2 | 42.0 |
+| 13 | BYU Cougars | 17-4 | +25.1 | 74.4 | 49.3 |
+| 14 | Arkansas Razorbacks | 16-6 | +24.7 | 76.6 | 52.0 |
+| 15 | UConn Huskies | 22-1 | +24.5 | 67.9 | 43.7 |
+| 16 | Kansas Jayhawks | 17-5 | +24.4 | 69.1 | 44.7 |
+| 17 | St. John's Red Storm | 17-5 | +23.6 | 71.1 | 47.5 |
+| 18 | Tennessee Volunteers | 16-6 | +23.5 | 69.2 | 46.0 |
+| 19 | NC State Wolfpack | 17-6 | +23.5 | 73.0 | 49.9 |
+| 20 | Michigan State Spartans | 19-3 | +23.3 | 66.0 | 42.8 |
+| 21 | Saint Louis Billikens | 22-1 | +23.0 | 73.7 | 50.8 |
+| 22 | Texas Tech Red Raiders | 16-6 | +22.8 | 70.7 | 47.9 |
+| 23 | Kentucky Wildcats | 15-7 | +22.8 | 70.6 | 48.2 |
+| 24 | Nebraska Cornhuskers | 20-2 | +22.7 | 66.9 | 44.6 |
+| 25 | Georgia Bulldogs | 16-6 | +22.5 | 76.3 | 54.2 |
+
+> *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
+
+<!-- RANKINGS_END -->
 
 ### Real-World Application
 - **Daily predictions** with confidence scores

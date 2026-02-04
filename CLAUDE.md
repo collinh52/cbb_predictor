@@ -92,6 +92,9 @@ python scripts/setup_and_train.py --populate 200 --train
 
 # Populate database with historical games
 python scripts/populate_season.py
+
+# Update README with accuracy stats and Top 25 rankings
+python scripts/update_readme_accuracy.py
 ```
 
 ### Validation and Testing
@@ -207,7 +210,12 @@ ESPN API → DataCollector → FeatureCalculator → UKF State Updates
 - Tracks predictions vs Vegas lines
 - Calculates rolling accuracy (7-day, 30-day, all-time)
 - Confidence-based stratification
-- Updates README.md via `scripts/update_readme_accuracy.py`
+
+**`scripts/update_readme_accuracy.py`**: README updater
+- Updates three dynamic README sections: accuracy stats, predictions, and Top 25 rankings
+- Uses markers: `<!-- ACCURACY_STATS_START/END -->` and `<!-- RANKINGS_START/END -->`
+- Generates Top 25 rankings table using `calculate_team_ratings()` from `show_team_ratings_v3.py`
+- Called by both morning and evening GitHub Actions jobs
 
 **`src/team_name_mapping.py`**: Name reconciliation
 - Maps team names across ESPN, KenPom, and The Odds API
@@ -248,15 +256,22 @@ KenPom data provides elite-level tempo-free ratings (AdjEM, AdjO, AdjD, AdjT):
 - Downloads KenPom summary CSV (`summary{season}.csv`)
 - Collects Vegas lines from The Odds API
 - Generates predictions for next 2 days (`scripts/predict_today.py --days 2`)
-- Updates README.md with new predictions
+- Updates README.md (predictions table, Top 25 rankings)
 - Commits ATS tracking data and README
 
 **Check Results Job** (runs 11 PM ET / 4 AM UTC):
 - Fetches completed game scores (last 7 days: `scripts/daily_check_results.py --days 7`)
 - Updates ATS tracking accuracy
 - Retrains ML model on latest 200 games (`scripts/setup_and_train.py --populate 200 --train`)
-- Updates README.md accuracy stats (`scripts/update_readme_accuracy.py`)
+- Updates README.md (accuracy stats, Top 25 rankings) via `scripts/update_readme_accuracy.py`
 - Commits results and updated models
+
+**README Dynamic Sections** (updated daily):
+| Section | Morning Job | Evening Job | Markers |
+|---------|-------------|-------------|---------|
+| Today's Predictions | ✅ | - | Within `ACCURACY_STATS` |
+| Accuracy Stats | - | ✅ | `<!-- ACCURACY_STATS_START/END -->` |
+| Top 25 Rankings | ✅ | ✅ | `<!-- RANKINGS_START/END -->` |
 
 **Caching Strategy**:
 - Game cache: Weekly refresh (key: `game-cache-{YEAR}-W{WEEK}`)
@@ -405,7 +420,7 @@ The system is in active development with ongoing improvements to feature enginee
 
 1. **Quick check**: `python validation/backtest_option2_rolling.py` (fastest, realistic scenario)
 2. **Comprehensive**: `python validation/run_all_backtests.py` (runs all three methods)
-3. **Live accuracy**: Check README.md for current ATS tracking stats (updated daily via GitHub Actions)
+3. **Live accuracy**: Check README.md for current ATS tracking stats and Top 25 rankings (updated daily via GitHub Actions)
 
 ### Updating After Code Changes
 
