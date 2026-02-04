@@ -504,7 +504,12 @@ class ATSTracker:
             if p.spread_pick:
                 spread_text = f"**{p.spread_pick}**"
                 if p.vegas_spread is not None:
-                    spread_text += f" ({p.vegas_spread:+.1f})"
+                    # Vegas spread is stored in home team perspective:
+                    # Negative = home favored (e.g., -8.0), Positive = home underdog (e.g., +8.0)
+                    # When picking AWAY, flip sign to show from away team's perspective
+                    # Example: Home -8.0, pick AWAY → show AWAY (+8.0)
+                    display_spread = p.vegas_spread if p.spread_pick == "HOME" else -p.vegas_spread
+                    spread_text += f" ({display_spread:+.1f})"
             else:
                 spread_text = "-"
                 

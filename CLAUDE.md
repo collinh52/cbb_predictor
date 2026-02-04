@@ -55,6 +55,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **No Laziness**: Find root causes. No temporary fixes. Senior developer standards.
 - **Minimal Impact**: Changes should only touch what's necessary. Avoid introducing bugs.
 
+## Sports Betting Concepts (Critical Domain Knowledge)
+
+### Vegas Spread Notation
+
+**ALWAYS use standard Vegas convention for spread notation:**
+
+#### How Spreads Work
+- **Negative spread** = Team is **favored** (must win by more than the spread to "cover")
+  - Example: `Baylor -8.0` means Baylor must win by MORE than 8 points
+  - If you bet Baylor -8.0 and they win by 10, you WIN
+  - If you bet Baylor -8.0 and they win by 6, you LOSE
+
+- **Positive spread** = Team is **underdog** (gets points added to their score)
+  - Example: `Colorado +8.0` means Colorado gets 8 points added
+  - If you bet Colorado +8.0 and they lose by 6, you WIN (6 < 8)
+  - If you bet Colorado +8.0 and they lose by 10, you LOSE (10 > 8)
+
+#### Storage Convention
+- Store spreads from **home team perspective**:
+  - `vegas_spread = -8.0` means home team favored by 8
+  - `vegas_spread = +8.0` means home team underdog by 8
+- **NEVER negate spreads** when collecting from The Odds API - they're already in correct format
+
+#### Display Convention
+- When showing a pick, always display the spread **from the picked team's perspective**:
+  - Pick HOME at -8.0 → Show `HOME (-8.0)`
+  - Pick AWAY at +8.0 → Show `AWAY (+8.0)`
+  - If picking AWAY when home is -8.0, flip the sign → Show `AWAY (+8.0)`
+
+#### Common Mistakes to Avoid
+1. ❌ **Never show "HOME (+8.0)" when home is favored** - this is impossible (favorites always have negative spreads)
+2. ❌ **Don't negate spreads from The Odds API** - they're already in standard format
+3. ❌ **Don't confuse spread direction with predicted margin** - they're independent values
+4. ✅ **Always verify spread logic**: If team is favored, spread must be negative
+
 ## Project Overview
 
 A college basketball prediction system that combines Unscented Kalman Filtering (UKF) with neural networks to predict game outcomes, spreads, and totals. Currently achieving **68.96% backtested accuracy** with live ATS (Against The Spread) tracking via GitHub Actions.
