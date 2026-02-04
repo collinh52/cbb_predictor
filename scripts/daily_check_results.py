@@ -56,61 +56,63 @@ def check_results(days_back: int = 3):
             predictions_by_date[date] = []
         predictions_by_date[date].append(record)
     
-    # Fetch completed games and check results
+    # Fetch ALL completed games (more comprehensive than scoreboard)
+    print("\n" + "-" * 80)
+    print("FETCHING ALL GAMES")
+    print("-" * 80 + "\n")
+
+    try:
+        import config
+        all_games = espn.get_all_games_via_team_schedules(config.CURRENT_SEASON)
+        # Filter for completed games (have scores)
+        completed_games = [g for g in all_games if
+                        g.get('HomeTeamScore') is not None and
+                        g.get('AwayTeamScore') is not None]
+        print(f"✓ Found {len(completed_games)} completed games this season")
+    except Exception as e:
+        print(f"⚠️  Error fetching games: {e}")
+        print("   Falling back to scoreboard method...")
+        completed_games = []
+        for date in sorted(predictions_by_date.keys()):
+            try:
+                date_dt = datetime.strptime(date, '%Y-%m-%d')
+                games = espn.get_games_for_date(date_dt)
+                completed_games.extend([g for g in games if
+                                    g.get('HomeTeamScore') is not None and
+                                    g.get('AwayTeamScore') is not None])
+            except:
+                continue
+
+    # Create lookup by game ID and team IDs
+    games_by_id = {str(g.get('GameID', '')): g for g in completed_games}
+    games_by_teams = {}
+    for g in completed_games:
+        key = (g.get('HomeTeamID'), g.get('AwayTeamID'))
+        games_by_teams[key] = g
+
+    # Check results for each date
     results_checked = 0
     spread_correct = 0
     total_correct = 0
-    
+
     print("\n" + "-" * 80)
     print("CHECKING RESULTS")
     print("-" * 80 + "\n")
-    
+
     for date in sorted(predictions_by_date.keys()):
         predictions = predictions_by_date[date]
-        
         print(f"📅 {date}: {len(predictions)} predictions to check")
-        
-        # Fetch games for this date (convert string to datetime)
-        try:
-            date_dt = datetime.strptime(date, '%Y-%m-%d')
-            games = espn.get_games_for_date(date_dt)
-            completed_games = [g for g in games if g.get('IsClosed', False) and 
-                            g.get('HomeTeamScore') is not None]
-        except Exception as e:
-            print(f"   ⚠️  Error fetching games: {e}")
-            continue
-        
-        if not completed_games:
-            print(f"   ℹ️  No completed games found yet")
-            continue
-        
-        # Create lookup by game ID and team names
-        games_by_id = {str(g.get('GameID', '')): g for g in completed_games}
         
         for record in predictions:
             game_id = record.game_id
-            
-            # Try to find matching game
+
+            # Try to find matching game by ID first
             game = games_by_id.get(game_id)
 
+            # Then try team IDs (works for games from Odds API)
             if not game:
-                # Try matching by team IDs (more reliable than names)
-                for g in completed_games:
-                    if (g.get('HomeTeamID') == record.home_team_id and
-                        g.get('AwayTeamID') == record.away_team_id):
-                        game = g
-                        break
-
-            if not game:
-                # Fallback: try matching by team names
-                for g in completed_games:
-                    home_match = (g.get('HomeTeam', '').lower() in record.home_team.lower() or
-                                record.home_team.lower() in g.get('HomeTeam', '').lower())
-                    away_match = (g.get('AwayTeam', '').lower() in record.away_team.lower() or
-                                record.away_team.lower() in g.get('AwayTeam', '').lower())
-                    if home_match and away_match:
-                        game = g
-                        break
+                team_key = (record.home_team_id, record.away_team_id)
+                game = games_by_teams.get(team_key)
 
             if not game:
                 continue
