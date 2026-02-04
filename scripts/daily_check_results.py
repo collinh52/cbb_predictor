@@ -92,15 +92,26 @@ def check_results(days_back: int = 3):
             
             # Try to find matching game
             game = games_by_id.get(game_id)
-            
+
             if not game:
-                # Try matching by team names
+                # Try matching by team IDs (more reliable than names)
                 for g in completed_games:
-                    if (g.get('HomeTeam', '').lower() == record.home_team.lower() and
-                        g.get('AwayTeam', '').lower() == record.away_team.lower()):
+                    if (g.get('HomeTeamID') == record.home_team_id and
+                        g.get('AwayTeamID') == record.away_team_id):
                         game = g
                         break
-            
+
+            if not game:
+                # Fallback: try matching by team names
+                for g in completed_games:
+                    home_match = (g.get('HomeTeam', '').lower() in record.home_team.lower() or
+                                record.home_team.lower() in g.get('HomeTeam', '').lower())
+                    away_match = (g.get('AwayTeam', '').lower() in record.away_team.lower() or
+                                record.away_team.lower() in g.get('AwayTeam', '').lower())
+                    if home_match and away_match:
+                        game = g
+                        break
+
             if not game:
                 continue
             
