@@ -95,7 +95,32 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 4
 - **Overall Winner Accuracy**: 50.0%
 
-*No predictions available for today.*
+#### 📅 Recent Predictions (2026-02-02)
+
+| Matchup | Spread Pick | Total Pick | Confidence |
+|---------|-------------|------------|------------|
+| Grambling St Tigers @ Alcorn St Braves | **HOME** (-5.0) | **UNDER** (143.0) | 95% |
+| Howard Bison @ Coppin St Eagles | **HOME** (-13.5) | **UNDER** (147.0) | 95% |
+| Nicholls St Colonels @ Northwestern St Demons | **HOME** (-1.0) | **UNDER** (148.0) | 95% |
+| Gardner-Webb Bulldogs @ Charleston Southern Buccaneers | **AWAY** (+18.0) | **UNDER** (158.5) | 89% |
+| Florida A&M Rattlers @ Alabama St Hornets | **HOME** (+4.0) | **UNDER** (140.5) | 88% |
+| Southern Jaguars @ Jackson St Tigers | **HOME** (-6.0) | **UNDER** (152.0) | 86% |
+| Akron Zips @ Eastern Michigan Eagles | **HOME** (-12.0) | **UNDER** (153.0) | 82% |
+| Houston Christian Huskies @ UT Rio Grande Valley Vaqueros | **AWAY** (+9.0) | **UNDER** (140.5) | 82% |
+| Canisius Golden Griffins @ Niagara Purple Eagles | **AWAY** (+2.5) | **UNDER** (126.5) | 70% |
+| Maryland-Eastern Shore Hawks @ North Carolina Central Eagles | **AWAY** (+3.0) | **UNDER** (134.0) | 69% |
+| McNeese Cowboys @ Stephen F. Austin Lumberjacks | **HOME** (-3.5) | **UNDER** (142.5) | 68% |
+| Idaho State Bengals @ Portland St Vikings | **AWAY** (+7.0) | **UNDER** (136.0) | 66% |
+| Tennessee Tech Golden Eagles @ Tennessee St Tigers | **AWAY** (+8.0) | **UNDER** (153.5) | 66% |
+| Boston Univ. Terriers @ Holy Cross Crusaders | **HOME** (-1.5) | **UNDER** (139.0) | 65% |
+| Kansas Jayhawks @ Texas Tech Red Raiders | **HOME** (+4.5) | **UNDER** (155.5) | 63% |
+| Weber State Wildcats @ Sacramento St Hornets | **HOME** (-1.0) | **UNDER** (162.0) | 59% |
+| Miami (OH) RedHawks @ Buffalo Bulls | **AWAY** (-4.5) | **UNDER** (164.5) | 57% |
+| Bethune-Cookman Wildcats @ Alabama A&M Bulldogs | **AWAY** (-2.0) | **UNDER** (142.0) | 54% |
+| New Orleans Privateers @ East Texas A&M Lions | **AWAY** (-1.5) | **UNDER** (150.5) | 53% |
+| Incarnate Word Cardinals @ Texas A&M-CC Islanders | **AWAY** (+5.0) | **UNDER** (138.0) | 51% |
+| SE Louisiana Lions @ Lamar Cardinals | **AWAY** (+6.0) | **UNDER** (132.5) | 50% |
+| Syracuse Orange @ North Carolina Tar Heels | **HOME** (+11.5) | **UNDER** (158.5) | 49% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 

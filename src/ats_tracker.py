@@ -438,18 +438,51 @@ class ATSTracker:
         }
     
     def generate_daily_predictions_table(self, target_date: str = None) -> str:
-        """Generate a markdown table of predictions for a specific date."""
+        """Generate a markdown table of predictions for a specific date.
+
+        If no predictions exist for the target date (defaults to today), this method
+        will automatically find and display either:
+        1. The next upcoming game date (if future predictions exist)
+        2. The most recent past game date (if only past predictions exist)
+        """
+        today = datetime.now().strftime('%Y-%m-%d')
+
         if target_date is None:
-            target_date = datetime.now().strftime('%Y-%m-%d')
-            
-        # Get predictions for this date
+            target_date = today
+
+        # Get predictions for the target date
         predictions = [r for r in self.records.values() if r.game_date == target_date]
-        
+
+        # If no predictions for today, find the next upcoming or most recent game date
+        if not predictions and target_date == today:
+            # Get all unique game dates
+            all_dates = sorted(set(r.game_date for r in self.records.values()))
+
+            # Find next upcoming date (>= today)
+            future_dates = [d for d in all_dates if d >= today]
+            if future_dates:
+                target_date = future_dates[0]
+                predictions = [r for r in self.records.values() if r.game_date == target_date]
+            else:
+                # No future games, show most recent
+                past_dates = [d for d in all_dates if d < today]
+                if past_dates:
+                    target_date = past_dates[-1]  # Most recent past date
+                    predictions = [r for r in self.records.values() if r.game_date == target_date]
+
         if not predictions:
-            return "*No predictions available for today.*"
-            
+            return "*No predictions available.*"
+
+        # Indicate if showing upcoming vs past predictions
+        if target_date == today:
+            header = f"#### 📅 Predictions for Today ({target_date})"
+        elif target_date > today:
+            header = f"#### 📅 Upcoming Predictions ({target_date})"
+        else:
+            header = f"#### 📅 Recent Predictions ({target_date})"
+
         lines = [
-            f"#### 📅 Predictions for {target_date}",
+            header,
             "",
             "| Matchup | Spread Pick | Total Pick | Confidence |",
             "|---------|-------------|------------|------------|"
