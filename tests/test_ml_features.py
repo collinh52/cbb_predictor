@@ -264,10 +264,10 @@ class TestContextualFeatureExtraction:
             all_games=sample_games_list
         )
         
-        assert 'pregame_spread' in features
-        assert 'pregame_total' in features
-        assert features['pregame_spread'] == sample_game['PointSpread']
-        assert features['pregame_total'] == sample_game['OverUnder']
+        # Note: pregame_spread and pregame_total are intentionally excluded from
+        # ML features to prevent data leakage (model learning to copy Vegas lines)
+        assert 'pregame_spread' not in features
+        assert 'pregame_total' not in features
 
 
 class TestRestDaysCalculation:

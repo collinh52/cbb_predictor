@@ -24,21 +24,26 @@ def recompute_ukf_features(training_data: List[Dict], predictor: Predictor) -> L
     This ensures features are computed correctly even if they weren't stored.
     """
     feature_arrays = []
-    
+
+    # Fetch completed games ONCE before the loop
+    all_games = predictor.collector.get_completed_games()
+
+    # Engineer features
+    feature_engineer = MLFeatureEngineer(
+        collector=predictor.collector,
+        calculator=predictor.calculator
+    )
+
     for record in training_data:
         game_id = record['game_id']
-        
-        # Get game data
-        game = predictor.collector.get_game_details(game_id)
-        if not game:
-            continue
-        
-        home_team_id = predictor._get_team_id(game, 'HomeTeam', 'HomeTeamID')
-        away_team_id = predictor._get_team_id(game, 'AwayTeam', 'AwayTeamID')
-        
+
+        # Get team IDs from database
+        home_team_id = record.get('home_team_id')
+        away_team_id = record.get('away_team_id')
+
         if home_team_id is None or away_team_id is None:
             continue
-        
+
         # Get UKF states
         home_state = predictor.ukf.get_team_state(home_team_id)
         away_state = predictor.ukf.get_team_state(away_team_id)
@@ -46,25 +51,27 @@ def recompute_ukf_features(training_data: List[Dict], predictor: Predictor) -> L
         away_ukf = predictor.ukf.get_team_ukf(away_team_id)
         home_uncertainty = home_ukf.get_uncertainty()
         away_uncertainty = away_ukf.get_uncertainty()
-        
-        # Get game date
-        game_date_str = record.get('game_date') or game.get('DateTime', '')
+
+        # Get game date from database
+        game_date = record.get('game_date')
+        if game_date is None:
+            continue
+
+        # Parse game_date if it's a string
         if isinstance(game_date, str):
             try:
-                game_date = datetime.fromisoformat(game_date_str.replace('Z', '+00:00'))
+                game_date = datetime.fromisoformat(game_date.replace('Z', '+00:00'))
             except:
                 continue
-        else:
-            game_date = record['game_date']
-        
-        # Engineer features
-        feature_engineer = MLFeatureEngineer(
-            collector=predictor.collector,
-            calculator=predictor.calculator
-        )
-        
-        all_games = predictor.collector.get_completed_games()
-        
+
+        # Create game object from database record (no API needed)
+        game = {
+            'GameID': game_id,
+            'DateTime': game_date.isoformat() if isinstance(game_date, datetime) else str(game_date),
+            'HomeTeam': 'Unknown',
+            'AwayTeam': 'Unknown'
+        }
+
         try:
             features_array, _ = feature_engineer.engineer_features(
                 home_state, away_state,
@@ -76,7 +83,7 @@ def recompute_ukf_features(training_data: List[Dict], predictor: Predictor) -> L
         except Exception as e:
             print(f"Failed to engineer features for game {game_id}: {e}")
             continue
-    
+
     return feature_arrays
 
 
@@ -116,33 +123,30 @@ def train_model(season: Optional[int] = None, limit: Optional[int] = None,
         collector=predictor.collector,
         calculator=predictor.calculator
     )
-    
+
+    # Fetch completed games ONCE before the loop
+    print("Loading completed games for context...")
+    all_games = predictor.collector.get_completed_games()
+    print(f"Loaded {len(all_games)} completed games")
+
     features_list = []
     margins = []
     totals = []
-    
+
     for i, record in enumerate(training_data):
         if (i + 1) % 50 == 0:
             print(f"  Processing example {i+1}/{len(training_data)}...")
         
         game_id = record['game_id']
-        
+
         # Get team IDs from stored data
         home_team_id = record.get('home_team_id')
         away_team_id = record.get('away_team_id')
-        
-        # Try to get game from API
-        game = predictor.collector.get_game_details(game_id)
-        
+
+        # Skip if database is missing team IDs (shouldn't happen in production)
         if home_team_id is None or away_team_id is None:
-            # Try to get from game object
-            if game:
-                home_team_id = predictor._get_team_id(game, 'HomeTeam', 'HomeTeamID')
-                away_team_id = predictor._get_team_id(game, 'AwayTeam', 'AwayTeamID')
-            else:
-                continue
-        
-        if home_team_id is None or away_team_id is None:
+            if i < 5:  # Log first few errors only
+                print(f"  Skipping game {game_id}: missing team IDs in database")
             continue
         
         # Get UKF states
@@ -152,37 +156,29 @@ def train_model(season: Optional[int] = None, limit: Optional[int] = None,
         away_ukf = predictor.ukf.get_team_ukf(away_team_id)
         home_uncertainty = home_ukf.get_uncertainty()
         away_uncertainty = away_ukf.get_uncertainty()
-        
-        # Get game date
+
+        # Get game date from database
         game_date = record.get('game_date')
+        if game_date is None:
+            if i < 5:
+                print(f"  Skipping game {game_id}: missing game_date in database")
+            continue
+
+        # Parse game_date if it's a string
         if isinstance(game_date, str):
             try:
                 game_date = datetime.fromisoformat(game_date.replace('Z', '+00:00'))
             except:
                 continue
-        elif game_date is None:
-            # Try to get from game object
-            game_date_str = game.get('DateTime', '') if game else ''
-            if game_date_str:
-                try:
-                    game_date = datetime.fromisoformat(game_date_str.replace('Z', '+00:00'))
-                except:
-                    continue
-            else:
-                continue
-        
-        # Get or create game object if needed
-        if not game or len(game) == 0:
-            game = {
-                'GameID': game_id,
-                'DateTime': game_date.isoformat() if isinstance(game_date, datetime) else str(game_date),
-                'PointSpread': record.get('pregame_spread'),
-                'OverUnder': record.get('pregame_total'),
-                'HomeTeam': 'Unknown',
-                'AwayTeam': 'Unknown'
-            }
-        
-        all_games = predictor.collector.get_completed_games()
+
+        # Always create game object from database record (no API needed)
+        game = {
+            'GameID': game_id,
+            'DateTime': game_date.isoformat() if isinstance(game_date, datetime) else str(game_date),
+            'HomeTeam': 'Unknown',  # Not used in feature engineering
+            'AwayTeam': 'Unknown'   # Not used in feature engineering
+        }
+        # Note: PointSpread and OverUnder removed - not used in ML features
         
         try:
             features_array, _ = feature_engineer.engineer_features(

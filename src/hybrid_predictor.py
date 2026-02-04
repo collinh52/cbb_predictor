@@ -163,7 +163,7 @@ class HybridPredictor:
                         raise ValueError("ML feature/model shape mismatch")
 
                     # Make prediction
-                    ml_predictions = self.ml_model.predict(features_array.reshape(1, -1), verbose=0)
+                    ml_predictions = self.ml_model.predict(features_array.reshape(1, -1))
                     ml_predicted_margin = float(ml_predictions[0, 0])
                     ml_predicted_total = float(ml_predictions[0, 1])
 
@@ -204,10 +204,12 @@ class HybridPredictor:
             
             if ml_margin_valid and ml_total_valid:
                 # ML predictions are reasonable - use weighted combination
-                hybrid_margin = (config.HYBRID_WEIGHT_UKF * ukf_margin + 
-                               config.HYBRID_WEIGHT_ML * ml_predicted_margin)
-                hybrid_total = (config.HYBRID_WEIGHT_UKF * ukf_total + 
-                              config.HYBRID_WEIGHT_ML * ml_predicted_total)
+                # Normalize weights to ensure they sum to 1.0
+                weight_sum = config.HYBRID_WEIGHT_UKF + config.HYBRID_WEIGHT_ML
+                ukf_w = config.HYBRID_WEIGHT_UKF / weight_sum
+                ml_w = config.HYBRID_WEIGHT_ML / weight_sum
+                hybrid_margin = ukf_w * ukf_margin + ml_w * ml_predicted_margin
+                hybrid_total = ukf_w * ukf_total + ml_w * ml_predicted_total
                 prediction_source = 'hybrid'
             else:
                 # ML predictions are garbage (likely due to unknown teams) - use UKF only

@@ -143,25 +143,34 @@ class FeatureCalculator:
         
         return float(np.clip(fatigue, 0.0, 1.0))
     
-    def calculate_health_status(self, team_id: int) -> float:
+    def calculate_health_status(self, team_id: int, fetch_injuries: bool = False) -> float:
         """
         Calculate aggregate team health status based on player injuries.
-        
+
+        Args:
+            team_id: Team identifier
+            fetch_injuries: If True, attempt to fetch current injury data from API.
+                           If False, return default health status (used for historical data).
+
         Returns health score (0 to 1, where 1 is fully healthy).
         """
+        # For historical/training data, skip API calls and use default health
+        if not fetch_injuries:
+            return config.DEFAULT_HEALTH_STATUS
+
         injuries = self.collector.get_player_injuries(team_id)
-        
+
         if not injuries:
             return config.DEFAULT_HEALTH_STATUS
-        
+
         # Count active injuries
-        active_injuries = [i for i in injuries 
+        active_injuries = [i for i in injuries
                           if i.get('Status') not in ['Active', 'Healthy', None]]
-        
+
         # Simple model: reduce health based on number of injuries
         # More sophisticated model would weight by player importance
         injury_penalty = min(len(active_injuries) * 0.1, 0.5)  # Max 50% reduction
-        
+
         health = 1.0 - injury_penalty
         return float(np.clip(health, 0.0, 1.0))
     
@@ -201,18 +210,24 @@ class FeatureCalculator:
         # Clamp to reasonable range
         return float(np.clip(home_advantage, 0.0, 10.0))
     
-    def calculate_pace(self, team_id: int, games: List[Dict]) -> float:
+    def calculate_pace(self, team_id: int, games: List[Dict], fetch_team_stats: bool = False) -> float:
         """
         Calculate team's preferred pace (possessions per game).
 
+        Args:
+            team_id: Team identifier
+            games: List of games for context
+            fetch_team_stats: If True, attempt to fetch from API. If False, skip API call.
+
         Returns average possessions per game.
         """
-        # Try to get from team stats first
-        team_stats = self.collector.get_team_stats(team_id)
-        if team_stats and 'Possessions' in team_stats:
-            return float(team_stats['Possessions'])
+        # Try to get from team stats (only if explicitly enabled)
+        if fetch_team_stats:
+            team_stats = self.collector.get_team_stats(team_id)
+            if team_stats and 'Possessions' in team_stats:
+                return float(team_stats['Possessions'])
 
-        # Try to get from KenPom (most reliable source)
+        # Try to get from KenPom (most reliable source, doesn't hit quota-limited API)
         kenpom_data = self.collector.get_kenpom_ratings()
         team_id_norm = self._normalize_team_id(team_id)
         # Handle case where kenpom_data might be None or Mock object in tests
