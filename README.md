@@ -95,32 +95,73 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 4
 - **Overall Winner Accuracy**: 50.0%
 
-#### 📅 Recent Predictions (2026-02-02)
+#### 📅 Predictions for Today (2026-02-04)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Grambling St Tigers @ Alcorn St Braves | **HOME** (-5.0) | **UNDER** (143.0) | 95% |
-| Howard Bison @ Coppin St Eagles | **HOME** (-13.5) | **UNDER** (147.0) | 95% |
-| Nicholls St Colonels @ Northwestern St Demons | **HOME** (-1.0) | **UNDER** (148.0) | 95% |
-| Gardner-Webb Bulldogs @ Charleston Southern Buccaneers | **AWAY** (+18.0) | **UNDER** (158.5) | 89% |
-| Florida A&M Rattlers @ Alabama St Hornets | **HOME** (+4.0) | **UNDER** (140.5) | 88% |
-| Southern Jaguars @ Jackson St Tigers | **HOME** (-6.0) | **UNDER** (152.0) | 86% |
-| Akron Zips @ Eastern Michigan Eagles | **HOME** (-12.0) | **UNDER** (153.0) | 82% |
-| Houston Christian Huskies @ UT Rio Grande Valley Vaqueros | **AWAY** (+9.0) | **UNDER** (140.5) | 82% |
-| Canisius Golden Griffins @ Niagara Purple Eagles | **AWAY** (+2.5) | **UNDER** (126.5) | 70% |
-| Maryland-Eastern Shore Hawks @ North Carolina Central Eagles | **AWAY** (+3.0) | **UNDER** (134.0) | 69% |
-| McNeese Cowboys @ Stephen F. Austin Lumberjacks | **HOME** (-3.5) | **UNDER** (142.5) | 68% |
-| Idaho State Bengals @ Portland St Vikings | **AWAY** (+7.0) | **UNDER** (136.0) | 66% |
-| Tennessee Tech Golden Eagles @ Tennessee St Tigers | **AWAY** (+8.0) | **UNDER** (153.5) | 66% |
-| Boston Univ. Terriers @ Holy Cross Crusaders | **HOME** (-1.5) | **UNDER** (139.0) | 65% |
-| Kansas Jayhawks @ Texas Tech Red Raiders | **HOME** (+4.5) | **UNDER** (155.5) | 63% |
-| Weber State Wildcats @ Sacramento St Hornets | **HOME** (-1.0) | **UNDER** (162.0) | 59% |
-| Miami (OH) RedHawks @ Buffalo Bulls | **AWAY** (-4.5) | **UNDER** (164.5) | 57% |
-| Bethune-Cookman Wildcats @ Alabama A&M Bulldogs | **AWAY** (-2.0) | **UNDER** (142.0) | 54% |
-| New Orleans Privateers @ East Texas A&M Lions | **AWAY** (-1.5) | **UNDER** (150.5) | 53% |
-| Incarnate Word Cardinals @ Texas A&M-CC Islanders | **AWAY** (+5.0) | **UNDER** (138.0) | 51% |
-| SE Louisiana Lions @ Lamar Cardinals | **AWAY** (+6.0) | **UNDER** (132.5) | 50% |
-| Syracuse Orange @ North Carolina Tar Heels | **HOME** (+11.5) | **UNDER** (158.5) | 49% |
+| UTSA Roadrunners @ South Florida Bulls | **AWAY** (+25.5) | **UNDER** (162.5) | 67% |
+| Longwood Lancers @ Gardner-Webb Bulldogs | **HOME** (-12.5) | **UNDER** (148.0) | 79% |
+| UTEP Miners @ Sam Houston St Bearkats | **AWAY** (+11.0) | **OVER** (144.5) | 95% |
+| Gonzaga Bulldogs @ Portland Pilots | **HOME** (-22.0) | **OVER** (153.0) | 48% |
+| Wofford Terriers @ VMI Keydets | **HOME** (-9.0) | **OVER** (148.5) | 90% |
+| Santa Clara Broncos @ Pacific Tigers | **HOME** (-6.5) | **UNDER** (150.0) | 77% |
+| Lehigh Mountain Hawks @ Loyola (MD) Greyhounds | **HOME** (+1.5) | **UNDER** (150.0) | 50% |
+| San Diego Toreros @ Saint Mary's Gaels | **AWAY** (+19.5) | **OVER** (148.0) | 61% |
+| Bucknell Bison @ American Eagles | **HOME** (+8.5) | **OVER** (141.5) | 91% |
+| Pepperdine Waves @ Seattle Redhawks | **AWAY** (+12.0) | **OVER** (137.0) | 79% |
+| Washington St Cougars @ Oregon St Beavers | **HOME** (-2.0) | **UNDER** (147.0) | 90% |
+| Oakland Golden Grizzlies @ Cleveland St Vikings | **HOME** (-7.0) | **UNDER** (169.0) | 89% |
+| North Texas Mean Green @ Rice Owls | **HOME** (-2.0) | **UNDER** (132.5) | 72% |
+| Tulsa Golden Hurricane @ Florida Atlantic Owls | **HOME** (-1.5) | **UNDER** (165.0) | 57% |
+| Arkansas St Red Wolves @ Coastal Carolina Chanticleers | **HOME** (-3.5) | **UNDER** (152.0) | 44% |
+| East Texas A&M Lions @ Northwestern St Demons | **AWAY** (+2.5) | **UNDER** (143.0) | 84% |
+| BYU Cougars @ Oklahoma St Cowboys | **HOME** (-6.5) | **UNDER** (167.5) | 47% |
+| Loyola Marymount Lions @ San Francisco Dons | **AWAY** (+8.0) | **UNDER** (145.0) | 59% |
+| Western Carolina Catamounts @ UNC Greensboro Spartans | **HOME** (-1.5) | **OVER** (155.5) | 83% |
+| Furman Paladins @ East Tennessee St Buccaneers | **HOME** (+6.0) | **UNDER** (143.0) | 64% |
+| UL Monroe Warhawks @ Old Dominion Monarchs | **AWAY** (+13.0) | **UNDER** (154.0) | 71% |
+| Youngstown St Penguins @ Fort Wayne Mastodons | **HOME** (+2.0) | **UNDER** (148.0) | 79% |
+| Penn State Nittany Lions @ Michigan Wolverines | **AWAY** (+25.5) | **UNDER** (161.5) | 38% |
+| Iowa Hawkeyes @ Washington Huskies | **HOME** (-2.5) | **OVER** (140.5) | 36% |
+| Colorado Buffaloes @ Baylor Bears | **HOME** (+8.0) | **UNDER** (158.5) | 42% |
+| St. Thomas (MN) Tommies @ South Dakota St Jackrabbits | **HOME** (-1.5) | **UNDER** (157.0) | 71% |
+| North Alabama Lions @ Central Arkansas Bears | **HOME** (+10.5) | **UNDER** (147.5) | 76% |
+| Troy Trojans @ Georgia St Panthers | **HOME** (-5.5) | **UNDER** (146.0) | 72% |
+| South Alabama Jaguars @ Appalachian St Mountaineers | **HOME** (+5.5) | **UNDER** (129.5) | 31% |
+| Florida Int'l Golden Panthers @ Middle Tennessee Blue Raiders | **HOME** (+7.0) | **UNDER** (150.0) | 32% |
+| Charleston Southern Buccaneers @ High Point Panthers | **HOME** (+13.0) | **OVER** (163.0) | 37% |
+| Winthrop Eagles @ Radford Highlanders | **HOME** (-3.0) | **UNDER** (160.5) | 35% |
+| Georgia Tech Yellow Jackets @ California Golden Bears | **HOME** (+7.5) | **UNDER** (152.5) | 33% |
+| GW Revolutionaries @ Saint Joseph's Hawks | **HOME** (-0.0) | **UNDER** (154.0) | 61% |
+| Utah State Aggies @ New Mexico Lobos | **HOME** (+2.5) | **UNDER** (157.5) | 35% |
+| Maryland-Eastern Shore Hawks @ South Carolina St Bulldogs | **HOME** (-3.5) | **UNDER** (134.0) | 70% |
+| Notre Dame Fighting Irish @ Louisville Cardinals | **HOME** (+17.5) | **UNDER** (154.5) | 37% |
+| New Mexico St Aggies @ Louisiana Tech Bulldogs | **HOME** (+1.5) | **OVER** (135.0) | 25% |
+| Wright St Raiders @ Robert Morris Colonials | **HOME** (-2.5) | **OVER** (148.0) | 24% |
+| Liberty Flames @ Delaware Blue Hens | **HOME** (-12.0) | **UNDER** (132.5) | 28% |
+| Duquesne Dukes @ George Mason Patriots | **AWAY** (+6.5) | **OVER** (145.5) | 35% |
+| Army Knights @ Colgate Raiders | **AWAY** (+10.0) | **OVER** (150.5) | 35% |
+| Clemson Tigers @ Stanford Cardinal | **HOME** (-3.5) | **UNDER** (138.5) | 29% |
+| Southern Miss Golden Eagles @ Marshall Thundering Herd | **HOME** (+9.5) | **UNDER** (147.5) | 62% |
+| Texas State Bobcats @ Georgia Southern Eagles | **HOME** (+4.0) | **UNDER** (151.0) | 27% |
+| Creighton Bluejays @ Georgetown Hoyas | **AWAY** (+2.0) | **UNDER** (147.5) | 18% |
+| Arizona St Sun Devils @ Utah Utes | **HOME** (+1.0) | **UNDER** (162.0) | 36% |
+| Arkansas-Pine Bluff Golden Lions @ Grambling St Tigers | **AWAY** (+6.5) | **OVER** (145.0) | 45% |
+| Louisiana Ragin' Cajuns @ James Madison Dukes | **HOME** (+8.5) | **OVER** (131.5) | 14% |
+| Butler Bulldogs @ Providence Friars | **HOME** (+3.5) | **UNDER** (170.5) | 59% |
+| Northwestern Wildcats @ Illinois Fighting Illini | **AWAY** (+15.5) | **UNDER** (150.5) | 28% |
+| Seton Hall Pirates @ Villanova Wildcats | **HOME** (+7.5) | **UNDER** (134.5) | 23% |
+| Michigan St Spartans @ Minnesota Golden Gophers | **HOME** (-8.5) | **UNDER** (134.5) | 17% |
+| Detroit Mercy Titans @ Milwaukee Panthers | **HOME** (+6.0) | **UNDER** (160.5) | 57% |
+| Green Bay Phoenix @ Northern Kentucky Norse | **HOME** (+6.5) | **UNDER** (150.0) | 43% |
+| Oklahoma Sooners @ Kentucky Wildcats | **AWAY** (+9.5) | **OVER** (153.5) | 17% |
+| UCF Knights @ Houston Cougars | **AWAY** (+16.5) | **OVER** (147.5) | 26% |
+| Lipscomb Bisons @ Austin Peay Governors | **AWAY** (+4.0) | **UNDER** (157.5) | 41% |
+| Charlotte 49ers @ Wichita St Shockers | **HOME** (+8.0) | **OVER** (142.0) | 8% |
+| South Dakota Coyotes @ UMKC Kangaroos | **AWAY** (-3.0) | **UNDER** (154.5) | 54% |
+| Navy Midshipmen @ Lafayette Leopards | **AWAY** (-4.0) | **UNDER** (139.5) | 17% |
+| Texas A&M Aggies @ Alabama Crimson Tide | **HOME** (+8.5) | **UNDER** (179.5) | 49% |
+| South Carolina Upstate Spartans @ UNC Asheville Bulldogs | **AWAY** (+7.5) | **UNDER** (140.5) | 24% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
