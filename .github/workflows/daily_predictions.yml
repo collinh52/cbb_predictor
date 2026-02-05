@@ -29,7 +29,7 @@ jobs:
   collect-odds:
     name: Collect Odds & Generate Predictions
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'collect_odds' || github.event.inputs.action == 'both') || github.event.schedule == '0 12 * * *'
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'collect_odds' || github.event.inputs.action == 'both')
     
     steps:
       - name: Checkout Repository
@@ -192,10 +192,311 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # Scheduled morning job - Collect odds and update predictions
+  morning-scheduled:
+    name: Morning Update (Scheduled)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+
+    steps:
+      - name: Skip if not morning schedule
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" != "12" ]; then
+            echo "⏭️ Skipping morning job - current hour: $HOUR UTC (expected: 12)"
+            exit 0
+          fi
+          echo "✅ Running morning job at $HOUR UTC"
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright (KenPom login)
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Login to KenPom and export cookie
+        continue-on-error: true
+        run: |
+          if [ -n "${KENPOM_COOKIE}" ]; then
+            echo "KENPOM_COOKIE already set; skipping login"
+          elif [ -n "${KENPOM_USERNAME}" ] && [ -n "${KENPOM_PASSWORD}" ]; then
+            echo "Attempting KenPom login with improved anti-detection..."
+            python scripts/kenpom_login_improved.py \
+              --export-env "${GITHUB_ENV}" \
+              || echo "⚠️  KenPom login failed - predictions will use default ratings"
+          else
+            echo "KENPOM_USERNAME or KENPOM_PASSWORD not set; skipping KenPom login"
+          fi
+        env:
+          KENPOM_USERNAME: ${{ secrets.KENPOM_USERNAME }}
+          KENPOM_PASSWORD: ${{ secrets.KENPOM_PASSWORD }}
+
+      - name: Create .env file
+        run: |
+          echo "THE_ODDS_API_KEY=${{ secrets.THE_ODDS_API_KEY }}" > .env
+          echo "BASKETBALL_API_KEY=${{ secrets.BASKETBALL_API_KEY }}" >> .env
+
+      - name: Create data directory
+        run: mkdir -p data
+
+      - name: Download KenPom summary (optional)
+        continue-on-error: true
+        run: |
+          if [ -n "${KENPOM_COOKIE}" ] && ( [ -n "${KENPOM_DATA_URL}" ] || [ -n "${KENPOM_SUMMARY_URL}" ] ); then
+            season_full=$(python - <<'PY'
+          import config
+          print(config.CURRENT_SEASON)
+          PY
+          )
+            season_short=$(python - <<'PY'
+          import config
+          print(f"{config.CURRENT_SEASON % 100:02d}")
+          PY
+          )
+            if [ -n "${KENPOM_DATA_URL}" ]; then
+              url="${KENPOM_DATA_URL}"
+            else
+              url="${KENPOM_SUMMARY_URL}"
+              url="${url//\{season_short\}/${season_short}}"
+              url="${url//\{season\}/${season_short}}"
+              url="$(echo "${url}" | sed -E "s/summary[0-9]+/summary${season_short}/")"
+            fi
+            echo "Downloading KenPom summary..."
+            curl_args=(
+              -fL
+              --retry 3
+              --retry-delay 5
+              --retry-connrefused
+              --retry-all-errors
+              --http1.1
+              -H "User-Agent: Mozilla/5.0"
+              -H "Referer: https://kenpom.com/"
+              -o "data/summary${season_short}.csv"
+            )
+            curl "${curl_args[@]}" -b "${KENPOM_COOKIE}" "${url}" || echo "KenPom download failed; continuing without summary CSV."
+            if [ -f "data/summary${season_short}.csv" ]; then
+              cp "data/summary${season_short}.csv" "data/summary${season_full}.csv"
+              echo "KenPom summary saved to data/summary${season_short}.csv"
+            else
+              echo "KenPom summary not available; skipping copy."
+            fi
+          else
+            echo "KENPOM_COOKIE or KenPom URL not set; skipping KenPom download"
+          fi
+        env:
+          KENPOM_SUMMARY_URL: ${{ secrets.KENPOM_SUMMARY_URL }}
+
+      - name: Get current week
+        id: week
+        run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
+
+      - name: Cache completed games data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/cache
+          key: game-cache-${{ steps.week.outputs.week }}
+          restore-keys: |
+            game-cache-
+
+      - name: Download existing ATS data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/ats_tracking.json
+            data/ats_accuracy.json
+            data/predictions.json
+            data/results.json
+          key: ats-data-${{ github.run_number }}
+          restore-keys: |
+            ats-data-
+
+      - name: Cache ML models
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/models
+          key: ml-models-${{ github.run_number }}
+          restore-keys: |
+            ml-models-
+
+      - name: Check cache status
+        run: |
+          if [ -f "data/cache/completed_games_2026.json" ]; then
+            echo "✓ Cache found - checking status..."
+            python scripts/check_cache.py || echo "Cache check script failed, continuing anyway"
+          else
+            echo "⚠️  No cache found - predictions will fetch fresh data from ESPN"
+          fi
+
+      - name: Collect Odds and Generate Predictions
+        run: python scripts/predict_today.py --days 2
+
+      - name: Upload ATS Data
+        uses: actions/upload-artifact@v4
+        with:
+          name: ats-data-morning-${{ github.run_number }}
+          path: |
+            data/ats_tracking.json
+            data/ats_accuracy.json
+          retention-days: 90
+
+      - name: Commit ATS Data and README
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/ats_tracking.json data/ats_accuracy.json README.md || true
+          git diff --staged --quiet || git commit -m "📊 Update predictions for $(date -u +%Y-%m-%d)"
+          git push || echo "Nothing to push"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Scheduled evening job - Check results and update accuracy
+  evening-scheduled:
+    name: Evening Update (Scheduled)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+
+    steps:
+      - name: Skip if not evening schedule
+        run: |
+          HOUR=$(date -u +%H)
+          if [ "$HOUR" != "04" ]; then
+            echo "⏭️ Skipping evening job - current hour: $HOUR UTC (expected: 04)"
+            exit 0
+          fi
+          echo "✅ Running evening job at $HOUR UTC"
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "THE_ODDS_API_KEY=${{ secrets.THE_ODDS_API_KEY }}" > .env
+          echo "BASKETBALL_API_KEY=${{ secrets.BASKETBALL_API_KEY }}" >> .env
+
+      - name: Get current week
+        id: week
+        run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
+
+      - name: Cache completed games data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/cache
+          key: game-cache-${{ steps.week.outputs.week }}
+          restore-keys: |
+            game-cache-
+
+      - name: Download existing ATS data
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/ats_tracking.json
+            data/ats_accuracy.json
+            data/predictions.json
+            data/results.json
+          key: ats-data-${{ github.run_number }}
+          restore-keys: |
+            ats-data-
+
+      - name: Cache ML models
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/models
+          key: ml-models-${{ github.run_number }}
+          restore-keys: |
+            ml-models-
+
+      - name: Check cache status (before)
+        run: |
+          echo "📊 Cache status before processing:"
+          if [ -f "data/cache/completed_games_2026.json" ]; then
+            python scripts/check_cache.py || echo "Cache check script failed, continuing anyway"
+          else
+            echo "⚠️  No cache found - will be created during retrain"
+          fi
+
+      - name: Check Results
+        run: python scripts/daily_check_results.py --days 7
+
+      - name: Update README with Accuracy Stats
+        run: python scripts/update_readme_accuracy.py
+
+      - name: Retrain ML model
+        run: python scripts/setup_and_train.py --populate 200 --train
+
+      - name: Verify cache updated
+        run: |
+          echo "📊 Cache status after retrain:"
+          if [ -f "data/cache/completed_games_2026.json" ]; then
+            python scripts/check_cache.py || echo "✓ Cache file exists"
+          else
+            echo "⚠️  Warning: Cache was not created during retrain"
+          fi
+
+      - name: Upload Updated ATS Data
+        uses: actions/upload-artifact@v4
+        with:
+          name: ats-data-evening-${{ github.run_number }}
+          path: |
+            data/ats_tracking.json
+            data/ats_accuracy.json
+          retention-days: 90
+
+      - name: Upload Model Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ml-models-${{ github.run_number }}
+          path: data/models/*.keras
+          retention-days: 90
+
+      - name: Commit Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/*.json data/models/*.keras README.md || true
+          git diff --staged --quiet || git commit -m "📈 Update accuracy stats: $(date -u +%Y-%m-%d)"
+          git push || echo "Nothing to push"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   check-results:
     name: Check Results & Update Accuracy
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'check_results' || github.event.inputs.action == 'both') || github.event.schedule == '0 4 * * *'
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.action == 'check_results' || github.event.inputs.action == 'both')
     
     steps:
       - name: Checkout Repository
