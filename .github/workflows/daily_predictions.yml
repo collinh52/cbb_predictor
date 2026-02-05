@@ -25,6 +25,9 @@ on:
 env:
   PYTHON_VERSION: '3.10'
 
+permissions:
+  contents: write
+
 jobs:
   collect-odds:
     name: Collect Odds & Generate Predictions
