@@ -12,7 +12,8 @@ Run this after checking results or generating predictions to keep the README up-
 import os
 import sys
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -184,6 +185,7 @@ def update_readme():
 
 def generate_accuracy_section(summary: dict) -> str:
     """Generate the markdown content for the accuracy section."""
+    ats_tracker = get_ats_tracker()
     all_time = summary["all_time"]
     r7 = summary["rolling_7_day"]
     r30 = summary["rolling_30_day"]
@@ -237,6 +239,22 @@ def generate_accuracy_section(summary: dict) -> str:
             "",
             "| Timeframe | ATS Record | Accuracy |",
             "|-----------|------------|----------|",
+        ])
+
+        # Add yesterday's row if data exists
+        yesterday = datetime.now(ZoneInfo("America/New_York")).date() - timedelta(days=1)
+        yesterday_key = yesterday.strftime("%Y-%m-%d")
+        accuracy_history = ats_tracker.accuracy_history if hasattr(ats_tracker, 'accuracy_history') else {}
+        daily_breakdown = accuracy_history.get("with_vegas_lines", {}).get("daily_breakdown", {})
+        yesterday_data = daily_breakdown.get(yesterday_key)
+        if yesterday_data and yesterday_data.get("predictions", 0) > 0:
+            y_correct = yesterday_data["spread_correct"]
+            y_total = yesterday_data["predictions"]
+            y_wrong = y_total - y_correct
+            y_acc = y_correct / y_total * 100
+            lines.append(f"| **Yesterday** ({yesterday_key}) | {y_correct}-{y_wrong} | **{y_acc:.1f}%** |")
+
+        lines.extend([
             f"| **Last 7 Days** | {r7['with_vegas']['spread_correct']}-{r7['with_vegas']['predictions'] - r7['with_vegas']['spread_correct']} | **{r7['with_vegas']['accuracy']*100:.1f}%** |",
             f"| **Last 30 Days** | {r30['with_vegas']['spread_correct']}-{r30['with_vegas']['predictions'] - r30['with_vegas']['spread_correct']} | **{r30['with_vegas']['accuracy']*100:.1f}%** |",
             f"| **All-Time** | {vegas_correct}-{all_time['with_vegas_predictions'] - vegas_correct} | **{all_time['with_vegas_spread_accuracy']*100:.1f}%** |",
@@ -303,7 +321,6 @@ def generate_accuracy_section(summary: dict) -> str:
         ])
     
     # Add Daily Predictions Table
-    ats_tracker = get_ats_tracker()
     daily_table = ats_tracker.generate_daily_predictions_table()
     lines.append(daily_table)
     lines.append("")
