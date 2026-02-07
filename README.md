@@ -66,28 +66,29 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 05, 2026 at 06:48 PM
+**Last Updated**: February 07, 2026 at 12:28 PM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-55.1%25-brightgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Last 7 Days** | 122-119 | **50.6%** |
-| **Last 30 Days** | 123-119 | **50.8%** |
-| **All-Time** | 123-119 | **50.8%** |
+| **Yesterday** (2026-02-06) | 6-2 | **75.0%** |
+| **Last 7 Days** | 165-135 | **55.0%** |
+| **Last 30 Days** | 166-135 | **55.1%** |
+| **All-Time** | 165-136 | **55.1%** |
 
-**Over/Under Accuracy**: 47.9%
+**Over/Under Accuracy**: 49.2%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 93-94 | **49.7%** |
-| **60%+** | 66-72 | **47.8%** |
-| **70%+** | 42-43 | **49.4%** |
-| **80%+** | 25-20 | **55.6%** |
+| **50%+** | 111-98 | **53.1%** |
+| **60%+** | 72-72 | **50.0%** |
+| **70%+** | 44-43 | **50.6%** |
+| **80%+** | 26-20 | **56.5%** |
 
 #### Straight-Up Predictions (Games Without Vegas Lines)
 
@@ -97,8 +98,8 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 245
-- **Overall Winner Accuracy**: 50.6%
+- **Total Predictions**: 304
+- **Overall Winner Accuracy**: 54.9%
 
 #### 📅 Predictions for Today (2026-02-07)
 
