@@ -66,28 +66,28 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 08, 2026 at 05:21 AM
+**Last Updated**: February 08, 2026 at 12:29 PM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-62.3%25-brightgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-62.5%25-brightgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Yesterday** (2026-02-07) | 108-31 | **77.7%** |
-| **Last 7 Days** | 216-110 | **66.3%** |
-| **Last 30 Days** | 276-167 | **62.3%** |
-| **All-Time** | 276-167 | **62.3%** |
+| **Yesterday** (2026-02-07) | 112-32 | **77.8%** |
+| **Last 7 Days** | 220-111 | **66.5%** |
+| **Last 30 Days** | 280-168 | **62.5%** |
+| **All-Time** | 280-168 | **62.5%** |
 
-**Over/Under Accuracy**: 50.3%
+**Over/Under Accuracy**: 50.4%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 155-105 | **59.6%** |
-| **60%+** | 96-73 | **56.8%** |
-| **70%+** | 56-43 | **56.6%** |
+| **50%+** | 158-105 | **60.1%** |
+| **60%+** | 98-73 | **57.3%** |
+| **70%+** | 57-43 | **57.0%** |
 | **80%+** | 30-20 | **60.0%** |
 
 #### Straight-Up Predictions (Games Without Vegas Lines)
@@ -98,8 +98,8 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 446
-- **Overall Winner Accuracy**: 62.1%
+- **Total Predictions**: 451
+- **Overall Winner Accuracy**: 62.3%
 
 #### 📅 Recent Predictions (2026-02-07)
 
@@ -271,27 +271,27 @@ python validation/run_all_backtests.py
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
 | 1 | Michigan Wolverines | 21-1 | +31.0 | 72.6 | 41.6 |
-| 2 | Arizona Wildcats | 23-0 | +28.0 | 69.6 | 41.5 |
+| 2 | Arizona Wildcats | 23-0 | +28.0 | 69.5 | 41.5 |
 | 3 | Duke Blue Devils | 21-2 | +26.1 | 64.9 | 38.8 |
-| 4 | Iowa State Cyclones | 21-2 | +25.7 | 67.1 | 41.4 |
-| 5 | Illinois Fighting Illini | 20-4 | +25.5 | 67.1 | 41.7 |
+| 4 | Iowa State Cyclones | 21-2 | +25.7 | 67.1 | 41.5 |
+| 5 | Illinois Fighting Illini | 20-4 | +25.4 | 67.1 | 41.7 |
 | 6 | Louisville Cardinals | 17-6 | +25.3 | 68.6 | 43.7 |
 | 7 | Florida Gators | 17-6 | +24.5 | 65.6 | 41.5 |
 | 8 | Alabama Crimson Tide | 16-7 | +24.2 | 72.6 | 48.4 |
 | 9 | Gonzaga Bulldogs | 23-2 | +24.1 | 65.7 | 41.6 |
-| 10 | Purdue Boilermakers | 19-4 | +24.0 | 65.8 | 41.7 |
-| 11 | Houston Cougars | 20-2 | +23.9 | 61.8 | 37.9 |
+| 10 | Purdue Boilermakers | 19-4 | +24.0 | 65.7 | 41.7 |
+| 11 | Houston Cougars | 21-2 | +23.9 | 61.6 | 37.7 |
 | 12 | Vanderbilt Commodores | 19-4 | +23.7 | 68.5 | 44.8 |
-| 13 | BYU Cougars | 17-5 | +23.4 | 68.5 | 45.4 |
-| 14 | Arkansas Razorbacks | 17-6 | +23.3 | 70.2 | 46.9 |
+| 13 | Arkansas Razorbacks | 17-6 | +23.3 | 70.2 | 46.9 |
+| 14 | BYU Cougars | 17-6 | +23.2 | 68.4 | 45.5 |
 | 15 | UConn Huskies | 22-2 | +23.0 | 62.8 | 39.8 |
 | 16 | St. John's Red Storm | 18-5 | +22.8 | 66.2 | 43.4 |
 | 17 | Kansas Jayhawks | 18-5 | +22.5 | 63.0 | 40.5 |
 | 18 | NC State Wolfpack | 18-6 | +22.2 | 67.2 | 45.3 |
-| 19 | Tennessee Volunteers | 16-7 | +22.1 | 63.5 | 41.8 |
+| 19 | Tennessee Volunteers | 16-7 | +22.1 | 63.5 | 41.9 |
 | 20 | Michigan State Spartans | 20-4 | +21.7 | 61.2 | 39.6 |
 | 21 | Kentucky Wildcats | 17-7 | +21.7 | 65.0 | 43.6 |
-| 22 | Saint Louis Billikens | 23-1 | +21.5 | 67.7 | 46.1 |
+| 22 | Saint Louis Billikens | 23-1 | +21.5 | 67.7 | 46.2 |
 | 23 | Texas Tech Red Raiders | 16-6 | +21.4 | 65.1 | 43.7 |
 | 24 | Georgia Bulldogs | 17-6 | +21.4 | 69.8 | 48.8 |
 | 25 | Nebraska Cornhuskers | 21-2 | +21.1 | 61.5 | 40.7 |
