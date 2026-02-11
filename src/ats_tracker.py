@@ -416,6 +416,57 @@ class ATSTracker:
         
         return tiers
 
+    def get_conference_accuracy(self, conference_mappings: Dict[int, str]) -> Dict[str, Dict]:
+        """
+        Calculate ATS accuracy broken down by conference.
+
+        A game counts for a conference if either team is a member.
+        Cross-conference games count for both conferences.
+
+        Args:
+            conference_mappings: Dict mapping ESPN team ID to conference name
+
+        Returns:
+            Dict of {conference_name: {predictions: int, correct: int, accuracy: float}}
+        """
+        from src.team_name_mapping import get_espn_team_id_from_name
+
+        conf_stats: Dict[str, Dict] = {}
+
+        checked_vegas = [r for r in self.records.values()
+                         if r.result_checked and r.has_vegas_line]
+
+        for record in checked_vegas:
+            # Resolve team IDs to ESPN IDs
+            # Small IDs (<10000) are already ESPN; large IDs need name lookup
+            home_espn_id = record.home_team_id if record.home_team_id < 10000 else get_espn_team_id_from_name(record.home_team)
+            away_espn_id = record.away_team_id if record.away_team_id < 10000 else get_espn_team_id_from_name(record.away_team)
+
+            # Look up conferences
+            conferences = set()
+            home_conf = conference_mappings.get(home_espn_id)
+            away_conf = conference_mappings.get(away_espn_id)
+            if home_conf:
+                conferences.add(home_conf)
+            if away_conf:
+                conferences.add(away_conf)
+
+            # Attribute result to each conference
+            for conf in conferences:
+                if conf not in conf_stats:
+                    conf_stats[conf] = {"predictions": 0, "correct": 0, "accuracy": 0.0}
+                conf_stats[conf]["predictions"] += 1
+                if record.spread_correct:
+                    conf_stats[conf]["correct"] += 1
+
+        # Calculate accuracy
+        for conf in conf_stats:
+            total = conf_stats[conf]["predictions"]
+            if total > 0:
+                conf_stats[conf]["accuracy"] = conf_stats[conf]["correct"] / total
+
+        return conf_stats
+
     def get_accuracy_summary(self) -> Dict:
         """Get complete accuracy summary for README/reporting."""
         self._update_rolling_accuracy()

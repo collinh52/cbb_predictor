@@ -19,6 +19,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.ats_tracker import get_ats_tracker
+from src.espn_collector import get_espn_collector
 import config
 
 
@@ -183,6 +184,46 @@ def update_readme():
     return True
 
 
+def generate_conference_section(ats_tracker) -> str:
+    """Generate ATS accuracy by conference markdown table."""
+    espn = get_espn_collector()
+    conference_mappings = espn.get_conference_mappings(season=config.CURRENT_SEASON)
+
+    if not conference_mappings:
+        return ""
+
+    conf_stats = ats_tracker.get_conference_accuracy(conference_mappings)
+
+    # Filter to conferences with 5+ predictions
+    qualified = {k: v for k, v in conf_stats.items() if v["predictions"] >= 5}
+
+    if not qualified:
+        return ""
+
+    # Sort by accuracy descending
+    sorted_confs = sorted(qualified.items(), key=lambda x: x[1]["accuracy"], reverse=True)
+
+    lines = [
+        "#### 🏀 ATS Accuracy by Conference",
+        "",
+        "| Conference | Record | Accuracy |",
+        "|------------|--------|----------|",
+    ]
+
+    for conf_name, data in sorted_confs:
+        # Trim " Conference" suffix for cleaner display
+        display_name = conf_name.replace(" Conference", "")
+        wins = data["correct"]
+        losses = data["predictions"] - wins
+        lines.append(f"| {display_name} | {wins}-{losses} | **{data['accuracy']*100:.1f}%** |")
+
+    lines.append("")
+    lines.append("> *A game counts for a conference if either team is a member.*")
+    lines.append("")
+
+    return "\n".join(lines)
+
+
 def generate_accuracy_section(summary: dict) -> str:
     """Generate the markdown content for the accuracy section."""
     ats_tracker = get_ats_tracker()
@@ -289,8 +330,14 @@ def generate_accuracy_section(summary: dict) -> str:
             
             if not has_tier_data:
                 lines.append("| Any | 0-0 | N/A |")
-            
+
             lines.append("")
+
+        # Conference accuracy section
+        conference_section = generate_conference_section(ats_tracker)
+        if conference_section:
+            lines.append(conference_section)
+
     else:
         lines.extend([
             "#### 🏆 Rolling ATS Performance",

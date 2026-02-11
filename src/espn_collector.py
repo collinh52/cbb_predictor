@@ -2,6 +2,8 @@
 ESPN API collector for real college basketball game data.
 ESPN's hidden API is free and provides comprehensive game data.
 """
+import json
+import os
 import requests
 from datetime import datetime, timedelta
 from typing import List, Dict, Optional
@@ -349,8 +351,84 @@ class ESPNCollector:
         
         print(f"✓ Processed {teams_processed} teams")
         print(f"✓ Total unique games found: {len(all_games)}")
-        
+
         return list(all_games.values())
+
+    def get_conference_mappings(self, season: int = 2026, data_dir: str = "data") -> Dict[int, str]:
+        """
+        Get ESPN team_id → conference name mapping from the standings API.
+
+        Results are cached to data/conference_mappings.json and refreshed weekly.
+
+        Args:
+            season: Season year (e.g., 2026)
+            data_dir: Directory for cache file
+
+        Returns:
+            Dict mapping ESPN team ID to conference name
+        """
+        cache_path = os.path.join(data_dir, "conference_mappings.json")
+
+        # Check cache (refresh weekly)
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, 'r') as f:
+                    cached = json.load(f)
+                cached_at = datetime.fromisoformat(cached.get("cached_at", "2000-01-01"))
+                if (datetime.now() - cached_at).days < 7 and cached.get("season") == season:
+                    # Convert string keys back to int
+                    return {int(k): v for k, v in cached["mappings"].items()}
+            except (json.JSONDecodeError, ValueError, KeyError):
+                pass
+
+        print(f"📋 Fetching conference mappings for {season} season...")
+
+        url = "https://site.api.espn.com/apis/v2/sports/basketball/mens-college-basketball/standings"
+        params = {"season": season}
+
+        mappings: Dict[int, str] = {}
+
+        try:
+            response = self.session.get(url, params=params, timeout=15)
+            response.raise_for_status()
+            data = response.json()
+
+            for child in data.get("children", []):
+                conf_name = child.get("name", "")
+                if not conf_name:
+                    continue
+
+                standings = child.get("standings", {})
+                for entry in standings.get("entries", []):
+                    team = entry.get("team", {})
+                    team_id = int(team.get("id", 0))
+                    if team_id > 0:
+                        mappings[team_id] = conf_name
+
+            print(f"   ✓ Found {len(mappings)} teams across {len(data.get('children', []))} conferences")
+
+        except requests.exceptions.RequestException as e:
+            print(f"   ⚠️ ESPN standings request failed: {e}")
+            # Try to return stale cache if available
+            if os.path.exists(cache_path):
+                try:
+                    with open(cache_path, 'r') as f:
+                        cached = json.load(f)
+                    return {int(k): v for k, v in cached["mappings"].items()}
+                except (json.JSONDecodeError, ValueError, KeyError):
+                    pass
+            return {}
+
+        # Save cache
+        os.makedirs(data_dir, exist_ok=True)
+        with open(cache_path, 'w') as f:
+            json.dump({
+                "season": season,
+                "cached_at": datetime.now().isoformat(),
+                "mappings": {str(k): v for k, v in mappings.items()}
+            }, f, indent=2)
+
+        return mappings
 
 
 # Singleton
