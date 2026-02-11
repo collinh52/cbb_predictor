@@ -216,18 +216,18 @@ python validation/run_all_backtests.py
 | 5 | Illinois Fighting Illini | 20-5 | +25.3 | 67.1 | 42.0 |
 | 6 | Iowa State Cyclones | 21-3 | +24.7 | 65.9 | 41.2 |
 | 7 | Florida Gators | 17-6 | +24.5 | 65.7 | 41.5 |
-| 8 | Alabama Crimson Tide | 16-7 | +24.1 | 72.6 | 48.4 |
-| 9 | Gonzaga Bulldogs | 23-2 | +24.1 | 65.7 | 41.6 |
+| 8 | Gonzaga Bulldogs | 24-2 | +24.4 | 65.6 | 41.2 |
+| 9 | Alabama Crimson Tide | 16-7 | +24.1 | 72.6 | 48.4 |
 | 10 | Purdue Boilermakers | 20-4 | +23.9 | 65.8 | 41.9 |
 | 11 | Arkansas Razorbacks | 18-6 | +23.8 | 70.0 | 46.2 |
 | 12 | Vanderbilt Commodores | 20-4 | +23.7 | 68.4 | 44.7 |
 | 13 | Houston Cougars | 22-2 | +23.5 | 60.8 | 37.3 |
 | 14 | BYU Cougars | 18-6 | +23.2 | 68.7 | 45.8 |
 | 15 | UConn Huskies | 22-2 | +22.9 | 62.8 | 39.8 |
-| 16 | Kansas Jayhawks | 19-5 | +22.8 | 63.3 | 40.6 |
+| 16 | Kansas Jayhawks | 19-5 | +22.7 | 63.3 | 40.6 |
 | 17 | St. John's Red Storm | 19-5 | +22.5 | 66.2 | 43.7 |
 | 18 | Tennessee Volunteers | 16-7 | +22.2 | 63.6 | 41.9 |
-| 19 | Michigan State Spartans | 20-4 | +21.7 | 61.3 | 39.7 |
+| 19 | Michigan State Spartans | 20-4 | +21.7 | 61.4 | 39.7 |
 | 20 | Kentucky Wildcats | 17-7 | +21.6 | 64.9 | 43.5 |
 | 21 | Saint Louis Billikens | 23-1 | +21.5 | 67.6 | 46.0 |
 | 22 | NC State Wolfpack | 18-7 | +21.5 | 66.9 | 45.7 |
