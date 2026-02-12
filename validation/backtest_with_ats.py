@@ -172,10 +172,10 @@ class ATSBacktester:
                 # Calculate ATS result if spread available
                 if vegas_spread is not None:
                     # Home covers if actual margin beats the spread
-                    home_covered = actual_margin > vegas_spread
+                    home_covered = actual_margin + vegas_spread > 0
                     
                     # Our pick: if predicted margin > spread, pick home
-                    pick_home = predicted_margin > vegas_spread
+                    pick_home = predicted_margin + vegas_spread > 0
                     ats_correct = pick_home == home_covered
                     
                     prediction['spread_pick'] = 'HOME' if pick_home else 'AWAY'

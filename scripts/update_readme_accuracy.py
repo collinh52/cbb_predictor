@@ -12,8 +12,7 @@ Run this after checking results or generating predictions to keep the README up-
 import os
 import sys
 import re
-from datetime import datetime, timedelta
-from zoneinfo import ZoneInfo
+from datetime import datetime
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -282,18 +281,18 @@ def generate_accuracy_section(summary: dict) -> str:
             "|-----------|------------|----------|",
         ])
 
-        # Add yesterday's row if data exists
-        yesterday = datetime.now(ZoneInfo("America/New_York")).date() - timedelta(days=1)
-        yesterday_key = yesterday.strftime("%Y-%m-%d")
+        # Add most recent day's row if data exists
         accuracy_history = ats_tracker.accuracy_history if hasattr(ats_tracker, 'accuracy_history') else {}
         daily_breakdown = accuracy_history.get("with_vegas_lines", {}).get("daily_breakdown", {})
-        yesterday_data = daily_breakdown.get(yesterday_key)
-        if yesterday_data and yesterday_data.get("predictions", 0) > 0:
-            y_correct = yesterday_data["spread_correct"]
-            y_total = yesterday_data["predictions"]
-            y_wrong = y_total - y_correct
-            y_acc = y_correct / y_total * 100
-            lines.append(f"| **Yesterday** ({yesterday_key}) | {y_correct}-{y_wrong} | **{y_acc:.1f}%** |")
+        if daily_breakdown:
+            most_recent_key = max(daily_breakdown.keys())
+            most_recent_data = daily_breakdown[most_recent_key]
+            if most_recent_data.get("predictions", 0) > 0:
+                y_correct = most_recent_data["spread_correct"]
+                y_total = most_recent_data["predictions"]
+                y_wrong = y_total - y_correct
+                y_acc = y_correct / y_total * 100
+                lines.append(f"| **Latest** ({most_recent_key}) | {y_correct}-{y_wrong} | **{y_acc:.1f}%** |")
 
         lines.extend([
             f"| **Last 7 Days** | {r7['with_vegas']['spread_correct']}-{r7['with_vegas']['predictions'] - r7['with_vegas']['spread_correct']} | **{r7['with_vegas']['accuracy']*100:.1f}%** |",
