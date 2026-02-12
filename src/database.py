@@ -181,7 +181,7 @@ class Database:
             over_hit = None
             
             if pregame_spread is not None:
-                home_covered = actual_margin > pregame_spread
+                home_covered = actual_margin + pregame_spread > 0
             
             if pregame_total is not None:
                 over_hit = actual_total > pregame_total

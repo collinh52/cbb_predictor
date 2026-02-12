@@ -150,10 +150,9 @@ def check_results(days_back: int = 3):
                 
                 if updated_record.has_vegas_line:
                     line_info = f"Line: {updated_record.vegas_spread:+.1f}"
-                    covered = "COVERED" if ((updated_record.actual_margin > updated_record.vegas_spread and 
-                                           updated_record.spread_pick == "HOME") or
-                                          (updated_record.actual_margin <= updated_record.vegas_spread and 
-                                           updated_record.spread_pick == "AWAY")) else "MISSED"
+                    home_covered = updated_record.actual_margin + updated_record.vegas_spread > 0
+                    covered = "COVERED" if ((home_covered and updated_record.spread_pick == "HOME") or
+                                          (not home_covered and updated_record.spread_pick == "AWAY")) else "MISSED"
                 else:
                     line_info = "No line"
                     covered = "CORRECT" if updated_record.spread_correct else "WRONG"

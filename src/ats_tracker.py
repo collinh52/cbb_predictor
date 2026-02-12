@@ -189,10 +189,10 @@ class ATSTracker:
         
         # Determine picks
         if has_vegas:
-            # With Vegas line: pick based on predicted margin vs spread
+            # With Vegas line: pick based on spread-adjusted predicted margin
             # If spread is -5 (home favored by 5) and predicted margin is 8,
-            # then home should cover, so pick HOME
-            spread_pick = "HOME" if predicted_margin > vegas_spread else "AWAY"
+            # adjusted = 8 + (-5) = 3 > 0, so home covers → pick HOME
+            spread_pick = "HOME" if predicted_margin + vegas_spread > 0 else "AWAY"
             # Only pick totals if we have a total line
             if vegas_total is not None:
                 total_pick = "OVER" if predicted_total > vegas_total else "UNDER"
@@ -273,8 +273,8 @@ class ATSTracker:
         # Calculate ATS accuracy
         if record.has_vegas_line and record.vegas_spread is not None:
             # True ATS: did we beat the spread?
-            # Home covers if actual_margin > vegas_spread
-            home_covered = record.actual_margin > record.vegas_spread
+            # Home covers if spread-adjusted margin is positive
+            home_covered = record.actual_margin + record.vegas_spread > 0
             record.spread_correct = (record.spread_pick == "HOME") == home_covered
             
             # Total accuracy
