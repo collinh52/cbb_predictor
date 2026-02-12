@@ -244,7 +244,7 @@ class ATSTracker:
         record.odds_collected_at = datetime.now().isoformat()
         
         # Recalculate picks with actual Vegas line
-        record.spread_pick = "HOME" if record.predicted_margin > vegas_spread else "AWAY"
+        record.spread_pick = "HOME" if record.predicted_margin + vegas_spread > 0 else "AWAY"
         record.total_pick = "OVER" if record.predicted_total > vegas_total else "UNDER"
         
         self._save_records()
