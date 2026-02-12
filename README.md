@@ -213,30 +213,30 @@ python validation/run_all_backtests.py
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 23-1 | +30.4 | 71.7 | 41.3 |
-| 2 | Arizona Wildcats | 23-1 | +27.7 | 69.3 | 41.7 |
+| 1 | Michigan Wolverines | 23-1 | +30.4 | 71.8 | 41.4 |
+| 2 | Arizona Wildcats | 23-1 | +27.6 | 69.3 | 41.7 |
 | 3 | Louisville Cardinals | 18-6 | +27.0 | 70.2 | 43.6 |
-| 4 | Duke Blue Devils | 22-2 | +26.0 | 64.5 | 38.5 |
-| 5 | Illinois Fighting Illini | 20-5 | +25.3 | 67.0 | 42.0 |
+| 4 | Duke Blue Devils | 22-2 | +25.9 | 64.5 | 38.6 |
+| 5 | Illinois Fighting Illini | 20-5 | +25.3 | 67.1 | 42.1 |
 | 6 | Iowa State Cyclones | 21-3 | +24.6 | 65.8 | 41.2 |
-| 7 | Alabama Crimson Tide | 17-7 | +24.5 | 72.6 | 48.3 |
-| 8 | Florida Gators | 18-6 | +24.4 | 65.2 | 41.1 |
-| 9 | Gonzaga Bulldogs | 24-2 | +24.4 | 65.6 | 41.2 |
+| 7 | Alabama Crimson Tide | 17-7 | +24.5 | 72.6 | 48.4 |
+| 8 | Florida Gators | 18-6 | +24.4 | 65.2 | 41.2 |
+| 9 | Gonzaga Bulldogs | 24-2 | +24.3 | 65.6 | 41.2 |
 | 10 | Purdue Boilermakers | 20-4 | +23.9 | 65.8 | 41.9 |
-| 11 | Arkansas Razorbacks | 18-6 | +23.8 | 69.9 | 46.1 |
+| 11 | Arkansas Razorbacks | 18-6 | +23.8 | 70.0 | 46.2 |
 | 12 | Vanderbilt Commodores | 20-4 | +23.7 | 68.4 | 44.7 |
-| 13 | Houston Cougars | 22-2 | +23.6 | 60.9 | 37.2 |
+| 13 | Houston Cougars | 22-2 | +23.6 | 60.9 | 37.3 |
 | 14 | BYU Cougars | 18-6 | +23.1 | 68.7 | 45.8 |
-| 15 | UConn Huskies | 23-2 | +22.8 | 62.6 | 39.8 |
+| 15 | UConn Huskies | 23-2 | +22.7 | 62.6 | 39.9 |
 | 16 | Kansas Jayhawks | 19-5 | +22.7 | 63.3 | 40.6 |
 | 17 | St. John's Red Storm | 19-5 | +22.4 | 66.1 | 43.7 |
-| 18 | Tennessee Volunteers | 16-7 | +22.2 | 63.6 | 41.9 |
+| 18 | Tennessee Volunteers | 17-7 | +21.8 | 63.2 | 41.7 |
 | 19 | Texas Tech Red Raiders | 18-6 | +21.7 | 64.6 | 42.9 |
-| 20 | Kentucky Wildcats | 17-7 | +21.7 | 64.9 | 43.6 |
-| 21 | Michigan State Spartans | 20-4 | +21.6 | 61.3 | 39.7 |
+| 20 | Kentucky Wildcats | 17-7 | +21.6 | 64.9 | 43.6 |
+| 21 | Michigan State Spartans | 20-4 | +21.6 | 61.3 | 39.8 |
 | 22 | NC State Wolfpack | 18-7 | +21.5 | 66.9 | 45.7 |
-| 23 | Saint Louis Billikens | 23-1 | +21.5 | 67.6 | 46.1 |
-| 24 | Georgia Bulldogs | 17-7 | +21.2 | 69.5 | 48.7 |
+| 23 | Saint Louis Billikens | 23-1 | +21.5 | 67.5 | 46.1 |
+| 24 | Georgia Bulldogs | 17-7 | +21.1 | 69.5 | 48.8 |
 | 25 | Nebraska Cornhuskers | 21-3 | +21.0 | 61.5 | 40.9 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
