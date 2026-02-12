@@ -74,7 +74,7 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Yesterday** (2026-02-10) | 8-13 | **38.1%** |
+| **Latest** (2026-02-11) | 18-24 | **42.9%** |
 | **Last 7 Days** | 201-93 | **68.4%** |
 | **Last 30 Days** | 324-212 | **60.4%** |
 | **All-Time** | 324-212 | **60.4%** |
@@ -211,17 +211,17 @@ python validation/run_all_backtests.py
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
 | 1 | Michigan Wolverines | 22-1 | +30.8 | 72.0 | 41.1 |
-| 2 | Arizona Wildcats | 23-1 | +27.7 | 69.4 | 41.7 |
+| 2 | Arizona Wildcats | 23-1 | +27.7 | 69.3 | 41.7 |
 | 3 | Louisville Cardinals | 18-6 | +27.0 | 70.2 | 43.6 |
 | 4 | Duke Blue Devils | 22-2 | +26.0 | 64.5 | 38.5 |
 | 5 | Illinois Fighting Illini | 20-5 | +25.3 | 67.1 | 42.0 |
 | 6 | Iowa State Cyclones | 21-3 | +24.7 | 65.8 | 41.2 |
-| 7 | Alabama Crimson Tide | 17-7 | +24.5 | 72.6 | 48.3 |
-| 8 | Florida Gators | 18-6 | +24.4 | 65.2 | 41.1 |
-| 9 | Gonzaga Bulldogs | 24-2 | +24.4 | 65.7 | 41.3 |
+| 7 | Gonzaga Bulldogs | 24-2 | +24.5 | 65.9 | 41.4 |
+| 8 | Alabama Crimson Tide | 17-7 | +24.5 | 72.6 | 48.3 |
+| 9 | Florida Gators | 18-6 | +24.4 | 65.2 | 41.1 |
 | 10 | Purdue Boilermakers | 20-4 | +23.9 | 65.8 | 41.9 |
 | 11 | Arkansas Razorbacks | 18-6 | +23.8 | 70.0 | 46.1 |
-| 12 | Vanderbilt Commodores | 20-4 | +23.7 | 68.4 | 44.7 |
+| 12 | Vanderbilt Commodores | 20-4 | +23.7 | 68.5 | 44.8 |
 | 13 | Houston Cougars | 22-2 | +23.6 | 60.8 | 37.2 |
 | 14 | BYU Cougars | 18-6 | +23.1 | 68.7 | 45.8 |
 | 15 | UConn Huskies | 23-2 | +22.8 | 62.6 | 39.8 |
@@ -232,7 +232,7 @@ python validation/run_all_backtests.py
 | 20 | Michigan State Spartans | 20-4 | +21.7 | 61.3 | 39.7 |
 | 21 | Kentucky Wildcats | 17-7 | +21.7 | 64.9 | 43.6 |
 | 22 | NC State Wolfpack | 18-7 | +21.5 | 66.9 | 45.7 |
-| 23 | Saint Louis Billikens | 23-1 | +21.5 | 67.5 | 46.0 |
+| 23 | Saint Louis Billikens | 23-1 | +21.5 | 67.6 | 46.1 |
 | 24 | Georgia Bulldogs | 17-7 | +21.2 | 69.5 | 48.7 |
 | 25 | Nebraska Cornhuskers | 21-3 | +21.0 | 61.5 | 40.8 |
 
