@@ -139,42 +139,34 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 476
 - **Overall Winner Accuracy**: 62.8%
 
-#### 📅 Predictions for Today (2026-02-15)
+#### 📅 Predictions for Today (2026-02-16)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| IUPUI Jaguars @ Fort Wayne Mastodons | **HOME** (-6.5) | **UNDER** (160.5) | 95% |
-| Oregon St Beavers @ Seattle Redhawks | **AWAY** (+6.0) | **UNDER** (138.0) | 51% |
-| Utah Utes @ Cincinnati Bearcats | **HOME** (-11.0) | **UNDER** (141.5) | 71% |
-| Indiana Hoosiers @ Illinois Fighting Illini | **AWAY** (+10.5) | **UNDER** (152.0) | 54% |
-| Charleston Cougars @ Campbell Fighting Camels | **HOME** (-2.0) | **OVER** (158.5) | 51% |
-| Tulane Green Wave @ UAB Blazers | **HOME** (-6.5) | **UNDER** (152.0) | 52% |
-| Drake Bulldogs @ Northern Iowa Panthers | **AWAY** (+9.5) | **UNDER** (137.5) | 59% |
-| Siena Saints @ Marist Red Foxes | **HOME** (-2.0) | **UNDER** (133.5) | 40% |
-| Seton Hall Pirates @ Butler Bulldogs | **HOME** (+1.5) | **UNDER** (142.0) | 49% |
-| Rider Broncs @ Sacred Heart Pioneers | **AWAY** (+9.0) | **OVER** (148.5) | 43% |
-| Holy Cross Crusaders @ Loyola (MD) Greyhounds | **HOME** (-3.5) | **UNDER** (146.0) | 37% |
-| Davidson Wildcats @ Dayton Flyers | **AWAY** (+4.5) | **UNDER** (139.0) | 34% |
-| Indiana St Sycamores @ Valparaiso Beacons | **AWAY** (+5.0) | **OVER** (142.5) | 34% |
-| Belmont Bruins @ Murray St Racers | **HOME** (-1.5) | **OVER** (167.0) | 33% |
-| Fairfield Stags @ Saint Peter's Peacocks | **AWAY** (+3.5) | **OVER** (142.5) | 28% |
-| UTSA Roadrunners @ Charlotte 49ers | **AWAY** (+14.5) | **UNDER** (147.5) | 27% |
-| Green Bay Phoenix @ Milwaukee Panthers | **HOME** (-1.5) | **UNDER** (145.5) | 28% |
-| Merrimack Warriors @ Quinnipiac Bobcats | **HOME** (-1.5) | **UNDER** (141.5) | 28% |
-| San Francisco Dons @ San Diego Toreros | **HOME** (+4.0) | **OVER** (148.5) | 37% |
-| Denver Pioneers @ Omaha Mavericks | **AWAY** (+2.5) | **OVER** (160.5) | 18% |
-| Iona Gaels @ Niagara Purple Eagles | **HOME** (+5.5) | **UNDER** (133.0) | 27% |
-| Manhattan Jaspers @ Canisius Golden Griffins | **HOME** (+1.5) | **OVER** (140.5) | 25% |
-| Illinois St Redbirds @ UIC Flames | **HOME** (+0.0) | **UNDER** (138.5) | 31% |
-| North Texas Mean Green @ Temple Owls | **AWAY** (+2.5) | **UNDER** (137.5) | 19% |
-| Eastern Kentucky Colonels @ North Alabama Lions | **HOME** (+4.0) | **OVER** (149.5) | 22% |
-| Towson Tigers @ Monmouth Hawks | **AWAY** (+1.5) | **UNDER** (136.0) | 24% |
-| Oakland Golden Grizzlies @ Robert Morris Colonials | **AWAY** (+1.0) | **UNDER** (156.0) | 7% |
-| Youngstown St Penguins @ Detroit Mercy Titans | **HOME** (+2.5) | **UNDER** (151.5) | 3% |
-| Bradley Braves @ Southern Illinois Salukis | **AWAY** (+2.5) | **UNDER** (145.0) | 40% |
-| South Florida Bulls @ Florida Atlantic Owls | **HOME** (+4.5) | **OVER** (166.0) | 4% |
-| Wright St Raiders @ Cleveland St Vikings | **HOME** (+7.0) | **UNDER** (159.0) | 6% |
-| Maryland Terrapins @ Rutgers Scarlet Knights | **AWAY** (+2.0) | **UNDER** (144.5) | 7% |
+| Grambling St Tigers @ Prairie View Panthers | **HOME** (+1.5) | **UNDER** (151.5) | 68% |
+| Nicholls St Colonels @ Houston Christian Huskies | **HOME** (+1.0) | **UNDER** (143.0) | 74% |
+| Syracuse Orange @ Duke Blue Devils | **AWAY** (+20.0) | **OVER** (142.5) | 52% |
+| McNeese Cowboys @ Northwestern St Demons | **HOME** (+14.0) | **UNDER** (137.5) | 57% |
+| Wagner Seahawks @ LIU Sharks | **AWAY** (+9.5) | **UNDER** (137.0) | 59% |
+| Miss Valley St Delta Devils @ Alabama St Hornets | **AWAY** (+14.5) | **UNDER** (141.0) | 53% |
+| SE Louisiana Lions @ East Texas A&M Lions | **HOME** (-2.5) | **UNDER** (136.0) | 85% |
+| Howard Bison @ Delaware St Hornets | **HOME** (+11.0) | **UNDER** (131.5) | 76% |
+| Houston Cougars @ Iowa State Cyclones | **HOME** (-1.5) | **OVER** (133.5) | 60% |
+| South Alabama Jaguars @ Marshall Thundering Herd | **HOME** (-4.0) | **UNDER** (150.5) | 44% |
+| Lamar Cardinals @ UT Rio Grande Valley Vaqueros | **HOME** (-6.0) | **UNDER** (142.0) | 68% |
+| Louisiana Ragin' Cajuns @ Old Dominion Monarchs | **AWAY** (+6.0) | **OVER** (136.0) | 39% |
+| Drexel Dragons @ Stony Brook Seawolves | **HOME** (-4.0) | **UNDER** (132.5) | 38% |
+| Florida A&M Rattlers @ Alcorn St Braves | **HOME** (-1.0) | **UNDER** (138.5) | 25% |
+| New Orleans Privateers @ Incarnate Word Cardinals | **HOME** (-1.5) | **OVER** (157.0) | 32% |
+| Southern Jaguars @ Texas Southern Tigers | **HOME** (+2.0) | **OVER** (153.5) | 36% |
+| Arkansas-Pine Bluff Golden Lions @ Alabama A&M Bulldogs | **AWAY** (+3.0) | **UNDER** (144.0) | 21% |
+| Morgan St Bears @ North Carolina Central Eagles | **AWAY** (+4.5) | **UNDER** (154.5) | 64% |
+| Abilene Christian Wildcats @ Tarleton State Texans | **HOME** (-1.5) | **UNDER** (135.0) | 58% |
+| Colgate Raiders @ Boston Univ. Terriers | **HOME** (+1.5) | **OVER** (143.0) | 47% |
+| Norfolk St Spartans @ Maryland-Eastern Shore Hawks | **HOME** (+1.5) | **OVER** (136.0) | 42% |
+| Coppin St Eagles @ South Carolina St Bulldogs | **AWAY** (+5.0) | **UNDER** (143.0) | 56% |
+| Bethune-Cookman Wildcats @ Jackson St Tigers | **HOME** (+5.5) | **OVER** (149.0) | 27% |
+| Stephen F. Austin Lumberjacks @ Texas A&M-CC Islanders | **HOME** (+6.5) | **OVER** (136.5) | 5% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -184,35 +176,35 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: February 15, 2026*
+*Updated: February 16, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 24-1 | +31.1 | 72.0 | 40.9 |
+| 1 | Michigan Wolverines | 24-1 | +31.1 | 72.1 | 40.9 |
 | 2 | Arizona Wildcats | 23-2 | +27.4 | 69.0 | 41.6 |
-| 3 | Louisville Cardinals | 19-6 | +26.9 | 70.1 | 43.5 |
+| 3 | Louisville Cardinals | 19-6 | +26.9 | 70.1 | 43.6 |
 | 4 | Duke Blue Devils | 23-2 | +26.1 | 64.5 | 38.4 |
-| 5 | Illinois Fighting Illini | 20-5 | +25.5 | 67.3 | 42.0 |
-| 6 | Iowa State Cyclones | 22-3 | +25.4 | 66.2 | 40.8 |
+| 5 | Illinois Fighting Illini | 21-5 | +25.8 | 67.0 | 41.4 |
+| 6 | Iowa State Cyclones | 22-3 | +25.3 | 66.2 | 40.8 |
 | 7 | Florida Gators | 19-6 | +24.7 | 65.8 | 41.5 |
-| 8 | Gonzaga Bulldogs | 25-2 | +24.5 | 65.8 | 41.4 |
-| 9 | Alabama Crimson Tide | 18-7 | +24.3 | 72.6 | 48.4 |
+| 8 | Gonzaga Bulldogs | 25-2 | +24.5 | 65.9 | 41.4 |
+| 9 | Alabama Crimson Tide | 18-7 | +24.4 | 72.7 | 48.4 |
 | 10 | Arkansas Razorbacks | 19-6 | +24.3 | 70.2 | 45.9 |
 | 11 | Purdue Boilermakers | 21-4 | +23.8 | 65.3 | 41.5 |
 | 12 | Vanderbilt Commodores | 21-4 | +23.7 | 68.2 | 44.4 |
-| 13 | Houston Cougars | 23-2 | +23.7 | 60.9 | 37.2 |
-| 14 | BYU Cougars | 19-6 | +22.9 | 68.9 | 45.9 |
-| 15 | UConn Huskies | 24-2 | +22.5 | 62.6 | 40.0 |
-| 16 | St. John's Red Storm | 20-5 | +22.4 | 65.6 | 43.2 |
-| 17 | Kansas Jayhawks | 19-6 | +22.3 | 62.8 | 40.4 |
-| 18 | Texas Tech Red Raiders | 19-6 | +22.0 | 64.7 | 42.7 |
-| 19 | Tennessee Volunteers | 18-7 | +21.9 | 63.3 | 41.7 |
+| 13 | Houston Cougars | 23-2 | +23.6 | 60.9 | 37.3 |
+| 14 | BYU Cougars | 19-6 | +23.0 | 68.9 | 46.0 |
+| 15 | UConn Huskies | 24-2 | +22.6 | 62.7 | 40.1 |
+| 16 | St. John's Red Storm | 20-5 | +22.3 | 65.6 | 43.3 |
+| 17 | Kansas Jayhawks | 19-6 | +22.3 | 62.8 | 40.5 |
+| 18 | Texas Tech Red Raiders | 19-6 | +22.1 | 64.8 | 42.8 |
+| 19 | Tennessee Volunteers | 18-7 | +22.0 | 63.4 | 41.8 |
 | 20 | Kentucky Wildcats | 17-8 | +21.7 | 65.1 | 43.7 |
-| 21 | Michigan State Spartans | 20-5 | +21.6 | 61.6 | 40.1 |
-| 22 | NC State Wolfpack | 18-8 | +21.5 | 66.8 | 45.6 |
-| 23 | Saint Louis Billikens | 24-1 | +21.4 | 67.3 | 45.8 |
-| 24 | Nebraska Cornhuskers | 22-3 | +21.3 | 61.2 | 40.3 |
-| 25 | Wisconsin Badgers | 18-7 | +20.7 | 67.5 | 46.8 |
+| 21 | Michigan State Spartans | 20-5 | +21.6 | 61.7 | 40.1 |
+| 22 | NC State Wolfpack | 18-8 | +21.5 | 66.8 | 45.7 |
+| 23 | Saint Louis Billikens | 24-1 | +21.5 | 67.3 | 45.8 |
+| 24 | Nebraska Cornhuskers | 22-3 | +21.4 | 61.3 | 40.3 |
+| 25 | Wisconsin Badgers | 18-7 | +20.8 | 67.6 | 46.9 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
