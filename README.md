@@ -75,7 +75,7 @@ python validation/run_all_backtests.py
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
 | **Latest** (2026-02-09) | 18-7 | **72.0%** |
-| **Last 7 Days** | 18-7 | **72.0%** |
+| **Last 7 Days** | 0-0 | **0.0%** |
 | **Last 30 Days** | 297-175 | **62.9%** |
 | **All-Time** | 298-175 | **63.0%** |
 
@@ -139,34 +139,40 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 476
 - **Overall Winner Accuracy**: 62.8%
 
-#### 📅 Predictions for Today (2026-02-16)
+#### 📅 Predictions for Today (2026-02-17)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Grambling St Tigers @ Prairie View Panthers | **HOME** (+1.5) | **UNDER** (151.5) | 68% |
-| Nicholls St Colonels @ Houston Christian Huskies | **HOME** (+1.0) | **UNDER** (143.0) | 74% |
-| Syracuse Orange @ Duke Blue Devils | **AWAY** (+20.0) | **OVER** (142.5) | 52% |
-| McNeese Cowboys @ Northwestern St Demons | **HOME** (+14.0) | **UNDER** (137.5) | 57% |
-| Wagner Seahawks @ LIU Sharks | **AWAY** (+9.5) | **UNDER** (137.0) | 59% |
-| Miss Valley St Delta Devils @ Alabama St Hornets | **AWAY** (+14.5) | **UNDER** (141.0) | 53% |
-| SE Louisiana Lions @ East Texas A&M Lions | **HOME** (-2.5) | **UNDER** (136.0) | 85% |
-| Howard Bison @ Delaware St Hornets | **HOME** (+11.0) | **UNDER** (131.5) | 76% |
-| Houston Cougars @ Iowa State Cyclones | **HOME** (-1.5) | **OVER** (133.5) | 60% |
-| South Alabama Jaguars @ Marshall Thundering Herd | **HOME** (-4.0) | **UNDER** (150.5) | 44% |
-| Lamar Cardinals @ UT Rio Grande Valley Vaqueros | **HOME** (-6.0) | **UNDER** (142.0) | 68% |
-| Louisiana Ragin' Cajuns @ Old Dominion Monarchs | **AWAY** (+6.0) | **OVER** (136.0) | 39% |
-| Drexel Dragons @ Stony Brook Seawolves | **HOME** (-4.0) | **UNDER** (132.5) | 38% |
-| Florida A&M Rattlers @ Alcorn St Braves | **HOME** (-1.0) | **UNDER** (138.5) | 25% |
-| New Orleans Privateers @ Incarnate Word Cardinals | **HOME** (-1.5) | **OVER** (157.0) | 32% |
-| Southern Jaguars @ Texas Southern Tigers | **HOME** (+2.0) | **OVER** (153.5) | 36% |
-| Arkansas-Pine Bluff Golden Lions @ Alabama A&M Bulldogs | **AWAY** (+3.0) | **UNDER** (144.0) | 21% |
-| Morgan St Bears @ North Carolina Central Eagles | **AWAY** (+4.5) | **UNDER** (154.5) | 64% |
-| Abilene Christian Wildcats @ Tarleton State Texans | **HOME** (-1.5) | **UNDER** (135.0) | 58% |
-| Colgate Raiders @ Boston Univ. Terriers | **HOME** (+1.5) | **OVER** (143.0) | 47% |
-| Norfolk St Spartans @ Maryland-Eastern Shore Hawks | **HOME** (+1.5) | **OVER** (136.0) | 42% |
-| Coppin St Eagles @ South Carolina St Bulldogs | **AWAY** (+5.0) | **UNDER** (143.0) | 56% |
-| Bethune-Cookman Wildcats @ Jackson St Tigers | **HOME** (+5.5) | **OVER** (149.0) | 27% |
-| Stephen F. Austin Lumberjacks @ Texas A&M-CC Islanders | **HOME** (+6.5) | **OVER** (136.5) | 5% |
+| South Carolina Gamecocks @ Florida Gators | **AWAY** (+23.5) | **UNDER** (153.5) | 72% |
+| Air Force Falcons @ New Mexico Lobos | **AWAY** (+27.5) | **UNDER** (148.5) | 61% |
+| Saint Louis Billikens @ Rhode Island Rams | **AWAY** (-10.5) | **UNDER** (152.5) | 66% |
+| Boston College Eagles @ Florida St Seminoles | **AWAY** (+11.5) | **UNDER** (148.0) | 76% |
+| Kent State Golden Flashes @ Bowling Green Falcons | **HOME** (-3.0) | **OVER** (151.0) | 52% |
+| Grand Canyon Antelopes @ San Diego St Aztecs | **AWAY** (+8.5) | **OVER** (138.5) | 49% |
+| North Carolina Tar Heels @ NC State Wolfpack | **HOME** (-6.5) | **UNDER** (158.5) | 45% |
+| LSU Tigers @ Texas Longhorns | **AWAY** (+10.5) | **UNDER** (151.5) | 45% |
+| UCLA Bruins @ Michigan St Spartans | **AWAY** (+8.5) | **OVER** (139.5) | 54% |
+| Fresno St Bulldogs @ Wyoming Cowboys | **AWAY** (+8.5) | **UNDER** (147.5) | 59% |
+| Ball State Cardinals @ Ohio Bobcats | **AWAY** (+9.5) | **UNDER** (143.0) | 61% |
+| Virginia Tech Hokies @ Miami Hurricanes | **AWAY** (+8.5) | **UNDER** (150.5) | 45% |
+| GW Revolutionaries @ VCU Rams | **HOME** (-6.5) | **UNDER** (162.5) | 58% |
+| Georgia Bulldogs @ Kentucky Wildcats | **AWAY** (+6.5) | **UNDER** (161.5) | 41% |
+| Minnesota Golden Gophers @ Oregon Ducks | **HOME** (-4.5) | **UNDER** (135.5) | 49% |
+| Gardner-Webb Bulldogs @ Charleston Southern Buccaneers | **AWAY** (+17.5) | **OVER** (160.5) | 40% |
+| Nebraska Cornhuskers @ Iowa Hawkeyes | **HOME** (-1.5) | **UNDER** (139.5) | 55% |
+| SE Missouri St Redhawks @ Tenn-Martin Skyhawks | **HOME** (-3.5) | **UNDER** (140.5) | 59% |
+| Akron Zips @ Western Michigan Broncos | **HOME** (+14.0) | **UNDER** (158.5) | 41% |
+| Miami (OH) RedHawks @ Massachusetts Minutemen | **AWAY** (-3.5) | **OVER** (163.5) | 51% |
+| Louisville Cardinals @ SMU Mustangs | **AWAY** (-3.5) | **UNDER** (166.5) | 49% |
+| TCU Horned Frogs @ UCF Knights | **HOME** (-2.5) | **UNDER** (155.5) | 37% |
+| Texas Tech Red Raiders @ Arizona St Sun Devils | **HOME** (+8.5) | **UNDER** (154.5) | 45% |
+| Central Michigan Chippewas @ Eastern Michigan Eagles | **AWAY** (+5.0) | **OVER** (144.0) | 19% |
+| Michigan Wolverines @ Purdue Boilermakers | **HOME** (+2.5) | **UNDER** (156.5) | 30% |
+| Northern Illinois Huskies @ Buffalo Bulls | **AWAY** (+9.0) | **UNDER** (148.0) | 47% |
+| Nevada Wolf Pack @ San José St Spartans | **HOME** (+10.5) | **OVER** (140.5) | 14% |
+| Baylor Bears @ Kansas St Wildcats | **HOME** (+4.5) | **UNDER** (161.5) | 24% |
+| Wisconsin Badgers @ Ohio State Buckeyes | **HOME** (+1.5) | **OVER** (157.5) | 9% |
+| Villanova Wildcats @ Xavier Musketeers | **HOME** (+4.5) | **OVER** (152.5) | 5% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -176,35 +182,35 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: February 16, 2026*
+*Updated: February 17, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 24-1 | +31.1 | 72.1 | 40.9 |
+| 1 | Michigan Wolverines | 24-1 | +31.2 | 72.1 | 40.9 |
 | 2 | Arizona Wildcats | 23-2 | +27.4 | 69.0 | 41.6 |
-| 3 | Louisville Cardinals | 19-6 | +26.9 | 70.1 | 43.6 |
-| 4 | Duke Blue Devils | 23-2 | +26.1 | 64.5 | 38.4 |
-| 5 | Illinois Fighting Illini | 21-5 | +25.8 | 67.0 | 41.4 |
-| 6 | Iowa State Cyclones | 22-3 | +25.3 | 66.2 | 40.8 |
+| 3 | Duke Blue Devils | 24-2 | +27.1 | 65.5 | 38.4 |
+| 4 | Louisville Cardinals | 19-6 | +27.0 | 70.1 | 43.5 |
+| 5 | Illinois Fighting Illini | 21-5 | +25.9 | 67.0 | 41.4 |
+| 6 | Iowa State Cyclones | 23-3 | +25.5 | 66.3 | 40.8 |
 | 7 | Florida Gators | 19-6 | +24.7 | 65.8 | 41.5 |
-| 8 | Gonzaga Bulldogs | 25-2 | +24.5 | 65.9 | 41.4 |
+| 8 | Gonzaga Bulldogs | 25-2 | +24.6 | 66.0 | 41.4 |
 | 9 | Alabama Crimson Tide | 18-7 | +24.4 | 72.7 | 48.4 |
-| 10 | Arkansas Razorbacks | 19-6 | +24.3 | 70.2 | 45.9 |
-| 11 | Purdue Boilermakers | 21-4 | +23.8 | 65.3 | 41.5 |
-| 12 | Vanderbilt Commodores | 21-4 | +23.7 | 68.2 | 44.4 |
-| 13 | Houston Cougars | 23-2 | +23.6 | 60.9 | 37.3 |
-| 14 | BYU Cougars | 19-6 | +23.0 | 68.9 | 46.0 |
-| 15 | UConn Huskies | 24-2 | +22.6 | 62.7 | 40.1 |
-| 16 | St. John's Red Storm | 20-5 | +22.3 | 65.6 | 43.3 |
-| 17 | Kansas Jayhawks | 19-6 | +22.3 | 62.8 | 40.5 |
-| 18 | Texas Tech Red Raiders | 19-6 | +22.1 | 64.8 | 42.8 |
+| 10 | Arkansas Razorbacks | 19-6 | +24.4 | 70.2 | 45.9 |
+| 11 | Purdue Boilermakers | 21-4 | +23.9 | 65.4 | 41.5 |
+| 12 | Vanderbilt Commodores | 21-4 | +23.8 | 68.3 | 44.4 |
+| 13 | Houston Cougars | 23-3 | +23.5 | 60.7 | 37.2 |
+| 14 | BYU Cougars | 19-6 | +23.0 | 69.0 | 46.0 |
+| 15 | UConn Huskies | 24-2 | +22.7 | 62.7 | 40.0 |
+| 16 | St. John's Red Storm | 20-5 | +22.4 | 65.7 | 43.3 |
+| 17 | Kansas Jayhawks | 19-6 | +22.4 | 62.8 | 40.4 |
+| 18 | Texas Tech Red Raiders | 19-6 | +22.1 | 64.9 | 42.7 |
 | 19 | Tennessee Volunteers | 18-7 | +22.0 | 63.4 | 41.8 |
-| 20 | Kentucky Wildcats | 17-8 | +21.7 | 65.1 | 43.7 |
-| 21 | Michigan State Spartans | 20-5 | +21.6 | 61.7 | 40.1 |
-| 22 | NC State Wolfpack | 18-8 | +21.5 | 66.8 | 45.7 |
+| 20 | Kentucky Wildcats | 17-8 | +21.8 | 65.1 | 43.7 |
+| 21 | Michigan State Spartans | 20-5 | +21.7 | 61.8 | 40.1 |
+| 22 | NC State Wolfpack | 18-8 | +21.5 | 66.8 | 45.6 |
 | 23 | Saint Louis Billikens | 24-1 | +21.5 | 67.3 | 45.8 |
 | 24 | Nebraska Cornhuskers | 22-3 | +21.4 | 61.3 | 40.3 |
-| 25 | Wisconsin Badgers | 18-7 | +20.8 | 67.6 | 46.9 |
+| 25 | Wisconsin Badgers | 18-7 | +20.8 | 67.6 | 46.8 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
