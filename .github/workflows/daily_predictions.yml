@@ -178,49 +178,32 @@ jobs:
   morning-scheduled:
     name: Morning Update (Scheduled)
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule' && github.event.schedule == '0 12 * * *'
 
     steps:
-      - name: Check if morning schedule
-        id: check
-        run: |
-          HOUR=$(date -u +%H)
-          if [ "$HOUR" != "12" ]; then
-            echo "⏭️ Skipping morning job - current hour: $HOUR UTC (expected: 12)"
-            echo "should_run=false" >> $GITHUB_OUTPUT
-          else
-            echo "✅ Running morning job at $HOUR UTC"
-            echo "should_run=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Checkout Repository
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
       - name: Install Dependencies
-        if: steps.check.outputs.should_run == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Install Playwright (KenPom login)
-        if: steps.check.outputs.should_run == 'true'
         run: |
           pip install playwright
           python -m playwright install --with-deps chromium
 
       - name: Login to KenPom and export cookie
-        if: steps.check.outputs.should_run == 'true'
         continue-on-error: true
         run: |
           if [ -n "${KENPOM_COOKIE}" ]; then
@@ -238,17 +221,14 @@ jobs:
           KENPOM_PASSWORD: ${{ secrets.KENPOM_PASSWORD }}
 
       - name: Create .env file
-        if: steps.check.outputs.should_run == 'true'
         run: |
           echo "THE_ODDS_API_KEY=${{ secrets.THE_ODDS_API_KEY }}" > .env
           echo "BASKETBALL_API_KEY=${{ secrets.BASKETBALL_API_KEY }}" >> .env
 
       - name: Create data directory
-        if: steps.check.outputs.should_run == 'true'
         run: mkdir -p data
 
       - name: Download KenPom summary (optional)
-        if: steps.check.outputs.should_run == 'true'
         continue-on-error: true
         run: |
           if [ -n "${KENPOM_COOKIE}" ] && ( [ -n "${KENPOM_DATA_URL}" ] || [ -n "${KENPOM_SUMMARY_URL}" ] ); then
@@ -296,12 +276,10 @@ jobs:
           KENPOM_SUMMARY_URL: ${{ secrets.KENPOM_SUMMARY_URL }}
 
       - name: Get current week
-        if: steps.check.outputs.should_run == 'true'
         id: week
         run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
 
       - name: Cache completed games data
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -311,7 +289,6 @@ jobs:
             game-cache-
 
       - name: Cache ML models
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -321,7 +298,6 @@ jobs:
             ml-models-
 
       - name: Check cache status
-        if: steps.check.outputs.should_run == 'true'
         run: |
           if [ -f "data/cache/completed_games_2026.json" ]; then
             echo "✓ Cache found - checking status..."
@@ -331,11 +307,9 @@ jobs:
           fi
 
       - name: Collect Odds and Generate Predictions
-        if: steps.check.outputs.should_run == 'true'
         run: python scripts/predict_today.py --days 2
 
       - name: Commit ATS Data and README
-        if: steps.check.outputs.should_run == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -349,54 +323,36 @@ jobs:
   evening-scheduled:
     name: Evening Update (Scheduled)
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule' && github.event.schedule == '0 4 * * *'
 
     steps:
-      - name: Check if evening schedule
-        id: check
-        run: |
-          HOUR=$(date -u +%H)
-          if [ "$HOUR" != "04" ]; then
-            echo "⏭️ Skipping evening job - current hour: $HOUR UTC (expected: 04)"
-            echo "should_run=false" >> $GITHUB_OUTPUT
-          else
-            echo "✅ Running evening job at $HOUR UTC"
-            echo "should_run=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Checkout Repository
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
       - name: Install Dependencies
-        if: steps.check.outputs.should_run == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Create .env file
-        if: steps.check.outputs.should_run == 'true'
         run: |
           echo "THE_ODDS_API_KEY=${{ secrets.THE_ODDS_API_KEY }}" > .env
           echo "BASKETBALL_API_KEY=${{ secrets.BASKETBALL_API_KEY }}" >> .env
 
       - name: Get current week
-        if: steps.check.outputs.should_run == 'true'
         id: week
         run: echo "week=$(date +%Y-W%V)" >> $GITHUB_OUTPUT
 
       - name: Cache completed games data
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -406,7 +362,6 @@ jobs:
             game-cache-
 
       - name: Cache ML models
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/cache@v4
         with:
           path: |
@@ -416,7 +371,6 @@ jobs:
             ml-models-
 
       - name: Check cache status (before)
-        if: steps.check.outputs.should_run == 'true'
         run: |
           echo "📊 Cache status before processing:"
           if [ -f "data/cache/completed_games_2026.json" ]; then
@@ -426,20 +380,16 @@ jobs:
           fi
 
       - name: Check Results
-        if: steps.check.outputs.should_run == 'true'
         run: python scripts/daily_check_results.py --days 7
 
       - name: Update README with Accuracy Stats
-        if: steps.check.outputs.should_run == 'true'
         run: python scripts/update_readme_accuracy.py
 
       - name: Retrain ML model
-        if: steps.check.outputs.should_run == 'true'
         continue-on-error: true
         run: python scripts/setup_and_train.py --populate 200 --train
 
       - name: Verify cache updated
-        if: steps.check.outputs.should_run == 'true'
         run: |
           echo "📊 Cache status after retrain:"
           if [ -f "data/cache/completed_games_2026.json" ]; then
@@ -449,7 +399,6 @@ jobs:
           fi
 
       - name: Upload Model Artifacts
-        if: steps.check.outputs.should_run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: ml-models-${{ github.run_number }}
@@ -457,7 +406,6 @@ jobs:
           retention-days: 90
 
       - name: Commit Changes
-        if: steps.check.outputs.should_run == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
