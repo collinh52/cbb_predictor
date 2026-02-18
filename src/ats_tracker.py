@@ -382,6 +382,86 @@ class ATSTracker:
                 if no_vegas else 0.0
             )
     
+    def rebuild_accuracy_from_records(self):
+        """Recalculate ats_accuracy.json entirely from ats_tracking.json records.
+
+        This eliminates dependency on fragile incremental counter updates.
+        If the accuracy file ever gets out of sync, this method rebuilds it
+        from the source-of-truth records.
+        """
+        self.accuracy_history = self._empty_accuracy_history()
+
+        checked_records = [r for r in self.records.values() if r.result_checked]
+
+        for record in checked_records:
+            date_key = record.game_date
+
+            if record.has_vegas_line:
+                section = self.accuracy_history["with_vegas_lines"]
+                section["total_predictions"] += 1
+                if record.spread_correct:
+                    section["spread_correct"] += 1
+                if record.total_correct:
+                    section["total_correct"] += 1
+
+                if date_key not in section["daily_breakdown"]:
+                    section["daily_breakdown"][date_key] = {"predictions": 0, "spread_correct": 0, "total_correct": 0}
+                section["daily_breakdown"][date_key]["predictions"] += 1
+                if record.spread_correct:
+                    section["daily_breakdown"][date_key]["spread_correct"] += 1
+                if record.total_correct:
+                    section["daily_breakdown"][date_key]["total_correct"] += 1
+            else:
+                section = self.accuracy_history["without_vegas_lines"]
+                section["total_predictions"] += 1
+                if record.spread_correct:
+                    section["implied_spread_correct"] += 1
+
+                if date_key not in section["daily_breakdown"]:
+                    section["daily_breakdown"][date_key] = {"predictions": 0, "correct": 0}
+                section["daily_breakdown"][date_key]["predictions"] += 1
+                if record.spread_correct:
+                    section["daily_breakdown"][date_key]["correct"] += 1
+
+            # Combined stats
+            combined = self.accuracy_history["combined"]
+            combined["total_predictions"] += 1
+            if record.spread_correct:
+                combined["straight_up_correct"] += 1
+
+        # Calculate percentages
+        vegas = self.accuracy_history["with_vegas_lines"]
+        if vegas["total_predictions"] > 0:
+            vegas["spread_accuracy"] = vegas["spread_correct"] / vegas["total_predictions"]
+            total_with_lines = sum(1 for r in self.records.values()
+                                   if r.has_vegas_line and r.vegas_total and r.result_checked)
+            total_correct = sum(1 for r in self.records.values()
+                                if r.has_vegas_line and r.total_correct)
+            vegas["total_accuracy"] = total_correct / total_with_lines if total_with_lines > 0 else 0
+        vegas["last_updated"] = datetime.now().isoformat()
+
+        no_vegas = self.accuracy_history["without_vegas_lines"]
+        if no_vegas["total_predictions"] > 0:
+            no_vegas["implied_spread_accuracy"] = no_vegas["implied_spread_correct"] / no_vegas["total_predictions"]
+        no_vegas["last_updated"] = datetime.now().isoformat()
+
+        combined = self.accuracy_history["combined"]
+        if combined["total_predictions"] > 0:
+            combined["straight_up_accuracy"] = combined["straight_up_correct"] / combined["total_predictions"]
+        combined["last_updated"] = datetime.now().isoformat()
+
+        # Update rolling stats
+        self._update_rolling_accuracy()
+
+        self._save_accuracy_history()
+
+        print(f"   Rebuilt accuracy from {len(checked_records)} checked records")
+        print(f"   Vegas ATS: {vegas['spread_correct']}/{vegas['total_predictions']} "
+              f"({vegas['spread_accuracy']*100:.1f}%)")
+        if no_vegas["total_predictions"] > 0:
+            print(f"   No-Vegas: {no_vegas['implied_spread_correct']}/{no_vegas['total_predictions']} "
+                  f"({no_vegas['implied_spread_accuracy']*100:.1f}%)")
+
     def get_unchecked_predictions(self, before_date: Optional[str] = None) -> List[ATSRecord]:
         """Get predictions that haven't had results recorded yet."""
         cutoff = before_date or datetime.now().strftime('%Y-%m-%d')

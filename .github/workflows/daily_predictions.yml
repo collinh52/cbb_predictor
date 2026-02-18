@@ -143,18 +143,6 @@ jobs:
           restore-keys: |
             game-cache-
 
-      - name: Download existing ATS data
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-            data/predictions.json
-            data/results.json
-          key: ats-data-${{ github.run_number }}
-          restore-keys: |
-            ats-data-
-
       - name: Cache ML models
         uses: actions/cache@v4
         with:
@@ -175,16 +163,7 @@ jobs:
 
       - name: Collect Odds and Generate Predictions
         run: python scripts/predict_today.py --days 2
-      
-      - name: Upload ATS Data
-        uses: actions/upload-artifact@v4
-        with:
-          name: ats-data-${{ github.run_number }}
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-          retention-days: 90
-      
+
       - name: Commit ATS Data
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -331,19 +310,6 @@ jobs:
           restore-keys: |
             game-cache-
 
-      - name: Download existing ATS data
-        if: steps.check.outputs.should_run == 'true'
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-            data/predictions.json
-            data/results.json
-          key: ats-data-${{ github.run_number }}
-          restore-keys: |
-            ats-data-
-
       - name: Cache ML models
         if: steps.check.outputs.should_run == 'true'
         uses: actions/cache@v4
@@ -367,16 +333,6 @@ jobs:
       - name: Collect Odds and Generate Predictions
         if: steps.check.outputs.should_run == 'true'
         run: python scripts/predict_today.py --days 2
-
-      - name: Upload ATS Data
-        if: steps.check.outputs.should_run == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ats-data-morning-${{ github.run_number }}
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-          retention-days: 90
 
       - name: Commit ATS Data and README
         if: steps.check.outputs.should_run == 'true'
@@ -449,19 +405,6 @@ jobs:
           restore-keys: |
             game-cache-
 
-      - name: Download existing ATS data
-        if: steps.check.outputs.should_run == 'true'
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-            data/predictions.json
-            data/results.json
-          key: ats-data-${{ github.run_number }}
-          restore-keys: |
-            ats-data-
-
       - name: Cache ML models
         if: steps.check.outputs.should_run == 'true'
         uses: actions/cache@v4
@@ -492,6 +435,7 @@ jobs:
 
       - name: Retrain ML model
         if: steps.check.outputs.should_run == 'true'
+        continue-on-error: true
         run: python scripts/setup_and_train.py --populate 200 --train
 
       - name: Verify cache updated
@@ -503,16 +447,6 @@ jobs:
           else
             echo "⚠️  Warning: Cache was not created during retrain"
           fi
-
-      - name: Upload Updated ATS Data
-        if: steps.check.outputs.should_run == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ats-data-evening-${{ github.run_number }}
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-          retention-days: 90
 
       - name: Upload Model Artifacts
         if: steps.check.outputs.should_run == 'true'
@@ -575,18 +509,6 @@ jobs:
           restore-keys: |
             game-cache-
 
-      - name: Download existing ATS data
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-            data/predictions.json
-            data/results.json
-          key: ats-data-${{ github.run_number }}
-          restore-keys: |
-            ats-data-
-
       - name: Cache ML models
         uses: actions/cache@v4
         with:
@@ -612,6 +534,7 @@ jobs:
         run: python scripts/update_readme_accuracy.py
 
       - name: Retrain ML model
+        continue-on-error: true
         run: python scripts/setup_and_train.py --populate 200 --train
 
       - name: Verify cache updated
@@ -677,16 +600,6 @@ jobs:
           key: game-cache-${{ steps.week.outputs.week }}
           restore-keys: |
             game-cache-
-
-      - name: Download existing ATS data
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/ats_tracking.json
-            data/ats_accuracy.json
-          key: ats-data-${{ github.run_number }}
-          restore-keys: |
-            ats-data-
 
       - name: Cache ML models
         uses: actions/cache@v4

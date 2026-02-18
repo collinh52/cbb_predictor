@@ -79,8 +79,10 @@ def update_readme():
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     readme_path = os.path.join(project_root, "README.md")
     
-    # Get current accuracy stats
+    # Rebuild accuracy from records to ensure consistency
     ats_tracker = get_ats_tracker()
+    print("🔄 Rebuilding accuracy from tracking records...")
+    ats_tracker.rebuild_accuracy_from_records()
     summary = ats_tracker.get_accuracy_summary()
     all_time = summary["all_time"]
     r7 = summary["rolling_7_day"]
