@@ -5,7 +5,7 @@
     "spread_accuracy": 0.519893899204244,
     "total_correct": 179,
     "total_accuracy": 0.47480106100795755,
-    "last_updated": "2026-02-19T05:18:39.956678",
+    "last_updated": "2026-02-19T12:44:02.613081",
     "daily_breakdown": {
       "2026-02-11": {
         "predictions": 51,
@@ -55,14 +55,14 @@
     "implied_spread_accuracy": 0.0,
     "total_correct": 0,
     "total_accuracy": 0.0,
-    "last_updated": "2026-02-19T05:18:39.956685",
+    "last_updated": "2026-02-19T12:44:02.613086",
     "daily_breakdown": {}
   },
   "combined": {
     "total_predictions": 377,
     "straight_up_correct": 196,
     "straight_up_accuracy": 0.519893899204244,
-    "last_updated": "2026-02-19T05:18:39.956686"
+    "last_updated": "2026-02-19T12:44:02.613088"
   },
   "rolling_7_day": {
     "with_vegas": {
