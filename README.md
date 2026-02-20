@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 20, 2026 at 05:13 AM
+**Last Updated**: February 20, 2026 at 12:39 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-51.9%25-yellowgreen)
 
@@ -137,6 +137,24 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| VCU Rams @ Saint Louis Billikens | **HOME** (-7.5) | **UNDER** (164.5) | 62% |
+| Missouri Tigers @ Arkansas Razorbacks | **AWAY** (+10.5) | **UNDER** (161.5) | 66% |
+| Florida Gators @ Ole Miss Rebels | **HOME** (+12.5) | **UNDER** (146.5) | 50% |
+| Indiana Hoosiers @ Purdue Boilermakers | **AWAY** (+10.5) | **UNDER** (148.5) | 44% |
+| Green Bay Phoenix @ Oakland Golden Grizzlies | **HOME** (-6.5) | **OVER** (155.5) | 41% |
+| Cincinnati Bearcats @ Kansas Jayhawks | **AWAY** (+10.5) | **UNDER** (134.5) | 54% |
+| Akron Zips @ Ball State Cardinals | **HOME** (+14.5) | **UNDER** (146.5) | 61% |
+| Niagara Purple Eagles @ Mt. St. Mary's Mountaineers | **AWAY** (+7.0) | **OVER** (130.0) | 40% |
+| Tennessee Volunteers @ Vanderbilt Commodores | **HOME** (-3.5) | **UNDER** (148.5) | 40% |
+| Bowling Green Falcons @ Miami (OH) RedHawks | **AWAY** (+8.0) | **OVER** (154.0) | 51% |
+| Arizona Wildcats @ Houston Cougars | **HOME** (-4.5) | **UNDER** (141.5) | 39% |
+| Siena Saints @ Merrimack Warriors | **HOME** (-3.0) | **OVER** (132.5) | 34% |
+| Princeton Tigers @ Brown Bears | **HOME** (-1.5) | **UNDER** (132.5) | 46% |
+| Sacred Heart Pioneers @ Fairfield Stags | **AWAY** (+5.0) | **UNDER** (157.5) | 27% |
+| Canisius Golden Griffins @ Rider Broncs | **HOME** (-1.0) | **OVER** (133.0) | 29% |
+| Saint Peter's Peacocks @ Iona Gaels | **HOME** (-1.0) | **UNDER** (141.0) | 27% |
+| Milwaukee Panthers @ Detroit Mercy Titans | **HOME** (-2.5) | **UNDER** (152.5) | 35% |
+| Marist Red Foxes @ Manhattan Jaspers | **HOME** (+5.0) | **UNDER** (142.0) | 26% |
 | Michigan Wolverines @ Duke Blue Devils | **HOME** (+2.5) | **UNDER** (148.5) | 24% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
@@ -156,17 +174,17 @@ python validation/run_all_backtests.py
 | 3 | Duke Blue Devils | 24-2 | +27.0 | 65.5 | 38.4 |
 | 4 | Illinois Fighting Illini | 22-5 | +26.5 | 67.4 | 41.1 |
 | 5 | Louisville Cardinals | 19-7 | +26.5 | 69.8 | 43.7 |
-| 6 | Iowa State Cyclones | 23-3 | +25.5 | 66.4 | 40.9 |
+| 6 | Iowa State Cyclones | 23-3 | +25.6 | 66.4 | 40.9 |
 | 7 | Alabama Crimson Tide | 19-7 | +24.8 | 73.5 | 48.9 |
 | 8 | Arkansas Razorbacks | 19-7 | +24.6 | 70.6 | 46.2 |
 | 9 | Gonzaga Bulldogs | 26-2 | +24.5 | 65.7 | 41.2 |
 | 10 | Florida Gators | 20-6 | +24.4 | 65.5 | 41.4 |
 | 11 | Purdue Boilermakers | 21-5 | +23.7 | 65.5 | 41.8 |
 | 12 | Houston Cougars | 23-3 | +23.5 | 60.8 | 37.3 |
-| 13 | Vanderbilt Commodores | 21-5 | +23.4 | 68.0 | 44.6 |
-| 14 | BYU Cougars | 19-7 | +23.1 | 68.6 | 45.8 |
-| 15 | Tennessee Volunteers | 19-7 | +22.4 | 63.7 | 41.6 |
-| 16 | Michigan State Spartans | 21-5 | +22.4 | 62.3 | 39.9 |
+| 13 | Vanderbilt Commodores | 21-5 | +23.5 | 68.0 | 44.6 |
+| 14 | BYU Cougars | 19-7 | +23.1 | 68.7 | 45.8 |
+| 15 | Michigan State Spartans | 21-5 | +22.5 | 62.3 | 39.9 |
+| 16 | Tennessee Volunteers | 19-7 | +22.4 | 63.7 | 41.6 |
 | 17 | UConn Huskies | 24-3 | +22.4 | 62.9 | 40.5 |
 | 18 | NC State Wolfpack | 19-8 | +22.2 | 67.0 | 45.0 |
 | 19 | Kansas Jayhawks | 20-6 | +22.2 | 62.6 | 40.3 |
