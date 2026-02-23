@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 23, 2026 at 05:22 AM
+**Last Updated**: February 23, 2026 at 12:43 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -137,6 +137,14 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| Nicholls St Colonels @ Lamar Cardinals | **HOME** (-3.5) | **UNDER** (145.0) | 83% |
+| Miss Valley St Delta Devils @ Grambling St Tigers | **AWAY** (+16.5) | **OVER** (135.5) | 62% |
+| UT Rio Grande Valley Vaqueros @ McNeese Cowboys | **AWAY** (+11.0) | **UNDER** (145.0) | 56% |
+| New Orleans Privateers @ Stephen F. Austin Lumberjacks | **AWAY** (+13.0) | **OVER** (149.5) | 56% |
+| Houston Christian Huskies @ East Texas A&M Lions | **HOME** (-3.0) | **UNDER** (137.0) | 84% |
+| Louisville Cardinals @ North Carolina Tar Heels | **HOME** (+2.5) | **UNDER** (162.5) | 41% |
+| Texas A&M-CC Islanders @ SE Louisiana Lions | **HOME** (+2.5) | **UNDER** (131.5) | 10% |
+| Incarnate Word Cardinals @ Northwestern St Demons | **AWAY** (+2.5) | **UNDER** (140.5) | 12% |
 | Houston Cougars @ Kansas Jayhawks | **HOME** (+2.5) | **UNDER** (136.5) | 16% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
