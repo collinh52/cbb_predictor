@@ -66,28 +66,28 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 25, 2026 at 12:46 PM
+**Last Updated**: February 26, 2026 at 05:17 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-51.1%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.9%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-02-24) | 21-14 | **60.0%** |
-| **Last 7 Days** | 166-155 | **51.7%** |
-| **Last 30 Days** | 330-316 | **51.1%** |
-| **All-Time** | 330-316 | **51.1%** |
+| **Latest** (2026-02-25) | 23-26 | **46.9%** |
+| **Last 7 Days** | 158-160 | **49.7%** |
+| **Last 30 Days** | 355-343 | **50.9%** |
+| **All-Time** | 355-343 | **50.9%** |
 
-**Over/Under Accuracy**: 49.2%
+**Over/Under Accuracy**: 49.6%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 103-92 | **52.8%** |
-| **60%+** | 42-32 | **56.8%** |
-| **70%+** | 15-14 | **51.7%** |
+| **50%+** | 107-103 | **51.0%** |
+| **60%+** | 43-35 | **55.1%** |
+| **70%+** | 16-15 | **51.6%** |
 | **80%+** | 5-5 | **50.0%** |
 
 #### 🏀 ATS Accuracy by Conference
@@ -96,44 +96,44 @@ python validation/run_all_backtests.py
 |------------|--------|----------|
 | Western Athletic | 10-3 | **76.9%** |
 | Big South | 12-5 | **70.6%** |
-| Southeastern | 21-10 | **67.7%** |
-| Mid-Eastern Athletic | 8-5 | **61.5%** |
-| Mountain West | 14-9 | **60.9%** |
-| Atlantic 10 | 13-9 | **59.1%** |
+| Atlantic 10 | 15-9 | **62.5%** |
+| Southeastern | 22-14 | **61.1%** |
+| Mountain West | 15-10 | **60.0%** |
 | Ohio Valley | 13-9 | **59.1%** |
-| Big East | 11-8 | **57.9%** |
+| Atlantic Coast | 22-16 | **57.9%** |
 | Mid-American | 16-12 | **57.1%** |
-| Atlantic Coast | 19-15 | **55.9%** |
+| Mid-Eastern Athletic | 8-6 | **57.1%** |
+| Southern | 13-10 | **56.5%** |
 | Ivy League | 5-4 | **55.6%** |
-| Southern | 11-9 | **55.0%** |
-| Horizon League | 9-8 | **52.9%** |
+| Summit League | 7-6 | **53.8%** |
+| ASUN | 15-13 | **53.6%** |
 | Conference USA | 10-9 | **52.6%** |
-| Big 12 | 16-15 | **51.6%** |
-| Patriot League | 6-6 | **50.0%** |
-| ASUN | 12-12 | **50.0%** |
-| Summit League | 6-6 | **50.0%** |
+| Big 12 | 17-16 | **51.5%** |
+| Big East | 12-12 | **50.0%** |
 | America East | 8-8 | **50.0%** |
 | Big Sky | 9-9 | **50.0%** |
-| Missouri Valley | 10-11 | **47.6%** |
+| Missouri Valley | 12-13 | **48.0%** |
+| Horizon League | 10-11 | **47.6%** |
 | Southwestern Athletic | 9-10 | **47.4%** |
 | Northeast | 8-9 | **47.1%** |
-| Big Ten | 14-20 | **41.2%** |
+| Patriot League | 7-8 | **46.7%** |
+| Big Ten | 17-20 | **45.9%** |
+| American | 12-17 | **41.4%** |
 | Coastal Athletic Association | 9-13 | **40.9%** |
-| Sun Belt | 13-19 | **40.6%** |
-| American | 10-15 | **40.0%** |
 | Southland | 8-12 | **40.0%** |
-| West Coast | 6-10 | **37.5%** |
+| Sun Belt | 13-21 | **38.2%** |
 | Metro Atlantic Athletic | 9-15 | **37.5%** |
+| West Coast | 7-12 | **36.8%** |
 | Big West | 7-13 | **35.0%** |
 
 > *A game counts for a conference if either team is a member.*
 
 #### Combined Statistics
 
-- **Total Predictions**: 646
-- **Overall Winner Accuracy**: 51.1%
+- **Total Predictions**: 698
+- **Overall Winner Accuracy**: 50.9%
 
-#### 📅 Predictions for Today (2026-02-25)
+#### 📅 Recent Predictions (2026-02-25)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -200,35 +200,35 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: February 25, 2026*
+*Updated: February 26, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 26-2 | +30.5 | 71.8 | 41.2 |
+| 1 | Michigan Wolverines | 26-2 | +30.6 | 71.9 | 41.3 |
 | 2 | Duke Blue Devils | 26-2 | +27.3 | 65.3 | 38.0 |
-| 3 | Arizona Wildcats | 26-2 | +27.0 | 68.3 | 41.3 |
-| 4 | Illinois Fighting Illini | 22-6 | +26.3 | 67.7 | 41.7 |
+| 3 | Arizona Wildcats | 26-2 | +27.1 | 68.4 | 41.4 |
+| 4 | Illinois Fighting Illini | 22-6 | +26.4 | 67.7 | 41.7 |
 | 5 | Louisville Cardinals | 20-8 | +25.7 | 69.2 | 43.9 |
-| 6 | Iowa State Cyclones | 24-4 | +24.8 | 65.3 | 40.5 |
-| 7 | Alabama Crimson Tide | 20-7 | +24.7 | 73.2 | 48.8 |
-| 8 | Florida Gators | 21-6 | +24.6 | 66.0 | 41.8 |
-| 9 | Purdue Boilermakers | 22-5 | +24.4 | 66.1 | 41.7 |
-| 10 | Arkansas Razorbacks | 20-7 | +24.3 | 71.0 | 46.7 |
-| 11 | Gonzaga Bulldogs | 27-2 | +24.1 | 65.5 | 41.5 |
-| 12 | Vanderbilt Commodores | 21-6 | +23.2 | 67.7 | 44.5 |
+| 6 | Alabama Crimson Tide | 21-7 | +24.9 | 73.4 | 48.7 |
+| 7 | Iowa State Cyclones | 24-4 | +24.8 | 65.3 | 40.5 |
+| 8 | Florida Gators | 22-6 | +24.6 | 65.9 | 41.6 |
+| 9 | Gonzaga Bulldogs | 28-2 | +24.5 | 65.6 | 41.1 |
+| 10 | Arkansas Razorbacks | 21-7 | +24.5 | 71.1 | 46.6 |
+| 11 | Purdue Boilermakers | 22-5 | +24.5 | 66.2 | 41.7 |
+| 12 | Vanderbilt Commodores | 22-6 | +23.3 | 67.7 | 44.4 |
 | 13 | BYU Cougars | 20-8 | +23.2 | 68.9 | 45.9 |
-| 14 | Houston Cougars | 23-5 | +22.8 | 60.3 | 37.5 |
-| 15 | Texas Tech Red Raiders | 21-7 | +22.4 | 65.3 | 42.9 |
-| 16 | St. John's Red Storm | 22-5 | +22.3 | 65.4 | 43.1 |
-| 17 | Michigan State Spartans | 22-5 | +22.2 | 61.9 | 39.6 |
-| 18 | Kansas Jayhawks | 21-7 | +22.2 | 62.9 | 40.6 |
-| 19 | UConn Huskies | 25-3 | +22.1 | 62.4 | 40.4 |
-| 20 | Tennessee Volunteers | 20-8 | +21.9 | 62.9 | 41.3 |
-| 21 | Nebraska Cornhuskers | 23-4 | +21.5 | 61.7 | 40.3 |
-| 22 | NC State Wolfpack | 19-9 | +21.3 | 66.3 | 45.3 |
-| 23 | Georgia Bulldogs | 19-8 | +21.2 | 69.4 | 48.5 |
-| 24 | Virginia Cavaliers | 25-3 | +21.2 | 63.7 | 42.6 |
-| 25 | Kentucky Wildcats | 18-10 | +21.1 | 64.2 | 43.5 |
+| 14 | UConn Huskies | 26-3 | +23.1 | 62.7 | 39.7 |
+| 15 | Houston Cougars | 23-5 | +22.8 | 60.3 | 37.5 |
+| 16 | Texas Tech Red Raiders | 21-7 | +22.4 | 65.3 | 42.9 |
+| 17 | Kansas Jayhawks | 21-7 | +22.3 | 62.9 | 40.7 |
+| 18 | Michigan State Spartans | 22-5 | +22.3 | 61.9 | 39.7 |
+| 19 | Tennessee Volunteers | 20-8 | +21.8 | 62.8 | 41.3 |
+| 20 | St. John's Red Storm | 22-6 | +21.3 | 64.2 | 42.9 |
+| 21 | NC State Wolfpack | 19-9 | +21.2 | 66.2 | 45.3 |
+| 22 | Nebraska Cornhuskers | 24-4 | +21.2 | 61.5 | 40.3 |
+| 23 | Virginia Cavaliers | 25-3 | +21.2 | 63.7 | 42.6 |
+| 24 | Kentucky Wildcats | 18-10 | +21.1 | 64.2 | 43.5 |
+| 25 | Georgia Bulldogs | 19-9 | +21.1 | 69.0 | 48.3 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
