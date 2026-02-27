@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 27, 2026 at 05:11 AM
+**Last Updated**: February 27, 2026 at 12:42 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.2%25-yellowgreen)
 
@@ -137,7 +137,29 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| Virginia Cavaliers @ Duke Blue Devils | **HOME** (-9.5) | **UNDER** (137.5) | 52% |
+| UL Monroe Warhawks @ Troy Trojans | **AWAY** (+19.0) | **UNDER** (156.0) | 74% |
+| Louisiana Ragin' Cajuns @ Arkansas St Red Wolves | **AWAY** (+13.5) | **OVER** (146.0) | 53% |
+| Texas Tech Red Raiders @ Iowa State Cyclones | **HOME** (-7.5) | **UNDER** (145.5) | 64% |
+| Kansas Jayhawks @ Arizona Wildcats | **HOME** (-8.5) | **UNDER** (146.5) | 58% |
+| Brown Bears @ Columbia Lions | **HOME** (-6.0) | **UNDER** (140.5) | 47% |
+| Southern Miss Golden Eagles @ South Alabama Jaguars | **HOME** (-5.0) | **UNDER** (143.5) | 42% |
+| Coastal Carolina Chanticleers @ James Madison Dukes | **HOME** (-5.5) | **OVER** (139.5) | 42% |
+| Georgia Southern Eagles @ Marshall Thundering Herd | **AWAY** (+7.0) | **UNDER** (167.0) | 59% |
+| Rider Broncs @ Iona Gaels | **AWAY** (+12.0) | **OVER** (142.0) | 38% |
+| Manhattan Jaspers @ Saint Peter's Peacocks | **AWAY** (+7.5) | **OVER** (145.5) | 45% |
+| Dayton Flyers @ GW Revolutionaries | **HOME** (-3.5) | **UNDER** (152.5) | 41% |
+| Dartmouth Big Green @ Pennsylvania Quakers | **AWAY** (+7.0) | **UNDER** (153.5) | 58% |
+| Quinnipiac Bobcats @ Niagara Purple Eagles | **HOME** (+8.5) | **UNDER** (136.0) | 32% |
+| Mt. St. Mary's Mountaineers @ Sacred Heart Pioneers | **AWAY** (+3.0) | **UNDER** (149.0) | 27% |
+| Yale Bulldogs @ Cornell Big Red | **HOME** (+3.5) | **OVER** (166.0) | 28% |
+| Merrimack Warriors @ Canisius Golden Griffins | **HOME** (+9.5) | **OVER** (130.0) | 27% |
+| Akron Zips @ Kent State Golden Flashes | **HOME** (+4.0) | **UNDER** (165.5) | 25% |
+| Old Dominion Monarchs @ Georgia St Panthers | **HOME** (+0.0) | **OVER** (148.5) | 21% |
+| Appalachian St Mountaineers @ Texas State Bobcats | **HOME** (+0.0) | **OVER** (134.5) | 24% |
+| Siena Saints @ Fairfield Stags | **HOME** (+0.0) | **OVER** (143.5) | 21% |
 | Michigan Wolverines @ Illinois Fighting Illini | **HOME** (+1.5) | **UNDER** (155.5) | 11% |
+| Harvard Crimson @ Princeton Tigers | **HOME** (+4.0) | **UNDER** (131.5) | 22% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
