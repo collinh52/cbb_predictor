@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: February 27, 2026 at 12:42 PM
+**Last Updated**: February 28, 2026 at 04:48 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.2%25-yellowgreen)
 
@@ -74,20 +74,20 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-02-26) | 21-31 | **40.4%** |
-| **Last 7 Days** | 154-167 | **48.0%** |
-| **Last 30 Days** | 377-374 | **50.2%** |
-| **All-Time** | 377-374 | **50.2%** |
+| **Latest** (2026-02-27) | 9-11 | **45.0%** |
+| **Last 7 Days** | 156-168 | **48.1%** |
+| **Last 30 Days** | 388-385 | **50.2%** |
+| **All-Time** | 388-385 | **50.2%** |
 
-**Over/Under Accuracy**: 50.1%
+**Over/Under Accuracy**: 49.9%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 110-114 | **49.1%** |
-| **60%+** | 44-38 | **53.7%** |
-| **70%+** | 17-15 | **53.1%** |
+| **50%+** | 113-116 | **49.3%** |
+| **60%+** | 46-38 | **54.8%** |
+| **70%+** | 18-15 | **54.5%** |
 | **80%+** | 5-5 | **50.0%** |
 
 #### 🏀 ATS Accuracy by Conference
@@ -96,16 +96,16 @@ python validation/run_all_backtests.py
 |------------|--------|----------|
 | Western Athletic | 12-4 | **75.0%** |
 | Big South | 15-6 | **71.4%** |
+| Ivy League | 8-5 | **61.5%** |
 | Southeastern | 22-14 | **61.1%** |
-| Atlantic 10 | 15-10 | **60.0%** |
 | Summit League | 9-6 | **60.0%** |
 | Mountain West | 15-10 | **60.0%** |
 | Atlantic Coast | 22-16 | **57.9%** |
-| Mid-American | 16-12 | **57.1%** |
+| Atlantic 10 | 15-11 | **57.7%** |
 | Mid-Eastern Athletic | 8-6 | **57.1%** |
+| Mid-American | 17-13 | **56.7%** |
 | Southern | 14-11 | **56.0%** |
 | Ohio Valley | 15-12 | **55.6%** |
-| Ivy League | 5-4 | **55.6%** |
 | ASUN | 16-14 | **53.3%** |
 | Big 12 | 17-16 | **51.5%** |
 | Big East | 12-12 | **50.0%** |
@@ -116,50 +116,29 @@ python validation/run_all_backtests.py
 | Horizon League | 10-11 | **47.6%** |
 | Patriot League | 7-8 | **46.7%** |
 | Conference USA | 11-13 | **45.8%** |
-| Big Ten | 17-21 | **44.7%** |
+| Big Ten | 17-22 | **43.6%** |
 | West Coast | 8-12 | **40.0%** |
+| Metro Atlantic Athletic | 12-18 | **40.0%** |
 | Southland | 8-12 | **40.0%** |
 | Coastal Athletic Association | 11-17 | **39.3%** |
+| Sun Belt | 16-25 | **39.0%** |
 | American | 12-19 | **38.7%** |
-| Sun Belt | 13-21 | **38.2%** |
 | Northeast | 8-13 | **38.1%** |
-| Metro Atlantic Athletic | 9-15 | **37.5%** |
-| Big West | 8-16 | **33.3%** |
+| Big West | 9-16 | **36.0%** |
 
 > *A game counts for a conference if either team is a member.*
 
 #### Combined Statistics
 
-- **Total Predictions**: 751
+- **Total Predictions**: 773
 - **Overall Winner Accuracy**: 50.2%
 
-#### 📅 Predictions for Today (2026-02-27)
+#### 📅 Predictions for Today (2026-02-28)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Virginia Cavaliers @ Duke Blue Devils | **HOME** (-9.5) | **UNDER** (137.5) | 52% |
-| UL Monroe Warhawks @ Troy Trojans | **AWAY** (+19.0) | **UNDER** (156.0) | 74% |
-| Louisiana Ragin' Cajuns @ Arkansas St Red Wolves | **AWAY** (+13.5) | **OVER** (146.0) | 53% |
-| Texas Tech Red Raiders @ Iowa State Cyclones | **HOME** (-7.5) | **UNDER** (145.5) | 64% |
-| Kansas Jayhawks @ Arizona Wildcats | **HOME** (-8.5) | **UNDER** (146.5) | 58% |
-| Brown Bears @ Columbia Lions | **HOME** (-6.0) | **UNDER** (140.5) | 47% |
-| Southern Miss Golden Eagles @ South Alabama Jaguars | **HOME** (-5.0) | **UNDER** (143.5) | 42% |
-| Coastal Carolina Chanticleers @ James Madison Dukes | **HOME** (-5.5) | **OVER** (139.5) | 42% |
-| Georgia Southern Eagles @ Marshall Thundering Herd | **AWAY** (+7.0) | **UNDER** (167.0) | 59% |
-| Rider Broncs @ Iona Gaels | **AWAY** (+12.0) | **OVER** (142.0) | 38% |
-| Manhattan Jaspers @ Saint Peter's Peacocks | **AWAY** (+7.5) | **OVER** (145.5) | 45% |
-| Dayton Flyers @ GW Revolutionaries | **HOME** (-3.5) | **UNDER** (152.5) | 41% |
-| Dartmouth Big Green @ Pennsylvania Quakers | **AWAY** (+7.0) | **UNDER** (153.5) | 58% |
-| Quinnipiac Bobcats @ Niagara Purple Eagles | **HOME** (+8.5) | **UNDER** (136.0) | 32% |
-| Mt. St. Mary's Mountaineers @ Sacred Heart Pioneers | **AWAY** (+3.0) | **UNDER** (149.0) | 27% |
-| Yale Bulldogs @ Cornell Big Red | **HOME** (+3.5) | **OVER** (166.0) | 28% |
-| Merrimack Warriors @ Canisius Golden Griffins | **HOME** (+9.5) | **OVER** (130.0) | 27% |
-| Akron Zips @ Kent State Golden Flashes | **HOME** (+4.0) | **UNDER** (165.5) | 25% |
-| Old Dominion Monarchs @ Georgia St Panthers | **HOME** (+0.0) | **OVER** (148.5) | 21% |
-| Appalachian St Mountaineers @ Texas State Bobcats | **HOME** (+0.0) | **OVER** (134.5) | 24% |
-| Siena Saints @ Fairfield Stags | **HOME** (+0.0) | **OVER** (143.5) | 21% |
-| Michigan Wolverines @ Illinois Fighting Illini | **HOME** (+1.5) | **UNDER** (155.5) | 11% |
-| Harvard Crimson @ Princeton Tigers | **HOME** (+4.0) | **UNDER** (131.5) | 22% |
+| Arkansas Razorbacks @ Florida Gators | **HOME** (-8.5) | **UNDER** (167.5) | 56% |
+| Gonzaga Bulldogs @ Saint Mary's Gaels | **HOME** (+1.5) | **UNDER** (143.5) | 18% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -169,35 +148,35 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: February 27, 2026*
+*Updated: February 28, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 26-2 | +30.6 | 71.9 | 41.2 |
+| 1 | Michigan Wolverines | 27-2 | +30.7 | 71.8 | 41.1 |
 | 2 | Duke Blue Devils | 26-2 | +27.4 | 65.4 | 38.0 |
 | 3 | Arizona Wildcats | 26-2 | +27.1 | 68.4 | 41.3 |
-| 4 | Illinois Fighting Illini | 22-6 | +26.4 | 67.8 | 41.7 |
-| 5 | Louisville Cardinals | 20-8 | +25.8 | 69.1 | 43.8 |
+| 4 | Illinois Fighting Illini | 22-7 | +26.3 | 67.6 | 41.8 |
+| 5 | Louisville Cardinals | 20-8 | +25.8 | 69.2 | 43.8 |
 | 6 | Alabama Crimson Tide | 21-7 | +25.0 | 73.5 | 48.7 |
 | 7 | Iowa State Cyclones | 24-4 | +24.9 | 65.3 | 40.4 |
-| 8 | Florida Gators | 22-6 | +24.6 | 65.9 | 41.5 |
-| 9 | Gonzaga Bulldogs | 28-2 | +24.6 | 65.6 | 41.0 |
-| 10 | Arkansas Razorbacks | 21-7 | +24.5 | 71.1 | 46.6 |
+| 8 | Gonzaga Bulldogs | 28-2 | +24.6 | 65.6 | 41.0 |
+| 9 | Florida Gators | 22-6 | +24.6 | 65.9 | 41.5 |
+| 10 | Arkansas Razorbacks | 21-7 | +24.6 | 71.1 | 46.6 |
 | 11 | Purdue Boilermakers | 22-6 | +24.4 | 66.1 | 41.7 |
 | 12 | Vanderbilt Commodores | 22-6 | +23.3 | 67.6 | 44.3 |
-| 13 | BYU Cougars | 20-8 | +23.3 | 68.9 | 45.9 |
-| 14 | UConn Huskies | 26-3 | +23.1 | 62.8 | 39.7 |
+| 13 | BYU Cougars | 20-8 | +23.3 | 69.0 | 45.9 |
+| 14 | UConn Huskies | 26-3 | +23.2 | 62.8 | 39.7 |
 | 15 | Houston Cougars | 23-5 | +22.9 | 60.4 | 37.5 |
 | 16 | Texas Tech Red Raiders | 21-7 | +22.5 | 65.4 | 42.9 |
 | 17 | Kansas Jayhawks | 21-7 | +22.4 | 63.0 | 40.6 |
 | 18 | Michigan State Spartans | 23-5 | +22.4 | 62.0 | 39.6 |
 | 19 | Tennessee Volunteers | 20-8 | +21.9 | 62.8 | 41.2 |
-| 20 | St. John's Red Storm | 22-6 | +21.3 | 64.3 | 42.9 |
-| 21 | NC State Wolfpack | 19-9 | +21.3 | 66.2 | 45.3 |
-| 22 | Virginia Cavaliers | 25-3 | +21.2 | 63.8 | 42.5 |
+| 20 | St. John's Red Storm | 22-6 | +21.4 | 64.3 | 42.9 |
+| 21 | NC State Wolfpack | 19-9 | +21.3 | 66.3 | 45.3 |
+| 22 | Virginia Cavaliers | 25-3 | +21.3 | 63.8 | 42.6 |
 | 23 | Nebraska Cornhuskers | 24-4 | +21.2 | 61.5 | 40.3 |
-| 24 | Georgia Bulldogs | 19-9 | +21.1 | 69.1 | 48.3 |
-| 25 | Kentucky Wildcats | 18-10 | +21.1 | 64.3 | 43.5 |
+| 24 | Georgia Bulldogs | 19-9 | +21.2 | 69.1 | 48.3 |
+| 25 | Kentucky Wildcats | 18-10 | +21.2 | 64.3 | 43.5 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
