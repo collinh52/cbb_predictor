@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 02, 2026 at 05:11 AM
+**Last Updated**: March 02, 2026 at 12:40 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-51.1%25-yellowgreen)
 
@@ -133,33 +133,28 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 930
 - **Overall Winner Accuracy**: 51.1%
 
-#### 📅 Recent Predictions (2026-03-01)
+#### 📅 Predictions for Today (2026-03-02)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Tulane Green Wave @ South Florida Bulls | **AWAY** (+14.5) | **UNDER** (155.5) | 63% |
-| La Salle Explorers @ Davidson Wildcats | **AWAY** (+11.0) | **UNDER** (134.0) | 66% |
-| Rider Broncs @ Siena Saints | **AWAY** (+15.5) | **OVER** (137.5) | 50% |
-| Charlotte 49ers @ Florida Atlantic Owls | **AWAY** (+7.5) | **OVER** (147.5) | 48% |
-| Saint Peter's Peacocks @ Marist Red Foxes | **HOME** (-3.5) | **UNDER** (133.5) | 50% |
-| Rutgers Scarlet Knights @ Maryland Terrapins | **HOME** (-5.0) | **OVER** (141.5) | 36% |
-| North Texas Mean Green @ UAB Blazers | **HOME** (-4.5) | **UNDER** (141.0) | 38% |
-| Charleston Cougars @ UNC Wilmington Seahawks | **HOME** (-4.0) | **UNDER** (145.0) | 58% |
-| DePaul Blue Demons @ Marquette Golden Eagles | **HOME** (-4.0) | **UNDER** (142.5) | 55% |
-| Memphis Tigers @ East Carolina Pirates | **HOME** (+5.0) | **UNDER** (151.0) | 35% |
-| Merrimack Warriors @ Niagara Purple Eagles | **HOME** (+8.0) | **OVER** (127.0) | 49% |
-| Murray St Racers @ Bradley Braves | **HOME** (-4.0) | **OVER** (158.5) | 45% |
-| Belmont Bruins @ Illinois St Redbirds | **HOME** (-1.0) | **OVER** (150.5) | 30% |
-| Rice Owls @ Temple Owls | **AWAY** (+7.0) | **UNDER** (142.0) | 34% |
-| Mt. St. Mary's Mountaineers @ Fairfield Stags | **AWAY** (+4.5) | **UNDER** (144.5) | 33% |
-| Purdue Boilermakers @ Ohio State Buckeyes | **HOME** (+6.5) | **UNDER** (150.5) | 29% |
-| Michigan St Spartans @ Indiana Hoosiers | **HOME** (+3.0) | **UNDER** (143.5) | 21% |
-| Northern Iowa Panthers @ Drake Bulldogs | **HOME** (+4.0) | **UNDER** (138.5) | 17% |
-| Wichita St Shockers @ UTSA Roadrunners | **HOME** (+14.5) | **UNDER** (150.0) | 20% |
-| UIC Flames @ Indiana St Sycamores | **HOME** (+4.0) | **OVER** (143.0) | 14% |
-| Southern Illinois Salukis @ Evansville Purple Aces | **HOME** (+8.5) | **UNDER** (138.5) | 45% |
-| Iona Gaels @ Manhattan Jaspers | **HOME** (+2.0) | **UNDER** (150.5) | 8% |
-| Quinnipiac Bobcats @ Canisius Golden Griffins | **HOME** (+7.5) | **UNDER** (138.0) | 10% |
+| McNeese Cowboys @ Nicholls St Colonels | **AWAY** (-11.0) | **UNDER** (145.0) | 67% |
+| IUPUI Jaguars @ Cleveland St Vikings | **HOME** (-1.5) | **UNDER** (170.0) | 88% |
+| Coppin St Eagles @ Howard Bison | **AWAY** (+19.5) | **OVER** (136.5) | 49% |
+| Northwestern St Demons @ UT Rio Grande Valley Vaqueros | **AWAY** (+10.5) | **UNDER** (137.5) | 72% |
+| Iowa State Cyclones @ Arizona Wildcats | **AWAY** (+8.5) | **UNDER** (147.5) | 60% |
+| East Texas A&M Lions @ Texas A&M-CC Islanders | **AWAY** (+8.0) | **UNDER** (137.0) | 66% |
+| SE Louisiana Lions @ New Orleans Privateers | **AWAY** (+7.5) | **UNDER** (144.0) | 33% |
+| Duke Blue Devils @ NC State Wolfpack | **HOME** (+9.5) | **UNDER** (148.5) | 39% |
+| Montana Grizzlies @ N Colorado Bears | **AWAY** (+6.5) | **UNDER** (153.5) | 53% |
+| Idaho Vandals @ Eastern Washington Eagles | **HOME** (-3.0) | **UNDER** (153.0) | 40% |
+| Norfolk St Spartans @ Morgan St Bears | **HOME** (+2.5) | **OVER** (154.5) | 38% |
+| Weber State Wildcats @ Portland St Vikings | **AWAY** (+4.5) | **UNDER** (146.0) | 35% |
+| Idaho State Bengals @ Sacramento St Hornets | **HOME** (-1.5) | **UNDER** (159.5) | 19% |
+| Stephen F. Austin Lumberjacks @ Incarnate Word Cardinals | **HOME** (+8.5) | **UNDER** (145.5) | 24% |
+| Montana St Bobcats @ Northern Arizona Lumberjacks | **HOME** (+5.5) | **UNDER** (142.5) | 23% |
+| North Carolina Central Eagles @ Maryland-Eastern Shore Hawks | **AWAY** (+1.0) | **UNDER** (133.5) | 13% |
+| South Carolina St Bulldogs @ Delaware St Hornets | **AWAY** (+1.5) | **UNDER** (138.0) | 51% |
+| Lamar Cardinals @ Houston Christian Huskies | **HOME** (+1.0) | **UNDER** (132.5) | 32% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
