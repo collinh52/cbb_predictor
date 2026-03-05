@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 05, 2026 at 05:09 AM
+**Last Updated**: March 05, 2026 at 12:42 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
 
@@ -133,50 +133,56 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1033
 - **Overall Winner Accuracy**: 50.8%
 
-#### 📅 Recent Predictions (2026-03-04)
+#### 📅 Predictions for Today (2026-03-05)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| UMKC Kangaroos @ Oral Roberts Golden Eagles | **HOME** (-8.0) | **UNDER** (147.0) | 59% |
-| Loyola (Chi) Ramblers @ Saint Louis Billikens | **AWAY** (+24.5) | **UNDER** (156.5) | 73% |
-| Chicago St Cougars @ LIU Sharks | **AWAY** (+12.0) | **UNDER** (139.0) | 53% |
-| Baylor Bears @ Houston Cougars | **AWAY** (+15.5) | **OVER** (141.5) | 53% |
-| St. Bonaventure Bonnies @ GW Revolutionaries | **HOME** (-9.0) | **UNDER** (158.5) | 49% |
-| Maryland Terrapins @ Wisconsin Badgers | **AWAY** (+14.5) | **UNDER** (153.5) | 61% |
-| Texas Longhorns @ Arkansas Razorbacks | **HOME** (-7.5) | **OVER** (165.5) | 52% |
-| Minnesota Golden Gophers @ Indiana Hoosiers | **HOME** (-7.5) | **UNDER** (138.5) | 53% |
-| Colorado St Rams @ New Mexico Lobos | **AWAY** (+8.5) | **UNDER** (149.5) | 52% |
-| Saint Joseph's Hawks @ Davidson Wildcats | **HOME** (-4.0) | **UNDER** (137.5) | 59% |
-| Cleveland St Vikings @ Wright St Raiders | **AWAY** (+13.5) | **OVER** (162.5) | 42% |
-| Eastern Illinois Panthers @ SIU-Edwardsville Cougars | **HOME** (-5.0) | **UNDER** (127.5) | 50% |
-| Stonehill Skyhawks @ Le Moyne Dolphins | **AWAY** (+7.0) | **OVER** (135.0) | 47% |
-| Miami Hurricanes @ SMU Mustangs | **HOME** (-1.5) | **UNDER** (160.5) | 43% |
-| Purdue Boilermakers @ Northwestern Wildcats | **HOME** (+11.5) | **UNDER** (146.5) | 49% |
-| Wagner Seahawks @ Central Connecticut St Blue Devils | **HOME** (-4.5) | **UNDER** (140.0) | 37% |
-| Northern Kentucky Norse @ Oakland Golden Grizzlies | **HOME** (-2.0) | **OVER** (160.0) | 33% |
-| Rice Owls @ North Texas Mean Green | **AWAY** (+7.5) | **OVER** (139.0) | 32% |
-| USC Trojans @ Washington Huskies | **AWAY** (+6.5) | **UNDER** (150.5) | 55% |
-| Youngstown St Penguins @ Robert Morris Colonials | **AWAY** (+4.5) | **UNDER** (143.0) | 34% |
-| North Alabama Lions @ Florida Gulf Coast Eagles | **AWAY** (+6.5) | **UNDER** (143.5) | 45% |
-| Stanford Cardinal @ Notre Dame Fighting Irish | **HOME** (-1.5) | **OVER** (145.5) | 35% |
-| Gardner-Webb Bulldogs @ South Carolina Upstate Spartans | **AWAY** (+10.0) | **UNDER** (148.0) | 39% |
-| Creighton Bluejays @ Butler Bulldogs | **HOME** (-2.5) | **UNDER** (154.5) | 33% |
-| Marquette Golden Eagles @ Providence Friars | **AWAY** (+4.5) | **UNDER** (162.5) | 28% |
-| Fairleigh Dickinson Knights @ Mercyhurst Lakers | **AWAY** (+4.5) | **OVER** (134.0) | 43% |
-| Stetson Hatters @ Eastern Kentucky Colonels | **AWAY** (+4.5) | **OVER** (156.5) | 37% |
-| Milwaukee Panthers @ Detroit Mercy Titans | **HOME** (-2.5) | **UNDER** (153.5) | 30% |
-| Arkansas-Little Rock Trojans @ Lindenwood Lions | **HOME** (-2.5) | **OVER** (149.0) | 29% |
-| North Florida Ospreys @ West Georgia Wolves | **AWAY** (+3.5) | **OVER** (158.0) | 22% |
-| Fordham Rams @ La Salle Explorers | **HOME** (+2.5) | **UNDER** (132.0) | 50% |
-| Old Dominion Monarchs @ Georgia Southern Eagles | **HOME** (+1.5) | **UNDER** (160.5) | 31% |
-| Villanova Wildcats @ DePaul Blue Demons | **HOME** (+3.5) | **UNDER** (135.5) | 32% |
-| Florida St Seminoles @ Pittsburgh Panthers | **HOME** (+1.5) | **UNDER** (145.5) | 32% |
-| California Golden Bears @ Georgia Tech Yellow Jackets | **HOME** (+3.5) | **UNDER** (155.5) | 28% |
-| Jacksonville Dolphins @ Bellarmine Knights | **AWAY** (+1.5) | **OVER** (147.5) | 17% |
-| Ohio State Buckeyes @ Penn State Nittany Lions | **HOME** (+7.5) | **UNDER** (153.5) | 24% |
-| Duquesne Dukes @ Rhode Island Rams | **HOME** (-1.0) | **UNDER** (143.5) | 17% |
-| Louisiana Ragin' Cajuns @ James Madison Dukes | **AWAY** (+4.5) | **UNDER** (134.5) | 16% |
-| UAB Blazers @ Charlotte 49ers | **HOME** (+1.5) | **UNDER** (145.0) | 7% |
+| Grambling St Tigers @ Alabama St Hornets | **HOME** (-3.5) | **OVER** (142.5) | 49% |
+| Sam Houston St Bearkats @ Delaware Blue Hens | **HOME** (+6.5) | **UNDER** (148.0) | 66% |
+| Bucknell Bison @ Navy Midshipmen | **AWAY** (+16.5) | **OVER** (133.5) | 63% |
+| Rutgers Scarlet Knights @ Michigan St Spartans | **AWAY** (+19.5) | **OVER** (140.5) | 49% |
+| Evansville Purple Aces @ Northern Iowa Panthers | **AWAY** (+14.5) | **OVER** (125.5) | 56% |
+| Georgia Southern Eagles @ Arkansas St Red Wolves | **HOME** (-6.5) | **UNDER** (168.5) | 66% |
+| UC Riverside Highlanders @ Hawai'i Rainbow Warriors | **AWAY** (+11.0) | **UNDER** (149.0) | 51% |
+| Coppin St Eagles @ Morgan St Bears | **AWAY** (+7.5) | **UNDER** (151.5) | 68% |
+| Oral Roberts Golden Eagles @ North Dakota St Bison | **AWAY** (+8.5) | **OVER** (146.5) | 44% |
+| South Dakota St Jackrabbits @ St. Thomas (MN) Tommies | **HOME** (-6.0) | **UNDER** (149.0) | 43% |
+| Louisiana Tech Bulldogs @ Liberty Flames | **AWAY** (+9.0) | **OVER** (138.0) | 46% |
+| Cal Poly Mustangs @ UC Irvine Anteaters | **AWAY** (+9.5) | **UNDER** (155.5) | 60% |
+| South Carolina St Bulldogs @ North Carolina Central Eagles | **AWAY** (+8.0) | **UNDER** (145.5) | 86% |
+| Abilene Christian Wildcats @ Cal Baptist Lancers | **AWAY** (+9.0) | **UNDER** (135.5) | 64% |
+| Miss Valley St Delta Devils @ Jackson St Tigers | **AWAY** (+10.5) | **OVER** (145.0) | 61% |
+| Eastern Illinois Panthers @ Tenn-Martin Skyhawks | **AWAY** (+6.5) | **UNDER** (121.5) | 41% |
+| Tulsa Golden Hurricane @ East Carolina Pirates | **HOME** (+9.5) | **OVER** (155.5) | 41% |
+| Prairie View Panthers @ Texas Southern Tigers | **HOME** (-3.5) | **UNDER** (155.5) | 56% |
+| Manhattan Jaspers @ Fairfield Stags | **AWAY** (+5.5) | **UNDER** (150.0) | 42% |
+| Jacksonville St Gamecocks @ New Mexico St Aggies | **HOME** (-5.0) | **OVER** (142.5) | 40% |
+| Delaware St Hornets @ Maryland-Eastern Shore Hawks | **AWAY** (+6.5) | **OVER** (126.0) | 36% |
+| Middle Tennessee Blue Raiders @ Florida Int'l Golden Panthers | **HOME** (-2.0) | **OVER** (154.5) | 43% |
+| Michigan Wolverines @ Iowa Hawkeyes | **HOME** (+9.5) | **UNDER** (146.5) | 52% |
+| Drake Bulldogs @ Southern Illinois Salukis | **AWAY** (+5.5) | **UNDER** (135.5) | 31% |
+| Lindenwood Lions @ SE Missouri St Redhawks | **HOME** (-1.5) | **UNDER** (149.5) | 36% |
+| Loyola (MD) Greyhounds @ Colgate Raiders | **AWAY** (+7.0) | **OVER** (151.5) | 42% |
+| Sacred Heart Pioneers @ Iona Gaels | **HOME** (-3.5) | **OVER** (148.0) | 30% |
+| Utah Valley Wolverines @ Southern Utah Thunderbirds | **HOME** (+10.0) | **OVER** (151.0) | 38% |
+| Holy Cross Crusaders @ Lehigh Mountain Hawks | **AWAY** (+6.5) | **OVER** (141.5) | 46% |
+| Howard Bison @ Norfolk St Spartans | **HOME** (+5.0) | **OVER** (145.5) | 43% |
+| Pepperdine Waves @ Portland Pilots | **HOME** (-2.0) | **OVER** (152.5) | 30% |
+| San Diego Toreros @ Loyola Marymount Lions | **AWAY** (+5.5) | **OVER** (146.0) | 41% |
+| UT-Arlington Mavericks @ Tarleton State Texans | **HOME** (-2.0) | **UNDER** (136.5) | 53% |
+| American Eagles @ Boston Univ. Terriers | **AWAY** (+3.0) | **UNDER** (142.0) | 24% |
+| Southern Jaguars @ Alabama A&M Bulldogs | **HOME** (+1.0) | **UNDER** (149.5) | 22% |
+| Western Kentucky Hilltoppers @ Missouri St Bears | **AWAY** (-1.5) | **OVER** (151.0) | 17% |
+| UC San Diego Tritons @ CSU Fullerton Titans | **HOME** (+3.5) | **UNDER** (156.5) | 41% |
+| Bethune-Cookman Wildcats @ Florida A&M Rattlers | **HOME** (+2.5) | **OVER** (146.0) | 13% |
+| James Madison Dukes @ Southern Miss Golden Eagles | **HOME** (+2.5) | **UNDER** (142.5) | 18% |
+| Tulane Green Wave @ Temple Owls | **AWAY** (+4.5) | **UNDER** (144.5) | 34% |
+| CSU Northridge Matadors @ CSU Bakersfield Roadrunners | **HOME** (+8.0) | **UNDER** (165.0) | 18% |
+| Indiana St Sycamores @ Valparaiso Beacons | **AWAY** (+2.5) | **OVER** (136.0) | 37% |
+| UC Davis Aggies @ Long Beach St 49ers | **HOME** (+2.0) | **UNDER** (150.0) | 9% |
+| South Florida Bulls @ Memphis Tigers | **HOME** (+6.0) | **UNDER** (160.5) | 27% |
+| Kennesaw St Owls @ UTEP Miners | **HOME** (+2.5) | **UNDER** (149.5) | 12% |
+| Arkansas-Pine Bluff Golden Lions @ Alcorn St Braves | **HOME** (+1.5) | **OVER** (149.5) | 12% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -190,7 +196,7 @@ python validation/run_all_backtests.py
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 27-2 | +30.9 | 72.0 | 41.1 |
+| 1 | Michigan Wolverines | 27-2 | +30.9 | 71.9 | 41.1 |
 | 2 | Arizona Wildcats | 28-2 | +28.1 | 68.8 | 40.7 |
 | 3 | Duke Blue Devils | 28-2 | +28.1 | 65.6 | 37.5 |
 | 4 | Illinois Fighting Illini | 23-7 | +26.7 | 67.7 | 41.4 |
@@ -204,16 +210,16 @@ python validation/run_all_backtests.py
 | 12 | Houston Cougars | 25-5 | +23.6 | 61.0 | 37.4 |
 | 13 | UConn Huskies | 27-3 | +23.2 | 63.2 | 40.0 |
 | 14 | Vanderbilt Commodores | 23-7 | +22.9 | 67.4 | 44.6 |
-| 15 | Michigan State Spartans | 24-5 | +22.7 | 62.0 | 39.4 |
+| 15 | Michigan State Spartans | 24-5 | +22.6 | 62.0 | 39.4 |
 | 16 | Texas Tech Red Raiders | 22-8 | +22.4 | 65.2 | 42.8 |
 | 17 | BYU Cougars | 20-10 | +22.3 | 68.3 | 46.3 |
 | 18 | St. John's Red Storm | 24-6 | +22.2 | 64.8 | 42.6 |
 | 19 | Tennessee Volunteers | 21-9 | +22.0 | 62.5 | 40.8 |
-| 20 | Kansas Jayhawks | 21-9 | +21.8 | 62.4 | 40.6 |
+| 20 | Kansas Jayhawks | 21-9 | +21.9 | 62.4 | 40.6 |
 | 21 | Georgia Bulldogs | 21-9 | +21.8 | 69.3 | 47.8 |
 | 22 | Kentucky Wildcats | 19-11 | +21.5 | 64.8 | 43.7 |
-| 23 | Wisconsin Badgers | 21-9 | +21.2 | 67.4 | 46.2 |
-| 24 | Nebraska Cornhuskers | 25-5 | +21.1 | 61.3 | 40.2 |
+| 23 | Wisconsin Badgers | 21-9 | +21.2 | 67.4 | 46.1 |
+| 24 | Nebraska Cornhuskers | 25-5 | +21.1 | 61.2 | 40.2 |
 | 25 | Virginia Cavaliers | 26-4 | +20.8 | 63.3 | 42.5 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
