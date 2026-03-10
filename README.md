@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 09, 2026 at 12:42 PM
+**Last Updated**: March 10, 2026 at 05:06 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.9%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-08) | 19-12 | **61.3%** |
-| **Last 7 Days** | 153-151 | **50.3%** |
-| **Last 30 Days** | 628-606 | **50.9%** |
-| **All-Time** | 628-606 | **50.9%** |
+| **Latest** (2026-03-09) | 6-6 | **50.0%** |
+| **Last 7 Days** | 152-148 | **50.7%** |
+| **Last 30 Days** | 634-612 | **50.9%** |
+| **All-Time** | 634-612 | **50.9%** |
 
 **Over/Under Accuracy**: 51.6%
 
@@ -85,7 +85,7 @@ python validation/run_all_backtests.py
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 186-177 | **51.2%** |
+| **50%+** | 188-178 | **51.4%** |
 | **60%+** | 76-69 | **52.4%** |
 | **70%+** | 24-24 | **50.0%** |
 | **80%+** | 6-6 | **50.0%** |
@@ -97,7 +97,7 @@ python validation/run_all_backtests.py
 | Big South | 25-8 | **75.8%** |
 | Summit League | 16-9 | **64.0%** |
 | Western Athletic | 16-9 | **64.0%** |
-| Southern | 24-14 | **63.2%** |
+| Southern | 24-15 | **61.5%** |
 | Mountain West | 26-17 | **60.5%** |
 | Missouri Valley | 24-17 | **58.5%** |
 | Atlantic Coast | 38-27 | **58.5%** |
@@ -107,50 +107,37 @@ python validation/run_all_backtests.py
 | Southeastern | 33-27 | **55.0%** |
 | Big 12 | 31-26 | **54.4%** |
 | Patriot League | 13-11 | **54.2%** |
-| Southwestern Athletic | 18-17 | **51.4%** |
+| Southwestern Athletic | 19-17 | **52.8%** |
+| West Coast | 17-16 | **51.5%** |
 | America East | 16-16 | **50.0%** |
+| Southland | 16-16 | **50.0%** |
 | ASUN | 23-24 | **48.9%** |
-| West Coast | 15-16 | **48.4%** |
-| Southland | 15-16 | **48.4%** |
 | Mid-American | 22-24 | **47.8%** |
 | Ivy League | 10-11 | **47.6%** |
 | Big Ten | 30-35 | **46.2%** |
 | Conference USA | 18-21 | **46.2%** |
 | Big East | 18-21 | **46.2%** |
-| Coastal Athletic Association | 22-27 | **44.9%** |
-| Sun Belt | 23-30 | **43.4%** |
 | Metro Atlantic Athletic | 19-25 | **43.2%** |
+| Coastal Athletic Association | 22-29 | **43.1%** |
+| Sun Belt | 23-31 | **42.6%** |
 | Big West | 17-23 | **42.5%** |
 | Northeast | 12-17 | **41.4%** |
-| Horizon League | 12-19 | **38.7%** |
+| Horizon League | 13-20 | **39.4%** |
 | American | 18-30 | **37.5%** |
-| Big Sky | 13-23 | **36.1%** |
+| Big Sky | 14-24 | **36.8%** |
 
 > *A game counts for a conference if either team is a member.*
 
 #### Combined Statistics
 
-- **Total Predictions**: 1234
+- **Total Predictions**: 1246
 - **Overall Winner Accuracy**: 50.9%
 
-#### 📅 Predictions for Today (2026-03-09)
+#### 📅 Predictions for Today (2026-03-10)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Nicholls St Colonels @ UT Rio Grande Valley Vaqueros | **HOME** (-8.5) | **UNDER** (146.5) | 65% |
-| Miss Valley St Delta Devils @ Grambling St Tigers | **AWAY** (+12.5) | **OVER** (135.0) | 65% |
-| Oregon St Beavers @ Gonzaga Bulldogs | **AWAY** (+18.5) | **UNDER** (145.5) | 57% |
-| Detroit Mercy Titans @ Robert Morris Colonials | **HOME** (-5.0) | **UNDER** (147.0) | 46% |
-| Towson Tigers @ Hofstra Pride | **HOME** (-4.5) | **UNDER** (131.5) | 57% |
-| Santa Clara Broncos @ Saint Mary's Gaels | **HOME** (-3.5) | **OVER** (147.5) | 39% |
-| Georgia Southern Eagles @ Troy Trojans | **AWAY** (+5.5) | **UNDER** (152.5) | 39% |
-| Alcorn St Braves @ Alabama St Hornets | **AWAY** (+6.5) | **UNDER** (141.0) | 34% |
-| New Orleans Privateers @ Texas A&M-CC Islanders | **HOME** (-3.0) | **OVER** (142.0) | 54% |
-| Furman Paladins @ East Tennessee St Buccaneers | **HOME** (-1.5) | **UNDER** (139.5) | 23% |
-| Weber State Wildcats @ Eastern Washington Eagles | **AWAY** (+3.0) | **OVER** (155.0) | 27% |
-| Northern Kentucky Norse @ Wright St Raiders | **HOME** (+1.0) | **UNDER** (158.0) | 24% |
-| N Colorado Bears @ Montana Grizzlies | **HOME** (+3.5) | **UNDER** (152.0) | 37% |
-| Campbell Fighting Camels @ Monmouth Hawks | **AWAY** (+1.5) | **OVER** (152.0) | 9% |
+| Boston Univ. Terriers @ Lehigh Mountain Hawks | **HOME** (+1.5) | **OVER** (141.5) | 32% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -160,27 +147,27 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 09, 2026*
+*Updated: March 10, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
 | 1 | Michigan Wolverines | 29-2 | +30.6 | 71.8 | 41.2 |
-| 2 | Duke Blue Devils | 29-2 | +28.0 | 65.4 | 37.4 |
+| 2 | Duke Blue Devils | 29-2 | +27.9 | 65.4 | 37.4 |
 | 3 | Arizona Wildcats | 29-2 | +27.6 | 68.4 | 40.8 |
 | 4 | Florida Gators | 25-6 | +26.1 | 67.8 | 41.9 |
 | 5 | Illinois Fighting Illini | 24-7 | +26.0 | 67.1 | 41.5 |
 | 6 | Louisville Cardinals | 22-9 | +25.1 | 68.7 | 44.0 |
 | 7 | Iowa State Cyclones | 25-6 | +24.7 | 64.9 | 40.6 |
-| 8 | Alabama Crimson Tide | 23-8 | +24.4 | 72.8 | 48.3 |
+| 8 | Alabama Crimson Tide | 23-8 | +24.4 | 72.8 | 48.4 |
 | 9 | Purdue Boilermakers | 23-8 | +24.2 | 66.1 | 42.1 |
-| 10 | Gonzaga Bulldogs | 28-3 | +24.2 | 65.2 | 41.0 |
-| 11 | Arkansas Razorbacks | 23-8 | +24.0 | 71.3 | 47.3 |
+| 10 | Arkansas Razorbacks | 23-8 | +23.9 | 71.3 | 47.3 |
+| 11 | Gonzaga Bulldogs | 29-3 | +23.7 | 64.5 | 40.8 |
 | 12 | Houston Cougars | 26-5 | +23.3 | 60.8 | 37.5 |
 | 13 | Vanderbilt Commodores | 24-7 | +22.8 | 67.5 | 44.7 |
 | 14 | UConn Huskies | 27-4 | +22.7 | 62.7 | 40.0 |
 | 15 | Michigan State Spartans | 25-6 | +22.2 | 62.5 | 40.3 |
-| 16 | Texas Tech Red Raiders | 22-9 | +22.1 | 64.9 | 42.8 |
-| 17 | BYU Cougars | 21-10 | +22.1 | 68.3 | 46.2 |
+| 16 | BYU Cougars | 21-10 | +22.1 | 68.3 | 46.2 |
+| 17 | Texas Tech Red Raiders | 22-9 | +22.1 | 64.9 | 42.8 |
 | 18 | St. John's Red Storm | 25-6 | +22.1 | 64.7 | 42.6 |
 | 19 | Kansas Jayhawks | 22-9 | +22.0 | 63.2 | 41.1 |
 | 20 | Tennessee Volunteers | 21-10 | +22.0 | 62.7 | 41.1 |
