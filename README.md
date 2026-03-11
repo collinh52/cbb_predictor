@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 11, 2026 at 05:08 AM
+**Last Updated**: March 11, 2026 at 12:42 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
 
@@ -137,24 +137,42 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| New Mexico St Aggies @ Sam Houston St Bearkats | **AWAY** (+4.5) | **UNDER** (156.5) | 81% |
 | Buffalo Bulls @ Akron Zips | **HOME** (-12.5) | **UNDER** (164.0) | 69% |
+| Arizona St Sun Devils @ Iowa State Cyclones | **HOME** (-11.5) | **UNDER** (147.5) | 71% |
 | Massachusetts Minutemen @ Miami (OH) RedHawks | **HOME** (-7.5) | **OVER** (162.0) | 69% |
+| Pittsburgh Panthers @ NC State Wolfpack | **HOME** (-8.5) | **OVER** (144.5) | 55% |
+| SMU Mustangs @ Louisville Cardinals | **HOME** (-6.5) | **UNDER** (163.5) | 51% |
 | San José St Spartans @ Boise State Broncos | **AWAY** (+14.5) | **OVER** (147.0) | 65% |
+| Northwestern Wildcats @ Indiana Hoosiers | **HOME** (-4.5) | **UNDER** (142.5) | 55% |
+| Maryland Terrapins @ Iowa Hawkeyes | **AWAY** (+11.5) | **UNDER** (136.0) | 62% |
+| Missouri St Bears @ Liberty Flames | **HOME** (-5.5) | **OVER** (143.5) | 53% |
 | Delaware St Hornets @ Morgan St Bears | **HOME** (-2.5) | **UNDER** (142.5) | 57% |
+| South Carolina St Bulldogs @ Norfolk St Spartans | **AWAY** (+7.0) | **UNDER** (145.0) | 41% |
+| Prairie View Panthers @ Bethune-Cookman Wildcats | **AWAY** (+6.0) | **UNDER** (151.5) | 48% |
 | Ohio Bobcats @ Kent State Golden Flashes | **HOME** (-4.0) | **OVER** (161.0) | 46% |
 | Rutgers Scarlet Knights @ Minnesota Golden Gophers | **AWAY** (+5.0) | **UNDER** (137.0) | 35% |
 | South Carolina Gamecocks @ Oklahoma Sooners | **AWAY** (+6.5) | **UNDER** (149.5) | 45% |
 | UC Santa Barbara Gauchos @ UC Davis Aggies | **HOME** (-4.0) | **UNDER** (143.0) | 38% |
+| Wake Forest Demon Deacons @ Clemson Tigers | **AWAY** (+5.5) | **UNDER** (141.5) | 41% |
 | Middle Tennessee Blue Raiders @ Louisiana Tech Bulldogs | **HOME** (+2.0) | **OVER** (132.0) | 49% |
 | Fresno St Bulldogs @ Colorado St Rams | **AWAY** (+5.0) | **UNDER** (146.5) | 45% |
+| Oklahoma St Cowboys @ TCU Horned Frogs | **AWAY** (+5.5) | **OVER** (156.5) | 37% |
 | Georgetown Hoyas @ DePaul Blue Demons | **HOME** (-1.5) | **UNDER** (137.5) | 50% |
 | Temple Owls @ Florida Atlantic Owls | **HOME** (-2.0) | **UNDER** (147.5) | 34% |
+| Alabama A&M Bulldogs @ Texas Southern Tigers | **HOME** (+1.5) | **OVER** (145.0) | 30% |
 | Tarleton State Texans @ Abilene Christian Wildcats | **HOME** (+1.0) | **UNDER** (142.0) | 62% |
 | Rhode Island Rams @ Duquesne Dukes | **HOME** (-1.0) | **UNDER** (138.5) | 31% |
 | Cal Poly Mustangs @ UC San Diego Tritons | **AWAY** (+7.0) | **UNDER** (159.5) | 44% |
 | GW Revolutionaries @ Fordham Rams | **HOME** (+5.5) | **UNDER** (141.5) | 27% |
+| Cincinnati Bearcats @ UCF Knights | **HOME** (+3.0) | **OVER** (147.5) | 23% |
+| Arkansas-Pine Bluff Golden Lions @ Southern Jaguars | **AWAY** (+5.0) | **OVER** (155.0) | 23% |
 | Creighton Bluejays @ Seton Hall Pirates | **AWAY** (+3.0) | **UNDER** (136.5) | 36% |
+| Idaho Vandals @ Montana Grizzlies | **HOME** (+1.5) | **UNDER** (145.5) | 28% |
 | Bowling Green Falcons @ Toledo Rockets | **AWAY** (+1.0) | **UNDER** (154.0) | 20% |
+| BYU Cougars @ West Virginia Mountaineers | **HOME** (+4.5) | **UNDER** (141.5) | 7% |
+| McNeese Cowboys @ Stephen F. Austin Lumberjacks | **HOME** (+1.5) | **OVER** (137.5) | 4% |
+| Jackson St Tigers @ Florida A&M Rattlers | **AWAY** (+4.5) | **OVER** (148.5) | 21% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -182,8 +200,8 @@ python validation/run_all_backtests.py
 | 12 | Houston Cougars | 26-5 | +23.2 | 60.7 | 37.5 |
 | 13 | Vanderbilt Commodores | 24-7 | +22.7 | 67.5 | 44.7 |
 | 14 | UConn Huskies | 27-4 | +22.6 | 62.6 | 40.0 |
-| 15 | BYU Cougars | 22-10 | +22.2 | 68.8 | 46.6 |
-| 16 | Michigan State Spartans | 25-6 | +22.2 | 62.5 | 40.3 |
+| 15 | Michigan State Spartans | 25-6 | +22.2 | 62.5 | 40.3 |
+| 16 | BYU Cougars | 22-10 | +22.2 | 68.8 | 46.6 |
 | 17 | Texas Tech Red Raiders | 22-9 | +22.1 | 64.9 | 42.8 |
 | 18 | St. John's Red Storm | 25-6 | +22.0 | 64.7 | 42.7 |
 | 19 | Kansas Jayhawks | 22-9 | +22.0 | 63.1 | 41.1 |
