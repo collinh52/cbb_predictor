@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 15, 2026 at 05:26 AM
+**Last Updated**: March 15, 2026 at 12:33 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
 
@@ -133,31 +133,15 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1403
 - **Overall Winner Accuracy**: 50.7%
 
-#### 📅 Recent Predictions (2026-03-14)
+#### 📅 Predictions for Today (2026-03-15)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Charlotte 49ers @ South Florida Bulls | **AWAY** (+13.5) | **OVER** (153.5) | 52% |
-| Vanderbilt Commodores @ Florida Gators | **HOME** (-8.5) | **UNDER** (160.5) | 51% |
-| Virginia Cavaliers @ Duke Blue Devils | **HOME** (-8.5) | **UNDER** (137.5) | 60% |
-| Wisconsin Badgers @ Michigan Wolverines | **AWAY** (+12.5) | **OVER** (160.5) | 50% |
-| Dayton Flyers @ Saint Louis Billikens | **HOME** (-5.5) | **UNDER** (148.5) | 65% |
-| North Carolina Central Eagles @ Howard Bison | **AWAY** (+11.5) | **UNDER** (144.5) | 61% |
-| Toledo Rockets @ Akron Zips | **HOME** (-7.5) | **UNDER** (159.5) | 49% |
-| Ole Miss Rebels @ Arkansas Razorbacks | **HOME** (-8.5) | **OVER** (157.5) | 77% |
-| Saint Joseph's Hawks @ VCU Rams | **HOME** (-6.5) | **OVER** (145.5) | 50% |
-| Vermont Catamounts @ UMBC Retrievers | **HOME** (-4.0) | **UNDER** (136.5) | 47% |
-| Houston Cougars @ Arizona Wildcats | **HOME** (-2.5) | **OVER** (137.5) | 39% |
-| San Diego St Aztecs @ Utah State Aggies | **HOME** (-1.5) | **OVER** (147.5) | 52% |
-| Cal Baptist Lancers @ Utah Valley Wolverines | **HOME** (-1.5) | **OVER** (138.5) | 48% |
-| Kennesaw St Owls @ Louisiana Tech Bulldogs | **HOME** (+1.5) | **OVER** (140.0) | 42% |
-| Cornell Big Red @ Yale Bulldogs | **AWAY** (+4.0) | **UNDER** (163.5) | 25% |
-| Prairie View Panthers @ Southern Jaguars | **AWAY** (+3.5) | **UNDER** (150.5) | 28% |
-| UConn Huskies @ St. John's Red Storm | **HOME** (+3.0) | **UNDER** (141.0) | 39% |
-| Hawai'i Rainbow Warriors @ UC Irvine Anteaters | **HOME** (-2.5) | **OVER** (138.5) | 37% |
-| Pennsylvania Quakers @ Harvard Crimson | **HOME** (-2.5) | **UNDER** (137.0) | 38% |
-| Tulsa Golden Hurricane @ Wichita St Shockers | **HOME** (+1.5) | **OVER** (149.5) | 15% |
-| Purdue Boilermakers @ UCLA Bruins | **HOME** (+7.5) | **OVER** (147.5) | 13% |
+| Purdue Boilermakers @ Michigan Wolverines | **HOME** (-6.5) | **OVER** (149.5) | 68% |
+| Pennsylvania Quakers @ Yale Bulldogs | **HOME** (-9.5) | **UNDER** (142.5) | 53% |
+| Wichita St Shockers @ South Florida Bulls | **HOME** (-5.5) | **OVER** (150.5) | 62% |
+| Dayton Flyers @ VCU Rams | **HOME** (-3.5) | **OVER** (139.5) | 41% |
+| Vanderbilt Commodores @ Arkansas Razorbacks | **HOME** (+2.5) | **OVER** (166.5) | 50% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
