@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 16, 2026 at 05:46 AM
+**Last Updated**: March 16, 2026 at 12:51 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
 
@@ -133,15 +133,11 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1408
 - **Overall Winner Accuracy**: 50.8%
 
-#### 📅 Recent Predictions (2026-03-15)
+#### 📅 Predictions for Today (2026-03-16)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Purdue Boilermakers @ Michigan Wolverines | **HOME** (-6.5) | **OVER** (149.5) | 68% |
-| Pennsylvania Quakers @ Yale Bulldogs | **HOME** (-9.5) | **UNDER** (142.5) | 53% |
-| Wichita St Shockers @ South Florida Bulls | **HOME** (-5.5) | **OVER** (150.5) | 62% |
-| Dayton Flyers @ VCU Rams | **HOME** (-3.5) | **OVER** (139.5) | 41% |
-| Vanderbilt Commodores @ Arkansas Razorbacks | **HOME** (+2.5) | **OVER** (166.5) | 50% |
+| UMBC Retrievers @ Howard Bison | **HOME** (+2.5) | **OVER** (141.5) | 21% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
