@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 16, 2026 at 12:51 PM
+**Last Updated**: March 17, 2026 at 05:18 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
 
@@ -75,8 +75,8 @@ python validation/run_all_backtests.py
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
 | **Latest** (2026-03-15) | 3-2 | **60.0%** |
-| **Last 7 Days** | 87-87 | **50.0%** |
-| **Last 30 Days** | 653-628 | **51.0%** |
+| **Last 7 Days** | 81-81 | **50.0%** |
+| **Last 30 Days** | 590-574 | **50.7%** |
 | **All-Time** | 715-693 | **50.8%** |
 
 **Over/Under Accuracy**: 51.1%
@@ -133,11 +133,12 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1408
 - **Overall Winner Accuracy**: 50.8%
 
-#### 📅 Predictions for Today (2026-03-16)
+#### 📅 Predictions for Today (2026-03-17)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| UMBC Retrievers @ Howard Bison | **HOME** (+2.5) | **OVER** (141.5) | 21% |
+| Prairie View Panthers @ Lehigh Mountain Hawks | **AWAY** (+2.5) | **UNDER** (143.5) | 34% |
+| NC State Wolfpack @ Texas Longhorns | **HOME** (+1.5) | **OVER** (159.5) | 17% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -147,7 +148,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 16, 2026*
+*Updated: March 17, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
