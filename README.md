@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 17, 2026 at 05:18 AM
+**Last Updated**: March 17, 2026 at 12:50 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
 
@@ -137,7 +137,16 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| St. Thomas (MN) Tommies @ Seattle Redhawks | **AWAY** (+2.5) | **UNDER** (146.5) | 53% |
+| South Alabama Jaguars @ Auburn Tigers | **AWAY** (+17.5) | **UNDER** (154.0) | 68% |
+| Davidson Wildcats @ Oklahoma St Cowboys | **AWAY** (+8.5) | **UNDER** (155.0) | 51% |
+| Stephen F. Austin Lumberjacks @ Tulsa Golden Hurricane | **AWAY** (+7.5) | **UNDER** (154.0) | 65% |
+| Liberty Flames @ George Mason Patriots | **HOME** (-5.5) | **UNDER** (144.5) | 77% |
+| UNC Wilmington Seahawks @ Yale Bulldogs | **HOME** (-5.0) | **UNDER** (146.5) | 60% |
+| Navy Midshipmen @ Wake Forest Demon Deacons | **AWAY** (+11.5) | **UNDER** (148.5) | 58% |
+| Wyoming Cowboys @ Wichita St Shockers | **AWAY** (+6.5) | **UNDER** (148.0) | 62% |
 | Prairie View Panthers @ Lehigh Mountain Hawks | **AWAY** (+2.5) | **UNDER** (143.5) | 34% |
+| UNLV Rebels @ UC Irvine Anteaters | **AWAY** (+3.0) | **UNDER** (152.5) | 28% |
 | NC State Wolfpack @ Texas Longhorns | **HOME** (+1.5) | **OVER** (159.5) | 17% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
@@ -152,31 +161,6 @@ python validation/run_all_backtests.py
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
-| 1 | Michigan Wolverines | 31-3 | +29.0 | 70.3 | 41.4 |
-| 2 | Arizona Wildcats | 32-2 | +27.6 | 68.6 | 40.9 |
-| 3 | Duke Blue Devils | 32-2 | +26.6 | 64.6 | 38.0 |
-| 4 | Illinois Fighting Illini | 24-8 | +25.4 | 67.0 | 42.1 |
-| 5 | Iowa State Cyclones | 27-7 | +25.3 | 64.9 | 39.9 |
-| 6 | Florida Gators | 26-7 | +24.8 | 66.7 | 42.2 |
-| 7 | Louisville Cardinals | 23-10 | +24.0 | 67.3 | 43.7 |
-| 8 | Alabama Crimson Tide | 23-9 | +23.7 | 72.5 | 48.8 |
-| 9 | Gonzaga Bulldogs | 30-3 | +23.5 | 64.4 | 40.9 |
-| 10 | Houston Cougars | 28-6 | +23.5 | 60.7 | 37.2 |
-| 11 | Arkansas Razorbacks | 26-8 | +23.4 | 71.0 | 47.6 |
-| 12 | Purdue Boilermakers | 27-8 | +23.3 | 65.1 | 41.8 |
-| 13 | Vanderbilt Commodores | 26-8 | +22.8 | 67.5 | 44.7 |
-| 14 | St. John's Red Storm | 28-6 | +22.6 | 65.0 | 42.5 |
-| 15 | UConn Huskies | 29-5 | +22.1 | 62.1 | 39.9 |
-| 16 | BYU Cougars | 23-11 | +22.1 | 67.9 | 45.8 |
-| 17 | Michigan State Spartans | 25-7 | +21.6 | 62.7 | 41.1 |
-| 18 | Tennessee Volunteers | 22-11 | +21.5 | 62.2 | 41.1 |
-| 19 | Texas Tech Red Raiders | 22-10 | +21.4 | 64.5 | 43.1 |
-| 20 | Kansas Jayhawks | 23-10 | +21.4 | 62.8 | 41.4 |
-| 21 | Wisconsin Badgers | 24-10 | +21.0 | 67.3 | 46.3 |
-| 22 | Virginia Cavaliers | 29-5 | +20.8 | 63.3 | 42.5 |
-| 23 | Georgia Bulldogs | 22-10 | +20.7 | 69.1 | 48.6 |
-| 24 | Kentucky Wildcats | 21-13 | +20.7 | 64.3 | 43.9 |
-| 25 | Nebraska Cornhuskers | 26-6 | +20.5 | 61.2 | 40.7 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
