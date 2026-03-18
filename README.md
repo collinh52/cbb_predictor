@@ -66,28 +66,28 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 17, 2026 at 12:50 PM
+**Last Updated**: March 18, 2026 at 05:22 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.9%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-15) | 3-2 | **60.0%** |
-| **Last 7 Days** | 81-81 | **50.0%** |
-| **Last 30 Days** | 590-574 | **50.7%** |
-| **All-Time** | 715-693 | **50.8%** |
+| **Latest** (2026-03-17) | 5-2 | **71.4%** |
+| **Last 7 Days** | 71-64 | **52.6%** |
+| **Last 30 Days** | 584-558 | **51.1%** |
+| **All-Time** | 721-695 | **50.9%** |
 
-**Over/Under Accuracy**: 51.1%
+**Over/Under Accuracy**: 51.2%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 214-211 | **50.4%** |
-| **60%+** | 90-80 | **52.9%** |
-| **70%+** | 27-28 | **49.1%** |
+| **50%+** | 218-213 | **50.6%** |
+| **60%+** | 93-82 | **53.1%** |
+| **70%+** | 27-29 | **48.2%** |
 | **80%+** | 6-7 | **46.2%** |
 
 #### 🏀 ATS Accuracy by Conference
@@ -95,34 +95,34 @@ python validation/run_all_backtests.py
 | Conference | Record | Accuracy |
 |------------|--------|----------|
 | Big South | 25-8 | **75.8%** |
+| Mountain West | 36-20 | **64.3%** |
 | Summit League | 16-9 | **64.0%** |
-| Mountain West | 34-20 | **63.0%** |
 | Southern | 24-15 | **61.5%** |
 | Western Athletic | 19-12 | **61.3%** |
 | Missouri Valley | 24-17 | **58.5%** |
-| Atlantic 10 | 34-25 | **57.6%** |
+| Mid-Eastern Athletic | 19-14 | **57.6%** |
+| Atlantic 10 | 35-26 | **57.4%** |
 | Ohio Valley | 22-17 | **56.4%** |
-| Mid-Eastern Athletic | 18-14 | **56.2%** |
 | Patriot League | 14-11 | **56.0%** |
 | Atlantic Coast | 43-36 | **54.4%** |
 | West Coast | 18-16 | **52.9%** |
+| America East | 19-17 | **52.8%** |
 | Southwestern Athletic | 23-21 | **52.3%** |
-| America East | 18-17 | **51.4%** |
-| Big 12 | 37-35 | **51.4%** |
+| Big 12 | 38-35 | **52.1%** |
+| Southeastern | 39-37 | **51.3%** |
 | Mid-American | 27-26 | **50.9%** |
-| Southeastern | 38-37 | **50.7%** |
+| Big West | 24-24 | **50.0%** |
+| Southland | 18-18 | **50.0%** |
 | ASUN | 23-24 | **48.9%** |
-| Big West | 23-24 | **48.9%** |
-| Southland | 17-18 | **48.6%** |
 | Big East | 23-26 | **46.9%** |
 | Big Ten | 38-44 | **46.3%** |
 | Metro Atlantic Athletic | 20-25 | **44.4%** |
-| Coastal Athletic Association | 23-29 | **44.2%** |
-| Conference USA | 20-26 | **43.5%** |
-| Sun Belt | 23-31 | **42.6%** |
-| Ivy League | 10-14 | **41.7%** |
+| Sun Belt | 24-31 | **43.6%** |
+| Coastal Athletic Association | 23-30 | **43.4%** |
+| Conference USA | 20-27 | **42.6%** |
+| American | 25-34 | **42.4%** |
 | Northeast | 12-17 | **41.4%** |
-| American | 23-34 | **40.4%** |
+| Ivy League | 10-15 | **40.0%** |
 | Horizon League | 13-21 | **38.2%** |
 | Big Sky | 15-26 | **36.6%** |
 
@@ -130,24 +130,31 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1408
-- **Overall Winner Accuracy**: 50.8%
+- **Total Predictions**: 1416
+- **Overall Winner Accuracy**: 50.9%
 
-#### 📅 Predictions for Today (2026-03-17)
+#### 📅 Predictions for Today (2026-03-18)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| St. Thomas (MN) Tommies @ Seattle Redhawks | **AWAY** (+2.5) | **UNDER** (146.5) | 53% |
-| South Alabama Jaguars @ Auburn Tigers | **AWAY** (+17.5) | **UNDER** (154.0) | 68% |
-| Davidson Wildcats @ Oklahoma St Cowboys | **AWAY** (+8.5) | **UNDER** (155.0) | 51% |
-| Stephen F. Austin Lumberjacks @ Tulsa Golden Hurricane | **AWAY** (+7.5) | **UNDER** (154.0) | 65% |
-| Liberty Flames @ George Mason Patriots | **HOME** (-5.5) | **UNDER** (144.5) | 77% |
-| UNC Wilmington Seahawks @ Yale Bulldogs | **HOME** (-5.0) | **UNDER** (146.5) | 60% |
-| Navy Midshipmen @ Wake Forest Demon Deacons | **AWAY** (+11.5) | **UNDER** (148.5) | 58% |
-| Wyoming Cowboys @ Wichita St Shockers | **AWAY** (+6.5) | **UNDER** (148.0) | 62% |
-| Prairie View Panthers @ Lehigh Mountain Hawks | **AWAY** (+2.5) | **UNDER** (143.5) | 34% |
-| UNLV Rebels @ UC Irvine Anteaters | **AWAY** (+3.0) | **UNDER** (152.5) | 28% |
-| NC State Wolfpack @ Texas Longhorns | **HOME** (+1.5) | **OVER** (159.5) | 17% |
+| Sam Houston St Bearkats @ New Mexico Lobos | **HOME** (-12.0) | **UNDER** (165.0) | 92% |
+| Siena Saints @ Duke Blue Devils | **AWAY** (+28.5) | **UNDER** (135.5) | 56% |
+| Hawai'i Rainbow Warriors @ Arkansas Razorbacks | **AWAY** (+15.5) | **OVER** (160.5) | 55% |
+| Troy Trojans @ Nebraska Cornhuskers | **AWAY** (+13.5) | **UNDER** (137.5) | 63% |
+| Murray St Racers @ Nevada Wolf Pack | **HOME** (-8.5) | **UNDER** (163.5) | 72% |
+| McNeese Cowboys @ Vanderbilt Commodores | **AWAY** (+11.5) | **UNDER** (150.5) | 55% |
+| North Dakota St Bison @ Michigan St Spartans | **AWAY** (+15.5) | **UNDER** (143.5) | 49% |
+| Miami (OH) RedHawks @ SMU Mustangs | **HOME** (-6.5) | **UNDER** (164.5) | 47% |
+| South Florida Bulls @ Louisville Cardinals | **HOME** (-5.5) | **UNDER** (165.5) | 74% |
+| Saint Joseph's Hawks @ Colorado St Rams | **HOME** (-5.5) | **UNDER** (144.0) | 67% |
+| TCU Horned Frogs @ Ohio State Buckeyes | **HOME** (-2.5) | **UNDER** (146.5) | 37% |
+| Texas A&M Aggies @ Saint Mary's Gaels | **HOME** (-2.5) | **OVER** (146.5) | 36% |
+| Kent State Golden Flashes @ Illinois St Redbirds | **AWAY** (+6.0) | **UNDER** (153.5) | 54% |
+| High Point Panthers @ Wisconsin Badgers | **AWAY** (+9.5) | **UNDER** (164.5) | 42% |
+| GW Revolutionaries @ Utah Valley Wolverines | **HOME** (-1.5) | **UNDER** (156.5) | 41% |
+| VCU Rams @ North Carolina Tar Heels | **HOME** (-2.5) | **UNDER** (153.5) | 38% |
+| UIC Flames @ California Golden Bears | **AWAY** (+4.5) | **UNDER** (149.0) | 30% |
+| Dayton Flyers @ Bradley Braves | **HOME** (+1.5) | **UNDER** (143.0) | 10% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -157,7 +164,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 17, 2026*
+*Updated: March 18, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
