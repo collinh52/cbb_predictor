@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 18, 2026 at 05:22 AM
+**Last Updated**: March 18, 2026 at 12:50 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.9%25-yellowgreen)
 
@@ -139,6 +139,7 @@ python validation/run_all_backtests.py
 |---------|-------------|------------|------------|
 | Sam Houston St Bearkats @ New Mexico Lobos | **HOME** (-12.0) | **UNDER** (165.0) | 92% |
 | Siena Saints @ Duke Blue Devils | **AWAY** (+28.5) | **UNDER** (135.5) | 56% |
+| Howard Bison @ Michigan Wolverines | **AWAY** (+30.5) | **UNDER** (150.5) | 63% |
 | Hawai'i Rainbow Warriors @ Arkansas Razorbacks | **AWAY** (+15.5) | **OVER** (160.5) | 55% |
 | Troy Trojans @ Nebraska Cornhuskers | **AWAY** (+13.5) | **UNDER** (137.5) | 63% |
 | Murray St Racers @ Nevada Wolf Pack | **HOME** (-8.5) | **UNDER** (163.5) | 72% |
@@ -151,6 +152,7 @@ python validation/run_all_backtests.py
 | Texas A&M Aggies @ Saint Mary's Gaels | **HOME** (-2.5) | **OVER** (146.5) | 36% |
 | Kent State Golden Flashes @ Illinois St Redbirds | **AWAY** (+6.0) | **UNDER** (153.5) | 54% |
 | High Point Panthers @ Wisconsin Badgers | **AWAY** (+9.5) | **UNDER** (164.5) | 42% |
+| Texas Longhorns @ BYU Cougars | **HOME** (-1.5) | **OVER** (159.5) | 38% |
 | GW Revolutionaries @ Utah Valley Wolverines | **HOME** (-1.5) | **UNDER** (156.5) | 41% |
 | VCU Rams @ North Carolina Tar Heels | **HOME** (-2.5) | **UNDER** (153.5) | 38% |
 | UIC Flames @ California Golden Bears | **AWAY** (+4.5) | **UNDER** (149.0) | 30% |
