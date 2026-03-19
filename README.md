@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 19, 2026 at 05:20 AM
+**Last Updated**: March 19, 2026 at 12:43 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.8%25-yellowgreen)
 
@@ -144,6 +144,7 @@ python validation/run_all_backtests.py
 | Idaho Vandals @ Houston Cougars | **AWAY** (+23.5) | **UNDER** (136.5) | 65% |
 | Queens University Royals @ Purdue Boilermakers | **AWAY** (+25.5) | **UNDER** (163.5) | 56% |
 | Wright St Raiders @ Virginia Cavaliers | **AWAY** (+17.5) | **UNDER** (145.5) | 49% |
+| Miami (OH) RedHawks @ Tennessee Volunteers | **HOME** (-10.5) | **OVER** (149.5) | 50% |
 | Hofstra Pride @ Alabama Crimson Tide | **AWAY** (+11.5) | **UNDER** (159.5) | 60% |
 | Northern Iowa Panthers @ St. John's Red Storm | **AWAY** (+10.5) | **UNDER** (131.5) | 48% |
 | UCF Knights @ UCLA Bruins | **HOME** (-5.5) | **OVER** (152.5) | 45% |
