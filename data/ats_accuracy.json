@@ -1,11 +1,11 @@
 {
   "with_vegas_lines": {
-    "total_predictions": 1416,
-    "spread_correct": 721,
-    "spread_accuracy": 0.509180790960452,
-    "total_correct": 725,
-    "total_accuracy": 0.5120056497175142,
-    "last_updated": "2026-03-18T12:50:09.397663",
+    "total_predictions": 1424,
+    "spread_correct": 724,
+    "spread_accuracy": 0.5084269662921348,
+    "total_correct": 727,
+    "total_accuracy": 0.5105337078651685,
+    "last_updated": "2026-03-19T05:20:09.628460",
     "daily_breakdown": {
       "2026-02-11": {
         "predictions": 51,
@@ -178,9 +178,14 @@
         "total_correct": 1
       },
       "2026-03-17": {
-        "predictions": 7,
-        "spread_correct": 5,
-        "total_correct": 4
+        "predictions": 9,
+        "spread_correct": 7,
+        "total_correct": 5
+      },
+      "2026-03-18": {
+        "predictions": 6,
+        "spread_correct": 1,
+        "total_correct": 1
       }
     }
   },
@@ -190,20 +195,20 @@
     "implied_spread_accuracy": 0.0,
     "total_correct": 0,
     "total_accuracy": 0.0,
-    "last_updated": "2026-03-18T12:50:09.397673",
+    "last_updated": "2026-03-19T05:20:09.628469",
     "daily_breakdown": {}
   },
   "combined": {
-    "total_predictions": 1416,
-    "straight_up_correct": 721,
-    "straight_up_accuracy": 0.509180790960452,
-    "last_updated": "2026-03-18T12:50:09.397675"
+    "total_predictions": 1424,
+    "straight_up_correct": 724,
+    "straight_up_accuracy": 0.5084269662921348,
+    "last_updated": "2026-03-19T05:20:09.628471"
   },
   "rolling_7_day": {
     "with_vegas": {
-      "predictions": 135,
-      "spread_correct": 71,
-      "accuracy": 0.5259259259259259
+      "predictions": 108,
+      "spread_correct": 53,
+      "accuracy": 0.49074074074074076
     },
     "without_vegas": {
       "predictions": 0,
@@ -213,9 +218,9 @@
   },
   "rolling_30_day": {
     "with_vegas": {
-      "predictions": 1142,
-      "spread_correct": 584,
-      "accuracy": 0.51138353765324
+      "predictions": 1129,
+      "spread_correct": 578,
+      "accuracy": 0.5119574844995571
     },
     "without_vegas": {
       "predictions": 0,
