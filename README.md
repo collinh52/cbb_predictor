@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 20, 2026 at 05:12 AM
+**Last Updated**: March 20, 2026 at 12:40 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -138,9 +138,16 @@ python validation/run_all_backtests.py
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
 | Prairie View Panthers @ Florida Gators | **AWAY** (+35.5) | **UNDER** (155.5) | 84% |
+| TCU Horned Frogs @ Duke Blue Devils | **HOME** (-11.5) | **UNDER** (139.5) | 49% |
 | Furman Paladins @ UConn Huskies | **AWAY** (+20.5) | **UNDER** (136.5) | 63% |
 | Cal Baptist Lancers @ Kansas Jayhawks | **AWAY** (+14.5) | **UNDER** (137.5) | 62% |
+| VCU Rams @ Illinois Fighting Illini | **HOME** (-10.5) | **OVER** (151.5) | 51% |
+| Texas A&M Aggies @ Houston Cougars | **HOME** (-9.5) | **OVER** (142.5) | 54% |
+| Saint Louis Billikens @ Michigan Wolverines | **AWAY** (+12.5) | **UNDER** (161.5) | 72% |
+| Texas Longhorns @ Gonzaga Bulldogs | **HOME** (-5.5) | **UNDER** (147.5) | 51% |
+| Louisville Cardinals @ Michigan St Spartans | **HOME** (-4.5) | **UNDER** (151.5) | 39% |
 | Missouri Tigers @ Miami Hurricanes | **HOME** (-1.5) | **OVER** (146.5) | 19% |
+| Dayton Flyers @ UNC Wilmington Seahawks | **HOME** (+2.5) | **UNDER** (139.5) | 44% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
