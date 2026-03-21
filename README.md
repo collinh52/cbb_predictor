@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 21, 2026 at 05:02 AM
+**Last Updated**: March 21, 2026 at 12:32 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -138,10 +138,16 @@ python validation/run_all_backtests.py
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
 | Seattle Redhawks @ Auburn Tigers | **HOME** (-13.5) | **OVER** (146.5) | 50% |
+| Iowa Hawkeyes @ Florida Gators | **HOME** (-10.5) | **UNDER** (145.5) | 59% |
 | Liberty Flames @ Nevada Wolf Pack | **HOME** (-7.5) | **UNDER** (147.5) | 62% |
+| Utah State Aggies @ Arizona Wildcats | **AWAY** (+11.5) | **UNDER** (155.5) | 66% |
+| Kentucky Wildcats @ Iowa State Cyclones | **HOME** (-4.5) | **UNDER** (146.5) | 67% |
+| Miami Hurricanes @ Purdue Boilermakers | **HOME** (-7.5) | **OVER** (147.5) | 54% |
 | High Point Panthers @ Arkansas Razorbacks | **AWAY** (+11.5) | **OVER** (168.5) | 50% |
 | Illinois St Redbirds @ Wake Forest Demon Deacons | **AWAY** (+7.5) | **UNDER** (149.0) | 51% |
 | UNLV Rebels @ Tulsa Golden Hurricane | **AWAY** (+4.0) | **OVER** (161.5) | 30% |
+| Tennessee Volunteers @ Virginia Cavaliers | **HOME** (+1.5) | **UNDER** (137.5) | 36% |
+| St. John's Red Storm @ Kansas Jayhawks | **HOME** (+3.5) | **UNDER** (144.5) | 38% |
 | Vanderbilt Commodores @ Nebraska Cornhuskers | **HOME** (+2.5) | **UNDER** (146.5) | 24% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
