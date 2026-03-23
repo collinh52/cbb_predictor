@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 22, 2026 at 12:33 PM
+**Last Updated**: March 23, 2026 at 05:27 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-21) | 3-0 | **100.0%** |
-| **Last 7 Days** | 31-32 | **49.2%** |
-| **Last 30 Days** | 520-516 | **50.2%** |
-| **All-Time** | 743-723 | **50.7%** |
+| **Latest** (2026-03-22) | 3-2 | **60.0%** |
+| **Last 7 Days** | 35-36 | **49.3%** |
+| **Last 30 Days** | 518-512 | **50.3%** |
+| **All-Time** | 750-729 | **50.7%** |
 
 **Over/Under Accuracy**: 50.8%
 
@@ -85,8 +85,8 @@ python validation/run_all_backtests.py
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 230-227 | **50.3%** |
-| **60%+** | 99-91 | **52.1%** |
+| **50%+** | 235-230 | **50.5%** |
+| **60%+** | 101-92 | **52.3%** |
 | **70%+** | 29-32 | **47.5%** |
 | **80%+** | 6-8 | **42.9%** |
 
@@ -95,33 +95,33 @@ python validation/run_all_backtests.py
 | Conference | Record | Accuracy |
 |------------|--------|----------|
 | Big South | 27-8 | **77.1%** |
-| Mountain West | 39-21 | **65.0%** |
+| Mountain West | 40-23 | **63.5%** |
 | Southern | 25-15 | **62.5%** |
 | Summit League | 16-10 | **61.5%** |
 | Western Athletic | 20-13 | **60.6%** |
 | Patriot League | 16-11 | **59.3%** |
 | Mid-Eastern Athletic | 20-14 | **58.8%** |
+| Atlantic Coast | 52-42 | **55.3%** |
+| Missouri Valley | 26-21 | **55.3%** |
 | Ohio Valley | 22-18 | **55.0%** |
-| Atlantic Coast | 49-41 | **54.4%** |
-| Missouri Valley | 25-21 | **54.3%** |
+| Atlantic 10 | 38-33 | **53.5%** |
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
-| Atlantic 10 | 36-33 | **52.2%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
 | Southland | 19-18 | **51.4%** |
-| Southeastern | 46-44 | **51.1%** |
-| Big 12 | 41-41 | **50.0%** |
+| Southeastern | 48-46 | **51.1%** |
+| Big 12 | 44-43 | **50.6%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
-| Big East | 25-27 | **48.1%** |
+| Big East | 26-28 | **48.1%** |
 | ASUN | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
-| Big Ten | 43-52 | **45.3%** |
+| Big Ten | 44-54 | **44.9%** |
 | Conference USA | 22-27 | **44.9%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
-| American | 25-35 | **41.7%** |
 | Northeast | 12-17 | **41.4%** |
+| American | 25-37 | **40.3%** |
 | Horizon League | 14-21 | **40.0%** |
 | Ivy League | 10-16 | **38.5%** |
 | Big Sky | 15-27 | **35.7%** |
@@ -130,10 +130,10 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1466
+- **Total Predictions**: 1479
 - **Overall Winner Accuracy**: 50.7%
 
-#### 📅 Predictions for Today (2026-03-22)
+#### 📅 Recent Predictions (2026-03-22)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -151,7 +151,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 22, 2026*
+*Updated: March 23, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
