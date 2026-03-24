@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 24, 2026 at 05:20 AM
+**Last Updated**: March 24, 2026 at 12:50 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
 
@@ -133,15 +133,13 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1479
 - **Overall Winner Accuracy**: 50.7%
 
-#### 📅 Recent Predictions (2026-03-22)
+#### 📅 Predictions for Today (2026-03-24)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| GW Revolutionaries @ New Mexico Lobos | **HOME** (-7.5) | **UNDER** (161.5) | 64% |
-| Wichita St Shockers @ Oklahoma St Cowboys | **HOME** (-3.5) | **UNDER** (164.5) | 54% |
-| Saint Joseph's Hawks @ California Golden Bears | **AWAY** (+6.0) | **UNDER** (149.5) | 55% |
-| UCLA Bruins @ UConn Huskies | **AWAY** (+3.5) | **UNDER** (137.5) | 29% |
-| Texas Tech Red Raiders @ Alabama Crimson Tide | **HOME** (-1.5) | **UNDER** (164.5) | 25% |
+| Saint Joseph's Hawks @ New Mexico Lobos | **AWAY** (+11.5) | **UNDER** (152.5) | 76% |
+| Illinois St Redbirds @ Dayton Flyers | **AWAY** (+7.5) | **OVER** (138.5) | 46% |
+| Wichita St Shockers @ Tulsa Golden Hurricane | **AWAY** (+3.5) | **UNDER** (152.5) | 46% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
