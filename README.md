@@ -66,29 +66,29 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 26, 2026 at 12:56 PM
+**Last Updated**: March 27, 2026 at 05:30 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-25) | 1-0 | **100.0%** |
-| **Last 7 Days** | 24-22 | **52.2%** |
-| **Last 30 Days** | 443-429 | **50.8%** |
-| **All-Time** | 752-731 | **50.7%** |
+| **Latest** (2026-03-26) | 0-2 | **0.0%** |
+| **Last 7 Days** | 20-15 | **57.1%** |
+| **Last 30 Days** | 421-417 | **50.2%** |
+| **All-Time** | 753-734 | **50.6%** |
 
-**Over/Under Accuracy**: 50.8%
+**Over/Under Accuracy**: 50.7%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 236-231 | **50.5%** |
-| **60%+** | 102-93 | **52.3%** |
-| **70%+** | 30-33 | **47.6%** |
-| **80%+** | 6-8 | **42.9%** |
+| **50%+** | 236-232 | **50.4%** |
+| **60%+** | 102-94 | **52.0%** |
+| **70%+** | 30-34 | **46.9%** |
+| **80%+** | 6-9 | **40.0%** |
 
 #### 🏀 ATS Accuracy by Conference
 
@@ -108,16 +108,16 @@ python validation/run_all_backtests.py
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
-| Southeastern | 49-46 | **51.6%** |
+| Southeastern | 50-47 | **51.5%** |
 | Southland | 19-18 | **51.4%** |
-| Big 12 | 44-43 | **50.6%** |
+| Big 12 | 44-45 | **49.4%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
 | Big East | 26-28 | **48.1%** |
 | ASUN | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
-| Big Ten | 44-54 | **44.9%** |
 | Conference USA | 22-27 | **44.9%** |
+| Big Ten | 45-56 | **44.6%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
@@ -130,17 +130,23 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1483
-- **Overall Winner Accuracy**: 50.7%
+- **Total Predictions**: 1487
+- **Overall Winner Accuracy**: 50.6%
 
-#### 📅 Predictions for Today (2026-03-26)
+#### 📅 Predictions for Today (2026-03-27)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Arkansas Razorbacks @ Arizona Wildcats | **AWAY** (+7.5) | **UNDER** (166.5) | 87% |
-| Alabama Crimson Tide @ Michigan Wolverines | **AWAY** (+9.5) | **UNDER** (174.5) | 88% |
-| St. John's Red Storm @ Duke Blue Devils | **AWAY** (+6.5) | **UNDER** (141.5) | 44% |
-| Illinois Fighting Illini @ Houston Cougars | **HOME** (-3.5) | **OVER** (139.5) | 35% |
+| Texas Longhorns @ Arizona Wildcats | **AWAY** (+10.5) | **UNDER** (151.5) | 71% |
+| Iowa Hawkeyes @ Houston Cougars | **HOME** (-7.5) | **OVER** (127.5) | 80% |
+| Nebraska Cornhuskers @ Houston Cougars | **AWAY** (+7.5) | **OVER** (132.5) | 64% |
+| Iowa Hawkeyes @ Illinois Fighting Illini | **HOME** (-5.5) | **OVER** (137.5) | 54% |
+| Nebraska Cornhuskers @ Illinois Fighting Illini | **HOME** (-4.5) | **UNDER** (142.5) | 42% |
+| Tennessee Volunteers @ Iowa State Cyclones | **HOME** (-3.5) | **OVER** (138.5) | 49% |
+| Arkansas Razorbacks @ Purdue Boilermakers | **HOME** (-3.5) | **UNDER** (160.5) | 69% |
+| Purdue Boilermakers @ Arizona Wildcats | **AWAY** (+4.5) | **UNDER** (149.5) | 50% |
+| Texas Longhorns @ Arkansas Razorbacks | **HOME** (-2.5) | **UNDER** (162.5) | 64% |
+| Michigan St Spartans @ UConn Huskies | **HOME** (-1.5) | **OVER** (134.5) | 41% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -150,7 +156,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 26, 2026*
+*Updated: March 27, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
