@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 27, 2026 at 12:44 PM
+**Last Updated**: March 28, 2026 at 05:18 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -74,21 +74,21 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-26) | 0-2 | **0.0%** |
-| **Last 7 Days** | 20-15 | **57.1%** |
-| **Last 30 Days** | 421-417 | **50.2%** |
-| **All-Time** | 753-734 | **50.6%** |
+| **Latest** (2026-03-27) | 1-1 | **50.0%** |
+| **Last 7 Days** | 15-13 | **53.6%** |
+| **Last 30 Days** | 399-393 | **50.4%** |
+| **All-Time** | 754-737 | **50.6%** |
 
-**Over/Under Accuracy**: 50.7%
+**Over/Under Accuracy**: 50.6%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 236-232 | **50.4%** |
-| **60%+** | 102-94 | **52.0%** |
-| **70%+** | 30-34 | **46.9%** |
-| **80%+** | 6-9 | **40.0%** |
+| **50%+** | 236-233 | **50.3%** |
+| **60%+** | 102-95 | **51.8%** |
+| **70%+** | 30-35 | **46.2%** |
+| **80%+** | 6-10 | **37.5%** |
 
 #### 🏀 ATS Accuracy by Conference
 
@@ -102,22 +102,22 @@ python validation/run_all_backtests.py
 | Patriot League | 16-11 | **59.3%** |
 | Mid-Eastern Athletic | 20-14 | **58.8%** |
 | Missouri Valley | 27-21 | **56.2%** |
-| Atlantic Coast | 52-42 | **55.3%** |
+| Atlantic Coast | 53-42 | **55.8%** |
 | Ohio Valley | 22-18 | **55.0%** |
 | Atlantic 10 | 39-34 | **53.4%** |
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
-| Southeastern | 50-47 | **51.5%** |
 | Southland | 19-18 | **51.4%** |
-| Big 12 | 44-45 | **49.4%** |
+| Southeastern | 50-49 | **50.5%** |
+| Big East | 28-28 | **50.0%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
-| Big East | 26-28 | **48.1%** |
+| Big 12 | 44-46 | **48.9%** |
 | ASUN | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
-| Big Ten | 45-56 | **44.6%** |
+| Big Ten | 46-57 | **44.7%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
@@ -130,23 +130,21 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1487
+- **Total Predictions**: 1491
 - **Overall Winner Accuracy**: 50.6%
 
-#### 📅 Predictions for Today (2026-03-27)
+#### 📅 Predictions for Today (2026-03-28)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Texas Longhorns @ Arizona Wildcats | **AWAY** (+10.5) | **UNDER** (151.5) | 71% |
-| Iowa Hawkeyes @ Houston Cougars | **HOME** (-7.5) | **OVER** (127.5) | 80% |
-| Nebraska Cornhuskers @ Houston Cougars | **AWAY** (+7.5) | **OVER** (132.5) | 64% |
-| Iowa Hawkeyes @ Illinois Fighting Illini | **HOME** (-5.5) | **OVER** (137.5) | 54% |
-| Nebraska Cornhuskers @ Illinois Fighting Illini | **HOME** (-4.5) | **UNDER** (142.5) | 42% |
-| Tennessee Volunteers @ Iowa State Cyclones | **HOME** (-3.5) | **OVER** (138.5) | 49% |
-| Arkansas Razorbacks @ Purdue Boilermakers | **HOME** (-3.5) | **UNDER** (160.5) | 69% |
-| Purdue Boilermakers @ Arizona Wildcats | **AWAY** (+4.5) | **UNDER** (149.5) | 50% |
-| Texas Longhorns @ Arkansas Razorbacks | **HOME** (-2.5) | **UNDER** (162.5) | 64% |
-| Michigan St Spartans @ UConn Huskies | **HOME** (-1.5) | **OVER** (134.5) | 41% |
+| Tennessee Volunteers @ Michigan Wolverines | **AWAY** (+8.5) | **UNDER** (145.5) | 45% |
+| Alabama Crimson Tide @ Iowa State Cyclones | **AWAY** (+5.5) | **UNDER** (161.5) | 77% |
+| Michigan St Spartans @ Duke Blue Devils | **AWAY** (+6.5) | **OVER** (137.5) | 46% |
+| UConn Huskies @ Duke Blue Devils | **AWAY** (+4.5) | **OVER** (134.5) | 47% |
+| Iowa State Cyclones @ Michigan Wolverines | **AWAY** (+4.5) | **UNDER** (149.5) | 36% |
+| St. John's Red Storm @ Michigan St Spartans | **HOME** (-1.5) | **OVER** (140.5) | 21% |
+| St. John's Red Storm @ UConn Huskies | **HOME** (-1.5) | **OVER** (137.5) | 24% |
+| Tennessee Volunteers @ Alabama Crimson Tide | **HOME** (+1.5) | **UNDER** (157.5) | 56% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -156,7 +154,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 27, 2026*
+*Updated: March 28, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|

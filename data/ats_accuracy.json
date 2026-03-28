@@ -1,11 +1,11 @@
 {
   "with_vegas_lines": {
-    "total_predictions": 1487,
-    "spread_correct": 753,
-    "spread_accuracy": 0.5063887020847344,
-    "total_correct": 754,
-    "total_accuracy": 0.5070611970410221,
-    "last_updated": "2026-03-27T12:44:55.882838",
+    "total_predictions": 1491,
+    "spread_correct": 755,
+    "spread_accuracy": 0.5063715627095908,
+    "total_correct": 755,
+    "total_accuracy": 0.5063715627095908,
+    "last_updated": "2026-03-28T05:18:33.982072",
     "daily_breakdown": {
       "2026-02-11": {
         "predictions": 51,
@@ -218,8 +218,13 @@
         "total_correct": 2
       },
       "2026-03-26": {
+        "predictions": 4,
+        "spread_correct": 1,
+        "total_correct": 1
+      },
+      "2026-03-27": {
         "predictions": 2,
-        "spread_correct": 0,
+        "spread_correct": 1,
         "total_correct": 0
       }
     }
@@ -230,20 +235,20 @@
     "implied_spread_accuracy": 0.0,
     "total_correct": 0,
     "total_accuracy": 0.0,
-    "last_updated": "2026-03-27T12:44:55.882847",
+    "last_updated": "2026-03-28T05:18:33.982082",
     "daily_breakdown": {}
   },
   "combined": {
-    "total_predictions": 1487,
-    "straight_up_correct": 753,
-    "straight_up_accuracy": 0.5063887020847344,
-    "last_updated": "2026-03-27T12:44:55.882849"
+    "total_predictions": 1491,
+    "straight_up_correct": 755,
+    "straight_up_accuracy": 0.5063715627095908,
+    "last_updated": "2026-03-28T05:18:33.982083"
   },
   "rolling_7_day": {
     "with_vegas": {
-      "predictions": 35,
-      "spread_correct": 20,
-      "accuracy": 0.5714285714285714
+      "predictions": 28,
+      "spread_correct": 15,
+      "accuracy": 0.5357142857142857
     },
     "without_vegas": {
       "predictions": 0,
@@ -253,9 +258,9 @@
   },
   "rolling_30_day": {
     "with_vegas": {
-      "predictions": 838,
-      "spread_correct": 421,
-      "accuracy": 0.5023866348448688
+      "predictions": 792,
+      "spread_correct": 399,
+      "accuracy": 0.5037878787878788
     },
     "without_vegas": {
       "predictions": 0,
