@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 28, 2026 at 12:36 PM
+**Last Updated**: March 29, 2026 at 05:31 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-27) | 1-1 | **50.0%** |
-| **Last 7 Days** | 15-13 | **53.6%** |
-| **Last 30 Days** | 399-393 | **50.4%** |
-| **All-Time** | 754-737 | **50.6%** |
+| **Latest** (2026-03-27) | 2-2 | **50.0%** |
+| **Last 7 Days** | 9-10 | **47.4%** |
+| **Last 30 Days** | 377-363 | **50.9%** |
+| **All-Time** | 756-737 | **50.6%** |
 
 **Over/Under Accuracy**: 50.6%
 
@@ -85,7 +85,7 @@ python validation/run_all_backtests.py
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 236-233 | **50.3%** |
+| **50%+** | 237-234 | **50.3%** |
 | **60%+** | 102-95 | **51.8%** |
 | **70%+** | 30-35 | **46.2%** |
 | **80%+** | 6-10 | **37.5%** |
@@ -113,11 +113,11 @@ python validation/run_all_backtests.py
 | Big East | 28-28 | **50.0%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
-| Big 12 | 44-46 | **48.9%** |
+| Big 12 | 44-47 | **48.4%** |
 | ASUN | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
-| Big Ten | 46-57 | **44.7%** |
+| Big Ten | 47-58 | **44.8%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
@@ -130,10 +130,10 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1491
+- **Total Predictions**: 1493
 - **Overall Winner Accuracy**: 50.6%
 
-#### 📅 Predictions for Today (2026-03-28)
+#### 📅 Recent Predictions (2026-03-28)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -154,7 +154,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 28, 2026*
+*Updated: March 29, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
