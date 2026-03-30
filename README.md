@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 29, 2026 at 12:36 PM
+**Last Updated**: March 30, 2026 at 05:55 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-03-27) | 2-2 | **50.0%** |
-| **Last 7 Days** | 9-10 | **47.4%** |
-| **Last 30 Days** | 377-363 | **50.9%** |
-| **All-Time** | 756-737 | **50.6%** |
+| **Latest** (2026-03-28) | 1-1 | **50.0%** |
+| **Last 7 Days** | 7-9 | **43.8%** |
+| **Last 30 Days** | 367-352 | **51.0%** |
+| **All-Time** | 757-738 | **50.6%** |
 
 **Over/Under Accuracy**: 50.6%
 
@@ -101,23 +101,23 @@ python validation/run_all_backtests.py
 | Western Athletic | 20-13 | **60.6%** |
 | Patriot League | 16-11 | **59.3%** |
 | Mid-Eastern Athletic | 20-14 | **58.8%** |
+| Atlantic Coast | 54-42 | **56.2%** |
 | Missouri Valley | 27-21 | **56.2%** |
-| Atlantic Coast | 53-42 | **55.8%** |
 | Ohio Valley | 22-18 | **55.0%** |
 | Atlantic 10 | 39-34 | **53.4%** |
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
 | Southland | 19-18 | **51.4%** |
-| Southeastern | 50-49 | **50.5%** |
-| Big East | 28-28 | **50.0%** |
+| Big East | 29-28 | **50.9%** |
+| Southeastern | 50-50 | **50.0%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
 | Big 12 | 44-47 | **48.4%** |
 | ASUN | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
-| Big Ten | 47-58 | **44.8%** |
+| Big Ten | 47-59 | **44.3%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
@@ -130,7 +130,7 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1493
+- **Total Predictions**: 1495
 - **Overall Winner Accuracy**: 50.6%
 
 #### 📅 Recent Predictions (2026-03-28)
@@ -154,7 +154,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: March 29, 2026*
+*Updated: March 30, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
