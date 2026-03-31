@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: March 31, 2026 at 05:32 AM
+**Last Updated**: March 31, 2026 at 12:55 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -133,18 +133,13 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1495
 - **Overall Winner Accuracy**: 50.6%
 
-#### 📅 Recent Predictions (2026-03-28)
+#### 📅 Upcoming Predictions (2026-04-01)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Tennessee Volunteers @ Michigan Wolverines | **AWAY** (+8.5) | **UNDER** (145.5) | 45% |
-| Alabama Crimson Tide @ Iowa State Cyclones | **AWAY** (+5.5) | **UNDER** (161.5) | 77% |
-| Michigan St Spartans @ Duke Blue Devils | **AWAY** (+6.5) | **OVER** (137.5) | 46% |
-| UConn Huskies @ Duke Blue Devils | **AWAY** (+4.5) | **OVER** (134.5) | 47% |
-| Iowa State Cyclones @ Michigan Wolverines | **AWAY** (+4.5) | **UNDER** (149.5) | 36% |
-| St. John's Red Storm @ Michigan St Spartans | **HOME** (-1.5) | **OVER** (140.5) | 21% |
-| St. John's Red Storm @ UConn Huskies | **HOME** (-1.5) | **OVER** (137.5) | 24% |
-| Tennessee Volunteers @ Alabama Crimson Tide | **HOME** (+1.5) | **UNDER** (157.5) | 56% |
+| Tulsa Golden Hurricane @ New Mexico Lobos | **HOME** (-3.5) | **OVER** (161.0) | 47% |
+| Oklahoma Sooners @ Colorado Buffaloes | **HOME** (+9.5) | **UNDER** (166.0) | 71% |
+| Baylor Bears @ Minnesota Golden Gophers | **HOME** (+3.5) | **UNDER** (148.0) | 29% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
