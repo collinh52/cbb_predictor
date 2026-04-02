@@ -41312,5 +41312,31 @@
     "checked_at": null,
     "prediction_timestamp": "2026-04-01T12:57:58.966403",
     "odds_collected_at": "2026-04-01T12:57:58.966407"
+  },
+  "107fec52e1d9d6f2f6e74f47eb1d520b": {
+    "game_id": "107fec52e1d9d6f2f6e74f47eb1d520b",
+    "game_date": "2026-04-03",
+    "home_team": "UConn Huskies",
+    "away_team": "Illinois Fighting Illini",
+    "home_team_id": 41,
+    "away_team_id": 356,
+    "predicted_margin": -0.833575338729597,
+    "predicted_total": 147.05906709688773,
+    "prediction_confidence": 38.30393091804693,
+    "vegas_spread": 2.5,
+    "vegas_total": 139.5,
+    "has_vegas_line": true,
+    "spread_pick": "HOME",
+    "total_pick": "OVER",
+    "home_score": null,
+    "away_score": null,
+    "actual_margin": null,
+    "actual_total": null,
+    "spread_correct": null,
+    "total_correct": null,
+    "result_checked": false,
+    "checked_at": null,
+    "prediction_timestamp": "2026-04-02T12:51:21.649203",
+    "odds_collected_at": "2026-04-02T12:51:21.649208"
   }
 }
