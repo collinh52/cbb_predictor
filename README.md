@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 02, 2026 at 12:51 PM
+**Last Updated**: April 03, 2026 at 05:29 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -74,19 +74,19 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-04-01) | 1-1 | **50.0%** |
+| **Latest** (2026-04-02) | 1-2 | **33.3%** |
 | **Last 7 Days** | 5-7 | **41.7%** |
-| **Last 30 Days** | 276-275 | **50.1%** |
-| **All-Time** | 758-739 | **50.6%** |
+| **Last 30 Days** | 250-254 | **49.6%** |
+| **All-Time** | 759-742 | **50.6%** |
 
-**Over/Under Accuracy**: 50.6%
+**Over/Under Accuracy**: 50.7%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 238-234 | **50.4%** |
-| **60%+** | 103-95 | **52.0%** |
+| **50%+** | 238-235 | **50.3%** |
+| **60%+** | 103-96 | **51.8%** |
 | **70%+** | 31-35 | **47.0%** |
 | **80%+** | 6-10 | **37.5%** |
 
@@ -95,34 +95,34 @@ python validation/run_all_backtests.py
 | Conference | Record | Accuracy |
 |------------|--------|----------|
 | Big South | 27-8 | **77.1%** |
-| Mountain West | 41-24 | **63.1%** |
 | Southern | 25-15 | **62.5%** |
+| Mountain West | 41-25 | **62.1%** |
 | Summit League | 16-10 | **61.5%** |
 | Western Athletic | 20-13 | **60.6%** |
 | Patriot League | 16-11 | **59.3%** |
 | Mid-Eastern Athletic | 20-14 | **58.8%** |
-| Atlantic Coast | 54-42 | **56.2%** |
-| Missouri Valley | 27-21 | **56.2%** |
+| Atlantic Coast | 55-42 | **56.7%** |
+| Missouri Valley | 27-22 | **55.1%** |
 | Ohio Valley | 22-18 | **55.0%** |
 | Atlantic 10 | 39-34 | **53.4%** |
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
 | Southland | 19-18 | **51.4%** |
-| Big East | 29-28 | **50.9%** |
-| Southeastern | 51-50 | **50.5%** |
+| Southeastern | 51-51 | **50.0%** |
+| Big East | 29-29 | **50.0%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
-| Big 12 | 45-48 | **48.4%** |
+| Big 12 | 46-48 | **48.9%** |
 | ASUN | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
-| Big Ten | 47-60 | **43.9%** |
+| Big Ten | 47-61 | **43.5%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
 | Horizon League | 14-21 | **40.0%** |
-| American | 25-38 | **39.7%** |
+| American | 25-39 | **39.1%** |
 | Ivy League | 10-16 | **38.5%** |
 | Big Sky | 15-27 | **35.7%** |
 
@@ -130,16 +130,14 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1497
+- **Total Predictions**: 1501
 - **Overall Winner Accuracy**: 50.6%
 
-#### 📅 Predictions for Today (2026-04-02)
+#### 📅 Predictions for Today (2026-04-03)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Illinois St Redbirds @ Auburn Tigers | **AWAY** (+6.5) | **OVER** (149.0) | 40% |
-| Rutgers Scarlet Knights @ Creighton Bluejays | **AWAY** (+4.0) | **UNDER** (151.5) | 61% |
-| Stanford Cardinal @ West Virginia Mountaineers | **HOME** (+1.5) | **OVER** (135.5) | 22% |
+| Illinois Fighting Illini @ UConn Huskies | **HOME** (+2.5) | **OVER** (139.5) | 38% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -149,7 +147,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: April 02, 2026*
+*Updated: April 03, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
