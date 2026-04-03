@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 03, 2026 at 05:29 AM
+**Last Updated**: April 03, 2026 at 12:42 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -138,6 +138,7 @@ python validation/run_all_backtests.py
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
 | Illinois Fighting Illini @ UConn Huskies | **HOME** (+2.5) | **OVER** (139.5) | 38% |
+| Oklahoma Sooners @ Baylor Bears | **HOME** (+1.0) | **UNDER** (157.5) | 52% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
