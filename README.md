@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 03, 2026 at 12:42 PM
+**Last Updated**: April 04, 2026 at 05:18 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -75,8 +75,8 @@ python validation/run_all_backtests.py
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
 | **Latest** (2026-04-02) | 1-2 | **33.3%** |
-| **Last 7 Days** | 5-7 | **41.7%** |
-| **Last 30 Days** | 250-254 | **49.6%** |
+| **Last 7 Days** | 3-5 | **37.5%** |
+| **Last 30 Days** | 233-233 | **50.0%** |
 | **All-Time** | 759-742 | **50.6%** |
 
 **Over/Under Accuracy**: 50.7%
@@ -133,12 +133,11 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1501
 - **Overall Winner Accuracy**: 50.6%
 
-#### 📅 Predictions for Today (2026-04-03)
+#### 📅 Predictions for Today (2026-04-04)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Illinois Fighting Illini @ UConn Huskies | **HOME** (+2.5) | **OVER** (139.5) | 38% |
-| Oklahoma Sooners @ Baylor Bears | **HOME** (+1.0) | **UNDER** (157.5) | 52% |
+| Michigan Wolverines @ Arizona Wildcats | **HOME** (+1.5) | **OVER** (157.5) | 27% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -148,7 +147,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: April 03, 2026*
+*Updated: April 04, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
