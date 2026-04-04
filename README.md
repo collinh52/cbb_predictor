@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 04, 2026 at 05:18 AM
+**Last Updated**: April 04, 2026 at 12:35 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
 
@@ -137,6 +137,7 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| West Virginia Mountaineers @ Creighton Bluejays | **HOME** (-1.5) | **OVER** (134.5) | 36% |
 | Michigan Wolverines @ Arizona Wildcats | **HOME** (+1.5) | **OVER** (157.5) | 27% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
