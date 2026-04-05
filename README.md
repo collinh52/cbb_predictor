@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 05, 2026 at 05:42 AM
+**Last Updated**: April 05, 2026 at 12:37 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -138,6 +138,7 @@ python validation/run_all_backtests.py
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
 | Tulsa Golden Hurricane @ Auburn Tigers | **AWAY** (+5.5) | **OVER** (160.0) | 39% |
+| Oklahoma Sooners @ West Virginia Mountaineers | **HOME** (+3.5) | **OVER** (138.0) | 9% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
