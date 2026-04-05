@@ -1,11 +1,11 @@
 {
   "with_vegas_lines": {
-    "total_predictions": 1501,
-    "spread_correct": 759,
-    "spread_accuracy": 0.5056628914057295,
-    "total_correct": 761,
-    "total_accuracy": 0.5069953364423717,
-    "last_updated": "2026-04-04T12:35:04.171181",
+    "total_predictions": 1505,
+    "spread_correct": 760,
+    "spread_accuracy": 0.5049833887043189,
+    "total_correct": 764,
+    "total_accuracy": 0.507641196013289,
+    "last_updated": "2026-04-05T05:42:12.847480",
     "daily_breakdown": {
       "2026-02-11": {
         "predictions": 51,
@@ -241,6 +241,16 @@
         "predictions": 3,
         "spread_correct": 1,
         "total_correct": 3
+      },
+      "2026-04-03": {
+        "predictions": 2,
+        "spread_correct": 1,
+        "total_correct": 1
+      },
+      "2026-04-04": {
+        "predictions": 2,
+        "spread_correct": 0,
+        "total_correct": 2
       }
     }
   },
@@ -250,20 +260,20 @@
     "implied_spread_accuracy": 0.0,
     "total_correct": 0,
     "total_accuracy": 0.0,
-    "last_updated": "2026-04-04T12:35:04.171190",
+    "last_updated": "2026-04-05T05:42:12.847492",
     "daily_breakdown": {}
   },
   "combined": {
-    "total_predictions": 1501,
-    "straight_up_correct": 759,
-    "straight_up_accuracy": 0.5056628914057295,
-    "last_updated": "2026-04-04T12:35:04.171192"
+    "total_predictions": 1505,
+    "straight_up_correct": 760,
+    "straight_up_accuracy": 0.5049833887043189,
+    "last_updated": "2026-04-05T05:42:12.847494"
   },
   "rolling_7_day": {
     "with_vegas": {
-      "predictions": 8,
+      "predictions": 10,
       "spread_correct": 3,
-      "accuracy": 0.375
+      "accuracy": 0.3
     },
     "without_vegas": {
       "predictions": 0,
@@ -273,9 +283,9 @@
   },
   "rolling_30_day": {
     "with_vegas": {
-      "predictions": 466,
-      "spread_correct": 233,
-      "accuracy": 0.5
+      "predictions": 427,
+      "spread_correct": 212,
+      "accuracy": 0.4964871194379391
     },
     "without_vegas": {
       "predictions": 0,

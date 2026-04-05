@@ -66,26 +66,26 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 04, 2026 at 12:35 PM
+**Last Updated**: April 05, 2026 at 05:42 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-04-02) | 1-2 | **33.3%** |
-| **Last 7 Days** | 3-5 | **37.5%** |
-| **Last 30 Days** | 233-233 | **50.0%** |
-| **All-Time** | 759-742 | **50.6%** |
+| **Latest** (2026-04-04) | 0-2 | **0.0%** |
+| **Last 7 Days** | 3-7 | **30.0%** |
+| **Last 30 Days** | 212-215 | **49.6%** |
+| **All-Time** | 760-745 | **50.5%** |
 
-**Over/Under Accuracy**: 50.7%
+**Over/Under Accuracy**: 50.8%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 238-235 | **50.3%** |
+| **50%+** | 238-236 | **50.2%** |
 | **60%+** | 103-96 | **51.8%** |
 | **70%+** | 31-35 | **47.0%** |
 | **80%+** | 6-10 | **37.5%** |
@@ -109,15 +109,15 @@ python validation/run_all_backtests.py
 | West Coast | 20-18 | **52.6%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
 | Southland | 19-18 | **51.4%** |
-| Southeastern | 51-51 | **50.0%** |
-| Big East | 29-29 | **50.0%** |
+| Big East | 30-30 | **50.0%** |
+| Southeastern | 51-52 | **49.5%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
-| Big 12 | 46-48 | **48.9%** |
 | ASUN | 23-25 | **47.9%** |
+| Big 12 | 46-51 | **47.4%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
-| Big Ten | 47-61 | **43.5%** |
+| Big Ten | 48-62 | **43.6%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
@@ -130,15 +130,14 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1501
-- **Overall Winner Accuracy**: 50.6%
+- **Total Predictions**: 1505
+- **Overall Winner Accuracy**: 50.5%
 
-#### 📅 Predictions for Today (2026-04-04)
+#### 📅 Predictions for Today (2026-04-05)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| West Virginia Mountaineers @ Creighton Bluejays | **HOME** (-1.5) | **OVER** (134.5) | 36% |
-| Michigan Wolverines @ Arizona Wildcats | **HOME** (+1.5) | **OVER** (157.5) | 27% |
+| Tulsa Golden Hurricane @ Auburn Tigers | **AWAY** (+5.5) | **OVER** (160.0) | 39% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -148,10 +147,14 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: April 04, 2026*
+*Updated: April 05, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
+| 1 | Arizona Wildcats | 4-1 | +26.7 | 92.5 | 65.8 |
+| 2 | Michigan Wolverines | 5-0 | +22.0 | 51.5 | 29.4 |
+| 3 | UConn Huskies | 5-0 | +3.4 | 91.4 | 87.5 |
+| 4 | Illinois Fighting Illini | 4-1 | +1.9 | 31.0 | 29.4 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
