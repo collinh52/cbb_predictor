@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 05, 2026 at 12:37 PM
+**Last Updated**: April 06, 2026 at 05:55 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-04-04) | 0-2 | **0.0%** |
-| **Last 7 Days** | 3-7 | **30.0%** |
-| **Last 30 Days** | 212-215 | **49.6%** |
-| **All-Time** | 760-745 | **50.5%** |
+| **Latest** (2026-04-05) | 1-1 | **50.0%** |
+| **Last 7 Days** | 4-8 | **33.3%** |
+| **Last 30 Days** | 193-199 | **49.2%** |
+| **All-Time** | 761-746 | **50.5%** |
 
 **Over/Under Accuracy**: 50.8%
 
@@ -110,11 +110,11 @@ python validation/run_all_backtests.py
 | Southwestern Athletic | 24-22 | **52.2%** |
 | Southland | 19-18 | **51.4%** |
 | Big East | 30-30 | **50.0%** |
-| Southeastern | 51-52 | **49.5%** |
+| Southeastern | 52-53 | **49.5%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
+| Big 12 | 47-51 | **48.0%** |
 | ASUN | 23-25 | **47.9%** |
-| Big 12 | 46-51 | **47.4%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
 | Big Ten | 48-62 | **43.6%** |
@@ -122,7 +122,7 @@ python validation/run_all_backtests.py
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
 | Horizon League | 14-21 | **40.0%** |
-| American | 25-39 | **39.1%** |
+| American | 25-40 | **38.5%** |
 | Ivy League | 10-16 | **38.5%** |
 | Big Sky | 15-27 | **35.7%** |
 
@@ -130,15 +130,14 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1505
+- **Total Predictions**: 1507
 - **Overall Winner Accuracy**: 50.5%
 
-#### 📅 Predictions for Today (2026-04-05)
+#### 📅 Predictions for Today (2026-04-06)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Tulsa Golden Hurricane @ Auburn Tigers | **AWAY** (+5.5) | **OVER** (160.0) | 39% |
-| Oklahoma Sooners @ West Virginia Mountaineers | **HOME** (+3.5) | **OVER** (138.0) | 9% |
+| UConn Huskies @ Michigan Wolverines | **HOME** (-7.5) | **OVER** (144.5) | 78% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -148,14 +147,16 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: April 05, 2026*
+*Updated: April 06, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
 | 1 | Arizona Wildcats | 4-1 | +26.7 | 92.5 | 65.8 |
 | 2 | Michigan Wolverines | 5-0 | +22.0 | 51.5 | 29.4 |
-| 3 | UConn Huskies | 5-0 | +3.4 | 91.4 | 87.5 |
-| 4 | Illinois Fighting Illini | 4-1 | +1.9 | 31.0 | 29.4 |
+| 3 | Auburn Tigers | 5-0 | +12.6 | 86.7 | 73.7 |
+| 4 | Tulsa Golden Hurricane | 4-1 | +6.7 | 37.0 | 29.9 |
+| 5 | UConn Huskies | 5-0 | +3.4 | 91.4 | 87.5 |
+| 6 | Illinois Fighting Illini | 4-1 | +1.9 | 31.0 | 29.4 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
 
