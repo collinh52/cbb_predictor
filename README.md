@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: April 15, 2026 at 05:56 AM
+**Last Updated**: April 16, 2026 at 05:56 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -76,7 +76,7 @@ python validation/run_all_backtests.py
 |-----------|------------|----------|
 | **Latest** (2026-04-06) | 0-1 | **0.0%** |
 | **Last 7 Days** | 0-0 | **0.0%** |
-| **Last 30 Days** | 49-56 | **46.7%** |
+| **Last 30 Days** | 48-56 | **46.2%** |
 | **All-Time** | 764-749 | **50.5%** |
 
 **Over/Under Accuracy**: 50.8%
@@ -147,7 +147,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: April 15, 2026*
+*Updated: April 16, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
