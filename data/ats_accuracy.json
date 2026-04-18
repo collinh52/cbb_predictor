@@ -5,7 +5,7 @@
     "spread_accuracy": 0.5049570389953735,
     "total_correct": 768,
     "total_accuracy": 0.5076007931262393,
-    "last_updated": "2026-04-17T05:58:58.654601",
+    "last_updated": "2026-04-18T05:29:58.024050",
     "daily_breakdown": {
       "2026-02-11": {
         "predictions": 51,
@@ -270,14 +270,14 @@
     "implied_spread_accuracy": 0.0,
     "total_correct": 0,
     "total_accuracy": 0.0,
-    "last_updated": "2026-04-17T05:58:58.654612",
+    "last_updated": "2026-04-18T05:29:58.024059",
     "daily_breakdown": {}
   },
   "combined": {
     "total_predictions": 1513,
     "straight_up_correct": 764,
     "straight_up_accuracy": 0.5049570389953735,
-    "last_updated": "2026-04-17T05:58:58.654614"
+    "last_updated": "2026-04-18T05:29:58.024061"
   },
   "rolling_7_day": {
     "with_vegas": {
@@ -293,9 +293,9 @@
   },
   "rolling_30_day": {
     "with_vegas": {
-      "predictions": 94,
-      "spread_correct": 40,
-      "accuracy": 0.425531914893617
+      "predictions": 75,
+      "spread_correct": 35,
+      "accuracy": 0.4666666666666667
     },
     "without_vegas": {
       "predictions": 0,
