@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: June 28, 2026 at 07:43 AM
+**Last Updated**: June 29, 2026 at 08:48 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -98,27 +98,26 @@ python validation/run_all_backtests.py
 | Southern | 25-15 | **62.5%** |
 | Mountain West | 41-25 | **62.1%** |
 | Summit League | 16-10 | **61.5%** |
-| Western Athletic | 20-13 | **60.6%** |
+| United Athletic | 20-13 | **60.6%** |
 | Patriot League | 16-11 | **59.3%** |
 | Mid-Eastern Athletic | 20-14 | **58.8%** |
-| Atlantic Coast | 55-42 | **56.7%** |
+| Atlantic Coast | 56-42 | **57.1%** |
 | Missouri Valley | 27-22 | **55.1%** |
 | Ohio Valley | 22-18 | **55.0%** |
 | Atlantic 10 | 39-34 | **53.4%** |
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
 | Southwestern Athletic | 24-22 | **52.2%** |
-| Big East | 31-29 | **51.7%** |
 | Southland | 19-18 | **51.4%** |
 | Southeastern | 54-54 | **50.0%** |
+| Big East | 31-31 | **50.0%** |
 | Mid-American | 28-29 | **49.1%** |
 | Big West | 24-25 | **49.0%** |
-| College Basketball Crown | 30-32 | **48.4%** |
-| Big 12 | 44-47 | **48.4%** |
+| Big 12 | 47-51 | **48.0%** |
 | Atlantic Sun | 23-25 | **47.9%** |
 | Metro Atlantic Athletic | 21-25 | **45.7%** |
 | Conference USA | 22-27 | **44.9%** |
-| Big Ten | 47-61 | **43.5%** |
+| Big Ten | 48-64 | **42.9%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
@@ -148,7 +147,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: June 28, 2026*
+*Updated: June 29, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
