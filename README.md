@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: July 16, 2026 at 06:09 AM
+**Last Updated**: July 17, 2026 at 06:09 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -147,7 +147,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: July 16, 2026*
+*Updated: July 17, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
@@ -156,16 +156,16 @@ python validation/run_all_backtests.py
 | 3 | Duke Blue Devils | 32-2 | +26.6 | 64.6 | 38.0 |
 | 4 | Illinois Fighting Illini | 24-8 | +25.4 | 67.0 | 42.1 |
 | 5 | Iowa State Cyclones | 27-7 | +25.3 | 64.9 | 39.9 |
-| 6 | Florida Gators | 26-7 | +24.8 | 66.7 | 42.2 |
+| 6 | Florida Gators | 26-7 | +24.7 | 66.6 | 42.2 |
 | 7 | Louisville Cardinals | 23-10 | +24.0 | 67.3 | 43.7 |
 | 8 | Alabama Crimson Tide | 23-9 | +23.7 | 72.5 | 48.8 |
 | 9 | Gonzaga Bulldogs | 30-3 | +23.5 | 64.4 | 40.9 |
-| 10 | Houston Cougars | 28-6 | +23.5 | 60.7 | 37.2 |
+| 10 | Houston Cougars | 28-6 | +23.4 | 60.7 | 37.2 |
 | 11 | Arkansas Razorbacks | 26-8 | +23.4 | 71.0 | 47.6 |
 | 12 | Purdue Boilermakers | 27-8 | +23.3 | 65.1 | 41.8 |
 | 13 | Vanderbilt Commodores | 26-8 | +22.8 | 67.5 | 44.7 |
-| 14 | St. John's Red Storm | 28-6 | +22.6 | 65.0 | 42.5 |
-| 15 | UConn Huskies | 29-5 | +22.1 | 62.1 | 39.9 |
+| 14 | St. John's Red Storm | 28-6 | +22.5 | 65.0 | 42.5 |
+| 15 | UConn Huskies | 29-5 | +22.1 | 62.0 | 39.9 |
 | 16 | BYU Cougars | 23-11 | +22.1 | 67.9 | 45.8 |
 | 17 | Michigan State Spartans | 25-7 | +21.6 | 62.7 | 41.1 |
 | 18 | Tennessee Volunteers | 22-11 | +21.5 | 62.2 | 41.1 |
@@ -173,8 +173,8 @@ python validation/run_all_backtests.py
 | 20 | Kansas Jayhawks | 23-10 | +21.4 | 62.8 | 41.4 |
 | 21 | Wisconsin Badgers | 24-10 | +21.0 | 67.3 | 46.3 |
 | 22 | Virginia Cavaliers | 29-5 | +20.8 | 63.3 | 42.5 |
-| 23 | Georgia Bulldogs | 22-10 | +20.7 | 69.1 | 48.6 |
-| 24 | Kentucky Wildcats | 21-13 | +20.7 | 64.3 | 43.9 |
+| 23 | Georgia Bulldogs | 22-10 | +20.7 | 69.0 | 48.6 |
+| 24 | Kentucky Wildcats | 21-13 | +20.6 | 64.3 | 43.9 |
 | 25 | Nebraska Cornhuskers | 26-6 | +20.5 | 61.2 | 40.7 |
 
 > *Rankings based on tempo-free efficiency ratings with strength of schedule adjustment.*
