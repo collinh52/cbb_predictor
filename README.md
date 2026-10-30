@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: October 30, 2026 at 10:32 AM
+**Last Updated**: October 30, 2026 at 05:29 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -133,11 +133,11 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1513
 - **Overall Winner Accuracy**: 50.5%
 
-#### 📅 Recent Predictions (2026-04-06)
+#### 📅 Upcoming Predictions (2026-10-31)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| UConn Huskies @ Michigan Wolverines | **HOME** (-7.5) | **OVER** (144.5) | 78% |
+| Villanova Wildcats @ Notre Dame Fighting Irish | **HOME** (+7.5) | **OVER** (147.5) | 27% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
