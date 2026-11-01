@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 01, 2026 at 10:53 AM
+**Last Updated**: November 01, 2026 at 05:29 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -137,21 +137,21 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| Grambling St Tigers @ Northern Illinois Huskies | **HOME** (-5.5) | **UNDER** (147.5) | 86% |
+| Army Knights @ Duke Blue Devils | **AWAY** (+42.5) | **OVER** (150.5) | 48% |
+| Oakland Golden Grizzlies @ Michigan Wolverines | **AWAY** (+26.5) | **OVER** (157.0) | 48% |
+| Monmouth Hawks @ St. John's Red Storm | **AWAY** (+27.5) | **UNDER** (153.0) | 84% |
 | Memphis Tigers @ Iowa State Cyclones | **HOME** (-13.5) | **UNDER** (155.5) | 80% |
+| UAB Blazers @ McNeese Cowboys | **HOME** (-3.5) | **UNDER** (148.5) | 67% |
 | High Point Panthers @ Liberty Flames | **AWAY** (-7.5) | **UNDER** (154.5) | 50% |
+| UTSA Roadrunners @ San José St Spartans | **AWAY** (+7.5) | **OVER** (153.0) | 45% |
 | Florida Gators @ Miami Hurricanes | **AWAY** (-4.5) | **UNDER** (161.5) | 65% |
-| Appalachian St Mountaineers @ Merrimack Warriors | **HOME** | - | 50% |
-| Winthrop Eagles @ Queens University Royals | **HOME** | - | 50% |
-| Murray St Racers @ Tennessee St Tigers | **HOME** | - | 50% |
-| Northern Kentucky Norse @ UTEP Miners | **HOME** | - | 50% |
-| UTSA Roadrunners @ San José St Spartans | **HOME** | - | 50% |
-| UMBC Retrievers @ George Mason Patriots | **AWAY** | - | 50% |
-| McNeese Cowboys @ UAB Blazers | **AWAY** | - | 50% |
-| Oakland Golden Grizzlies @ Michigan Wolverines | **HOME** | - | 50% |
-| Army Knights @ Duke Blue Devils | **HOME** | - | 50% |
-| Central Connecticut St Blue Devils @ Temple Owls | **HOME** | - | 50% |
-| Loyola (MD) Greyhounds @ Georgetown Hoyas | **HOME** | - | 50% |
-| Monmouth Hawks @ St. John's Red Storm | **HOME** | - | 50% |
+| Tennessee St Tigers @ Murray St Racers | **AWAY** (+9.0) | **OVER** (163.0) | 39% |
+| Winthrop Eagles @ Queens University Royals | **HOME** (-1.5) | **UNDER** (165.5) | 32% |
+| Northern Kentucky Norse @ UTEP Miners | **AWAY** (+1.5) | **OVER** (147.5) | 8% |
+| Bowling Green Falcons @ Georgia St Panthers | **AWAY** (+3.5) | **UNDER** (158.0) | 41% |
+| Pepperdine Waves @ Cornell Big Red | **HOME** (+2.0) | **OVER** (163.5) | 31% |
+| Merrimack Warriors @ Appalachian St Mountaineers | **HOME** (+3.5) | **UNDER** (134.0) | 17% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
