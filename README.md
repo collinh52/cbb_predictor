@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: October 31, 2026 at 04:33 PM
+**Last Updated**: November 01, 2026 at 10:53 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -133,11 +133,25 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1513
 - **Overall Winner Accuracy**: 50.5%
 
-#### 📅 Predictions for Today (2026-10-31)
+#### 📅 Predictions for Today (2026-11-01)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Villanova Wildcats @ Notre Dame Fighting Irish | **HOME** (+7.5) | **OVER** (147.5) | 27% |
+| Memphis Tigers @ Iowa State Cyclones | **HOME** (-13.5) | **UNDER** (155.5) | 80% |
+| High Point Panthers @ Liberty Flames | **AWAY** (-7.5) | **UNDER** (154.5) | 50% |
+| Florida Gators @ Miami Hurricanes | **AWAY** (-4.5) | **UNDER** (161.5) | 65% |
+| Appalachian St Mountaineers @ Merrimack Warriors | **HOME** | - | 50% |
+| Winthrop Eagles @ Queens University Royals | **HOME** | - | 50% |
+| Murray St Racers @ Tennessee St Tigers | **HOME** | - | 50% |
+| Northern Kentucky Norse @ UTEP Miners | **HOME** | - | 50% |
+| UTSA Roadrunners @ San José St Spartans | **HOME** | - | 50% |
+| UMBC Retrievers @ George Mason Patriots | **AWAY** | - | 50% |
+| McNeese Cowboys @ UAB Blazers | **AWAY** | - | 50% |
+| Oakland Golden Grizzlies @ Michigan Wolverines | **HOME** | - | 50% |
+| Army Knights @ Duke Blue Devils | **HOME** | - | 50% |
+| Central Connecticut St Blue Devils @ Temple Owls | **HOME** | - | 50% |
+| Loyola (MD) Greyhounds @ Georgetown Hoyas | **HOME** | - | 50% |
+| Monmouth Hawks @ St. John's Red Storm | **HOME** | - | 50% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -147,7 +161,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: October 31, 2026*
+*Updated: November 01, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
