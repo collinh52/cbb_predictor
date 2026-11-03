@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 03, 2026 at 11:27 AM
+**Last Updated**: November 03, 2026 at 06:52 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -138,14 +138,23 @@ python validation/run_all_backtests.py
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
 | Sam Houston St Bearkats @ Alabama Crimson Tide | **HOME** (-26.0) | **UNDER** (168.0) | 71% |
+| Arkansas-Pine Bluff Golden Lions @ Arkansas Razorbacks | **AWAY** (+41.5) | **OVER** (167.5) | 49% |
 | Manhattan Jaspers @ Kentucky Wildcats | **AWAY** (+30.0) | **UNDER** (157.5) | 74% |
 | Drexel Dragons @ Virginia Cavaliers | **AWAY** (+26.0) | **UNDER** (141.0) | 83% |
+| Alabama St Hornets @ Texas A&M Aggies | **AWAY** (+32.5) | **UNDER** (161.5) | 78% |
+| New Orleans Privateers @ LSU Tigers | **AWAY** (+27.5) | **UNDER** (159.5) | 54% |
 | Northern Arizona Lumberjacks @ UNLV Rebels | **AWAY** (+21.0) | **UNDER** (148.5) | 48% |
 | Cleveland St Vikings @ Missouri Tigers | **AWAY** (+24.0) | **UNDER** (159.0) | 49% |
+| Lipscomb Bisons @ Iowa Hawkeyes | **AWAY** (+22.5) | **UNDER** (146.5) | 76% |
+| Coppin St Eagles @ Virginia Tech Hokies | **AWAY** (+30.5) | **UNDER** (151.5) | 74% |
+| Stetson Hatters @ South Carolina Gamecocks | **AWAY** (+19.5) | **UNDER** (148.5) | 62% |
 | CSU Fullerton Titans @ San Diego St Aztecs | **AWAY** (+16.0) | **UNDER** (154.5) | 65% |
+| Holy Cross Crusaders @ Rhode Island Rams | **AWAY** (+19.5) | **UNDER** (147.5) | 91% |
+| Wagner Seahawks @ Boston College Eagles | **AWAY** (+18.5) | **UNDER** (143.5) | 89% |
 | Hampton Pirates @ Georgia Tech Yellow Jackets | **AWAY** (+14.0) | **UNDER** (149.0) | 55% |
 | South Dakota St Jackrabbits @ Kansas St Wildcats | **AWAY** (+10.0) | **UNDER** (158.5) | 65% |
 | Fort Wayne Mastodons @ Duquesne Dukes | **AWAY** (+11.0) | **UNDER** (151.5) | 83% |
+| North Florida Ospreys @ Cal Baptist Lancers | **AWAY** (+11.5) | **UNDER** (157.5) | 69% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
