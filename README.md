@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 04, 2026 at 11:41 AM
+**Last Updated**: November 04, 2026 at 07:07 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.4%25-yellowgreen)
 
@@ -137,9 +137,17 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| Maryland-Eastern Shore Hawks @ High Point Panthers | **AWAY** (+35.5) | **OVER** (147.5) | 53% |
+| SE Louisiana Lions @ Auburn Tigers | **AWAY** (+28.5) | **UNDER** (151.5) | 74% |
 | Milwaukee Panthers @ Santa Clara Broncos | **AWAY** (+18.0) | **UNDER** (157.5) | 59% |
+| Fairleigh Dickinson Knights @ Butler Bulldogs | **AWAY** (+27.5) | **UNDER** (155.5) | 89% |
+| Wake Forest Demon Deacons @ Vanderbilt Commodores | **AWAY** (+16.0) | **OVER** (153.5) | 57% |
+| Chattanooga Mocs @ Penn State Nittany Lions | **AWAY** (+16.0) | **UNDER** (157.5) | 64% |
 | CSU Northridge Matadors @ Wichita St Shockers | **AWAY** (+14.5) | **UNDER** (159.0) | 67% |
 | North Dakota St Bison @ Saint Mary's Gaels | **AWAY** (+12.0) | **UNDER** (145.5) | 82% |
+| Radford Highlanders @ California Golden Bears | **AWAY** (+16.5) | **UNDER** (157.5) | 49% |
+| Longwood Lancers @ Saint Joseph's Hawks | **AWAY** (+10.5) | **UNDER** (151.5) | 59% |
+| Queens University Royals @ Loyola Marymount Lions | **AWAY** (+8.5) | **UNDER** (161.5) | 55% |
 | Northern Kentucky Norse @ South Dakota Coyotes | **HOME** (+1.0) | **OVER** (157.0) | 9% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
