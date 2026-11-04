@@ -66,27 +66,27 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 03, 2026 at 06:52 PM
+**Last Updated**: November 04, 2026 at 11:41 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.4%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-11-02) | 3-3 | **50.0%** |
-| **Last 7 Days** | 3-4 | **42.9%** |
-| **Last 30 Days** | 3-4 | **42.9%** |
-| **All-Time** | 767-753 | **50.5%** |
+| **Latest** (2026-11-03) | 0-3 | **0.0%** |
+| **Last 7 Days** | 3-7 | **30.0%** |
+| **Last 30 Days** | 3-7 | **30.0%** |
+| **All-Time** | 767-756 | **50.4%** |
 
-**Over/Under Accuracy**: 50.8%
+**Over/Under Accuracy**: 50.9%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 242-240 | **50.2%** |
-| **60%+** | 107-99 | **51.9%** |
+| **50%+** | 242-242 | **50.0%** |
+| **60%+** | 107-100 | **51.7%** |
 | **70%+** | 32-37 | **46.4%** |
 | **80%+** | 7-11 | **38.9%** |
 
@@ -107,21 +107,21 @@ python validation/run_all_backtests.py
 | Ohio Valley | 22-19 | **53.7%** |
 | America East | 19-17 | **52.8%** |
 | West Coast | 20-18 | **52.6%** |
-| Southland | 19-18 | **51.4%** |
 | Southwestern Athletic | 24-23 | **51.1%** |
 | Mid-American | 29-29 | **50.0%** |
-| Southeastern | 54-55 | **49.5%** |
+| Southland | 19-19 | **50.0%** |
 | Big East | 31-32 | **49.2%** |
 | Big 12 | 49-51 | **49.0%** |
 | Big West | 24-25 | **49.0%** |
-| Atlantic Sun | 24-26 | **48.0%** |
+| Southeastern | 54-58 | **48.2%** |
+| Atlantic Sun | 24-27 | **47.1%** |
 | Conference USA | 22-27 | **44.9%** |
 | Metro | 21-26 | **44.7%** |
 | Sun Belt | 24-32 | **42.9%** |
 | Big Ten | 48-65 | **42.5%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
-| Horizon League | 15-22 | **40.5%** |
+| Horizon League | 15-23 | **39.5%** |
 | American | 25-40 | **38.5%** |
 | Ivy League | 10-16 | **38.5%** |
 | Big Sky | 15-27 | **35.7%** |
@@ -130,31 +130,17 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1520
-- **Overall Winner Accuracy**: 50.5%
+- **Total Predictions**: 1523
+- **Overall Winner Accuracy**: 50.4%
 
-#### 📅 Predictions for Today (2026-11-03)
+#### 📅 Predictions for Today (2026-11-04)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Sam Houston St Bearkats @ Alabama Crimson Tide | **HOME** (-26.0) | **UNDER** (168.0) | 71% |
-| Arkansas-Pine Bluff Golden Lions @ Arkansas Razorbacks | **AWAY** (+41.5) | **OVER** (167.5) | 49% |
-| Manhattan Jaspers @ Kentucky Wildcats | **AWAY** (+30.0) | **UNDER** (157.5) | 74% |
-| Drexel Dragons @ Virginia Cavaliers | **AWAY** (+26.0) | **UNDER** (141.0) | 83% |
-| Alabama St Hornets @ Texas A&M Aggies | **AWAY** (+32.5) | **UNDER** (161.5) | 78% |
-| New Orleans Privateers @ LSU Tigers | **AWAY** (+27.5) | **UNDER** (159.5) | 54% |
-| Northern Arizona Lumberjacks @ UNLV Rebels | **AWAY** (+21.0) | **UNDER** (148.5) | 48% |
-| Cleveland St Vikings @ Missouri Tigers | **AWAY** (+24.0) | **UNDER** (159.0) | 49% |
-| Lipscomb Bisons @ Iowa Hawkeyes | **AWAY** (+22.5) | **UNDER** (146.5) | 76% |
-| Coppin St Eagles @ Virginia Tech Hokies | **AWAY** (+30.5) | **UNDER** (151.5) | 74% |
-| Stetson Hatters @ South Carolina Gamecocks | **AWAY** (+19.5) | **UNDER** (148.5) | 62% |
-| CSU Fullerton Titans @ San Diego St Aztecs | **AWAY** (+16.0) | **UNDER** (154.5) | 65% |
-| Holy Cross Crusaders @ Rhode Island Rams | **AWAY** (+19.5) | **UNDER** (147.5) | 91% |
-| Wagner Seahawks @ Boston College Eagles | **AWAY** (+18.5) | **UNDER** (143.5) | 89% |
-| Hampton Pirates @ Georgia Tech Yellow Jackets | **AWAY** (+14.0) | **UNDER** (149.0) | 55% |
-| South Dakota St Jackrabbits @ Kansas St Wildcats | **AWAY** (+10.0) | **UNDER** (158.5) | 65% |
-| Fort Wayne Mastodons @ Duquesne Dukes | **AWAY** (+11.0) | **UNDER** (151.5) | 83% |
-| North Florida Ospreys @ Cal Baptist Lancers | **AWAY** (+11.5) | **UNDER** (157.5) | 69% |
+| Milwaukee Panthers @ Santa Clara Broncos | **AWAY** (+18.0) | **UNDER** (157.5) | 59% |
+| CSU Northridge Matadors @ Wichita St Shockers | **AWAY** (+14.5) | **UNDER** (159.0) | 67% |
+| North Dakota St Bison @ Saint Mary's Gaels | **AWAY** (+12.0) | **UNDER** (145.5) | 82% |
+| Northern Kentucky Norse @ South Dakota Coyotes | **HOME** (+1.0) | **OVER** (157.0) | 9% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -164,7 +150,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 03, 2026*
+*Updated: November 04, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
