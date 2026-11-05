@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 04, 2026 at 07:07 PM
+**Last Updated**: November 05, 2026 at 11:42 AM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.4%25-yellowgreen)
 
@@ -133,22 +133,25 @@ python validation/run_all_backtests.py
 - **Total Predictions**: 1523
 - **Overall Winner Accuracy**: 50.4%
 
-#### 📅 Predictions for Today (2026-11-04)
+#### 📅 Predictions for Today (2026-11-05)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Maryland-Eastern Shore Hawks @ High Point Panthers | **AWAY** (+35.5) | **OVER** (147.5) | 53% |
-| SE Louisiana Lions @ Auburn Tigers | **AWAY** (+28.5) | **UNDER** (151.5) | 74% |
-| Milwaukee Panthers @ Santa Clara Broncos | **AWAY** (+18.0) | **UNDER** (157.5) | 59% |
-| Fairleigh Dickinson Knights @ Butler Bulldogs | **AWAY** (+27.5) | **UNDER** (155.5) | 89% |
-| Wake Forest Demon Deacons @ Vanderbilt Commodores | **AWAY** (+16.0) | **OVER** (153.5) | 57% |
-| Chattanooga Mocs @ Penn State Nittany Lions | **AWAY** (+16.0) | **UNDER** (157.5) | 64% |
-| CSU Northridge Matadors @ Wichita St Shockers | **AWAY** (+14.5) | **UNDER** (159.0) | 67% |
-| North Dakota St Bison @ Saint Mary's Gaels | **AWAY** (+12.0) | **UNDER** (145.5) | 82% |
-| Radford Highlanders @ California Golden Bears | **AWAY** (+16.5) | **UNDER** (157.5) | 49% |
-| Longwood Lancers @ Saint Joseph's Hawks | **AWAY** (+10.5) | **UNDER** (151.5) | 59% |
-| Queens University Royals @ Loyola Marymount Lions | **AWAY** (+8.5) | **UNDER** (161.5) | 55% |
-| Northern Kentucky Norse @ South Dakota Coyotes | **HOME** (+1.0) | **OVER** (157.0) | 9% |
+| Coastal Carolina Chanticleers @ Duke Blue Devils | **AWAY** (+39.0) | **UNDER** (145.5) | 73% |
+| Pennsylvania Quakers @ Illinois Fighting Illini | **AWAY** (+28.5) | **UNDER** (163.5) | 90% |
+| Cal Poly Mustangs @ Arizona Wildcats | **AWAY** (+28.5) | **UNDER** (166.5) | 55% |
+| Toledo Rockets @ Michigan St Spartans | **AWAY** (+26.0) | **UNDER** (151.0) | 51% |
+| Green Bay Phoenix @ Cincinnati Bearcats | **AWAY** (+22.5) | **UNDER** (147.0) | 84% |
+| Buffalo Bulls @ Pittsburgh Panthers | **AWAY** (+18.5) | **UNDER** (149.5) | 73% |
+| VMI Keydets @ SMU Mustangs | **AWAY** (+23.5) | **UNDER** (155.5) | 67% |
+| Mercer Bears @ Virginia Tech Hokies | **AWAY** (+18.5) | **OVER** (152.0) | 58% |
+| Georgia St Panthers @ Charlotte 49ers | **AWAY** (+11.5) | **UNDER** (149.0) | 59% |
+| Towson Tigers @ Utah Utes | **AWAY** (+10.5) | **UNDER** (141.0) | 74% |
+| Northern Illinois Huskies @ Tulsa Golden Hurricane | **AWAY** (+16.0) | **UNDER** (155.5) | 76% |
+| West Georgia Wolves @ Loyola (Chi) Ramblers | **AWAY** (+15.0) | **UNDER** (142.0) | 48% |
+| Jacksonville St Gamecocks @ South Alabama Jaguars | **HOME** (-2.0) | **UNDER** (144.0) | 51% |
+| Hofstra Pride @ Princeton Tigers | **AWAY** (+2.5) | **UNDER** (141.0) | 47% |
+| South Florida Bulls @ DePaul Blue Demons | **AWAY** (+5.0) | **UNDER** (147.0) | 32% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -158,7 +161,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 04, 2026*
+*Updated: November 05, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
