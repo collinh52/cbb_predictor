@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 08, 2026 at 10:50 AM
+**Last Updated**: November 08, 2026 at 05:28 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -137,7 +137,33 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Syracuse Orange @ Indiana Hoosiers | **HOME** | - | 50% |
+| Green Bay Phoenix @ St. Thomas (MN) Tommies | **AWAY** (+7.5) | **UNDER** (149.0) | 75% |
+| SE Missouri St Redhawks @ South Carolina Gamecocks | **AWAY** (+17.0) | **UNDER** (144.0) | 76% |
+| Houston Cougars @ California Golden Bears | **HOME** (+19.0) | **UNDER** (143.0) | 68% |
+| Idaho State Bengals @ Air Force Falcons | **HOME** (-6.0) | **UNDER** (161.5) | 92% |
+| Quinnipiac Bobcats @ Vermont Catamounts | **HOME** (-8.5) | **UNDER** (139.5) | 60% |
+| UT-Arlington Mavericks @ Hawai'i Rainbow Warriors | **AWAY** (+8.0) | **UNDER** (148.0) | 88% |
+| Marist Red Foxes @ UMass Lowell River Hawks | **HOME** (-1.0) | **UNDER** (142.0) | 59% |
+| Wichita St Shockers @ USC Trojans | **HOME** (-6.0) | **UNDER** (156.0) | 70% |
+| Central Connecticut St Blue Devils @ Dartmouth Big Green | **AWAY** (+8.5) | **OVER** (140.5) | 61% |
+| Southern Jaguars @ Drake Bulldogs | **AWAY** (+13.5) | **OVER** (151.5) | 47% |
+| Incarnate Word Cardinals @ UTEP Miners | **AWAY** (+12.5) | **UNDER** (141.0) | 45% |
+| Saint Peter's Peacocks @ NJIT Highlanders | **HOME** (+1.0) | **OVER** (131.5) | 46% |
+| Butler Bulldogs @ Boise State Broncos | **HOME** (-2.5) | **UNDER** (159.5) | 62% |
+| Norfolk St Spartans @ William & Mary Tribe | **AWAY** (+9.5) | **OVER** (158.5) | 65% |
+| Campbell Fighting Camels @ Western Michigan Broncos | **HOME** (-4.5) | **OVER** (152.0) | 44% |
+| Rider Broncs @ Binghamton Bearcats | **AWAY** (+7.5) | **OVER** (138.5) | 48% |
+| Brown Bears @ Lehigh Mountain Hawks | **AWAY** (+5.5) | **OVER** (139.0) | 41% |
+| Sacred Heart Pioneers @ New Hampshire Wildcats | **HOME** (+0.0) | **OVER** (146.0) | 42% |
+| Manhattan Jaspers @ Maine Black Bears | **HOME** (-2.5) | **OVER** (137.0) | 25% |
+| Saint Mary's Gaels @ Nevada Wolf Pack | **HOME** (-1.5) | **UNDER** (146.0) | 56% |
+| Merrimack Warriors @ Albany Great Danes | **HOME** (+1.5) | **UNDER** (135.5) | 30% |
+| Princeton Tigers @ Siena Saints | **HOME** (+2.0) | **UNDER** (155.0) | 69% |
+| Pittsburgh Panthers @ Penn State Nittany Lions | **HOME** (+2.5) | **UNDER** (153.5) | 58% |
+| Fairfield Stags @ Bryant Bulldogs | **HOME** (+1.5) | **UNDER** (146.5) | 43% |
+| North Dakota St Bison @ CSU Bakersfield Roadrunners | **HOME** (+2.5) | **UNDER** (152.0) | 23% |
+| Richmond Spiders @ Temple Owls | **HOME** (+1.0) | **UNDER** (152.5) | 44% |
+| Western Kentucky Hilltoppers @ Tennessee Tech Golden Eagles | **HOME** (+3.0) | **UNDER** (164.5) | 47% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
