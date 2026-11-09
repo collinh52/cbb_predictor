@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 08, 2026 at 05:28 PM
+**Last Updated**: November 09, 2026 at 12:16 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -74,18 +74,18 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-11-07) | 1-0 | **100.0%** |
-| **Last 7 Days** | 9-8 | **52.9%** |
-| **Last 30 Days** | 9-8 | **52.9%** |
-| **All-Time** | 773-757 | **50.5%** |
+| **Latest** (2026-11-08) | 0-2 | **0.0%** |
+| **Last 7 Days** | 9-9 | **50.0%** |
+| **Last 30 Days** | 9-10 | **47.4%** |
+| **All-Time** | 773-759 | **50.5%** |
 
-**Over/Under Accuracy**: 50.8%
+**Over/Under Accuracy**: 50.9%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 247-242 | **50.5%** |
+| **50%+** | 247-243 | **50.4%** |
 | **60%+** | 110-100 | **52.4%** |
 | **70%+** | 34-37 | **47.9%** |
 | **80%+** | 8-11 | **42.1%** |
@@ -98,10 +98,10 @@ python validation/run_all_backtests.py
 | Southern | 25-15 | **62.5%** |
 | Mountain West | 41-25 | **62.1%** |
 | United Athletic | 21-13 | **61.8%** |
-| Summit League | 16-10 | **61.5%** |
 | Patriot League | 17-11 | **60.7%** |
+| Summit League | 16-11 | **59.3%** |
 | Mid-Eastern Athletic | 20-14 | **58.8%** |
-| Atlantic Coast | 58-42 | **58.0%** |
+| Atlantic Coast | 58-43 | **57.4%** |
 | Missouri Valley | 27-22 | **55.1%** |
 | Atlantic 10 | 41-34 | **54.7%** |
 | West Coast | 21-18 | **53.8%** |
@@ -111,14 +111,14 @@ python validation/run_all_backtests.py
 | Mid-American | 31-29 | **51.7%** |
 | Big East | 31-32 | **49.2%** |
 | Big 12 | 49-51 | **49.0%** |
-| Big West | 24-25 | **49.0%** |
 | Southland | 19-20 | **48.7%** |
 | Southeastern | 55-58 | **48.7%** |
+| Big West | 24-26 | **48.0%** |
 | Atlantic Sun | 24-27 | **47.1%** |
 | Conference USA | 22-27 | **44.9%** |
 | Metro | 21-26 | **44.7%** |
 | Sun Belt | 25-32 | **43.9%** |
-| Big Ten | 49-65 | **43.0%** |
+| Big Ten | 49-66 | **42.6%** |
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
 | Horizon League | 15-23 | **39.5%** |
@@ -130,40 +130,14 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1530
+- **Total Predictions**: 1532
 - **Overall Winner Accuracy**: 50.5%
 
-#### 📅 Predictions for Today (2026-11-08)
+#### 📅 Predictions for Today (2026-11-09)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Green Bay Phoenix @ St. Thomas (MN) Tommies | **AWAY** (+7.5) | **UNDER** (149.0) | 75% |
-| SE Missouri St Redhawks @ South Carolina Gamecocks | **AWAY** (+17.0) | **UNDER** (144.0) | 76% |
-| Houston Cougars @ California Golden Bears | **HOME** (+19.0) | **UNDER** (143.0) | 68% |
-| Idaho State Bengals @ Air Force Falcons | **HOME** (-6.0) | **UNDER** (161.5) | 92% |
-| Quinnipiac Bobcats @ Vermont Catamounts | **HOME** (-8.5) | **UNDER** (139.5) | 60% |
-| UT-Arlington Mavericks @ Hawai'i Rainbow Warriors | **AWAY** (+8.0) | **UNDER** (148.0) | 88% |
-| Marist Red Foxes @ UMass Lowell River Hawks | **HOME** (-1.0) | **UNDER** (142.0) | 59% |
-| Wichita St Shockers @ USC Trojans | **HOME** (-6.0) | **UNDER** (156.0) | 70% |
-| Central Connecticut St Blue Devils @ Dartmouth Big Green | **AWAY** (+8.5) | **OVER** (140.5) | 61% |
-| Southern Jaguars @ Drake Bulldogs | **AWAY** (+13.5) | **OVER** (151.5) | 47% |
-| Incarnate Word Cardinals @ UTEP Miners | **AWAY** (+12.5) | **UNDER** (141.0) | 45% |
-| Saint Peter's Peacocks @ NJIT Highlanders | **HOME** (+1.0) | **OVER** (131.5) | 46% |
-| Butler Bulldogs @ Boise State Broncos | **HOME** (-2.5) | **UNDER** (159.5) | 62% |
-| Norfolk St Spartans @ William & Mary Tribe | **AWAY** (+9.5) | **OVER** (158.5) | 65% |
-| Campbell Fighting Camels @ Western Michigan Broncos | **HOME** (-4.5) | **OVER** (152.0) | 44% |
-| Rider Broncs @ Binghamton Bearcats | **AWAY** (+7.5) | **OVER** (138.5) | 48% |
-| Brown Bears @ Lehigh Mountain Hawks | **AWAY** (+5.5) | **OVER** (139.0) | 41% |
-| Sacred Heart Pioneers @ New Hampshire Wildcats | **HOME** (+0.0) | **OVER** (146.0) | 42% |
-| Manhattan Jaspers @ Maine Black Bears | **HOME** (-2.5) | **OVER** (137.0) | 25% |
-| Saint Mary's Gaels @ Nevada Wolf Pack | **HOME** (-1.5) | **UNDER** (146.0) | 56% |
-| Merrimack Warriors @ Albany Great Danes | **HOME** (+1.5) | **UNDER** (135.5) | 30% |
-| Princeton Tigers @ Siena Saints | **HOME** (+2.0) | **UNDER** (155.0) | 69% |
-| Pittsburgh Panthers @ Penn State Nittany Lions | **HOME** (+2.5) | **UNDER** (153.5) | 58% |
-| Fairfield Stags @ Bryant Bulldogs | **HOME** (+1.5) | **UNDER** (146.5) | 43% |
-| North Dakota St Bison @ CSU Bakersfield Roadrunners | **HOME** (+2.5) | **UNDER** (152.0) | 23% |
-| Richmond Spiders @ Temple Owls | **HOME** (+1.0) | **UNDER** (152.5) | 44% |
-| Western Kentucky Hilltoppers @ Tennessee Tech Golden Eagles | **HOME** (+3.0) | **UNDER** (164.5) | 47% |
+| Syracuse Orange @ Indiana Hoosiers | **HOME** | - | 50% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
@@ -173,7 +147,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 08, 2026*
+*Updated: November 09, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
