@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 09, 2026 at 12:16 PM
+**Last Updated**: November 09, 2026 at 09:49 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
 
@@ -137,7 +137,41 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
-| Syracuse Orange @ Indiana Hoosiers | **HOME** | - | 50% |
+| Grambling St Tigers @ Texas Longhorns | **HOME** (-37.5) | **UNDER** (154.5) | 70% |
+| UMKC Kangaroos @ Jacksonville Dolphins | **HOME** (-4.0) | **UNDER** (147.5) | 81% |
+| LIU Sharks @ Towson Tigers | **HOME** (-7.5) | **UNDER** (140.5) | 75% |
+| Wagner Seahawks @ UConn Huskies | **AWAY** (+39.5) | **UNDER** (140.5) | 83% |
+| UL Monroe Warhawks @ Texas A&M Aggies | **AWAY** (+36.0) | **UNDER** (169.0) | 79% |
+| Oakland Golden Grizzlies @ Alabama Crimson Tide | **AWAY** (+32.0) | **OVER** (170.0) | 64% |
+| Marshall Thundering Herd @ Ohio State Buckeyes | **AWAY** (+26.0) | **UNDER** (162.5) | 63% |
+| North Florida Ospreys @ Miami Hurricanes | **AWAY** (+37.0) | **UNDER** (165.0) | 68% |
+| Radford Highlanders @ Tennessee Volunteers | **AWAY** (+30.5) | **UNDER** (153.5) | 71% |
+| North Alabama Lions @ Oklahoma Sooners | **AWAY** (+28.5) | **UNDER** (147.0) | 62% |
+| Appalachian St Mountaineers @ Auburn Tigers | **AWAY** (+23.5) | **UNDER** (144.0) | 54% |
+| Louisiana Tech Bulldogs @ LSU Tigers | **AWAY** (+29.5) | **UNDER** (148.0) | 65% |
+| SIU-Edwardsville Cougars @ Missouri Tigers | **AWAY** (+29.5) | **UNDER** (149.5) | 92% |
+| Eastern Illinois Panthers @ Notre Dame Fighting Irish | **AWAY** (+28.0) | **OVER** (140.5) | 69% |
+| Illinois St Redbirds @ Purdue Boilermakers | **AWAY** (+15.5) | **UNDER** (144.0) | 55% |
+| Florida Gulf Coast Eagles @ Georgia Bulldogs | **AWAY** (+22.5) | **UNDER** (161.5) | 76% |
+| Miss Valley St Delta Devils @ Washington Huskies | **AWAY** (+32.5) | **UNDER** (154.5) | 84% |
+| Boston Univ. Terriers @ Northwestern Wildcats | **AWAY** (+14.5) | **UNDER** (143.5) | 64% |
+| Jackson St Tigers @ Mississippi St Bulldogs | **AWAY** (+23.5) | **OVER** (154.5) | 69% |
+| Eastern Washington Eagles @ Oregon St Beavers | **AWAY** (+17.0) | **UNDER** (162.0) | 89% |
+| Rice Owls @ Stanford Cardinal | **AWAY** (+18.5) | **UNDER** (144.5) | 53% |
+| North Dakota Fighting Hawks @ Clemson Tigers | **AWAY** (+22.0) | **UNDER** (154.5) | 92% |
+| UNC Greensboro Spartans @ UIC Flames | **AWAY** (+20.0) | **OVER** (148.0) | 60% |
+| Cleveland St Vikings @ Bowling Green Falcons | **AWAY** (+13.0) | **OVER** (154.5) | 58% |
+| Florida Gators @ Florida St Seminoles | **HOME** (+9.5) | **UNDER** (164.5) | 68% |
+| Alabama A&M Bulldogs @ DePaul Blue Demons | **AWAY** (+24.0) | **UNDER** (140.0) | 76% |
+| Syracuse Orange @ Indiana Hoosiers | **HOME** (-5.5) | **OVER** (146.5) | 50% |
+| Stonehill Skyhawks @ Columbia Lions | **AWAY** (+12.5) | **UNDER** (144.5) | 79% |
+| Minnesota Golden Gophers @ Cincinnati Bearcats | **HOME** (-7.0) | **UNDER** (143.5) | 87% |
+| Florida A&M Rattlers @ UAB Blazers | **AWAY** (+18.5) | **UNDER** (153.5) | 76% |
+| Portland Pilots @ Hawai'i Rainbow Warriors | **AWAY** (+8.0) | **UNDER** (157.0) | 71% |
+| Howard Bison @ Pennsylvania Quakers | **AWAY** (+5.5) | **UNDER** (156.5) | 64% |
+| Charlotte 49ers @ Seton Hall Pirates | **AWAY** (+4.0) | **UNDER** (130.5) | 20% |
+| South Carolina Upstate Spartans @ Coastal Carolina Chanticleers | **AWAY** (+10.5) | **UNDER** (149.0) | 51% |
+| South Carolina St Bulldogs @ Chicago St Cougars | **AWAY** (+1.5) | **UNDER** (144.5) | 36% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
