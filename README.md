@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 12, 2026 at 11:58 AM
+**Last Updated**: November 12, 2026 at 07:22 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.4%25-yellowgreen)
 
@@ -137,12 +137,22 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| West Florida Argonauts @ Alabama A&M Bulldogs | **HOME** (-5.5) | **UNDER** (146.5) | 67% |
+| Southern Utah Thunderbirds @ High Point Panthers | **AWAY** (+22.5) | **OVER** (157.5) | 67% |
 | Montana St Bobcats @ BYU Cougars | **AWAY** (+25.0) | **UNDER** (163.0) | 75% |
 | Mercer Bears @ West Virginia Mountaineers | **AWAY** (+26.5) | **UNDER** (150.5) | 91% |
+| Mercyhurst Lakers @ Penn State Nittany Lions | **AWAY** (+20.5) | **UNDER** (148.5) | 53% |
 | Niagara Purple Eagles @ Bowling Green Falcons | **HOME** (-14.0) | **UNDER** (148.0) | 82% |
+| Southern Jaguars @ Minnesota Golden Gophers | **AWAY** (+25.5) | **UNDER** (142.5) | 58% |
+| Maryland-Eastern Shore Hawks @ Rhode Island Rams | **AWAY** (+22.5) | **UNDER** (137.5) | 73% |
+| Stetson Hatters @ Howard Bison | **HOME** (-9.5) | **UNDER** (149.5) | 54% |
 | Canisius Golden Griffins @ Brown Bears | **AWAY** (+14.5) | **UNDER** (136.0) | 62% |
+| Loyola (MD) Greyhounds @ Towson Tigers | **AWAY** (+13.5) | **OVER** (133.5) | 70% |
+| Morgan St Bears @ UMBC Retrievers | **HOME** (-6.5) | **UNDER** (162.5) | 83% |
 | UC Riverside Highlanders @ San José St Spartans | **AWAY** (+8.5) | **OVER** (152.0) | 50% |
 | Oklahoma St Cowboys @ Texas A&M Aggies | **AWAY** (+7.0) | **UNDER** (176.5) | 56% |
+| Central Connecticut St Blue Devils @ Sacred Heart Pioneers | **AWAY** (+5.5) | **OVER** (144.5) | 49% |
+| Coppin St Eagles @ Bradley Braves | **AWAY** (+11.5) | **OVER** (132.5) | 75% |
 | New Mexico St Aggies @ UTEP Miners | **AWAY** (+3.5) | **UNDER** (142.0) | 34% |
 | Richmond Spiders @ Southern Illinois Salukis | **HOME** (+4.0) | **UNDER** (157.0) | 52% |
 | Western Michigan Broncos @ Fort Wayne Mastodons | **HOME** (+0.0) | **UNDER** (150.0) | 33% |
