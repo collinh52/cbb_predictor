@@ -66,26 +66,26 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 14, 2026 at 05:31 PM
+**Last Updated**: November 15, 2026 at 11:36 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.5%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.4%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-11-13) | 2-2 | **50.0%** |
-| **Last 7 Days** | 7-8 | **46.7%** |
-| **Last 30 Days** | 15-16 | **48.4%** |
-| **All-Time** | 779-765 | **50.5%** |
+| **Latest** (2026-11-14) | 1-2 | **33.3%** |
+| **Last 7 Days** | 7-10 | **41.2%** |
+| **Last 30 Days** | 16-18 | **47.1%** |
+| **All-Time** | 780-767 | **50.4%** |
 
-**Over/Under Accuracy**: 50.9%
+**Over/Under Accuracy**: 50.8%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 251-248 | **50.3%** |
+| **50%+** | 252-249 | **50.3%** |
 | **60%+** | 113-105 | **51.8%** |
 | **70%+** | 35-38 | **47.9%** |
 | **80%+** | 9-12 | **42.9%** |
@@ -98,13 +98,13 @@ python validation/run_all_backtests.py
 | Southern | 25-15 | **62.5%** |
 | Mountain West | 41-25 | **62.1%** |
 | United Athletic | 21-13 | **61.8%** |
-| Summit League | 16-11 | **59.3%** |
-| Mid-Eastern Athletic | 20-14 | **58.8%** |
 | Patriot League | 17-12 | **58.6%** |
 | Atlantic Coast | 59-44 | **57.3%** |
+| Summit League | 16-12 | **57.1%** |
+| Mid-Eastern Athletic | 20-15 | **57.1%** |
 | Missouri Valley | 27-22 | **55.1%** |
+| West Coast | 22-18 | **55.0%** |
 | Atlantic 10 | 41-34 | **54.7%** |
-| West Coast | 21-18 | **53.8%** |
 | Ohio Valley | 23-20 | **53.5%** |
 | Southwestern Athletic | 25-23 | **52.1%** |
 | America East | 19-18 | **51.4%** |
@@ -122,18 +122,18 @@ python validation/run_all_backtests.py
 | Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
 | Horizon League | 15-23 | **39.5%** |
-| Big Sky | 17-27 | **38.6%** |
+| Big Sky | 18-28 | **39.1%** |
 | Ivy League | 10-16 | **38.5%** |
-| American | 25-41 | **37.9%** |
+| American | 25-42 | **37.3%** |
 
 > *A game counts for a conference if either team is a member.*
 
 #### Combined Statistics
 
-- **Total Predictions**: 1544
-- **Overall Winner Accuracy**: 50.5%
+- **Total Predictions**: 1547
+- **Overall Winner Accuracy**: 50.4%
 
-#### 📅 Predictions for Today (2026-11-14)
+#### 📅 Recent Predictions (2026-11-14)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -204,7 +204,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 14, 2026*
+*Updated: November 15, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
