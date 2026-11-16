@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 15, 2026 at 06:13 PM
+**Last Updated**: November 16, 2026 at 12:10 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.4%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-11-14) | 1-2 | **33.3%** |
-| **Last 7 Days** | 7-10 | **41.2%** |
-| **Last 30 Days** | 16-18 | **47.1%** |
-| **All-Time** | 780-767 | **50.4%** |
+| **Latest** (2026-11-15) | 0-1 | **0.0%** |
+| **Last 7 Days** | 7-9 | **43.8%** |
+| **Last 30 Days** | 16-19 | **45.7%** |
+| **All-Time** | 780-768 | **50.4%** |
 
 **Over/Under Accuracy**: 50.8%
 
@@ -85,10 +85,10 @@ python validation/run_all_backtests.py
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 252-249 | **50.3%** |
-| **60%+** | 113-105 | **51.8%** |
-| **70%+** | 35-38 | **47.9%** |
-| **80%+** | 9-12 | **42.9%** |
+| **50%+** | 252-250 | **50.2%** |
+| **60%+** | 113-106 | **51.6%** |
+| **70%+** | 35-39 | **47.3%** |
+| **80%+** | 9-13 | **40.9%** |
 
 #### 🏀 ATS Accuracy by Conference
 
@@ -101,7 +101,7 @@ python validation/run_all_backtests.py
 | Patriot League | 17-12 | **58.6%** |
 | Atlantic Coast | 59-44 | **57.3%** |
 | Summit League | 16-12 | **57.1%** |
-| Mid-Eastern Athletic | 20-15 | **57.1%** |
+| Mid-Eastern Athletic | 20-16 | **55.6%** |
 | Missouri Valley | 27-22 | **55.1%** |
 | West Coast | 22-18 | **55.0%** |
 | Atlantic 10 | 41-34 | **54.7%** |
@@ -119,8 +119,8 @@ python validation/run_all_backtests.py
 | Atlantic Sun | 24-29 | **45.3%** |
 | Sun Belt | 26-32 | **44.8%** |
 | Big Ten | 49-67 | **42.2%** |
-| Coastal Athletic Association | 23-32 | **41.8%** |
 | Northeast | 12-17 | **41.4%** |
+| Coastal Athletic Association | 23-33 | **41.1%** |
 | Horizon League | 15-23 | **39.5%** |
 | Big Sky | 18-28 | **39.1%** |
 | Ivy League | 10-16 | **38.5%** |
@@ -130,10 +130,10 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1547
+- **Total Predictions**: 1548
 - **Overall Winner Accuracy**: 50.4%
 
-#### 📅 Predictions for Today (2026-11-15)
+#### 📅 Recent Predictions (2026-11-15)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -173,7 +173,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 15, 2026*
+*Updated: November 16, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
