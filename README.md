@@ -66,29 +66,29 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 20, 2026 at 07:29 PM
+**Last Updated**: November 21, 2026 at 11:54 AM
 
-![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.6%25-yellowgreen)
+![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
 
 #### 🏆 Rolling ATS Performance
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-11-19) | 4-0 | **100.0%** |
-| **Last 7 Days** | 15-9 | **62.5%** |
-| **Last 30 Days** | 28-23 | **54.9%** |
-| **All-Time** | 792-772 | **50.6%** |
+| **Latest** (2026-11-20) | 3-2 | **60.0%** |
+| **Last 7 Days** | 16-9 | **64.0%** |
+| **Last 30 Days** | 31-25 | **55.4%** |
+| **All-Time** | 795-774 | **50.7%** |
 
-**Over/Under Accuracy**: 50.9%
+**Over/Under Accuracy**: 51.0%
 
 #### 🎯 Accuracy by Confidence (ATS)
 
 | Confidence | Record | Accuracy |
 |------------|--------|----------|
-| **50%+** | 260-253 | **50.7%** |
-| **60%+** | 119-106 | **52.9%** |
-| **70%+** | 39-39 | **50.0%** |
-| **80%+** | 11-13 | **45.8%** |
+| **50%+** | 262-255 | **50.7%** |
+| **60%+** | 121-107 | **53.1%** |
+| **70%+** | 41-40 | **50.6%** |
+| **80%+** | 13-14 | **48.1%** |
 
 #### 🏀 ATS Accuracy by Conference
 
@@ -102,11 +102,11 @@ python validation/run_all_backtests.py
 | Atlantic Coast | 59-44 | **57.3%** |
 | Summit League | 16-12 | **57.1%** |
 | West Coast | 24-18 | **57.1%** |
-| Missouri Valley | 27-22 | **55.1%** |
 | Mid-Eastern Athletic | 20-17 | **54.1%** |
+| Missouri Valley | 27-23 | **54.0%** |
 | Atlantic 10 | 41-35 | **53.9%** |
-| Ohio Valley | 23-20 | **53.5%** |
 | Southwestern Athletic | 26-23 | **53.1%** |
+| Ohio Valley | 23-21 | **52.3%** |
 | Big 12 | 55-52 | **51.4%** |
 | America East | 19-18 | **51.4%** |
 | Mid-American | 31-31 | **50.0%** |
@@ -115,14 +115,14 @@ python validation/run_all_backtests.py
 | Big West | 25-26 | **49.0%** |
 | Southland | 20-21 | **48.8%** |
 | Southeastern | 58-61 | **48.7%** |
-| Metro | 22-26 | **45.8%** |
+| Metro | 23-26 | **46.9%** |
+| Northeast | 14-17 | **45.2%** |
 | Sun Belt | 26-32 | **44.8%** |
-| Atlantic Sun | 24-30 | **44.4%** |
-| Big Ten | 52-67 | **43.7%** |
-| Northeast | 12-17 | **41.4%** |
+| Big Ten | 54-67 | **44.6%** |
+| Atlantic Sun | 24-31 | **43.6%** |
 | Coastal Athletic Association | 23-33 | **41.1%** |
+| Horizon League | 16-23 | **41.0%** |
 | Big Sky | 19-29 | **39.6%** |
-| Horizon League | 15-23 | **39.5%** |
 | Ivy League | 10-16 | **38.5%** |
 | American | 25-42 | **37.3%** |
 
@@ -130,10 +130,10 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1564
-- **Overall Winner Accuracy**: 50.6%
+- **Total Predictions**: 1569
+- **Overall Winner Accuracy**: 50.7%
 
-#### 📅 Predictions for Today (2026-11-20)
+#### 📅 Recent Predictions (2026-11-20)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -193,7 +193,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 20, 2026*
+*Updated: November 21, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
