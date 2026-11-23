@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 22, 2026 at 06:54 PM
+**Last Updated**: November 23, 2026 at 01:47 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
 
@@ -74,10 +74,10 @@ python validation/run_all_backtests.py
 
 | Timeframe | ATS Record | Accuracy |
 |-----------|------------|----------|
-| **Latest** (2026-11-21) | 1-0 | **100.0%** |
-| **Last 7 Days** | 16-7 | **69.6%** |
-| **Last 30 Days** | 32-25 | **56.1%** |
-| **All-Time** | 796-774 | **50.7%** |
+| **Latest** (2026-11-22) | 1-1 | **50.0%** |
+| **Last 7 Days** | 17-7 | **70.8%** |
+| **Last 30 Days** | 33-26 | **55.9%** |
+| **All-Time** | 797-775 | **50.7%** |
 
 **Over/Under Accuracy**: 51.0%
 
@@ -95,16 +95,16 @@ python validation/run_all_backtests.py
 | Conference | Record | Accuracy |
 |------------|--------|----------|
 | Big South | 27-8 | **77.1%** |
+| Mountain West | 44-26 | **62.9%** |
 | Southern | 25-15 | **62.5%** |
-| Mountain West | 43-26 | **62.3%** |
-| United Athletic | 21-13 | **61.8%** |
+| United Athletic | 21-14 | **60.0%** |
 | Patriot League | 17-12 | **58.6%** |
 | Atlantic Coast | 59-44 | **57.3%** |
-| Summit League | 16-12 | **57.1%** |
 | West Coast | 24-18 | **57.1%** |
 | Mid-Eastern Athletic | 21-17 | **55.3%** |
+| Summit League | 16-13 | **55.2%** |
+| Atlantic 10 | 42-35 | **54.5%** |
 | Missouri Valley | 27-23 | **54.0%** |
-| Atlantic 10 | 41-35 | **53.9%** |
 | Southwestern Athletic | 26-23 | **53.1%** |
 | Ohio Valley | 23-21 | **52.3%** |
 | Big 12 | 55-52 | **51.4%** |
@@ -130,10 +130,10 @@ python validation/run_all_backtests.py
 
 #### Combined Statistics
 
-- **Total Predictions**: 1570
+- **Total Predictions**: 1572
 - **Overall Winner Accuracy**: 50.7%
 
-#### 📅 Predictions for Today (2026-11-22)
+#### 📅 Recent Predictions (2026-11-22)
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
@@ -177,7 +177,7 @@ python validation/run_all_backtests.py
 
 ### 🏆 Top 25 Team Rankings
 
-*Updated: November 22, 2026*
+*Updated: November 23, 2026*
 
 | Rank | Team | Record | Rating | Off | Def |
 |------|------|--------|--------|-----|-----|
