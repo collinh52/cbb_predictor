@@ -66,7 +66,7 @@ python validation/run_all_backtests.py
 
 ### 🎯 Live ATS Prediction Tracking
 
-**Last Updated**: November 26, 2026 at 01:19 PM
+**Last Updated**: November 26, 2026 at 08:47 PM
 
 ![ATS Accuracy](https://img.shields.io/badge/ATS_Record-50.7%25-yellowgreen)
 
@@ -137,14 +137,28 @@ python validation/run_all_backtests.py
 
 | Matchup | Spread Pick | Total Pick | Confidence |
 |---------|-------------|------------|------------|
+| Western Kentucky Hilltoppers @ Illinois Fighting Illini | **AWAY** (+27.5) | **UNDER** (176.0) | 94% |
+| Liberty Flames @ St. Thomas (MN) Tommies | **AWAY** (-1.0) | **UNDER** (146.5) | 59% |
+| Bowling Green Falcons @ Indiana Hoosiers | **AWAY** (+24.0) | **UNDER** (152.5) | 76% |
+| Villanova Wildcats @ Kansas Jayhawks | **AWAY** (+12.5) | **UNDER** (159.5) | 94% |
+| Old Dominion Monarchs @ Virginia Tech Hokies | **AWAY** (+18.0) | **OVER** (148.0) | 76% |
 | Omaha Mavericks @ Pacific Tigers | **AWAY** (+10.5) | **UNDER** (137.0) | 60% |
 | Baylor Bears @ Gonzaga Bulldogs | **HOME** (-4.5) | **UNDER** (159.5) | 80% |
 | Kansas St Wildcats @ Alabama Crimson Tide | **AWAY** (+14.5) | **OVER** (169.5) | 62% |
+| Cincinnati Bearcats @ Boston College Eagles | **HOME** (+9.0) | **UNDER** (140.5) | 80% |
+| Princeton Tigers @ UNC Wilmington Seahawks | **AWAY** (+8.0) | **UNDER** (150.5) | 87% |
+| Virginia Cavaliers @ Xavier Musketeers | **HOME** (+7.5) | **OVER** (157.0) | 36% |
 | SMU Mustangs @ LSU Tigers | **AWAY** (+6.0) | **UNDER** (159.5) | 39% |
+| Drake Bulldogs @ Boise State Broncos | **HOME** (-4.5) | **UNDER** (156.0) | 55% |
+| Texas A&M Aggies @ Marquette Golden Eagles | **AWAY** (-3.0) | **UNDER** (157.0) | 46% |
 | Texas Tech Red Raiders @ Oregon Ducks | **HOME** (+9.5) | **UNDER** (150.5) | 63% |
 | DePaul Blue Demons @ Pittsburgh Panthers | **HOME** (+1.0) | **UNDER** (139.0) | 61% |
 | Jacksonville St Gamecocks @ UC Davis Aggies | **HOME** (+2.0) | **UNDER** (138.5) | 22% |
 | St. John's Red Storm @ Louisville Cardinals | **HOME** (+2.5) | **UNDER** (157.5) | 54% |
+| Towson Tigers @ Pennsylvania Quakers | **AWAY** (+5.5) | **UNDER** (146.0) | 55% |
+| Texas State Bobcats @ Louisiana Tech Bulldogs | **HOME** (+7.5) | **UNDER** (138.5) | 26% |
+| Fresno St Bulldogs @ South Alabama Jaguars | **AWAY** (+1.0) | **UNDER** (147.0) | 23% |
+| Memphis Tigers @ Wake Forest Demon Deacons | **HOME** (+2.0) | **UNDER** (158.0) | 9% |
 
 > 📈 *ATS = Against The Spread (with Vegas lines). Updated daily via GitHub Actions.*
 
